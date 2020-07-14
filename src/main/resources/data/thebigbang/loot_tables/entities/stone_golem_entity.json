@@ -1,0 +1,41 @@
+{
+	"type": "minecraft:entity",
+    "pools": [
+        {
+        	"rolls": 4,
+        	"entries": [
+        		{
+                    "type": "item",
+                    "weight": 50,
+                    "name": "thebigbang:stone_golem_rubble"
+                },
+                {
+                    "type": "empty",
+                    "weight": 50
+                }
+        	]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 10,
+                    "name": "minecraft:arrow",
+                    "functions": [
+                    	{"function":"set_count","count":{"min":1,"max":3}}
+                    ]
+                },
+				{
+					"type":"item",
+					"weight":8,
+					"name":"thebigbang:sunrise_dew"
+				},
+                {
+                    "type": "empty",
+                    "weight": 82
+                }
+            ]
+        }
+    ]
+}

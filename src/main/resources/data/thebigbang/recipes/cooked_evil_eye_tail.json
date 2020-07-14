@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": 
+  {
+    "item": "thebigbang:evil_eye_tail"
+  },
+  "result": "thebigbang:cooked_eye_tail",
+  "experience": 2.0,
+  "cookingtime": 200
+}

@@ -1,0 +1,18 @@
+{
+ 	"type": "minecraft:crafting_shaped",
+  	"pattern": 
+  	[
+    	"  &",
+    	" # ",
+    	"x  "
+  	],
+  
+  	"key": 
+  	{
+    	"&": { "item": "thebigbang:orange_mushroom_cap" },
+    	"#": { "item": "thebigbang:blue_mushroom_cap" },
+    	"x": { "item": "minecraft:stick" }
+  	},
+  
+  	"result": { "item": "thebigbang:tri_coloured_dango" }
+}

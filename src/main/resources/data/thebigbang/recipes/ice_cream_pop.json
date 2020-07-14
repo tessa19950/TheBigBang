@@ -1,0 +1,19 @@
+{
+ 	"type": "minecraft:crafting_shaped",
+  	"pattern": 
+  	[
+  		" % ",
+    	"#x#",
+    	" & "
+  	],
+  
+  	"key": 
+  	{
+    	"#": { "item": "thebigbang:piece_of_ice" },
+    	"x": { "item": "thebigbang:drake_blood" },
+    	"&": { "item": "minecraft:glass_bottle" },
+    	"%": { "item": "minecraft:melon_slice" }
+  	},
+  
+  	"result": { "item": "thebigbang:ice_cream_pop" }
+}

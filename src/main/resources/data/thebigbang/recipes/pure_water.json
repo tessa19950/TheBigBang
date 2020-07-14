@@ -1,0 +1,18 @@
+{
+ 	"type": "minecraft:crafting_shaped",
+  	"pattern": 
+  	[
+  		"#",
+    	"x",
+    	"&"
+  	],
+  
+  	"key": 
+  	{
+    	"#": { "item": "thebigbang:piece_of_ice" },
+    	"x": { "item": "thebigbang:sunrise_dew" },
+    	"&": { "item": "minecraft:glass_bottle" }
+  	},
+  
+  	"result": { "item": "thebigbang:pure_water" }
+}

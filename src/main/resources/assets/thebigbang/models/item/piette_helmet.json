@@ -1,0 +1,11 @@
+{
+	"parent": "item/generated",
+
+	"textures": {
+	
+		"layer0": "thebigbang:item/piette_helmet",
+		"layer1": "thebigbang:item/piette_helmet_overlay"
+
+	}
+
+}

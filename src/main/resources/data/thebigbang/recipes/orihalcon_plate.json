@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": 
+  {
+    "item": "thebigbang:orihalcon"
+  },
+  "result": "thebigbang:orihalcon_plate",
+  "experience": 2.0,
+  "cookingtime": 200
+}

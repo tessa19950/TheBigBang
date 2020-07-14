@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "thebigbang:block/dark_golem_stone" },
+        "facing=south": { "model": "thebigbang:block/dark_golem_stone", "y": 180},
+        "facing=west": { "model": "thebigbang:block/dark_golem_stone", "y": 270},
+        "facing=east": { "model": "thebigbang:block/dark_golem_stone", "y": 90}
+    }
+}

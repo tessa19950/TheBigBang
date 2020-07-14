@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": 
+  {
+    "item": "thebigbang:octopus_leg"
+  },
+  "result": "thebigbang:cooked_octopus_leg",
+  "experience": 2.0,
+  "cookingtime": 200
+}

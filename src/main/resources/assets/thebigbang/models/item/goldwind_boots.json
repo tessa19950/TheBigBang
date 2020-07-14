@@ -1,0 +1,11 @@
+{
+	"parent": "item/generated",
+
+	"textures": {
+	
+		"layer0": "thebigbang:item/goldwind_boots",
+		"layer1": "thebigbang:item/goldwind_boots_overlay"
+
+	}
+
+}

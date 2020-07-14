@@ -1,0 +1,19 @@
+{
+ 	"type": "minecraft:crafting_shaped",
+  	"pattern": 
+  	[
+  		" % ",
+    	"#x#",
+    	" & "
+  	],
+  
+  	"key": 
+  	{
+  	    "%": { "item": "minecraft:dried_kelp" },
+    	"#": { "item": "minecraft:cooked_porkchop" },
+    	"x": { "item": "thebigbang:curse_eye_tail" },
+    	"&": { "item": "minecraft:bowl" }
+  	},
+  
+  	"result": { "item": "thebigbang:curse_eye_ramen" }
+}

@@ -1,0 +1,15 @@
+{
+ 	"type": "minecraft:crafting_shaped",
+  	"pattern": 
+  	[
+    	"&#&"
+  	],
+  
+  	"key": 
+  	{
+    	"#": { "item": "minecraft:cooked_cod" },
+    	"&": { "item": "thebigbang:cooked_octopus_leg" }
+  	},
+  
+  	"result": { "item": "thebigbang:unagi" }
+}

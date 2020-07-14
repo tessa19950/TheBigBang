@@ -1,0 +1,11 @@
+{
+	"parent": "item/generated",
+
+	"textures": {
+	
+		"layer0": "thebigbang:item/hwarang_boots",
+		"layer1": "thebigbang:item/hwarang_boots_overlay"
+
+	}
+
+}

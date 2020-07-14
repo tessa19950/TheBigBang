@@ -1,0 +1,25 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [128, 64],
+	"textures": {
+		"body": "thebigbang:block/danger_sign_body",
+		"face": "thebigbang:block/danger_sign_part_topleft",
+		"particle": "minecraft:blocks/acacia_planks"
+	},
+	"elements": [
+		{
+			"name": "part_topleft",
+			"from": [-0.5, 1, 5],
+			"to": [15.5, 13, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [10.5, 13.5, 4.5]},
+			"faces": {
+				"north": {"uv": [0, 4, 16, 16], "texture": "#face"},
+				"east": {"uv": [3.5, 0.75, 3.875, 3.75], "texture": "#body"},
+				"south": {"uv": [6.25, 0.75, 8.25, 3.75], "texture": "#body"},
+				"west": {"uv": [5.875, 0.75, 6.25, 3.75], "texture": "#body"},
+				"up": {"uv": [5.875, 0.75, 3.875, 0], "texture": "#body"},
+				"down": {"uv": [7.875, 0, 5.875, 0.75], "texture": "#body"}
+			}
+		}
+	]
+}

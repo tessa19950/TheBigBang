@@ -1,0 +1,19 @@
+{
+ 	"type": "minecraft:crafting_shaped",
+  	"pattern": 
+  	[
+  		" % ",
+    	"#x#",
+    	" & "
+  	],
+  
+  	"key": 
+  	{
+  	    "%": { "item": "minecraft:baked_potato" },
+    	"#": { "item": "minecraft:brown_mushroom" },
+    	"x": { "item": "thebigbang:cold_eye_tail" },
+    	"&": { "item": "minecraft:bowl" }
+  	},
+  
+  	"result": { "item": "thebigbang:cold_eye_ramen" }
+}

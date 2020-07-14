@@ -1,0 +1,19 @@
+{
+ 	"type": "minecraft:crafting_shaped",
+  	"pattern": 
+  	[
+  		" % ",
+    	"#x#",
+    	" & "
+  	],
+  
+  	"key": 
+  	{
+  	    "%": { "item": "minecraft:egg" },
+    	"#": { "item": "minecraft:wheat" },
+    	"x": { "item": "thebigbang:evil_eye_tail" },
+    	"&": { "item": "minecraft:bowl" }
+  	},
+  
+  	"result": { "item": "thebigbang:evil_eye_ramen" }
+}

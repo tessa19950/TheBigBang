@@ -1,0 +1,17 @@
+{
+ 	"type": "minecraft:crafting_shaped",
+  	"pattern": 
+  	[
+    	"  #",
+    	" # ",
+    	"x  "
+  	],
+  
+  	"key": 
+  	{
+    	"#": { "item": "minecraft:cooked_beef" },
+    	"x": { "item": "minecraft:stick" }
+  	},
+  
+  	"result": { "item": "thebigbang:dango" }
+}

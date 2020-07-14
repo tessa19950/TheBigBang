@@ -1,0 +1,63 @@
+{
+	"type": "minecraft:entity",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 30,
+                    "name": "thebigbang:dark_jryeti_skin"
+                },
+                {
+                    "type": "empty",
+                    "weight": 70
+                }
+            ]
+        },
+        {
+        	"rolls": 1,
+        	"entries": [
+        	 	{
+        	 		"type": "item",
+        	 		"weight": 20,
+        	 		"name": "minecraft:leather"
+				},
+				{
+					"type": "item",
+        	 		"weight": 20,
+        	 		"name": "minecraft:feather"
+				},
+				{
+                    "type": "empty",
+                    "weight": 60
+                }     	 
+        	]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 10,
+                    "name": "minecraft:arrow",
+                    "functions": [
+                    	{"function":"set_count","count":{"min":1,"max":3}}
+                    ]
+                },
+				{
+					"type":"item",
+					"weight":5,
+					"name":"minecraft:potion",
+					"functions": [
+						{"function":"set_nbt","tag":"{Potion:\"minecraft:healing\"}"}
+					]
+				},
+                {
+                    "type": "empty",
+                    "weight": 85
+                }
+            ]
+        }
+    ]
+}

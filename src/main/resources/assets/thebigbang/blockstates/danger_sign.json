@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "facing=north,part=base": { "model": "thebigbang:block/danger_sign_part_base" },
+        "facing=south,part=base": { "model": "thebigbang:block/danger_sign_part_base", "y": 180},
+        "facing=west,part=base": { "model": "thebigbang:block/danger_sign_part_base", "y": 270},
+        "facing=east,part=base": { "model": "thebigbang:block/danger_sign_part_base", "y": 90},
+        "facing=north,part=topleft": { "model": "thebigbang:block/danger_sign_part_topleft"},
+        "facing=south,part=topleft": { "model": "thebigbang:block/danger_sign_part_topleft", "y": 180},
+        "facing=west,part=topleft": { "model": "thebigbang:block/danger_sign_part_topleft", "y": 270},
+        "facing=east,part=topleft": { "model": "thebigbang:block/danger_sign_part_topleft", "y": 90},
+        "facing=north,part=topright": { "model": "thebigbang:block/danger_sign_part_topright"},
+        "facing=south,part=topright": { "model": "thebigbang:block/danger_sign_part_topright", "y": 180},
+        "facing=west,part=topright": { "model": "thebigbang:block/danger_sign_part_topright", "y": 270},
+        "facing=east,part=topright": { "model": "thebigbang:block/danger_sign_part_topright", "y": 90},
+        "facing=north,part=bottomright": { "model": "thebigbang:block/danger_sign_part_bottomright"},
+        "facing=south,part=bottomright": { "model": "thebigbang:block/danger_sign_part_bottomright", "y": 180},
+        "facing=west,part=bottomright": { "model": "thebigbang:block/danger_sign_part_bottomright", "y": 270},
+        "facing=east,part=bottomright": { "model": "thebigbang:block/danger_sign_part_bottomright", "y": 90}
+    }
+}

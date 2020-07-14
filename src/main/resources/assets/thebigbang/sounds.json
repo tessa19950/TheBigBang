@@ -1,0 +1,366 @@
+{
+	"entity.stump.damage":
+	{
+		"category": "entity",
+		"subtitle": "entity.stump.damage",
+		"sounds": ["thebigbang:entity/stump_damage"]
+	},
+	
+	"entity.stump.die":
+	{
+		"category": "entity",
+		"subtitle": "entity.stump.die",
+		"sounds": ["thebigbang:entity/stump_die"]
+	},
+	
+	"entity.octopus.damage":
+	{
+		"category": "entity",
+		"subtitle": "entity.octopus.damage",
+		"sounds": ["thebigbang:entity/octopus_damage"]
+	},
+	
+	"entity.octopus.die":
+	{
+		"category": "entity",
+		"subtitle": "entity.octopus.die",
+		"sounds": ["thebigbang:entity/octopus_die"]
+	},
+	
+	"entity.eye.damage":
+	{
+		"category": "entity",
+		"subtitle": "entity.eye.damage",
+		"sounds": ["thebigbang:entity/eye_damage"]
+	},
+	
+	"entity.eye.die":
+	{
+		"category": "entity",
+		"subtitle": "entity.eye.die",
+		"sounds": ["thebigbang:entity/eye_die"]
+	},
+	
+	"entity.mushroom.damage":
+	{
+		"category": "entity",
+		"subtitle": "entity.mushroom.damage",
+		"sounds": ["thebigbang:entity/mushroom_damage"]
+	},
+	
+	"entity.mushroom.die":
+	{
+		"category": "entity",
+		"subtitle": "entity.mushroom.die",
+		"sounds": ["thebigbang:entity/mushroom_die"]
+	},
+	
+	"entity.snail.damage":
+	{
+		"category": "entity",
+		"subtitle": "entity.snail.damage",
+		"sounds": ["thebigbang:entity/snail_damage"]
+	},
+	
+	"entity.snail.die":
+	{
+		"category": "entity",
+		"subtitle": "entity.snail.die",
+		"sounds": ["thebigbang:entity/snail_die"]
+	},
+	
+	"entity.jr_yeti.damage":
+	{
+		"category": "entity",
+		"subtitle": "entity.jr_yeti.damage",
+		"sounds": ["thebigbang:entity/jr_yeti_damage"]
+	},
+	
+	"entity.jr_yeti.die":
+	{
+		"category": "entity",
+		"subtitle": "entity.jr_yeti.die",
+		"sounds": ["thebigbang:entity/jr_yeti_die"]
+	},
+	
+	"entity.drake.damage":
+	{
+		"category": "entity",
+		"subtitle": "entity.drake.damage",
+		"sounds": ["thebigbang:entity/drake_damage"]
+	},
+
+	"entity.drake.die":
+	{
+		"category": "entity",
+		"subtitle": "entity.drake.die",
+		"sounds": ["thebigbang:entity/drake_die"]
+	},
+
+	"entity.copper_drake.damage":
+	{
+		"category": "entity",
+		"subtitle": "entity.copper_drake.damage",
+		"sounds": ["thebigbang:entity/copper_drake_damage"]
+	},
+
+	"entity.copper_drake.die":
+	{
+		"category": "entity",
+		"subtitle": "entity.copper_drake.die",
+		"sounds": ["thebigbang:entity/copper_drake_die"]
+	},
+	
+	"entity.dark_drake.damage":
+	{
+		"category": "entity",
+		"subtitle": "entity.dark_drake.damage",
+		"sounds": ["thebigbang:entity/dark_drake_damage"]
+	},
+	
+	"entity.dark_drake.die":
+	{
+		"category": "entity",
+		"subtitle": "entity.dark_drake.die",
+		"sounds": ["thebigbang:entity/dark_drake_die"]
+	},
+	
+	"entity.red_drake.damage":
+	{
+		"category": "entity",
+		"subtitle": "entity.red_drake.damage",
+		"sounds": ["thebigbang:entity/red_drake_damage"]
+	},
+	
+	"entity.red_drake.die":
+	{
+		"category": "entity",
+		"subtitle": "entity.red_drake.die",
+		"sounds": ["thebigbang:entity/red_drake_die"]
+	},
+	
+	"entity.ice_drake.damage":
+	{
+		"category": "entity",
+		"subtitle": "entity.ice_drake.damage",
+		"sounds": ["thebigbang:entity/ice_drake_damage"]
+	},
+	
+	"entity.ice_drake.die":
+	{
+		"category": "entity",
+		"subtitle": "entity.ice_drake.die",
+		"sounds": ["thebigbang:entity/ice_drake_die"]
+	},
+	
+	"entity.yeti.damage":
+	{
+		"category": "entity",
+		"subtitle": "entity.yeti.die",
+		"sounds": ["thebigbang:entity/yeti_damage"]
+	},
+	
+	"entity.yeti.die":
+	{
+		"category": "entity",
+		"subtitle": "entity.yeti.die",
+		"sounds": ["thebigbang:entity/yeti_die"]
+	},
+	
+	"entity.golem.damage":
+	{
+		"category": "entity",
+		"subtitle": "entity.golem.die",
+		"sounds": ["thebigbang:entity/golem_damage"]
+	},
+	
+	"entity.golem.die":
+	{
+		"category": "entity",
+		"subtitle": "entity.golem.die",
+		"sounds": ["thebigbang:entity/golem_die"]
+	},
+	
+	"record.amoria":
+	{
+		"category": "record",
+		"subtitle": "record.amoria",
+		"sounds": [
+            {
+                "name": "thebigbang:record/amoria",
+                "volume": 0.03,
+                "stream": true
+            }
+        ]
+	},
+	
+	"record.aqua":
+	{
+		"category": "record",
+		"subtitle": "record.aqua",
+		"sounds": [
+            {
+                "name": "thebigbang:record/aqua",
+                "volume": 0.03,
+                "stream": true
+            }
+        ]
+	},
+	
+	"record.ariant":
+	{
+		"category": "record",
+		"subtitle": "record.ariant",
+		"sounds": [
+            {
+                "name": "thebigbang:record/ariant",
+                "volume": 0.03,
+                "stream": true
+            }
+        ]
+	},
+	
+	"record.dilleke":
+	{
+		"category": "record",
+		"subtitle": "record.dilleke",
+		"sounds": [
+            {
+                "name": "thebigbang:record/dilleke",
+                "volume": 0.03,
+                "stream": true
+            }
+        ]
+	},
+	
+	"record.ellinia":
+	{
+		"category": "record",
+		"subtitle": "record.ellinia",
+		"sounds": [
+            {
+                "name": "thebigbang:record/ellinia",
+                "volume": 0.03,
+                "stream": true
+            }
+        ]
+	},
+	
+	"record.harbor":
+	{
+		"category": "record",
+		"subtitle": "record.harbor",
+		"sounds": [
+            {
+                "name": "thebigbang:record/harbor",
+                "volume": 0.03,
+                "stream": true
+            }
+        ]
+	},
+	
+	"record.henesys":
+	{
+		"category": "record",
+		"subtitle": "record.henesys",
+		"sounds": [
+            {
+                "name": "thebigbang:record/henesys",
+                "volume": 0.03,
+                "stream": true
+            }
+        ]
+	},
+	
+	"record.kerning":
+	{
+		"category": "record",
+		"subtitle": "record.kerning",
+		"sounds": [
+            {
+                "name": "thebigbang:record/kerning",
+                "volume": 0.03,
+                "stream": true
+            }
+        ]
+	},
+	
+	"record.ludibrium":
+	{
+		"category": "record",
+		"subtitle": "record.ludibrium",
+		"sounds": [
+            {
+                "name": "thebigbang:record/ludibrium",
+                "volume": 0.03,
+                "stream": true
+            }
+        ]
+	},
+	
+	"record.omega":
+	{
+		"category": "record",
+		"subtitle": "record.omega",
+		"sounds": [
+            {
+                "name": "thebigbang:record/omega",
+                "volume": 0.03,
+                "stream": true
+            }
+        ]
+	},
+	
+	"record.orbis":
+	{
+		"category": "record",
+		"subtitle": "record.orbis",
+		"sounds": [
+            {
+                "name": "thebigbang:record/orbis",
+                "volume": 0.03,
+                "stream": true
+            }
+        ]
+	},
+	
+	"record.perion":
+	{
+		"category": "record",
+		"subtitle": "record.perion",
+		"sounds": [
+            {
+                "name": "thebigbang:record/perion",
+                "volume": 0.03,
+                "stream": true
+            }
+        ]
+	},
+	
+	"record.raindrop":
+	{
+		"category": "record",
+		"subtitle": "record.raindrop",
+		"sounds": [
+            {
+                "name": "thebigbang:record/raindrop",
+                "volume": 0.03,
+                "stream": true
+            }
+        ]
+	},
+	
+	"record.square":
+	{
+		"category": "record",
+		"subtitle": "record.square",
+		"sounds": [
+            {
+                "name": "thebigbang:record/square",
+                "volume": 0.03,
+                "stream": true
+            }
+        ]
+	}
+	
+}

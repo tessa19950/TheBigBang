@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": 
+  {
+    "item": "thebigbang:blue_mushroom_cap"
+  },
+  "result": "thebigbang:cooked_mushroom_cap",
+  "experience": 2.0,
+  "cookingtime": 200
+}

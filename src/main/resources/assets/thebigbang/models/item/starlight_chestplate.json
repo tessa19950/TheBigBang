@@ -1,0 +1,11 @@
+{
+	"parent": "item/generated",
+
+	"textures": {
+	
+		"layer0": "thebigbang:item/starlight_chestplate",
+		"layer1": "thebigbang:item/starlight_chestplate_overlay"
+
+	}
+
+}

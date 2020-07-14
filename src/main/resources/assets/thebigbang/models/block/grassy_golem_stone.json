@@ -1,0 +1,33 @@
+	{   "parent": "block/block",
+	    "textures": {
+	        "particle": "thebigbang:block/golem_stone",
+	        "bottom": "thebigbang:block/golem_stone",
+	        "top": "block/grass_block_top",
+	        "front": "thebigbang:block/grassy_golem_stone_front",
+	        "back": "thebigbang:block/grassy_golem_stone_back",
+	        "side": "thebigbang:block/grassy_golem_stone",
+	        "overlay": "block/grass_block_side_overlay"
+	    },
+	    "elements": [
+	        {   "from": [ 0, 0, 0 ],
+	            "to": [ 16, 16, 16 ],
+	            "faces": {
+	                "down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#bottom", "cullface": "down" },
+	                "up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#top",    "cullface": "up", "tintindex": 0 },
+	                "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#back",   "cullface": "north" },
+	                "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#front",   "cullface": "south" },
+	                "west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#side",   "cullface": "west" },
+	                "east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#side",   "cullface": "east" }
+	            }
+	        },
+	        {   "from": [ 0, 0, 0 ],
+	            "to": [ 16, 16, 16 ],
+	            "faces": {
+	                "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "north" },
+	                "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "south" },
+	                "west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "west" },
+	                "east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#overlay", "tintindex": 0, "cullface": "east" }
+	            }
+	        }
+	    ]
+	}
