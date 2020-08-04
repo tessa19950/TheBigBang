@@ -1,7 +1,8 @@
 package com.homebrewCult.TheBigBang.entities;
 
 import com.homebrewCult.TheBigBang.init.ModSounds;
-
+import com.homebrewCult.TheBigBang.util.IQuestEntity;
+import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -21,10 +22,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class AbstractYetiEntity extends AnimalEntity {
-	
+public class AbstractYetiEntity extends AnimalEntity implements IQuestEntity {
 	private boolean isAngry;
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.COD, Items.SALMON, Items.PUFFERFISH, Items.TROPICAL_FISH);
+	private QuestEntityHandler questEntityHandler = new QuestEntityHandler();
 	
 	public AbstractYetiEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
 		super(type, worldIn);
@@ -93,5 +94,10 @@ public class AbstractYetiEntity extends AnimalEntity {
 	public AgeableEntity createChild(AgeableEntity ageable) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public QuestEntityHandler getQuestEntityHandler() {
+		return this.questEntityHandler;
 	}
 }

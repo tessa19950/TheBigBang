@@ -1,6 +1,8 @@
 package com.homebrewCult.TheBigBang.entities;
 
 import com.homebrewCult.TheBigBang.init.ModSounds;
+import com.homebrewCult.TheBigBang.util.IQuestEntity;
+import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -17,9 +19,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class AbstractEyeEntity extends MonsterEntity {
+public class AbstractEyeEntity extends MonsterEntity implements IQuestEntity {
 	
 	public boolean isAngry = false;
+	private QuestEntityHandler questEntityHandler = new QuestEntityHandler();
 
 	public AbstractEyeEntity(EntityType<? extends MonsterEntity> type, World worldIn) {
 		super(type, worldIn);
@@ -86,5 +89,16 @@ public class AbstractEyeEntity extends MonsterEntity {
 				return false;
 			}
 		}
+	}
+	
+	@Override
+	public void onDeath(DamageSource cause) {
+		this.questEntityHandler.onQuestEntityDeath(this, cause);
+		super.onDeath(cause);
+	}
+
+	@Override
+	public QuestEntityHandler getQuestEntityHandler() {
+		return this.questEntityHandler;
 	}
 }

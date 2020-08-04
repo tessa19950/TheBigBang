@@ -5,6 +5,8 @@ import com.homebrewCult.TheBigBang.gui.quests.Quest;
 import com.homebrewCult.TheBigBang.inventory.DangerSignContainer;
 import com.homebrewCult.TheBigBang.network.BigBangPacketHandler;
 import com.homebrewCult.TheBigBang.network.Packet_ClearQuestSlots;
+import com.homebrewCult.TheBigBang.network.Packet_HideInputSlots;
+import com.homebrewCult.TheBigBang.network.Packet_ShowInputSlots;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.FontRenderer;
@@ -43,7 +45,6 @@ public class DangerSignScreen extends ContainerScreen<DangerSignContainer> {
 			if (nextDetailsPos > 0) {
 				prevDetailsPos = nextDetailsPos;
 				nextDetailsPos -= 16;
-				container.HideInputSlots();
 			} else {
 				prevDetailsPos = 0;
 				nextDetailsPos = 0;
@@ -55,7 +56,6 @@ public class DangerSignScreen extends ContainerScreen<DangerSignContainer> {
 			} else {
 				prevDetailsPos = 132;
 				nextDetailsPos = 132;
-				container.ShowInputSlots(inputSlotCount);
 			}
 		}
 	}
@@ -83,9 +83,6 @@ public class DangerSignScreen extends ContainerScreen<DangerSignContainer> {
 	      GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
     	  
     	  //Drawing of the input slots
-    	  if(questSelected != -1) {
-    		  inputSlotCount = availableQuests[questSelected].getRequiredItems().size();
-    	  }
     	  for(int i = 0; i < inputSlotCount; i++) {     
     		  blit(detailsX + INPUTSLOT_XPOS + (INPUTSLOT_SPACING + INPUTSLOT_WIDTH) * i, detailsY + INPUTSLOT_YPOS, INPUTSLOT_UVX, INPUTSLOT_UVY, INPUTSLOT_WIDTH, INPUTSLOT_HEIGHT, 512, 256);
     	  }  
@@ -219,8 +216,13 @@ public class DangerSignScreen extends ContainerScreen<DangerSignContainer> {
 	public void buttonClicked(int index) {
 		if(index == questSelected) {
 			questSelected = -1;
+			container.hideInputSlots();
+			BigBangPacketHandler.INSTANCE.sendToServer(new Packet_HideInputSlots(container.tileEntity.getPos()));
 		} else {
 			questSelected = index;
+			inputSlotCount = availableQuests[questSelected].getRequiredItems().size();
+			container.showInputSlots(inputSlotCount);
+			BigBangPacketHandler.INSTANCE.sendToServer(new Packet_ShowInputSlots(container.tileEntity.getPos(), inputSlotCount));
 		}
 		BigBangPacketHandler.INSTANCE.sendToServer(new Packet_ClearQuestSlots(container.tileEntity.getPos()));
 		updateDescriptionText();
@@ -243,7 +245,7 @@ public class DangerSignScreen extends ContainerScreen<DangerSignContainer> {
 			Quest quest = availableQuests[questSelected];
 			detailsText = quest.getDescription();
 			if(quest.getRequiredKills() > 0) {
-				String name = container.tileEntity.questline.getEntityType().getName().getString();
+				String name = container.tileEntity.questline.getName();
 				detailsText = detailsText.replaceAll("#entity#", name);
 				detailsText = detailsText + "\n" + name + " " + container.tileEntity.getKillCount() + "/" + availableQuests[questSelected].getRequiredKills();
 			}

@@ -4,6 +4,9 @@ import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.init.ModSounds;
 import com.homebrewCult.TheBigBang.network.BigBangPacketHandler;
 import com.homebrewCult.TheBigBang.network.Packet_SetIsTempted;
+import com.homebrewCult.TheBigBang.util.IQuestEntity;
+import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
+
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
@@ -26,14 +29,13 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.PacketDistributor;
 
-public class AbstractGolemEntity extends AnimalEntity {
-	
+public class AbstractGolemEntity extends AnimalEntity implements IQuestEntity {
 	private boolean isAngry;
 	private boolean isTempted;
-	
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.DANDELION, Items.POPPY, Items.BLUE_ORCHID, Items.ALLIUM, 
 	Items.AZURE_BLUET, Items.ORANGE_TULIP, Items.PINK_TULIP, Items.RED_TULIP, Items.WHITE_TULIP, 
 	Items.OXEYE_DAISY, Items.CORNFLOWER, Items.LILAC, Items.LILY_OF_THE_VALLEY, Items.PEONY, Items.ROSE_BUSH);
+	private QuestEntityHandler questEntityHandler = new QuestEntityHandler();
 	
 	public AbstractGolemEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
 		super(type, worldIn);
@@ -153,5 +155,10 @@ public class AbstractGolemEntity extends AnimalEntity {
 	public AgeableEntity createChild(AgeableEntity ageable) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public QuestEntityHandler getQuestEntityHandler() {
+		return this.questEntityHandler;
 	}
 }

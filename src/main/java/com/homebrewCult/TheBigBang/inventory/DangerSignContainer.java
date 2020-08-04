@@ -1,10 +1,11 @@
 package com.homebrewCult.TheBigBang.inventory;
 
 import java.util.Map;
-
 import com.homebrewCult.TheBigBang.blocks.DangerSignTile;
+import com.homebrewCult.TheBigBang.gui.quests.EnumQuestItem;
 import com.homebrewCult.TheBigBang.gui.quests.Quest;
 import com.homebrewCult.TheBigBang.init.ModBlocks;
+import com.homebrewCult.TheBigBang.items.QuestItem;
 import com.homebrewCult.TheBigBang.network.BigBangPacketHandler;
 import com.homebrewCult.TheBigBang.network.Packet_HandInQuest;
 import net.minecraft.entity.item.ExperienceOrbEntity;
@@ -15,6 +16,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -52,16 +54,24 @@ public class DangerSignContainer extends Container {
 			this.addSlot(new Slot(playerInventory, k, -58 + k * 18, 142));
 		}
 	}
-
+	
 	public boolean canHandInQuest(Quest quest)
 	{	
 		boolean flag = true;
 		if(tileEntity.getKillCount() >= quest.getRequiredKills()) {
 			int i = 0;
 			for(Map.Entry<Item, Integer> entry : quest.getRequiredItems().entrySet()) {
-				if(entry.getKey() != questInventory.getStackInSlot(i).getItem() || entry.getValue() > questInventory.getStackInSlot(i).getCount()) {
-					flag = false;
-				} 
+				if(entry.getKey() instanceof QuestItem && questInventory.getStackInSlot(i).getItem() instanceof QuestItem) {
+					EnumQuestItem required = quest.getRequiredQuestItem();
+					EnumQuestItem input = EnumQuestItem.getQuestItemByIndex(questInventory.getStackInSlot(i).getTag().getInt("quest_item"));
+					if(entry.getKey() != questInventory.getStackInSlot(i).getItem() || required != input) {
+						flag = false;
+					} 
+				} else {
+					if(entry.getKey() != questInventory.getStackInSlot(i).getItem() || entry.getValue() > questInventory.getStackInSlot(i).getCount()) {
+						flag = false;
+					} 
+				}
 				i++;
 			}
 		} else {
@@ -109,12 +119,38 @@ public class DangerSignContainer extends Container {
 	}
 	
 	@Override
+	public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+	    ItemStack itemstack = ItemStack.EMPTY;  
+		Slot slot = this.inventorySlots.get(index);
+		if (slot != null && slot.getHasStack()) {
+			ItemStack stackToTransfer = slot.getStack();
+			itemstack = stackToTransfer.copy();			
+			if (index < this.questInventory.getSizeInventory()) {
+				if (!this.mergeItemStack(stackToTransfer, this.questInventory.getSizeInventory(), this.inventorySlots.size(), true)) {
+					return ItemStack.EMPTY;
+				}
+			} else {
+				if(!this.mergeItemStack(stackToTransfer, 0, this.getVisibleInputSlotCount(), false)) {
+					return ItemStack.EMPTY;
+				}
+			}
+
+			if (stackToTransfer.isEmpty()) {
+				slot.putStack(ItemStack.EMPTY);
+			} else {
+				slot.onSlotChanged();
+			}
+		}
+	    return itemstack;
+	}
+	
+	@Override
 	public void onContainerClosed(PlayerEntity playerIn) {
 		this.clearContainer(this.player, this.world, this.questInventory);
 		super.onContainerClosed(playerIn);
 	}
 	
-	public void ShowInputSlots(int count) {
+	public void showInputSlots(int count) {
 		for(int i = 0; i < inputSlots.length; i++) {
 			if(count > i) {
 				this.inputSlots[i].enableInputSlot();				
@@ -124,9 +160,19 @@ public class DangerSignContainer extends Container {
 		}
 	}
 	
-	public void HideInputSlots( ) {
+	public void hideInputSlots() {
 		for(int i = 0; i < inputSlots.length; i++) {
 			this.inputSlots[i].disableInputSlot();
 		}
+	}
+	
+	public int getVisibleInputSlotCount() {
+		int j = 0;
+		for(int i = 0; i < inputSlots.length; i++) {
+			if(this.inputSlots[i].isEnabled())	{
+				j++;
+			}
+		}
+		return j;
 	}
 }

@@ -37,7 +37,7 @@ public class DangerSignBlock extends ContainerBlock {
 	
 	public DangerSignBlock(Properties properties) {
 		super(properties);
-		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(PART, DangerSignPart.BASE).with(QUESTLINE, Questline.BlueMushrooms));
+		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(PART, DangerSignPart.BASE).with(QUESTLINE, Questline.None));
 	}
 	
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
@@ -73,14 +73,14 @@ public class DangerSignBlock extends ContainerBlock {
 		if (worldIn.isRemote) {
 			return true;
 		} else {
-			TileEntity tileentity = worldIn.getTileEntity(getBasePartPosition(state, pos));
-			if (tileentity instanceof DangerSignTile) {
-				NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider)tileentity, tileentity.getPos());
-			}
+			TileEntity tileEntity = worldIn.getTileEntity(getBasePartPosition(state, pos));
+			if (tileEntity instanceof DangerSignTile) {
+				NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider)tileEntity, tileEntity.getPos());
+			} 
 			return true;
       	}
 	}
-	
+
 	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
 		for (BlockPos partPos : getOtherPartPositions(state, pos)) {

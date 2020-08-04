@@ -1,13 +1,11 @@
 package com.homebrewCult.TheBigBang.entities;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 import javax.annotation.Nullable;
-
 import com.homebrewCult.TheBigBang.init.ModSounds;
 import com.homebrewCult.TheBigBang.network.BigBangPacketHandler;
 import com.homebrewCult.TheBigBang.network.Packet_SetChildAttacker;
+import com.homebrewCult.TheBigBang.util.IQuestEntity;
+import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
@@ -23,10 +21,8 @@ import net.minecraft.entity.ai.goal.PanicGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
@@ -43,7 +39,7 @@ public class AbstractMushroomEntity extends AnimalEntity implements IQuestEntity
 	
 	public AbstractMushroomEntity mom = null;
 	public String mushroomType = null;
-	private ArrayList<Item> questItems = new ArrayList<Item>();
+	private QuestEntityHandler questEntityHandler = new QuestEntityHandler();
 	
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.POISONOUS_POTATO, Items.ROTTEN_FLESH, Items.DEAD_BUSH);
 
@@ -182,20 +178,12 @@ public class AbstractMushroomEntity extends AnimalEntity implements IQuestEntity
 	
 	@Override
 	public void onDeath(DamageSource cause) {
-		if(this.isServerWorld()) {
-			Random rand = new Random();
-			for(Item item : this.questItems) {
-				if(rand.nextFloat() < 0.3f) {
-					ItemEntity itemEntity = new ItemEntity(world, this.posX, this.posY, this.posZ, new ItemStack(item));
-					this.getEntityWorld().addEntity(itemEntity);
-				}
-			}
-		}
+		this.questEntityHandler.onQuestEntityDeath(this, cause);
 		super.onDeath(cause);
 	}
 
 	@Override
-	public ArrayList<Item> getQuestItems() {
-		return this.questItems ;
+	public QuestEntityHandler getQuestEntityHandler() {
+		return this.questEntityHandler;
 	}
 }

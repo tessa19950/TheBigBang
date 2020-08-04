@@ -1,7 +1,8 @@
 package com.homebrewCult.TheBigBang.entities;
 
 import java.util.EnumSet;
-
+import com.homebrewCult.TheBigBang.util.IQuestEntity;
+import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.controller.MovementController;
@@ -21,11 +22,12 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
-public class AbstractBubblingEntity extends MonsterEntity {
+public class AbstractBubblingEntity extends MonsterEntity implements IQuestEntity {
 	public float squishAmount;
 	public float squishFactor;
 	public float prevSquishFactor;
 	private boolean wasOnGround;
+	private QuestEntityHandler questEntityHandler = new QuestEntityHandler();
 	
 	public AbstractBubblingEntity(EntityType<? extends MonsterEntity> type, World worldIn) {
 		super(type, worldIn);
@@ -212,5 +214,10 @@ public class AbstractBubblingEntity extends MonsterEntity {
 
 	    	}
 	    }
+	}
+
+	@Override
+	public QuestEntityHandler getQuestEntityHandler() {
+		return this.questEntityHandler;
 	}
 }

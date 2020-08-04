@@ -16,6 +16,8 @@ public class BigBangPacketHandler {
 	private static int HandInQuest_ID = 960304;
 	private static int ClearQuestSlots_ID = 960305;
 	private static int SetIsTempted_ID = 960306;
+	private static int ShowInputSlots_ID = 960307;
+	private static int HideInputSlots_ID = 960308;
 
 	
 	public static void packetHandlerInit() {
@@ -25,5 +27,7 @@ public class BigBangPacketHandler {
 		INSTANCE.registerMessage(AddSpawnParticleID++, Packet_AddSpawnParticle.class, Packet_AddSpawnParticle::encode, Packet_AddSpawnParticle::decode, Packet_AddSpawnParticle::handle);
 		INSTANCE.registerMessage(ClearQuestSlots_ID++, Packet_ClearQuestSlots.class, Packet_ClearQuestSlots::encode, Packet_ClearQuestSlots::decode, Packet_ClearQuestSlots::handle);
 		INSTANCE.registerMessage(SetIsTempted_ID++, Packet_SetIsTempted.class, Packet_SetIsTempted::encode, Packet_SetIsTempted::decode, Packet_SetIsTempted::handle);
+		INSTANCE.registerMessage(ShowInputSlots_ID++, Packet_ShowInputSlots.class, Packet_ShowInputSlots::encode, Packet_ShowInputSlots::decode, Packet_ShowInputSlots::handle);
+		INSTANCE.registerMessage(HideInputSlots_ID++, Packet_HideInputSlots.class, Packet_HideInputSlots::encode, Packet_HideInputSlots::decode, Packet_HideInputSlots::handle);
 	}
 }

@@ -16,12 +16,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class ModBreakingParticle extends SpriteTexturedParticle {
+public class BlueSlimeParticle extends SpriteTexturedParticle {
 	
 	private final float uvX;
 	private final float uvY;
 	
-	public ModBreakingParticle(World worldIn, double posX, double posY, double posZ, double xSpeed, double ySpeed, double zSpeed, ItemStack itemStack) {
+	public BlueSlimeParticle(World worldIn, double posX, double posY, double posZ, double xSpeed, double ySpeed, double zSpeed, ItemStack itemStack) {
 	      this(worldIn, posX, posY, posZ, itemStack);
 	      this.motionX *= (double)0.1F;
 	      this.motionY *= (double)0.1F;
@@ -31,7 +31,7 @@ public class ModBreakingParticle extends SpriteTexturedParticle {
 	      this.motionZ += zSpeed;
 	}
 
-	public ModBreakingParticle(World worldIn, double posX, double posY, double posZ, ItemStack itemStack) {
+	public BlueSlimeParticle(World worldIn, double posX, double posY, double posZ, ItemStack itemStack) {
 	      super(worldIn, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
 	      this.setSprite(Minecraft.getInstance().getItemRenderer().getModelWithOverrides(itemStack, worldIn, (LivingEntity)null).getParticleTexture());
 	      this.particleGravity = 1.0F;
@@ -67,7 +67,7 @@ public class ModBreakingParticle extends SpriteTexturedParticle {
 		
 		@Override
 		public Particle makeParticle(BasicParticleType typeIn, World worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			ModBreakingParticle particle = new ModBreakingParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, new ItemStack(ModItems.BLUE_SLIME_BALL));
+			BlueSlimeParticle particle = new BlueSlimeParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, new ItemStack(ModItems.BLUE_SLIME_BALL));
 			return particle;
 		}
 	}

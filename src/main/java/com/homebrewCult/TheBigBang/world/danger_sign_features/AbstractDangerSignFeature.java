@@ -1,9 +1,10 @@
-package com.homebrewCult.TheBigBang.world;
+package com.homebrewCult.TheBigBang.world.danger_sign_features;
 
 import java.util.Random;
 import java.util.function.Function;
 import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.blocks.DangerSignBlock;
+import com.homebrewCult.TheBigBang.gui.quests.Questline;
 import com.homebrewCult.TheBigBang.init.ModBlocks;
 import com.homebrewCult.TheBigBang.util.DangerSignPart;
 import com.mojang.datafixers.Dynamic;
@@ -15,6 +16,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.Feature;
@@ -38,7 +40,7 @@ public abstract class AbstractDangerSignFeature extends Feature<NoFeatureConfig>
 		return this.place(worldIn, generator, rand, pos, config, BlockIgnoreStructureProcessor.AIR_AND_STRUCTURE_BLOCK);
 	}
 	
-	public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config, BlockIgnoreStructureProcessor processor) { 
+	public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config, BlockIgnoreStructureProcessor processor) { 		
 		//Select a template and add the relevant offset to the build position.
 		int randIndex = rand.nextInt(4);
 		Template template = getTemplate(((ServerWorld)worldIn.getWorld()).getSaveHandler().getStructureTemplateManager(), randIndex);
@@ -48,6 +50,7 @@ public abstract class AbstractDangerSignFeature extends Feature<NoFeatureConfig>
 		
 		//Generate the structure.
 		if (template.addBlocksToWorld(worldIn, pos, placeSettings, 2)) {
+			//Replace the Structure Block with a Danger Sign
 			for(Template.BlockInfo template$blockinfo : template.func_215381_a(pos, placeSettings, Blocks.STRUCTURE_BLOCK)) {
 				if (template$blockinfo.nbt != null) {
 					StructureMode structuremode = StructureMode.valueOf(template$blockinfo.nbt.getString("mode"));
@@ -60,11 +63,10 @@ public abstract class AbstractDangerSignFeature extends Feature<NoFeatureConfig>
 		return true;	
 	}
 	
-	
     protected void handleDataMarker(String function, BlockPos pos, IWorld worldIn, Random rand) {
-    	if (function.startsWith("DangerSign")) {  		
+    	if (function.startsWith("DangerSign")) {  		   		
     		BlockState state = ModBlocks.DANGER_SIGN.getDefaultState().with(DangerSignBlock.FACING, templateDirection);
-    		worldIn.setBlockState(pos, state, 1);
+    		worldIn.setBlockState(pos, state.with(DangerSignBlock.QUESTLINE, getTemplateQuestline(worldIn.getBiome(pos))), 1);
     		worldIn.setBlockState(pos.up(), state.with(DangerSignBlock.PART, DangerSignPart.TOPLEFT), 1);
     		worldIn.setBlockState(pos.offset(templateDirection.rotateYCCW()), state.with(DangerSignBlock.PART, DangerSignPart.BOTTOMRIGHT), 1);
     		worldIn.setBlockState(pos.offset(templateDirection.rotateYCCW()).up(), state.with(DangerSignBlock.PART, DangerSignPart.TOPRIGHT), 1);
@@ -75,6 +77,10 @@ public abstract class AbstractDangerSignFeature extends Feature<NoFeatureConfig>
 		int i = index + 1;
 		return manager.getTemplate(new ResourceLocation(TheBigBang.MODID, "danger_sign/" + this.getTemplateName() + "_" + i));
 	}	
+	
+	public Questline getTemplateQuestline(Biome biome) {
+		return Questline.getQuestlineByBiome(biome);
+	}
 	
 	public abstract String getTemplateName();
 	

@@ -6,7 +6,6 @@ import net.minecraft.item.Items;
 import java.util.Map;
 import com.google.common.collect.ImmutableMap;
 import com.homebrewCult.TheBigBang.init.ModItems;
-import com.homebrewCult.TheBigBang.items.QuestItem;
 
 public enum Quest {
 	BlankQuest("TITLE", 100,
@@ -55,9 +54,19 @@ public enum Quest {
 			ImmutableMap.of(ModItems.EVIL_EYE_TAIL, 30, ModItems.PIGS_RIBBON, 5)
 			),
 	ANewHouseForBlackbull("A New House for Blackbull", 100,
-			"Blackbull's cousins are all moving to Perion, so he needs to build a brand new house, from scratch!"
+			"Blackbull's cousins are all moving to Perion, so he needs to build a brand new house, from scratch! "
 			+ "He needs the deed to his land, but it was stolen by from him, you must slay Golems in the area to gather materials and recover the Deed to the Land.",
-			ImmutableMap.of(ModItems.STONE_GOLEM_RUBBLE, 20, Items.IRON_INGOT, 5, ModItems.LETTER, 1), "Blackbull's Deed of the Land"
+			ImmutableMap.of(ModItems.STONE_GOLEM_RUBBLE, 20, Items.IRON_INGOT, 5, ModItems.LETTER, 1), EnumQuestItem.BlackbullsDeedOfTheLand
+			),
+	WhatPiaHasBorrowed("What Pia has Borrowed", 100,
+			"Rina from Henesys tells you that she took Pia's red cape, because Pia didn't return the items she borrowed. "
+			+ "Rina says that if she gets her items back, the cape is Pia's again. Go find 1 Diamond, 1 Antique Scroll, and 30 Drake's Skull.",
+			ImmutableMap.of(ModItems.YETI_HORN, 30, Items.DIAMOND, 1, ModItems.LETTER, 1), EnumQuestItem.AntiqueScroll
+			),
+	ReawakeningTheGladius("Reawakening the Gladius", 100,
+			"Chrishrama made an Ancient Gladius a long time ago. To reawaken it he needs 1 Piece of Ice, 1 Ancient Scroll, and 1 Magma Cream, but you've never heard those things... "
+			+ "He recommends hunting in the area for the scroll and in cold biomes for the Piece of Ice.",
+			ImmutableMap.of(ModItems.PIECE_OF_ICE, 1, ModItems.LETTER, 1, Items.MAGMA_CREAM, 1), EnumQuestItem.AncientScroll
 			);
 	
 	private final String TITLE;
@@ -65,47 +74,43 @@ public enum Quest {
 	private final String DESCRIPTION;
 	private final int REQUIRED_KILLS;
 	private final Map<Item, Integer> REQUIRED_ITEMS;
-	private Item QUEST_ITEM = null;
+	private final EnumQuestItem QUEST_ITEM;
 	
 	private Quest(String title,  int expReward, String description) {
-		this(title, expReward, description, 0, ImmutableMap.of(), "null");
+		this(title, expReward, description, 0, ImmutableMap.of(), EnumQuestItem.None);
 	}
 	
 	private Quest(String title,  int expReward, String description, int requiredKills) {
-		this(title, expReward, description, requiredKills, ImmutableMap.of(), "null");
+		this(title, expReward, description, requiredKills, ImmutableMap.of(), EnumQuestItem.None);
 	}
 	
 	private Quest(String title,  int expReward, String description, Map<Item, Integer> requiredItems) {
-		this(title, expReward, description, 0, requiredItems, "null");
+		this(title, expReward, description, 0, requiredItems, EnumQuestItem.None);
 	}
 	
-	private Quest(String title,  int expReward, String description, String questItemName) {
-		this(title, expReward, description, 0, ImmutableMap.of(), questItemName);
+	private Quest(String title,  int expReward, String description, EnumQuestItem questItem) {
+		this(title, expReward, description, 0, ImmutableMap.of(), questItem);
 	}
 	
 	private Quest(String title,  int expReward, String description, int requiredKills, Map<Item, Integer> requiredItems) {
-		this(title, expReward, description, requiredKills, requiredItems, "null");
+		this(title, expReward, description, requiredKills, requiredItems, EnumQuestItem.None);
 	}
 	
-	private Quest(String title,  int expReward, String description, int requiredKills, String questItemName) {
-		this(title, expReward, description, requiredKills, ImmutableMap.of(), questItemName);
+	private Quest(String title,  int expReward, String description, int requiredKills, EnumQuestItem questItem) {
+		this(title, expReward, description, requiredKills, ImmutableMap.of(), questItem);
 	}
 	
-	private Quest(String title,  int expReward, String description, Map<Item, Integer> requiredItems, String questItemName) {
-		this(title, expReward, description, 0, requiredItems, questItemName);
+	private Quest(String title,  int expReward, String description, Map<Item, Integer> requiredItems, EnumQuestItem questItem) {
+		this(title, expReward, description, 0, requiredItems, questItem);
 	}
 	
-	private Quest(String title,  int expReward, String description, int requiredKills, Map<Item, Integer> requiredItems, String questItemName) {
+	private Quest(String title,  int expReward, String description, int requiredKills, Map<Item, Integer> requiredItems, EnumQuestItem questItem) {
 		TITLE = title;
 		EXP_REWARD = expReward;
 		DESCRIPTION = description;
 		REQUIRED_KILLS = requiredKills;
 		REQUIRED_ITEMS = requiredItems;
-		if(questItemName != null) {
-			QuestItem newItem = ModItems.LETTER;
-			newItem.setQuestItemName(questItemName);
-			QUEST_ITEM = newItem;
-		}
+		QUEST_ITEM = questItem;
 	}
 	
 	public String getTitle() {
@@ -181,11 +186,11 @@ public enum Quest {
 		return 0;
 	}
 	
-	public boolean hasQuestItem() {
-		return(this.QUEST_ITEM != null);
+	public EnumQuestItem getRequiredQuestItem() {
+		return this.QUEST_ITEM;
 	}
 	
-	public Item getQuestItem() {
-		return this.QUEST_ITEM;
+	public boolean hasQuestItem() {
+		return(this.QUEST_ITEM != EnumQuestItem.None);
 	}
 }

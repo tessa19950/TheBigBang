@@ -1,7 +1,8 @@
 package com.homebrewCult.TheBigBang.entities;
 
 import com.homebrewCult.TheBigBang.init.ModSounds;
-
+import com.homebrewCult.TheBigBang.util.IQuestEntity;
+import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -22,9 +23,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class AbstractSnailEntity extends AnimalEntity {
-
+public class AbstractSnailEntity extends AnimalEntity implements IQuestEntity {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.APPLE, Items.BEETROOT, Items.POTATO, Items.CARROT, Items.SWEET_BERRIES, Items.MELON_SLICE,																Items.VINE, Items.KELP);
+	private QuestEntityHandler questEntityHandler = new QuestEntityHandler();
 	
 	protected AbstractSnailEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
 		super(type, worldIn);
@@ -73,4 +74,8 @@ public class AbstractSnailEntity extends AnimalEntity {
 		return null;
 	}
 
+	@Override
+	public QuestEntityHandler getQuestEntityHandler() {
+		return this.questEntityHandler;
+	}
 }

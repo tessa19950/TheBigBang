@@ -1,9 +1,12 @@
 package com.homebrewCult.TheBigBang.init;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.world.DangerSignCaveFeature;
-import com.homebrewCult.TheBigBang.world.DangerSignPlateauFeature;
-import com.homebrewCult.TheBigBang.world.DangerSignStoneFeature;
+import com.homebrewCult.TheBigBang.world.danger_sign_features.DangerSignCaveFeature;
+import com.homebrewCult.TheBigBang.world.danger_sign_features.DangerSignDesertFeature;
+import com.homebrewCult.TheBigBang.world.danger_sign_features.DangerSignIceFeature;
+import com.homebrewCult.TheBigBang.world.danger_sign_features.DangerSignPlateauFeature;
+import com.homebrewCult.TheBigBang.world.danger_sign_features.DangerSignStoneFeature;
+
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraftforge.event.RegistryEvent;
@@ -19,6 +22,10 @@ public class ModFeatures {
 	public static final Feature<NoFeatureConfig> DANGER_SIGN_PLATEAU = null;
 	@ObjectHolder("danger_sign_stone")
 	public static final Feature<NoFeatureConfig> DANGER_SIGN_STONE = null;
+	@ObjectHolder("danger_sign_desert")
+	public static final Feature<NoFeatureConfig> DANGER_SIGN_DESERT = null;
+	@ObjectHolder("danger_sign_ice")
+	public static final Feature<NoFeatureConfig> DANGER_SIGN_ICE = null;
 	@ObjectHolder("danger_sign_cave")
 	public static final Feature<NoFeatureConfig> DANGER_SIGN_CAVE = null;
 	
@@ -27,6 +34,8 @@ public class ModFeatures {
 		event.getRegistry().registerAll(
 				new DangerSignPlateauFeature(NoFeatureConfig::deserialize).setRegistryName(TheBigBang.MODID, "danger_sign_plateau"),
 				new DangerSignStoneFeature(NoFeatureConfig::deserialize).setRegistryName(TheBigBang.MODID, "danger_sign_stone"),
+				new DangerSignDesertFeature(NoFeatureConfig::deserialize).setRegistryName(TheBigBang.MODID, "danger_sign_desert"),
+				new DangerSignIceFeature(NoFeatureConfig::deserialize).setRegistryName(TheBigBang.MODID, "danger_sign_ice"),
 				new DangerSignCaveFeature(NoFeatureConfig::deserialize).setRegistryName(TheBigBang.MODID, "danger_sign_cave")
 		);
 	}

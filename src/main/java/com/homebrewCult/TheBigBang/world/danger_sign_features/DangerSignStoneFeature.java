@@ -1,4 +1,4 @@
-package com.homebrewCult.TheBigBang.world;
+package com.homebrewCult.TheBigBang.world.danger_sign_features;
 
 import java.util.Random;
 import java.util.function.Function;

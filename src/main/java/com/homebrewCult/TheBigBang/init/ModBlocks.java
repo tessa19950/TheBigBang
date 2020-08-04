@@ -29,11 +29,11 @@ import net.minecraftforge.registries.ObjectHolder;
 public class ModBlocks {
 	
 	@ObjectHolder("mithril_ore")
-	public static Block MITHRIL_ORE = null;
+	public static Block MITHRIL_ORE = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "mithril_ore");
 	@ObjectHolder("adamantium_ore")
-	public static Block ADAMANTIUM_ORE = null;
+	public static Block ADAMANTIUM_ORE = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "adamantium_ore");
 	@ObjectHolder("orihalcon_ore")
-	public static Block ORIHALCON_ORE = null;
+	public static Block ORIHALCON_ORE = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "orihalcon_ore");
 	
 	@ObjectHolder("danger_sign")
 	public static final Block DANGER_SIGN = null;
@@ -44,25 +44,25 @@ public class ModBlocks {
 	public static final int DANGER_SIGN_GUI_ID = 0;
 	
 	@ObjectHolder("golem_stone")
-	public static final Block GOLEM_STONE = null;
-	@ObjectHolder("grassy_golem_stone")
-	public static final Block GRASSY_GOLEM_STONE = null;
+	public static final Block GOLEM_STONE = new GolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "golem_stone");
 	@ObjectHolder("dark_golem_stone")
-	public static final Block DARK_GOLEM_STONE = null;
+	public static final Block DARK_GOLEM_STONE = new DarkGolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "dark_golem_stone");
+	@ObjectHolder("grassy_golem_stone")
+	public static final Block GRASSY_GOLEM_STONE = new GrassyGolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "grassy_golem_stone");
 	@ObjectHolder("grassy_dark_golem_stone")
-	public static final Block GRASSY_DARK_GOLEM_STONE = null;
+	public static final Block GRASSY_DARK_GOLEM_STONE = new GrassyDarkGolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "grassy_dark_golem_stone");
 	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		event.getRegistry().registerAll (
-			new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "mithril_ore"),
-			new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "adamantium_ore"),
-			new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "orihalcon_ore"),
+			ModBlocks.MITHRIL_ORE,
+			ModBlocks.ADAMANTIUM_ORE,
+			ModBlocks.ORIHALCON_ORE,
 			
-			new GolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "golem_stone"),
-			new DarkGolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "dark_golem_stone"),
-			new GrassyGolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "grassy_golem_stone"),
-			new GrassyDarkGolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "grassy_dark_golem_stone"),
+			ModBlocks.GOLEM_STONE,
+			ModBlocks.DARK_GOLEM_STONE,
+			ModBlocks.GRASSY_GOLEM_STONE,
+			ModBlocks.GRASSY_DARK_GOLEM_STONE,
 			
 			new DangerSignBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.WOOD)).setRegistryName(TheBigBang.MODID, "danger_sign")
 		);

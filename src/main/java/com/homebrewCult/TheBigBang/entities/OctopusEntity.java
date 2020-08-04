@@ -1,6 +1,8 @@
 package com.homebrewCult.TheBigBang.entities;
 
 import com.homebrewCult.TheBigBang.init.ModSounds;
+import com.homebrewCult.TheBigBang.util.IQuestEntity;
+import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
 import com.homebrewCult.TheBigBang.init.ModEntities;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
@@ -19,8 +21,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class OctopusEntity extends AnimalEntity {
+public class OctopusEntity extends AnimalEntity implements IQuestEntity {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.PUFFERFISH, Items.SALMON, Items.COD, Items.TROPICAL_FISH);
+	private QuestEntityHandler questEntityHandler = new QuestEntityHandler();
 
 	public OctopusEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
 		super((EntityType<? extends AnimalEntity>) ModEntities.OCTOPUS_ENTITY, worldIn);
@@ -50,5 +53,10 @@ public class OctopusEntity extends AnimalEntity {
 	@Override
 	public AgeableEntity createChild(AgeableEntity ageable) {
 		return null;
+	}
+	
+	@Override
+	public QuestEntityHandler getQuestEntityHandler() {
+		return this.questEntityHandler;
 	}
 }
