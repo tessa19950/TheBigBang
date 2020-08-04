@@ -2,7 +2,7 @@ package com.homebrewCult.TheBigBang.init;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.particles.BlueSlimeParticle;
-import com.homebrewCult.TheBigBang.particles.ModAnimatedParticle;
+import com.homebrewCult.TheBigBang.particles.MagicClawParticle;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.particles.BasicParticleType;
@@ -34,6 +34,6 @@ public class ModParticleTypes {
 	@SubscribeEvent
 	public static void registerParticleFactories(final ParticleFactoryRegisterEvent event) {
 		Minecraft.getInstance().particles.registerFactory(ITEM_BLUE_SLIME.get(), BlueSlimeParticle.BlueSlimeFactory::new);
-		Minecraft.getInstance().particles.registerFactory(MAGIC_CLAW.get(), sprite -> new ModAnimatedParticle.MagicClawFactory(sprite));
+		Minecraft.getInstance().particles.registerFactory(MAGIC_CLAW.get(), sprite -> new MagicClawParticle.MagicClawFactory(sprite));
 	}
 }

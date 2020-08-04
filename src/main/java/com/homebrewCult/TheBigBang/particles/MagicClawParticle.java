@@ -10,11 +10,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class ModAnimatedParticle extends SpriteTexturedParticle {
+public class MagicClawParticle extends SpriteTexturedParticle {
 
 	private final IAnimatedSprite SPRITE_SET;
 	
-	protected ModAnimatedParticle(World worldIn, double x, double y, double z, IAnimatedSprite spriteSetIn) {
+	protected MagicClawParticle(World worldIn, double x, double y, double z, IAnimatedSprite spriteSetIn) {
 		super(worldIn, x, y, z);
 		this.maxAge = 6;
 		this.particleScale = 2;
@@ -61,7 +61,7 @@ public class ModAnimatedParticle extends SpriteTexturedParticle {
 		
 		@Override
 		public Particle makeParticle(BasicParticleType typeIn, World worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			return new ModAnimatedParticle(worldIn, x, y, z, SPRITE_SET);
+			return new MagicClawParticle(worldIn, x, y, z, SPRITE_SET);
 		}	
 	}
 }
