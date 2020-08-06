@@ -18,6 +18,8 @@ public class ModSounds {
 	public static SoundEvent DRAKE_DAMAGE, DRAKE_DIE, COPPER_DRAKE_DAMAGE, COPPER_DRAKE_DIE, DARK_DRAKE_DAMAGE, DARK_DRAKE_DIE, RED_DRAKE_DAMAGE, RED_DRAKE_DIE, ICE_DRAKE_DAMAGE, ICE_DRAKE_DIE;
 	public static SoundEvent GOLEM_DAMAGE, GOLEM_DIE, YETI_DAMAGE, YETI_DIE;
 	
+	public static SoundEvent MAGIC_CLAW_USE;
+	
 	public static SoundEvent RECORD_AMORIA = registerSound("record.amoria");
 	public static SoundEvent RECORD_AQUA = registerSound("record.aqua");
 	public static SoundEvent RECORD_ARIANT = registerSound("record.ariant");
@@ -65,6 +67,8 @@ public class ModSounds {
 				YETI_DAMAGE = registerSound("entity.yeti.damage"),
 				YETI_DIE = registerSound("entity.yeti.die"),				
 				
+				MAGIC_CLAW_USE = registerSound("item.magic_claw.use"),
+				
 				RECORD_AMORIA, RECORD_AQUA, RECORD_ARIANT, RECORD_DILLEKE, RECORD_ELLINIA, RECORD_HARBOR, RECORD_HENESYS, 
 				RECORD_KERNING, RECORD_LUDIBRIUM, RECORD_OMEGA, RECORD_ORBIS, RECORD_PERION, RECORD_RAINDROP, RECORD_SQUARE
 		);
@@ -72,7 +76,7 @@ public class ModSounds {
 	
 	public static SoundEvent registerSound(String name)
 	{
-		SoundEvent event = new SoundEvent(new ResourceLocation(TheBigBang.MODID, name)).setRegistryName(name);
+		SoundEvent event = new SoundEvent(new ResourceLocation(TheBigBang.MODID, name)).setRegistryName(TheBigBang.MODID, name);
 		ForgeRegistries.SOUND_EVENTS.register(event);
 		return event;
 	}

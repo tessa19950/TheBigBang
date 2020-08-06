@@ -5,7 +5,7 @@ import com.homebrewCult.TheBigBang.items.BigBangArmorItemColorHandler;
 import com.homebrewCult.TheBigBang.items.BigBangDiskItem;
 import com.homebrewCult.TheBigBang.items.LiquidFoodItem;
 import com.homebrewCult.TheBigBang.items.QuestItem;
-import com.homebrewCult.TheBigBang.items.WandItem;
+import com.homebrewCult.TheBigBang.items.ChaosWandItem;
 import com.homebrewCult.TheBigBang.items.armor.AppleArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.GoldwindArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.HwarangArmorItem;
@@ -179,7 +179,7 @@ public class ModItems {
 	public static final Item GOLDWIND_LEGGINGS = null;
 	public static final Item GOLDWIND_BOOTS = null;
 	
-	public static final Item WAND = null;
+	public static final Item CHAOS_WAND = null;
 	
 	@SubscribeEvent
 	public static void registerItems(final RegistryEvent.Register<Item> event)
@@ -244,7 +244,7 @@ public class ModItems {
 				ModItems.GRASSY_GOLEM_STONE,
 				ModItems.GRASSY_DARK_GOLEM_STONE,
 				
-				new WandItem(new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "wand"),
+				new ChaosWandItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "chaos_wand"),
 				
 				new DangerSignItem(ModBlocks.DANGER_SIGN, new Item.Properties().maxStackSize(1).group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.DANGER_SIGN.getRegistryName()),
 				

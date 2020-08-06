@@ -36,9 +36,9 @@ public class Packet_AddSpawnParticle  {
 	public static void handle(Packet_AddSpawnParticle msg, Supplier<NetworkEvent.Context> ctx) {
 		for(int i = 0; i < count; i++) {
 			Random r = new Random();
-			double x = msg.pos.getX() + MathUtility.randomDoubleInRange(r, -spread, spread);
-			double y = msg.pos.getY() + MathUtility.randomDoubleInRange(r, -spread, spread);
-			double z = msg.pos.getZ() + MathUtility.randomDoubleInRange(r, -spread, spread);
+			double x = msg.pos.getX() + MathUtility.doubleInRange(r, -spread, spread);
+			double y = msg.pos.getY() + MathUtility.doubleInRange(r, -spread, spread);
+			double z = msg.pos.getZ() + MathUtility.doubleInRange(r, -spread, spread);
 			Minecraft.getInstance().player.world.addParticle(ParticleTypes.POOF, x, y, z, 0, 0, 0);
 		}
 		ctx.get().setPacketHandled(true);

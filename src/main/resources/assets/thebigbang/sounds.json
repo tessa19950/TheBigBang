@@ -1,4 +1,11 @@
 {
+	"item.magic_claw.use":
+	{
+		"category": "item",
+		"subtitle": "item.magic_claw.use",
+		"sounds": ["thebigbang:item/magic_claw_use"]
+	},
+
 	"entity.stump.damage":
 	{
 		"category": "entity",

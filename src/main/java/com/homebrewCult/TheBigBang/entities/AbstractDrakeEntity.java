@@ -52,13 +52,13 @@ public class AbstractDrakeEntity extends MonsterEntity implements IQuestEntity {
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 		Random r = new Random();
-		return HURT_SOUNDS[MathUtility.randomIntegerInRange(r, 0, HURT_SOUNDS.length)];
+		return HURT_SOUNDS[MathUtility.intInRange(r, 0, HURT_SOUNDS.length)];
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
 		Random r = new Random();
-		return DEATH_SOUNDS[MathUtility.randomIntegerInRange(r, 0, DEATH_SOUNDS.length)];
+		return DEATH_SOUNDS[MathUtility.intInRange(r, 0, DEATH_SOUNDS.length)];
 	}
 	
 	@Override

@@ -25,7 +25,8 @@ public class ModParticleTypes {
 	
 	private static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = new DeferredRegister<>(ForgeRegistries.PARTICLE_TYPES, TheBigBang.MODID);
 	public static final RegistryObject<BasicParticleType> ITEM_BLUE_SLIME = PARTICLE_TYPES.register("item_blue_slime", () -> new BasicParticleType(true));
-	public static final RegistryObject<BasicParticleType> MAGIC_CLAW = PARTICLE_TYPES.register("magic_claw", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> MAGIC_CLAW_LEFT = PARTICLE_TYPES.register("magic_claw_left", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> MAGIC_CLAW_RIGHT = PARTICLE_TYPES.register("magic_claw_right", () -> new BasicParticleType(true));
 	
 	public static void particleInit() {
 		PARTICLE_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
@@ -34,6 +35,7 @@ public class ModParticleTypes {
 	@SubscribeEvent
 	public static void registerParticleFactories(final ParticleFactoryRegisterEvent event) {
 		Minecraft.getInstance().particles.registerFactory(ITEM_BLUE_SLIME.get(), BlueSlimeParticle.BlueSlimeFactory::new);
-		Minecraft.getInstance().particles.registerFactory(MAGIC_CLAW.get(), sprite -> new MagicClawParticle.MagicClawFactory(sprite));
+		Minecraft.getInstance().particles.registerFactory(MAGIC_CLAW_LEFT.get(), sprite -> new MagicClawParticle.MagicClawFactory(sprite));
+		Minecraft.getInstance().particles.registerFactory(MAGIC_CLAW_RIGHT.get(), sprite -> new MagicClawParticle.MagicClawFactory(sprite));
 	}
 }

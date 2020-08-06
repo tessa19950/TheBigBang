@@ -1,31 +1,47 @@
 package com.homebrewCult.TheBigBang.particles;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.particle.IAnimatedSprite;
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.IParticleRenderType;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.SpriteTexturedParticle;
+import net.minecraft.client.renderer.ActiveRenderInfo;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.particles.BasicParticleType;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class MagicClawParticle extends SpriteTexturedParticle {
 
-	private final IAnimatedSprite SPRITE_SET;
+	private IAnimatedSprite sprites;
+	private boolean doOnce = false;
 	
-	protected MagicClawParticle(World worldIn, double x, double y, double z, IAnimatedSprite spriteSetIn) {
+	protected MagicClawParticle(World worldIn, double x, double y, double z, IAnimatedSprite spritesIn) {
 		super(worldIn, x, y, z);
-		this.maxAge = 6;
-		this.particleScale = 2;
-		SPRITE_SET = spriteSetIn;
-		this.setSprite(sprite);
-		this.selectSpriteWithAge(SPRITE_SET);
+		this.maxAge = 7;
+		this.particleScale = 1;
+		sprites = spritesIn;
+		this.selectSpriteWithAge(sprites);
+	}
+
+	@Override
+	public void renderParticle(BufferBuilder buffer, ActiveRenderInfo entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ) {
+		if(!this.doOnce) {
+			Vec3d camPos = entityIn.getRenderViewEntity().getEyePosition(partialTicks);	
+			Vec3d camDir = camPos.subtract(new Vec3d(this.posX, this.posY, this.posZ)).normalize();
+			this.setPosition(this.posX + camDir.x, this.posY + camDir.y, this.posZ + camDir.z);
+			doOnce = true;
+		}
+		super.renderParticle(buffer, entityIn, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
 	}
 	
 	@Override
 	public IParticleRenderType getRenderType() {
-		return IParticleRenderType.PARTICLE_SHEET_LIT;
+		return IParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
 	}
 	
 	public int getBrightnessForRender(float partialTick) {
@@ -39,29 +55,21 @@ public class MagicClawParticle extends SpriteTexturedParticle {
 		if (this.age++ >= this.maxAge) {
 			this.setExpired();
 		} else {
-			this.selectSpriteWithAge(this.SPRITE_SET);
+			this.selectSpriteWithAge(this.sprites);
 		}
 	}
 	
-	protected float getMinU() { return 0f; }
-
-	protected float getMaxU() { return 32f; }
-
-	protected float getMinV() { return 0f; }
-
-	protected float getMaxV() { return 32f; }
-	
 	@OnlyIn(Dist.CLIENT) 
 	public static class MagicClawFactory implements IParticleFactory<BasicParticleType> {		
-		private final IAnimatedSprite SPRITE_SET;
+		private final IAnimatedSprite factorySprites;
 		
-		public MagicClawFactory(IAnimatedSprite spriteSetIn) {
-			this.SPRITE_SET = spriteSetIn;
+		public MagicClawFactory(IAnimatedSprite spritesIn) {
+			this.factorySprites = spritesIn;
 		}
 		
 		@Override
 		public Particle makeParticle(BasicParticleType typeIn, World worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			return new MagicClawParticle(worldIn, x, y, z, SPRITE_SET);
+			return new MagicClawParticle(worldIn, x, y, z, this.factorySprites);
 		}	
 	}
 }

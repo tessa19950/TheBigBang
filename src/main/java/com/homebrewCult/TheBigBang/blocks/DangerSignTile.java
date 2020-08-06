@@ -124,9 +124,9 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 		
 		//Try 8 times to find a valid spawn position.
 		for(int i = 0; i < 8; i++) {
-			int spawnX = pos.getX() + MathUtility.randomIntegerInRange(r, -MAX_SPAWN_RANGE, MAX_SPAWN_RANGE);
-			int spawnY = pos.getY() + MathUtility.randomIntegerInRange(r, 0, 4);
-			int spawnZ = pos.getZ() + MathUtility.randomIntegerInRange(r, -MAX_SPAWN_RANGE, MAX_SPAWN_RANGE);
+			int spawnX = pos.getX() + MathUtility.intInRange(r, -MAX_SPAWN_RANGE, MAX_SPAWN_RANGE);
+			int spawnY = pos.getY() + MathUtility.intInRange(r, 0, 4);
+			int spawnZ = pos.getZ() + MathUtility.intInRange(r, -MAX_SPAWN_RANGE, MAX_SPAWN_RANGE);
 			spawnPos = new BlockPos(spawnX, spawnY, spawnZ);
 			
 			//Try 8 times to find an air block, followed by a non air block.
