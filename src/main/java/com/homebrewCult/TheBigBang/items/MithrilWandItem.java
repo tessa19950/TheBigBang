@@ -19,14 +19,14 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class ChaosWandItem extends Item {
+public class MithrilWandItem extends Item {
 	
 	private static final String SPELL_TIMER_KEY = TheBigBang.MODID + "spell_timer";
 	private static final String SPELL_TARGET_ID_KEY = TheBigBang.MODID + "spell_target_id"; 
 	private static final int SPELL_RANGE = 24;
 	private static final double SPELL_ANGLE_THRESHOLD = 30;
 	
-	public ChaosWandItem(Properties properties) {
+	public MithrilWandItem(Properties properties) {
 		super(properties);
 	}
 	

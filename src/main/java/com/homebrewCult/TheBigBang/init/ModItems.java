@@ -5,7 +5,8 @@ import com.homebrewCult.TheBigBang.items.BigBangArmorItemColorHandler;
 import com.homebrewCult.TheBigBang.items.BigBangDiskItem;
 import com.homebrewCult.TheBigBang.items.LiquidFoodItem;
 import com.homebrewCult.TheBigBang.items.QuestItem;
-import com.homebrewCult.TheBigBang.items.ChaosWandItem;
+import com.homebrewCult.TheBigBang.items.RydenItem;
+import com.homebrewCult.TheBigBang.items.MithrilWandItem;
 import com.homebrewCult.TheBigBang.items.armor.AppleArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.GoldwindArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.HwarangArmorItem;
@@ -26,7 +27,6 @@ import com.homebrewCult.TheBigBang.items.model.NightshiftArmorModel;
 import com.homebrewCult.TheBigBang.items.model.PietteArmorModel;
 import com.homebrewCult.TheBigBang.items.model.PilferArmorModel;
 import com.homebrewCult.TheBigBang.items.model.StarlightArmorModel;
-import com.homebrewCult.TheBigBang.init.ModBlocks;
 import com.homebrewCult.TheBigBang.init.ModItems;
 
 import net.minecraft.client.renderer.color.ItemColors;
@@ -143,6 +143,9 @@ public class ModItems {
 	public static final Item YETI_SPAWN_EGG = null;
 	public static final Item DARK_YETI_SPAWN_EGG = null;
 	
+	public static final Item MITHRIL_WAND = null;
+	public static final Item RYDEN = null;
+	
 	public static final Item APPLE_HELMET = null;
 	public static final Item APPLE_CHESTPLATE = null;
 	public static final Item APPLE_LEGGINGS = null;
@@ -178,8 +181,6 @@ public class ModItems {
 	public static final Item GOLDWIND_CHESTPLATE = null;
 	public static final Item GOLDWIND_LEGGINGS = null;
 	public static final Item GOLDWIND_BOOTS = null;
-	
-	public static final Item CHAOS_WAND = null;
 	
 	@SubscribeEvent
 	public static void registerItems(final RegistryEvent.Register<Item> event)
@@ -244,7 +245,8 @@ public class ModItems {
 				ModItems.GRASSY_GOLEM_STONE,
 				ModItems.GRASSY_DARK_GOLEM_STONE,
 				
-				new ChaosWandItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "chaos_wand"),
+				new MithrilWandItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "mithril_wand"),
+				new RydenItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "ryden"),
 				
 				new DangerSignItem(ModBlocks.DANGER_SIGN, new Item.Properties().maxStackSize(1).group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.DANGER_SIGN.getRegistryName()),
 				
