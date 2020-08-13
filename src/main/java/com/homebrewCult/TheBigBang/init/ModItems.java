@@ -6,6 +6,7 @@ import com.homebrewCult.TheBigBang.items.BigBangDiskItem;
 import com.homebrewCult.TheBigBang.items.LiquidFoodItem;
 import com.homebrewCult.TheBigBang.items.QuestItem;
 import com.homebrewCult.TheBigBang.items.RydenItem;
+import com.homebrewCult.TheBigBang.items.ThrowingStarItem;
 import com.homebrewCult.TheBigBang.items.MithrilWandItem;
 import com.homebrewCult.TheBigBang.items.armor.AppleArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.GoldwindArmorItem;
@@ -145,6 +146,14 @@ public class ModItems {
 	
 	public static final Item MITHRIL_WAND = null;
 	public static final Item RYDEN = null;
+	public static final Item SUBI = null;
+	public static final Item SUBI_PROJECTILE = null;
+	public static final Item TOBI = null;
+	public static final Item TOBI_PROJECTILE = null;
+	public static final Item STEELY = null;
+	public static final Item STEELY_PROJECTILE = null;
+	public static final Item ILBI = null;
+	public static final Item ILBI_PROJECTILE = null;
 	
 	public static final Item APPLE_HELMET = null;
 	public static final Item APPLE_CHESTPLATE = null;
@@ -247,6 +256,15 @@ public class ModItems {
 				
 				new MithrilWandItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "mithril_wand"),
 				new RydenItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "ryden"),
+
+				new ThrowingStarItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "subi"),
+				new Item(new Item.Properties()).setRegistryName(TheBigBang.MODID, "subi_projectile"),
+				new ThrowingStarItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "tobi"),
+				new Item(new Item.Properties()).setRegistryName(TheBigBang.MODID, "tobi_projectile"),
+				new ThrowingStarItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "steely"),
+				new Item(new Item.Properties()).setRegistryName(TheBigBang.MODID, "steely_projectile"),
+				new ThrowingStarItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "ilbi"),
+				new Item(new Item.Properties()).setRegistryName(TheBigBang.MODID, "ilbi_projectile"),
 				
 				new DangerSignItem(ModBlocks.DANGER_SIGN, new Item.Properties().maxStackSize(1).group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.DANGER_SIGN.getRegistryName()),
 				

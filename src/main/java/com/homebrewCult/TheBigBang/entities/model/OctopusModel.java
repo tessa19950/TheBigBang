@@ -9,8 +9,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class OctopusModel <T extends Entity> extends QuadrupedModel<T>
-{
+public class OctopusModel <T extends Entity> extends QuadrupedModel<T> {
+	
 	private final RendererModel bb_main;	
 	private final RendererModel Eye1;
 	private final RendererModel Eye2;
@@ -54,8 +54,7 @@ public class OctopusModel <T extends Entity> extends QuadrupedModel<T>
 	private Float limbMiddleSegmentTimeOffset = -1f;
 	private Float limbBottomSegmentTimeOffset = -2f;
 	
-	public OctopusModel() 
-	{
+	public OctopusModel() {
 		super(6, 0.0F);
 		
 		textureWidth = 64;
@@ -219,8 +218,7 @@ public class OctopusModel <T extends Entity> extends QuadrupedModel<T>
 	}
 
 	@Override
-	public void render(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) 
-	{
+	public void render(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 		bb_main.render(scale);
 		Eye1.render(scale);
 		Eye2.render(scale);
@@ -251,8 +249,7 @@ public class OctopusModel <T extends Entity> extends QuadrupedModel<T>
 	}
 	
 	@Override
-	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) 
-	{	
+	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {	
 		this.Eye1.rotateAngleX = Floats.constrainToRange(headPitch, -45, 45) * ((float)Math.PI / 180F);
 		this.Eye1.rotateAngleY = Floats.constrainToRange(netHeadYaw, -45, 45) * ((float)Math.PI / 180F);
 		this.Eye2.rotateAngleX = Floats.constrainToRange(headPitch, -45, 45) * ((float)Math.PI / 180F);

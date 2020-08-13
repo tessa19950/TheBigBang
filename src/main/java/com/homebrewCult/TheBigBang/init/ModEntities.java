@@ -20,6 +20,7 @@ import com.homebrewCult.TheBigBang.entities.GreenBubblingEntity;
 import com.homebrewCult.TheBigBang.entities.GreenSnailEntity;
 import com.homebrewCult.TheBigBang.entities.IceDrakeEntity;
 import com.homebrewCult.TheBigBang.entities.IceGolemEntity;
+import com.homebrewCult.TheBigBang.entities.IlbiEntity;
 import com.homebrewCult.TheBigBang.entities.JrYetiEntity;
 import com.homebrewCult.TheBigBang.entities.MixedGolemEntity;
 import com.homebrewCult.TheBigBang.entities.OctopusEntity;
@@ -27,8 +28,12 @@ import com.homebrewCult.TheBigBang.entities.OrangeMushroomEntity;
 import com.homebrewCult.TheBigBang.entities.RedDrakeEntity;
 import com.homebrewCult.TheBigBang.entities.RedSnailEntity;
 import com.homebrewCult.TheBigBang.entities.RibbonPigEntity;
+import com.homebrewCult.TheBigBang.entities.SteelyEntity;
 import com.homebrewCult.TheBigBang.entities.StoneGolemEntity;
 import com.homebrewCult.TheBigBang.entities.StumpEntity;
+import com.homebrewCult.TheBigBang.entities.SubiEntity;
+import com.homebrewCult.TheBigBang.entities.ThrowingStarEntity;
+import com.homebrewCult.TheBigBang.entities.TobiEntity;
 import com.homebrewCult.TheBigBang.entities.AxeStumpEntity;
 import com.homebrewCult.TheBigBang.entities.YetiEntity;
 import com.homebrewCult.TheBigBang.entities.ZombieMushroomEntity;
@@ -61,11 +66,14 @@ import com.homebrewCult.TheBigBang.entities.render.RedSnailRenderer;
 import com.homebrewCult.TheBigBang.entities.render.RibbonPigRenderer;
 import com.homebrewCult.TheBigBang.entities.render.StoneGolemRenderer;
 import com.homebrewCult.TheBigBang.entities.render.StumpRenderer;
+import com.homebrewCult.TheBigBang.entities.render.ThrowingStarRenderer;
+import com.homebrewCult.TheBigBang.entities.render.ThrowingStarRenderer;
 import com.homebrewCult.TheBigBang.entities.render.YetiRenderer;
 import com.homebrewCult.TheBigBang.entities.render.ZombieMushroomRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.world.biome.Biome;
@@ -115,10 +123,20 @@ public class ModEntities {
 	public static final EntityType<YetiEntity> YETI_ENTITY = (EntityType<YetiEntity>)buildEntityType(YetiEntity::new, EntityClassification.MONSTER, 2f, 3f, "yeti_entity");
 	public static final EntityType<DarkYetiEntity> DARK_YETI_ENTITY = (EntityType<DarkYetiEntity>)buildEntityType(DarkYetiEntity::new, EntityClassification.MONSTER, 2f, 3f, "dark_yeti_entity");
 
+	public static final EntityType<SubiEntity> SUBI = (EntityType<SubiEntity>) EntityType.Builder.create(SubiEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> 
+	new SubiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "subi").setRegistryName(TheBigBang.MODID, "subi");
+	public static final EntityType<TobiEntity> TOBI = (EntityType<TobiEntity>) EntityType.Builder.create(TobiEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> 
+	new TobiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "tobi").setRegistryName(TheBigBang.MODID, "tobi");
+	public static final EntityType<SteelyEntity> STEELY = (EntityType<SteelyEntity>) EntityType.Builder.create(SteelyEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> 
+	new SteelyEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "steely").setRegistryName(TheBigBang.MODID, "steely");
+	public static final EntityType<IlbiEntity> ILBI = (EntityType<IlbiEntity>) EntityType.Builder.create(IlbiEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> 
+	new IlbiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "ilbi").setRegistryName(TheBigBang.MODID, "ilbi");
+	
 	@SubscribeEvent
-	public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {
+	public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {	
+		
 		event.getRegistry().registerAll (
-				STUMP_ENTITY, DARK_STUMP_ENTITY, AXE_STUMP_ENTITY, DARK_AXE_STUMP_ENTITY, OCTOPUS_ENTITY, EVIL_EYE_ENTITY, CURSE_EYE_ENTITY, COLD_EYE_ENTITY, BUBBLING_ENTITY, GREEN_BUBBLING_ENTITY,
+				SUBI, TOBI, STEELY, ILBI, STUMP_ENTITY, DARK_STUMP_ENTITY, AXE_STUMP_ENTITY, DARK_AXE_STUMP_ENTITY, OCTOPUS_ENTITY, EVIL_EYE_ENTITY, CURSE_EYE_ENTITY, COLD_EYE_ENTITY, BUBBLING_ENTITY, GREEN_BUBBLING_ENTITY,
 				ORANGE_MUSHROOM_ENTITY, BLUE_MUSHROOM_ENTITY, ZOMBIE_MUSHROOM_ENTITY, JRYETI_ENTITY, DARK_JRYETI_ENTITY, GREEN_SNAIL_ENTITY, BLUE_SNAIL_ENTITY, RED_SNAIL_ENTITY, 
 				RIBBON_PIG_ENTITY, STONE_GOLEM_ENTITY, DARK_STONE_GOLEM_ENTITY, MIXED_GOLEM_ENTITY, ICE_GOLEM_ENTITY, FIRE_GOLEM_ENTITY,
 				DRAKE_ENTITY, COPPER_DRAKE_ENTITY, DARK_DRAKE_ENTITY, ICE_DRAKE_ENTITY, RED_DRAKE_ENTITY, YETI_ENTITY, DARK_YETI_ENTITY
@@ -126,7 +144,7 @@ public class ModEntities {
 	}
 	
     public static <T extends Entity> EntityType<?> buildEntityType(EntityType.IFactory<T> factoryIn, EntityClassification classification, float width, float height, String name) {
-		return EntityType.Builder.create(factoryIn, EntityClassification.CREATURE).size(width, height).build(TheBigBang.MODID + name).setRegistryName(TheBigBang.MODID, name);
+		return EntityType.Builder.create(factoryIn, classification).size(width, height).build(TheBigBang.MODID + name).setRegistryName(TheBigBang.MODID, name);
 	}
     
     @SubscribeEvent
@@ -187,6 +205,11 @@ public class ModEntities {
 		RenderingRegistry.registerEntityRenderingHandler(RedDrakeEntity.class, new RedDrakeRenderer.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(YetiEntity.class, new YetiRenderer.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(DarkYetiEntity.class, new DarkYetiRenderer.RenderFactory());
+		
+		RenderingRegistry.registerEntityRenderingHandler(SubiEntity.class, new ThrowingStarRenderer.RenderFactory());
+		RenderingRegistry.registerEntityRenderingHandler(TobiEntity.class, new ThrowingStarRenderer.RenderFactory());
+		RenderingRegistry.registerEntityRenderingHandler(SteelyEntity.class, new ThrowingStarRenderer.RenderFactory());
+		RenderingRegistry.registerEntityRenderingHandler(IlbiEntity.class, new ThrowingStarRenderer.RenderFactory());
 	}
 	
 	@SubscribeEvent
