@@ -1,7 +1,7 @@
 package com.homebrewCult.TheBigBang.entities.render;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.entities.IceDrakeEntity;
+import com.homebrewCult.TheBigBang.entities.mob.IceDrakeEntity;
 import com.homebrewCult.TheBigBang.entities.model.AbstractDrakeModel;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

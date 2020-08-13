@@ -1,12 +1,12 @@
 package com.homebrewCult.TheBigBang.network;
 
-import com.homebrewCult.TheBigBang.entities.AbstractMushroomEntity;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 import java.util.function.Supplier;
+
+import com.homebrewCult.TheBigBang.entities.mob.AbstractMushroomEntity;
 
 public class Packet_SetChildAttacker  {
 

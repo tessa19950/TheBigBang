@@ -18,6 +18,7 @@ import com.homebrewCult.TheBigBang.items.armor.PietteArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.PilferArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.StarlightArmorItem;
 import com.homebrewCult.TheBigBang.items.DangerSignItem;
+import com.homebrewCult.TheBigBang.items.GarnierItem;
 import com.homebrewCult.TheBigBang.items.GolemStoneItemColorHandler;
 import com.homebrewCult.TheBigBang.items.model.AppleArmorModel;
 import com.homebrewCult.TheBigBang.items.model.GoldwindArmorModel;
@@ -146,6 +147,7 @@ public class ModItems {
 	
 	public static final Item MITHRIL_WAND = null;
 	public static final Item RYDEN = null;
+	public static final Item GARNIER = null;
 	public static final Item SUBI = null;
 	public static final Item SUBI_PROJECTILE = null;
 	public static final Item TOBI = null;
@@ -256,7 +258,8 @@ public class ModItems {
 				
 				new MithrilWandItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "mithril_wand"),
 				new RydenItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "ryden"),
-
+				new GarnierItem(new Item.Properties().maxDamage(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "garnier"),
+				
 				new ThrowingStarItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "subi"),
 				new Item(new Item.Properties()).setRegistryName(TheBigBang.MODID, "subi_projectile"),
 				new ThrowingStarItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "tobi"),

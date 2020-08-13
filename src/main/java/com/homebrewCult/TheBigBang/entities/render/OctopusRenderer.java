@@ -1,7 +1,7 @@
 package com.homebrewCult.TheBigBang.entities.render;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.entities.OctopusEntity;
+import com.homebrewCult.TheBigBang.entities.mob.OctopusEntity;
 import com.homebrewCult.TheBigBang.entities.model.OctopusModel;
 
 import net.minecraft.client.renderer.entity.EntityRenderer;

@@ -1,0 +1,35 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "thebigbang:item/garnier",
+		"particle": "thebigbang:item/garnier"
+	},
+	"elements": [
+		{
+			"from": [5.4, 3.4, 7.4],
+			"to": [10.6, 8.6, 12.6],
+			"rotation": {"angle": 0, "axis": "x", "origin": [0, 0, 0]},
+			"faces": {
+				"north": {"uv": [0, 0, 5, 5], "texture": "#0"},
+				"east": {"uv": [0, 5, 5, 10], "texture": "#0"},
+				"south": {"uv": [5, 5, 10, 10], "texture": "#0"},
+				"west": {"uv": [5, 0, 10, 5], "texture": "#0"},
+				"up": {"uv": [5, 15, 0, 10], "texture": "#0"},
+				"down": {"uv": [10, 10, 5, 15], "texture": "#0"}
+			}
+		},
+		{
+			"from": [5, 8, 7.3],
+			"to": [11, 9, 9.3],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 0]},
+			"faces": {
+				"north": {"uv": [10, 2, 16, 3], "texture": "#0"},
+				"east": {"uv": [10, 4, 12, 5], "texture": "#0"},
+				"south": {"uv": [10, 3, 16, 4], "texture": "#0"},
+				"west": {"uv": [10, 5, 12, 6], "texture": "#0"},
+				"up": {"uv": [16, 12, 10, 10], "texture": "#0"},
+				"down": {"uv": [16, 0, 10, 2], "texture": "#0"}
+			}
+		}
+	]
+}

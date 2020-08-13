@@ -1,7 +1,7 @@
 package com.homebrewCult.TheBigBang.entities.render;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.entities.GreenSnailEntity;
+import com.homebrewCult.TheBigBang.entities.mob.GreenSnailEntity;
 import com.homebrewCult.TheBigBang.entities.model.SmallSnailModel;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

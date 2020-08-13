@@ -1,7 +1,7 @@
 package com.homebrewCult.TheBigBang.entities.render;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.entities.RibbonPigEntity;
+import com.homebrewCult.TheBigBang.entities.mob.RibbonPigEntity;
 import com.homebrewCult.TheBigBang.entities.model.RibbonPigModel;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

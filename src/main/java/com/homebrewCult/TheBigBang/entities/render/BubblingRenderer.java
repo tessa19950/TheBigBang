@@ -1,6 +1,6 @@
 package com.homebrewCult.TheBigBang.entities.render;
 import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.entities.AbstractBubblingEntity;
+import com.homebrewCult.TheBigBang.entities.mob.AbstractBubblingEntity;
 import com.homebrewCult.TheBigBang.entities.model.AbstractBubblingModel;
 
 import net.minecraft.client.renderer.entity.EntityRenderer;

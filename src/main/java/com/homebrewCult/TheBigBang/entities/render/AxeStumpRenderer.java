@@ -1,6 +1,6 @@
 package com.homebrewCult.TheBigBang.entities.render;
 import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.entities.AbstractStumpEntity;
+import com.homebrewCult.TheBigBang.entities.mob.AbstractStumpEntity;
 import com.homebrewCult.TheBigBang.entities.model.AbstractStumpModel;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

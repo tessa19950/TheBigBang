@@ -1,7 +1,7 @@
 package com.homebrewCult.TheBigBang.entities.render;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.entities.OrangeMushroomEntity;
+import com.homebrewCult.TheBigBang.entities.mob.OrangeMushroomEntity;
 import com.homebrewCult.TheBigBang.entities.model.AbstractMushroomModel;
 
 import net.minecraft.client.renderer.entity.EntityRenderer;

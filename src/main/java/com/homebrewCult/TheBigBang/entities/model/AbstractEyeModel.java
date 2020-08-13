@@ -1,5 +1,5 @@
 package com.homebrewCult.TheBigBang.entities.model;
-import com.homebrewCult.TheBigBang.entities.AbstractEyeEntity;
+import com.homebrewCult.TheBigBang.entities.mob.AbstractEyeEntity;
 
 import net.minecraft.client.renderer.entity.model.QuadrupedModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;

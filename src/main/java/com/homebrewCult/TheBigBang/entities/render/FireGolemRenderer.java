@@ -1,7 +1,7 @@
 package com.homebrewCult.TheBigBang.entities.render;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.entities.FireGolemEntity;
+import com.homebrewCult.TheBigBang.entities.mob.FireGolemEntity;
 import com.homebrewCult.TheBigBang.entities.model.AbstractGolemModel;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

@@ -1,7 +1,7 @@
 package com.homebrewCult.TheBigBang.entities.render;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.entities.CurseEyeEntity;
+import com.homebrewCult.TheBigBang.entities.mob.CurseEyeEntity;
 import com.homebrewCult.TheBigBang.entities.model.AbstractEyeModel;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

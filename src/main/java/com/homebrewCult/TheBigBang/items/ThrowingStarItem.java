@@ -1,10 +1,10 @@
 package com.homebrewCult.TheBigBang.items;
 
-import com.homebrewCult.TheBigBang.entities.IlbiEntity;
-import com.homebrewCult.TheBigBang.entities.SteelyEntity;
-import com.homebrewCult.TheBigBang.entities.SubiEntity;
-import com.homebrewCult.TheBigBang.entities.ThrowingStarEntity;
-import com.homebrewCult.TheBigBang.entities.TobiEntity;
+import com.homebrewCult.TheBigBang.entities.mob.IlbiEntity;
+import com.homebrewCult.TheBigBang.entities.mob.SteelyEntity;
+import com.homebrewCult.TheBigBang.entities.mob.SubiEntity;
+import com.homebrewCult.TheBigBang.entities.mob.ThrowingStarEntity;
+import com.homebrewCult.TheBigBang.entities.mob.TobiEntity;
 import com.homebrewCult.TheBigBang.init.ModItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

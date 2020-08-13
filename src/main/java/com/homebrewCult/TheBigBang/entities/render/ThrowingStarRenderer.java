@@ -1,6 +1,6 @@
 package com.homebrewCult.TheBigBang.entities.render;
 
-import com.homebrewCult.TheBigBang.entities.ThrowingStarEntity;
+import com.homebrewCult.TheBigBang.entities.mob.ThrowingStarEntity;
 import com.mojang.blaze3d.platform.GlStateManager;
 
 import net.minecraft.client.Minecraft;

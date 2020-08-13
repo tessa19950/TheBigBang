@@ -1,5 +1,5 @@
 package com.homebrewCult.TheBigBang.entities.model;
-import com.homebrewCult.TheBigBang.entities.AbstractMushroomEntity;
+import com.homebrewCult.TheBigBang.entities.mob.AbstractMushroomEntity;
 import com.mojang.blaze3d.platform.GlStateManager;
 
 import net.minecraft.client.renderer.entity.model.QuadrupedModel;

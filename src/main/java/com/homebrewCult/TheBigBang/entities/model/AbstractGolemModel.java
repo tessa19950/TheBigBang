@@ -1,6 +1,7 @@
 package com.homebrewCult.TheBigBang.entities.model; 
 
-import com.homebrewCult.TheBigBang.entities.AbstractGolemEntity;
+import com.homebrewCult.TheBigBang.entities.mob.AbstractGolemEntity;
+
 import net.minecraft.client.renderer.entity.model.QuadrupedModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.ModelBox;
