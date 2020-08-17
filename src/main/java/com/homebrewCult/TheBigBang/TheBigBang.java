@@ -11,6 +11,7 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.Logger;
 import com.homebrewCult.TheBigBang.config.BigBangConfigSetup;
 import com.homebrewCult.TheBigBang.init.ModEntities;
+import com.homebrewCult.TheBigBang.init.ModItems;
 import com.homebrewCult.TheBigBang.init.ModParticleTypes;
 import com.homebrewCult.TheBigBang.network.BigBangPacketHandler;
 import com.homebrewCult.TheBigBang.util.ClientProxy;

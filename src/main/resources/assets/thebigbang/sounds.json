@@ -1,192 +1,283 @@
 {
-	"item.magic_claw.use":
+	"magic_claw_use":
 	{
 		"category": "item",
 		"subtitle": "item.magic_claw.use",
 		"sounds": ["thebigbang:item/magic_claw_use"]
 	},
 
-	"entity.stump.damage":
+	"stump_damage":
 	{
 		"category": "entity",
 		"subtitle": "entity.stump.damage",
 		"sounds": ["thebigbang:entity/stump_damage"]
 	},
 	
-	"entity.stump.die":
+	"stump_die":
 	{
 		"category": "entity",
 		"subtitle": "entity.stump.die",
 		"sounds": ["thebigbang:entity/stump_die"]
 	},
 	
-	"entity.octopus.damage":
+	"stump_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.stump.ambient",
+		"sounds": ["thebigbang:entity/stump_ambient"]
+	},
+	
+	"octopus_damage":
 	{
 		"category": "entity",
 		"subtitle": "entity.octopus.damage",
 		"sounds": ["thebigbang:entity/octopus_damage"]
 	},
 	
-	"entity.octopus.die":
+	"octopus_die":
 	{
 		"category": "entity",
 		"subtitle": "entity.octopus.die",
 		"sounds": ["thebigbang:entity/octopus_die"]
 	},
-	
-	"entity.eye.damage":
+		
+	"octopus_ambient":
 	{
 		"category": "entity",
-		"subtitle": "entity.eye.damage",
+		"subtitle": "entity.octopus.ambient",
+		"sounds": ["thebigbang:entity/octopus_ambient"]
+	},
+	
+	"eye_damage":
+	{
+		"category": "entity",
+		"subtitle": "eye.damage",
 		"sounds": ["thebigbang:entity/eye_damage"]
 	},
 	
-	"entity.eye.die":
+	"eye_die":
 	{
 		"category": "entity",
 		"subtitle": "entity.eye.die",
 		"sounds": ["thebigbang:entity/eye_die"]
 	},
 	
-	"entity.mushroom.damage":
+	"eye_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.eye.ambient",
+		"sounds": ["thebigbang:entity/eye_ambient"]
+	},
+	
+	"mushroom_damage":
 	{
 		"category": "entity",
 		"subtitle": "entity.mushroom.damage",
 		"sounds": ["thebigbang:entity/mushroom_damage"]
 	},
 	
-	"entity.mushroom.die":
+	"mushroom_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.mushroom.ambient",
+		"sounds": ["thebigbang:entity/mushroom_ambient"]
+	},
+	
+	"mushroom_die":
 	{
 		"category": "entity",
 		"subtitle": "entity.mushroom.die",
 		"sounds": ["thebigbang:entity/mushroom_die"]
 	},
 	
-	"entity.snail.damage":
+	"snail_damage":
 	{
 		"category": "entity",
 		"subtitle": "entity.snail.damage",
 		"sounds": ["thebigbang:entity/snail_damage"]
 	},
 	
-	"entity.snail.die":
+	"snail_die":
 	{
 		"category": "entity",
 		"subtitle": "entity.snail.die",
 		"sounds": ["thebigbang:entity/snail_die"]
 	},
 	
-	"entity.jr_yeti.damage":
+	"snail_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.snail.ambient",
+		"sounds": ["thebigbang:entity/snail_ambient"]
+	},
+	
+	"jr_yeti_damage":
 	{
 		"category": "entity",
 		"subtitle": "entity.jr_yeti.damage",
 		"sounds": ["thebigbang:entity/jr_yeti_damage"]
 	},
 	
-	"entity.jr_yeti.die":
+	"jr_yeti_die":
 	{
 		"category": "entity",
 		"subtitle": "entity.jr_yeti.die",
 		"sounds": ["thebigbang:entity/jr_yeti_die"]
 	},
 	
-	"entity.drake.damage":
+	"jr_yeti_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.jr_yeti.ambient",
+		"sounds": ["thebigbang:entity/jr_yeti_ambient"]
+	},
+	
+	"drake_damage":
 	{
 		"category": "entity",
 		"subtitle": "entity.drake.damage",
 		"sounds": ["thebigbang:entity/drake_damage"]
 	},
 
-	"entity.drake.die":
+	"drake_die":
 	{
 		"category": "entity",
-		"subtitle": "entity.drake.die",
+		"subtitle": "drake.die",
 		"sounds": ["thebigbang:entity/drake_die"]
 	},
 
-	"entity.copper_drake.damage":
+	"drake_ambient":
+	{
+		"category": "entity",
+		"subtitle": "drake.ambient",
+		"sounds": ["thebigbang:entity/drake_ambient", "thebigbang:entity/copper_drake_ambient", "thebigbang:entity/red_drake_ambient"]
+	},
+
+	"copper_drake_damage":
 	{
 		"category": "entity",
 		"subtitle": "entity.copper_drake.damage",
 		"sounds": ["thebigbang:entity/copper_drake_damage"]
 	},
 
-	"entity.copper_drake.die":
+	"copper_drake_die":
 	{
 		"category": "entity",
 		"subtitle": "entity.copper_drake.die",
 		"sounds": ["thebigbang:entity/copper_drake_die"]
 	},
+
+	"copper_drake_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.copper_drake.ambient",
+		"sounds": ["thebigbang:entity/drake_ambient", "thebigbang:entity/copper_drake_ambient", "thebigbang:entity/red_drake_ambient"]
+	},
 	
-	"entity.dark_drake.damage":
+	"dark_drake_damage":
 	{
 		"category": "entity",
 		"subtitle": "entity.dark_drake.damage",
 		"sounds": ["thebigbang:entity/dark_drake_damage"]
 	},
 	
-	"entity.dark_drake.die":
+	"dark_drake_die":
 	{
 		"category": "entity",
 		"subtitle": "entity.dark_drake.die",
 		"sounds": ["thebigbang:entity/dark_drake_die"]
 	},
+
+	"dark_drake_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.dark_drake.ambient",
+		"sounds": ["thebigbang:entity/drake_ambient", "thebigbang:entity/copper_drake_ambient", "thebigbang:entity/red_drake_ambient"]
+	},
 	
-	"entity.red_drake.damage":
+	"red_drake_damage":
 	{
 		"category": "entity",
 		"subtitle": "entity.red_drake.damage",
 		"sounds": ["thebigbang:entity/red_drake_damage"]
 	},
 	
-	"entity.red_drake.die":
+	"red_drake_die":
 	{
 		"category": "entity",
 		"subtitle": "entity.red_drake.die",
 		"sounds": ["thebigbang:entity/red_drake_die"]
 	},
-	
-	"entity.ice_drake.damage":
+
+	"red_drake_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.red_drake.ambient",
+		"sounds": ["thebigbang:entity/drake_ambient", "thebigbang:entity/copper_drake_ambient", "thebigbang:entity/red_drake_ambient"]
+	},
+		
+	"ice_drake_damage":
 	{
 		"category": "entity",
 		"subtitle": "entity.ice_drake.damage",
 		"sounds": ["thebigbang:entity/ice_drake_damage"]
 	},
 	
-	"entity.ice_drake.die":
+	"ice_drake_die":
 	{
 		"category": "entity",
 		"subtitle": "entity.ice_drake.die",
 		"sounds": ["thebigbang:entity/ice_drake_die"]
 	},
+
+	"ice_drake_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.ice_drake.ambient",
+		"sounds": ["thebigbang:entity/drake_ambient", "thebigbang:entity/copper_drake_ambient", "thebigbang:entity/red_drake_ambient"]
+	},
 	
-	"entity.yeti.damage":
+	"yeti_damage":
 	{
 		"category": "entity",
 		"subtitle": "entity.yeti.die",
 		"sounds": ["thebigbang:entity/yeti_damage"]
 	},
 	
-	"entity.yeti.die":
+	"yeti_die":
 	{
 		"category": "entity",
 		"subtitle": "entity.yeti.die",
 		"sounds": ["thebigbang:entity/yeti_die"]
 	},
+
+	"yeti_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.yeti.ambient",
+		"sounds": ["thebigbang:entity/yeti_ambient"]
+	},
 	
-	"entity.golem.damage":
+	"golem_damage":
 	{
 		"category": "entity",
 		"subtitle": "entity.golem.die",
 		"sounds": ["thebigbang:entity/golem_damage"]
 	},
 	
-	"entity.golem.die":
+	"golem_die":
 	{
 		"category": "entity",
 		"subtitle": "entity.golem.die",
 		"sounds": ["thebigbang:entity/golem_die"]
 	},
+	
+	"golem_ambient":
+	{
+		"category": "entity",
+		"subtitle": "entity.golem.ambient",
+		"sounds": ["thebigbang:entity/golem_ambient"]
+	},	
 	
 	"record.amoria":
 	{

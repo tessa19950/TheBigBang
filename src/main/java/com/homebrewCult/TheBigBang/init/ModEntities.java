@@ -1,6 +1,11 @@
 package com.homebrewCult.TheBigBang.init;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
+import com.homebrewCult.TheBigBang.entities.IlbiEntity;
+import com.homebrewCult.TheBigBang.entities.SteelyEntity;
+import com.homebrewCult.TheBigBang.entities.SubiEntity;
+import com.homebrewCult.TheBigBang.entities.ThrowingStarEntity;
+import com.homebrewCult.TheBigBang.entities.TobiEntity;
 import com.homebrewCult.TheBigBang.entities.mob.AxeStumpEntity;
 import com.homebrewCult.TheBigBang.entities.mob.BlueMushroomEntity;
 import com.homebrewCult.TheBigBang.entities.mob.BlueSnailEntity;
@@ -21,7 +26,6 @@ import com.homebrewCult.TheBigBang.entities.mob.GreenBubblingEntity;
 import com.homebrewCult.TheBigBang.entities.mob.GreenSnailEntity;
 import com.homebrewCult.TheBigBang.entities.mob.IceDrakeEntity;
 import com.homebrewCult.TheBigBang.entities.mob.IceGolemEntity;
-import com.homebrewCult.TheBigBang.entities.mob.IlbiEntity;
 import com.homebrewCult.TheBigBang.entities.mob.JrYetiEntity;
 import com.homebrewCult.TheBigBang.entities.mob.MixedGolemEntity;
 import com.homebrewCult.TheBigBang.entities.mob.OctopusEntity;
@@ -29,12 +33,8 @@ import com.homebrewCult.TheBigBang.entities.mob.OrangeMushroomEntity;
 import com.homebrewCult.TheBigBang.entities.mob.RedDrakeEntity;
 import com.homebrewCult.TheBigBang.entities.mob.RedSnailEntity;
 import com.homebrewCult.TheBigBang.entities.mob.RibbonPigEntity;
-import com.homebrewCult.TheBigBang.entities.mob.SteelyEntity;
 import com.homebrewCult.TheBigBang.entities.mob.StoneGolemEntity;
 import com.homebrewCult.TheBigBang.entities.mob.StumpEntity;
-import com.homebrewCult.TheBigBang.entities.mob.SubiEntity;
-import com.homebrewCult.TheBigBang.entities.mob.ThrowingStarEntity;
-import com.homebrewCult.TheBigBang.entities.mob.TobiEntity;
 import com.homebrewCult.TheBigBang.entities.mob.YetiEntity;
 import com.homebrewCult.TheBigBang.entities.mob.ZombieMushroomEntity;
 import com.homebrewCult.TheBigBang.entities.render.AxeStumpRenderer;
@@ -215,12 +215,12 @@ public class ModEntities {
 	@SubscribeEvent
 	public static void registerEntityItems(final RegistryEvent.Register<Item> event) {
 		event.getRegistry().registerAll (
-				registerEntitySpawnEgg(STUMP_ENTITY, 0x886633, 0x3e2e17, "stump_spawn_egg"),
-				registerEntitySpawnEgg(DARK_STUMP_ENTITY, 0x886633, 0x3e2e17, "dark_stump_spawn_egg"),
+				registerEntitySpawnEgg(STUMP_ENTITY, 0x745A36, 0x4C3D26, "stump_spawn_egg"),
+				registerEntitySpawnEgg(DARK_STUMP_ENTITY, 0x3F311D, 0x292011, "dark_stump_spawn_egg"),
 				registerEntitySpawnEgg(AXE_STUMP_ENTITY, 0x886633, 0x3e2e17, "axe_stump_spawn_egg"),
-				registerEntitySpawnEgg(DARK_AXE_STUMP_ENTITY, 0x886633, 0x3e2e17, "dark_axe_stump_spawn_egg"),
-				registerEntitySpawnEgg(BUBBLING_ENTITY, 0xFFFFFF, 0xFFFFFF, "bubbling_spawn_egg"),
-				registerEntitySpawnEgg(GREEN_BUBBLING_ENTITY, 0xFFFFFF, 0xFFFFFF, "green_bubbling_spawn_egg"),
+				registerEntitySpawnEgg(DARK_AXE_STUMP_ENTITY, 0x3F311D, 0x292011, "dark_axe_stump_spawn_egg"),
+				registerEntitySpawnEgg(BUBBLING_ENTITY, 0x5EB7CD, 0x004499, "bubbling_spawn_egg"),
+				registerEntitySpawnEgg(GREEN_BUBBLING_ENTITY, 0x7BCE6A, 0x51A03E, "green_bubbling_spawn_egg"),
 				registerEntitySpawnEgg(OCTOPUS_ENTITY, 0x6356B5, 0xBD4E86, "octopus_spawn_egg"),
 				registerEntitySpawnEgg(EVIL_EYE_ENTITY, 0xFFDD00, 0xBB7711, "evil_eye_spawn_egg"),
 				registerEntitySpawnEgg(CURSE_EYE_ENTITY, 0x66AA66, 0x99EE22, "curse_eye_spawn_egg"),

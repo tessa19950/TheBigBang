@@ -1,4 +1,4 @@
-package com.homebrewCult.TheBigBang.entities.mob;
+package com.homebrewCult.TheBigBang.entities;
 
 import com.homebrewCult.TheBigBang.init.ModEntities;
 import com.homebrewCult.TheBigBang.init.ModItems;
@@ -40,6 +40,11 @@ public class SubiEntity extends ThrowingStarEntity {
 	@Override
 	EntityType<?> getThrowingStarEntityType() {
 		return ModEntities.SUBI;
+	}
+
+	@Override
+	double getBaseDamage() {
+		return 1D;
 	}
 
 }

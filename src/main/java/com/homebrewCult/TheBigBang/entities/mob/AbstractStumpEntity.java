@@ -44,6 +44,11 @@ public class AbstractStumpEntity extends AnimalEntity implements IQuestEntity {
 	}
 
 	@Override
+	protected SoundEvent getAmbientSound() {
+		return ModSounds.STUMP_AMBIENT;
+	}
+	
+	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 		return ModSounds.STUMP_DAMAGE;
 	}

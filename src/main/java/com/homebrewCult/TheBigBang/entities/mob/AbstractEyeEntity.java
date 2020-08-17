@@ -59,6 +59,11 @@ public class AbstractEyeEntity extends MonsterEntity implements IQuestEntity {
 	}
 
 	@Override
+	protected SoundEvent getAmbientSound() {
+		return ModSounds.EYE_AMBIENT;
+	}
+	
+	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) 
 	{
 		return ModSounds.EYE_DAMAGE;

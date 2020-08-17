@@ -4,7 +4,7 @@
 	"textures": {
 		"body": "thebigbang:block/danger_sign_body",
 		"face": "thebigbang:block/danger_sign_part_topright",
-		"particle": "minecraft:blocks/acacia_planks"
+		"particle": "minecraft:block/acacia_planks"
 	},
 	"elements": [
 		{

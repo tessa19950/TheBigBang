@@ -1,4 +1,4 @@
-package com.homebrewCult.TheBigBang.entities.mob;
+package com.homebrewCult.TheBigBang.entities;
 
 import com.homebrewCult.TheBigBang.init.ModEntities;
 import com.homebrewCult.TheBigBang.init.ModItems;
@@ -40,5 +40,9 @@ public class TobiEntity extends ThrowingStarEntity {
 	EntityType<?> getThrowingStarEntityType() {
 		return ModEntities.TOBI;
 	}
-
+	
+	@Override
+	double getBaseDamage() {
+		return 2D;
+	}
 }

@@ -1,11 +1,12 @@
 package com.homebrewCult.TheBigBang.items;
 
-import com.homebrewCult.TheBigBang.entities.mob.IlbiEntity;
-import com.homebrewCult.TheBigBang.entities.mob.SteelyEntity;
-import com.homebrewCult.TheBigBang.entities.mob.SubiEntity;
-import com.homebrewCult.TheBigBang.entities.mob.ThrowingStarEntity;
-import com.homebrewCult.TheBigBang.entities.mob.TobiEntity;
+import com.homebrewCult.TheBigBang.entities.IlbiEntity;
+import com.homebrewCult.TheBigBang.entities.SteelyEntity;
+import com.homebrewCult.TheBigBang.entities.SubiEntity;
+import com.homebrewCult.TheBigBang.entities.ThrowingStarEntity;
+import com.homebrewCult.TheBigBang.entities.TobiEntity;
 import com.homebrewCult.TheBigBang.init.ModItems;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,7 +18,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
-public class ThrowingStarItem extends Item  {
+public abstract class ThrowingStarItem extends Item  {
 
 	public ThrowingStarItem(Properties properties) {
 		super(properties);
@@ -49,4 +50,6 @@ public class ThrowingStarItem extends Item  {
 		playerIn.addStat(Stats.ITEM_USED.get(this));
 		return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
 	}
+	
+	abstract ThrowingStarEntity createThrowingStar(World worldIn, ItemStack stack, LivingEntity shooter);
 }

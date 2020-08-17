@@ -41,6 +41,11 @@ public class OctopusEntity extends AnimalEntity implements IQuestEntity {
 	}
 
 	@Override
+	protected SoundEvent getAmbientSound() {
+		return ModSounds.OCTOPUS_AMBIENT;
+	}
+	
+	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 		return ModSounds.OCTOPUS_DAMAGE;
 	}

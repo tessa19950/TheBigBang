@@ -34,6 +34,11 @@ public class AbstractJrYetiEntity extends AnimalEntity implements IQuestEntity {
 	}
 
 	@Override
+	protected SoundEvent getAmbientSound() {
+		return ModSounds.JR_YETI_AMBIENT;
+	}
+	
+	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 		return ModSounds.JR_YETI_DAMAGE;
 	}

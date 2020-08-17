@@ -1,4 +1,4 @@
-package com.homebrewCult.TheBigBang.entities.mob;
+package com.homebrewCult.TheBigBang.entities;
 
 import com.homebrewCult.TheBigBang.init.ModEntities;
 import com.homebrewCult.TheBigBang.init.ModItems;
@@ -41,5 +41,9 @@ public class SteelyEntity extends ThrowingStarEntity {
 	EntityType<?> getThrowingStarEntityType() {
 		return ModEntities.STEELY;
 	}
-
+	
+	@Override
+	double getBaseDamage() {
+		return 3D;
+	}
 }

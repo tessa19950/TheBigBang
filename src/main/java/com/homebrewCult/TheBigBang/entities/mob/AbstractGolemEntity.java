@@ -63,6 +63,11 @@ public class AbstractGolemEntity extends AnimalEntity implements IQuestEntity {
 	}
 	
 	@Override
+	protected SoundEvent getAmbientSound() {
+		return ModSounds.GOLEM_AMBIENT;
+	}
+	
+	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) 
 	{
 		return ModSounds.GOLEM_DAMAGE;

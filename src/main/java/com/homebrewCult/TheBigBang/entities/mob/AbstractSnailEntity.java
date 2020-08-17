@@ -53,6 +53,11 @@ public class AbstractSnailEntity extends AnimalEntity implements IQuestEntity {
 	}
 
 	@Override
+	protected SoundEvent getAmbientSound() {
+		return ModSounds.SNAIL_AMBIENT;
+	}
+	
+	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) 
 	{
 		return ModSounds.SNAIL_DAMAGE;

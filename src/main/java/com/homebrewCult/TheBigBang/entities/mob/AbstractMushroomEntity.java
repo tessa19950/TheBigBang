@@ -87,6 +87,11 @@ public class AbstractMushroomEntity extends AnimalEntity implements IQuestEntity
 	}
 
 	@Override
+	protected SoundEvent getAmbientSound() {
+		return ModSounds.MUSHROOM_AMBIENT;
+	}
+	
+	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) 
 	{
 		return ModSounds.MUSHROOM_DAMAGE;

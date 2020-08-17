@@ -6,12 +6,12 @@
             "entries": [
                 {
                     "type": "item",
-                    "weight": 30,
+                    "weight": 50,
                     "name": "thebigbang:evil_eye_tail"
                 },
                 {
                     "type": "empty",
-                    "weight": 70
+                    "weight": 50
                 }
             ]
         },

@@ -1,4 +1,4 @@
-package com.homebrewCult.TheBigBang.entities.mob;
+package com.homebrewCult.TheBigBang.entities;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IRendersAsItem;
@@ -14,14 +14,17 @@ public abstract class ThrowingStarEntity extends AbstractArrowEntity implements 
 	
 	public ThrowingStarEntity(EntityType<? extends AbstractArrowEntity> type, World worldIn) {
 		super(type, worldIn);
+		this.setDamage(this.getBaseDamage());
 	}
 	
 	public ThrowingStarEntity(EntityType<? extends AbstractArrowEntity> type, World worldIn, double x, double y, double z) {
 		super(type, x, y, z, worldIn);
+		this.setDamage(this.getBaseDamage());
 	}
 
 	public ThrowingStarEntity(EntityType<? extends AbstractArrowEntity> type, World worldIn, LivingEntity shooter) {
 		super(type, shooter, worldIn);
+		this.setDamage(this.getBaseDamage());
 	}
 	
 	@Override
@@ -44,4 +47,6 @@ public abstract class ThrowingStarEntity extends AbstractArrowEntity implements 
 	abstract Item getThrowingStarProjectileItem();
 	
 	abstract EntityType<?> getThrowingStarEntityType();
+	
+	abstract double getBaseDamage();
 }

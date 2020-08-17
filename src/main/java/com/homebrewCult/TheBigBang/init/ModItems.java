@@ -6,7 +6,9 @@ import com.homebrewCult.TheBigBang.items.BigBangDiskItem;
 import com.homebrewCult.TheBigBang.items.LiquidFoodItem;
 import com.homebrewCult.TheBigBang.items.QuestItem;
 import com.homebrewCult.TheBigBang.items.RydenItem;
-import com.homebrewCult.TheBigBang.items.ThrowingStarItem;
+import com.homebrewCult.TheBigBang.items.SteelyItem;
+import com.homebrewCult.TheBigBang.items.SubiItem;
+import com.homebrewCult.TheBigBang.items.TobiItem;
 import com.homebrewCult.TheBigBang.items.MithrilWandItem;
 import com.homebrewCult.TheBigBang.items.armor.AppleArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.GoldwindArmorItem;
@@ -20,6 +22,8 @@ import com.homebrewCult.TheBigBang.items.armor.StarlightArmorItem;
 import com.homebrewCult.TheBigBang.items.DangerSignItem;
 import com.homebrewCult.TheBigBang.items.GarnierItem;
 import com.homebrewCult.TheBigBang.items.GolemStoneItemColorHandler;
+import com.homebrewCult.TheBigBang.items.IlbiItem;
+import com.homebrewCult.TheBigBang.items.KandayoItem;
 import com.homebrewCult.TheBigBang.items.model.AppleArmorModel;
 import com.homebrewCult.TheBigBang.items.model.GoldwindArmorModel;
 import com.homebrewCult.TheBigBang.items.model.HwarangArmorModel;
@@ -30,7 +34,6 @@ import com.homebrewCult.TheBigBang.items.model.PietteArmorModel;
 import com.homebrewCult.TheBigBang.items.model.PilferArmorModel;
 import com.homebrewCult.TheBigBang.items.model.StarlightArmorModel;
 import com.homebrewCult.TheBigBang.init.ModItems;
-
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockItem;
@@ -64,7 +67,7 @@ public class ModItems {
 	public static final Item GRASSY_GOLEM_STONE = new BlockItem(ModBlocks.GRASSY_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GRASSY_GOLEM_STONE.getRegistryName());
 	public static final Item GRASSY_DARK_GOLEM_STONE = new BlockItem(ModBlocks.GRASSY_DARK_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GRASSY_DARK_GOLEM_STONE.getRegistryName());
 	
-	public static final QuestItem LETTER = (QuestItem) new QuestItem(new Item.Properties().maxStackSize(1).group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, "letter");
+	public static final QuestItem LETTER = (QuestItem) new QuestItem(new Item.Properties().maxStackSize(1)).setRegistryName(TheBigBang.MODID, "letter");
 	public static final Item OCTOPUS_LEG = 	registerMiscItem("octopus_leg");
 	public static final Item EVIL_EYE_TAIL = registerMiscItem("evil_eye_tail");
 	public static final Item CURSE_EYE_TAIL = registerMiscItem("curse_eye_tail");
@@ -83,7 +86,7 @@ public class ModItems {
 	public static final Item DARK_STONE_GOLEM_RUBBLE = registerMiscItem("dark_stone_golem_rubble");
 	public static final Item PIGS_RIBBON = registerMiscItem("pigs_ribbon");
 	public static final Item PIECE_OF_ICE = registerMiscItem("piece_of_ice");
-	public static final Item BLUE_SLIME_BALL = registerMiscItem("blue_slime_ball");
+	public static final Item BLUE_SLIME_BALL = registerMiscItem("blue_slime_ball", false);
 	
 	public static final Item COOKED_OCTOPUS_LEG = registerFoodItem("cooked_octopus_leg", ModFoods.COOKED_OCTOPUS_LEG);
 	public static final Item COOKED_MUSHROOM_CAP = registerFoodItem("cooked_mushroom_cap", ModFoods.COOKED_MUSHROOM_CAP);
@@ -148,6 +151,7 @@ public class ModItems {
 	public static final Item MITHRIL_WAND = null;
 	public static final Item RYDEN = null;
 	public static final Item GARNIER = null;
+	public static final Item KANDAYO = null;
 	public static final Item SUBI = null;
 	public static final Item SUBI_PROJECTILE = null;
 	public static final Item TOBI = null;
@@ -216,7 +220,6 @@ public class ModItems {
 				ModItems.ORANGE_MUSHROOM_CAP,
 				ModItems.BLUE_MUSHROOM_CAP,
 				ModItems.UNDEAD_CHARM,
-				ModItems.PIGS_RIBBON,
 				ModItems.RED_SNAIL_SHELL,
 				ModItems.BLUE_SNAIL_SHELL,
 				ModItems.GREEN_SNAIL_SHELL,
@@ -258,16 +261,17 @@ public class ModItems {
 				
 				new MithrilWandItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "mithril_wand"),
 				new RydenItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "ryden"),
-				new GarnierItem(new Item.Properties().maxDamage(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "garnier"),
+				new GarnierItem(new Item.Properties().maxStackSize(1).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "garnier"),
+				new KandayoItem(new Item.Properties().maxStackSize(1).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "kandayo"),
 				
-				new ThrowingStarItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "subi"),
-				new Item(new Item.Properties()).setRegistryName(TheBigBang.MODID, "subi_projectile"),
-				new ThrowingStarItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "tobi"),
-				new Item(new Item.Properties()).setRegistryName(TheBigBang.MODID, "tobi_projectile"),
-				new ThrowingStarItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "steely"),
-				new Item(new Item.Properties()).setRegistryName(TheBigBang.MODID, "steely_projectile"),
-				new ThrowingStarItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "ilbi"),
-				new Item(new Item.Properties()).setRegistryName(TheBigBang.MODID, "ilbi_projectile"),
+				new SubiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "subi"),
+				registerMiscItem("subi_projectile", false),
+				new TobiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "tobi"),
+				registerMiscItem("tobi_projectile", false),
+				new SteelyItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "steely"),
+				registerMiscItem("steely_projectile", false),
+				new IlbiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "ilbi"),
+				registerMiscItem("ilbi_projectile", false),
 				
 				new DangerSignItem(ModBlocks.DANGER_SIGN, new Item.Properties().maxStackSize(1).group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.DANGER_SIGN.getRegistryName()),
 				
@@ -373,7 +377,15 @@ public class ModItems {
 	}
 	
 	public static Item registerMiscItem(String name) {
-		return new Item(new Item.Properties().group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, name);
+		return registerMiscItem(name, true);
+	}
+	
+	public static Item registerMiscItem(String name, boolean addToCreativeMenu) {
+		if(addToCreativeMenu) {
+			return new Item(new Item.Properties().group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, name);
+		} else {
+			return new Item(new Item.Properties()).setRegistryName(TheBigBang.MODID, name);
+		}
 	}
 	
 	public static Item registerFoodItem(String name, Food food) {
