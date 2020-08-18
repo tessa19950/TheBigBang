@@ -97,7 +97,6 @@ public class AbstractYetiEntity extends AnimalEntity implements IQuestEntity {
 
 	@Override
 	public AgeableEntity createChild(AgeableEntity ageable) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

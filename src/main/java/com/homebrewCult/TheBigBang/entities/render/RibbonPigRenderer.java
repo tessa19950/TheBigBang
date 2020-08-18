@@ -9,26 +9,21 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-public class RibbonPigRenderer extends MobRenderer<RibbonPigEntity, RibbonPigModel<RibbonPigEntity>>
-{
+public class RibbonPigRenderer extends MobRenderer<RibbonPigEntity, RibbonPigModel<RibbonPigEntity>> {
 	
-	public RibbonPigRenderer(EntityRendererManager manager) 
-	{
-		super(manager, new RibbonPigModel<>(), 0.5f);
+	public RibbonPigRenderer(EntityRendererManager manager) {
+		super(manager, new RibbonPigModel<>(), 0.7f);
+		this.layerRenderers.add(new RibbonSaddleLayer(this));
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(RibbonPigEntity entity) 
-	{
+	protected ResourceLocation getEntityTexture(RibbonPigEntity entity) {
 		return new ResourceLocation(TheBigBang.MODID, "textures/entity/ribbon_pig_entity.png");
 	}
 	
-	public static class RenderFactory implements IRenderFactory<RibbonPigEntity>
-	{
-		public EntityRenderer<? super RibbonPigEntity> createRenderFor(EntityRendererManager manager) 
-		{
+	public static class RenderFactory implements IRenderFactory<RibbonPigEntity> {
+		public EntityRenderer<? super RibbonPigEntity> createRenderFor(EntityRendererManager manager) {
 			return new RibbonPigRenderer(manager);
 		}
 	}
-	
 }

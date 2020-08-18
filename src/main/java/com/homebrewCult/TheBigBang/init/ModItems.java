@@ -84,6 +84,8 @@ public class ModItems {
 	public static final Item DARK_YETI_HORN = registerMiscItem("dark_yeti_horn");
 	public static final Item STONE_GOLEM_RUBBLE = registerMiscItem("stone_golem_rubble");
 	public static final Item DARK_STONE_GOLEM_RUBBLE = registerMiscItem("dark_stone_golem_rubble");
+	public static final Item DRAKES_SKULL = registerMiscItem("drakes_skull");
+	public static final Item DRAGON_SKIN = registerMiscItem("dragon_skin");
 	public static final Item PIGS_RIBBON = registerMiscItem("pigs_ribbon");
 	public static final Item PIECE_OF_ICE = registerMiscItem("piece_of_ice");
 	public static final Item BLUE_SLIME_BALL = registerMiscItem("blue_slime_ball", false);
@@ -106,20 +108,20 @@ public class ModItems {
 	public static final Item DRAKES_BLOOD = registerFoodItem("drakes_blood", ModFoods.DRAKE_BLOOD, true);
 	public static final Item SAP_OF_ANCIENT_TREE = registerFoodItem("sap_of_ancient_tree", ModFoods.SAP_OF_ANCIENT_TREE, true);
 	
-	public static final Item MUSIC_DISC_AMORIA = null;
-	public static final Item MUSIC_DISC_AQUA = null;
-	public static final Item MUSIC_DISC_ARIANT = null;
-	public static final Item MUSIC_DISC_DILLEKE = null;
-	public static final Item MUSIC_DISC_ELLINIA = null;
-	public static final Item MUSIC_DISC_HARBOR = null;
-	public static final Item MUSIC_DISC_HENESYS = null;
-	public static final Item MUSIC_DISC_KERNING = null;
-	public static final Item MUSIC_DISC_LUDIBRIUM = null;
-	public static final Item MUSIC_DISC_OMEGA = null;
-	public static final Item MUSIC_DISC_ORBIS = null;
-	public static final Item MUSIC_DISC_PERION = null;
-	public static final Item MUSIC_DISC_RAINDROP = null;
-	public static final Item MUSIC_DISC_SQUARE = null;
+	public static final Item MUSIC_DISC_AMORIA = null; //Red Snail
+	public static final Item MUSIC_DISC_AQUA = null; //Blue Snail
+	public static final Item MUSIC_DISC_ARIANT = null; //Axe Stump, Dark Axe Stump
+	public static final Item MUSIC_DISC_DILLEKE = null; //Evil Eye, Curse Eye, Cold Eye
+	public static final Item MUSIC_DISC_ELLINIA = null; //Blue Mushroom
+	public static final Item MUSIC_DISC_HARBOR = null; //Green Snail
+	public static final Item MUSIC_DISC_HENESYS = null; //Orange Mushroom
+	public static final Item MUSIC_DISC_KERNING = null; //Octopus
+	public static final Item MUSIC_DISC_LUDIBRIUM = null; //All Drake Types
+	public static final Item MUSIC_DISC_OMEGA = null; //Zombie Mushroom
+	public static final Item MUSIC_DISC_ORBIS = null; //Yeti, Dark Yeti
+	public static final Item MUSIC_DISC_PERION = null; //Stump, Dark Stump
+	public static final Item MUSIC_DISC_RAINDROP = null; //Jr. Yeti, Dark Jr. Yeti
+	public static final Item MUSIC_DISC_SQUARE = null; //All Golem Types
 	
 	public static final Item STUMP_SPAWN_EGG = null;
 	public static final Item OCTOPUS_SPAWN_EGG = null;
@@ -230,6 +232,8 @@ public class ModItems {
 				ModItems.YETI_HORN,
 				ModItems.DARK_YETI_HORN,
 				ModItems.PIGS_RIBBON,
+				ModItems.DRAKES_SKULL,
+				ModItems.DRAGON_SKIN,
 				ModItems.PIECE_OF_ICE,
 				ModItems.BLUE_SLIME_BALL,
 				
@@ -275,20 +279,20 @@ public class ModItems {
 				
 				new DangerSignItem(ModBlocks.DANGER_SIGN, new Item.Properties().maxStackSize(1).group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.DANGER_SIGN.getRegistryName()),
 				
-				new BigBangDiskItem("Maplestory - Amoria", ModSounds.RECORD_AMORIA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_amoria"),
-				new BigBangDiskItem("Maplestory - Aqua", ModSounds.RECORD_AQUA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_aqua"),
-				new BigBangDiskItem("Maplestory - Ariant", ModSounds.RECORD_ARIANT, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_ariant"),
-				new BigBangDiskItem("Maplestory - Dilleke", ModSounds.RECORD_DILLEKE, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_dilleke"),
-				new BigBangDiskItem("Maplestory - Ellinia", ModSounds.RECORD_ELLINIA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_ellinia"),
-				new BigBangDiskItem("Maplestory - Harbor", ModSounds.RECORD_HARBOR, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_harbor"),
-				new BigBangDiskItem("Maplestory - Henesys", ModSounds.RECORD_HENESYS, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_henesys"),
-				new BigBangDiskItem("Maplestory - Kerning", ModSounds.RECORD_KERNING, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_kerning"),
-				new BigBangDiskItem("Maplestory - Ludibrium", ModSounds.RECORD_LUDIBRIUM, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_ludibrium"),
-				new BigBangDiskItem("Maplestory - Omega", ModSounds.RECORD_OMEGA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_omega"),
-				new BigBangDiskItem("Maplestory - Orbis", ModSounds.RECORD_ORBIS, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_orbis"),
-				new BigBangDiskItem("Maplestory - Perion", ModSounds.RECORD_PERION, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_perion"),
-				new BigBangDiskItem("Maplestory - Raindrop", ModSounds.RECORD_RAINDROP, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_raindrop"),
-				new BigBangDiskItem("Maplestory - Square", ModSounds.RECORD_SQUARE, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_square"),
+				new BigBangDiskItem(ModSounds.RECORD_AMORIA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_amoria"),
+				new BigBangDiskItem(ModSounds.RECORD_AQUA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_aqua"),
+				new BigBangDiskItem(ModSounds.RECORD_ARIANT, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_ariant"),
+				new BigBangDiskItem(ModSounds.RECORD_DILLEKE, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_dilleke"),
+				new BigBangDiskItem(ModSounds.RECORD_ELLINIA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_ellinia"),
+				new BigBangDiskItem(ModSounds.RECORD_HARBOR, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_harbor"),
+				new BigBangDiskItem(ModSounds.RECORD_HENESYS, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_henesys"),
+				new BigBangDiskItem(ModSounds.RECORD_KERNING, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_kerning"),
+				new BigBangDiskItem(ModSounds.RECORD_LUDIBRIUM, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_ludibrium"),
+				new BigBangDiskItem(ModSounds.RECORD_OMEGA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_omega"),
+				new BigBangDiskItem(ModSounds.RECORD_ORBIS, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_orbis"),
+				new BigBangDiskItem(ModSounds.RECORD_PERION, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_perion"),
+				new BigBangDiskItem(ModSounds.RECORD_RAINDROP, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_raindrop"),
+				new BigBangDiskItem(ModSounds.RECORD_SQUARE, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_square"),
 				
 				new AppleArmorItem(new AppleArmorModel(), ModArmorMaterial.APPLE, EquipmentSlotType.HEAD, 
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "apple_helmet"),

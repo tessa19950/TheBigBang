@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "weight": 1,
+                    "weight": 2,
                     "functions": [
                         {
                             "function": "minecraft:furnace_smelt",
@@ -23,11 +23,26 @@
                             ]
                         }
                     ],
-                    "name": "thebigbang:octopus_leg"
+                    "name": "minecraft:dark_oak_log"
+                },
+                {
+                    "type": "item",
+                    "weight": 1,
+                    "name": "minecraft:stick"
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "minecraft:iron_axe",
+                    "weight": 1
                 },
                 {
                     "type": "empty",
-                    "weight": 1
+                    "weight": 19
                 }
             ]
         },
@@ -37,7 +52,7 @@
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "thebigbang:music_disc_kerning"
+                    "name": "thebigbang:music_disc_ariant"
                 },
                 {
                     "type": "empty",

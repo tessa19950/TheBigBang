@@ -1,0 +1,36 @@
+{
+    "type": "minecraft:entity",
+    "pools": [
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 30,
+                    "name": "minecraft:slime_ball"
+                },
+                {
+                    "type": "empty",
+                    "weight": 70
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type":"item",
+                    "weight":5,
+                    "name":"minecraft:potion",
+                    "functions": [
+                        {"function":"set_nbt","tag":"{Potion:\"minecraft:healing\"}"}
+                    ]
+                },
+                {
+                    "type": "empty",
+                    "weight": 95
+                }
+            ]
+        }
+    ]
+}

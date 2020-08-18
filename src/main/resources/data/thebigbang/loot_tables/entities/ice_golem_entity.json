@@ -20,12 +20,8 @@
         	"entries": [
         		{
                     "type": "item",
-                    "weight": 30,
+                    "weight": 1,
                     "name": "thebigbang:piece_of_ice"
-                },
-                {
-                    "type": "empty",
-                    "weight": 70
                 }
         	]
         },
@@ -43,6 +39,20 @@
                 {
                     "type": "empty",
                     "weight": 90
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 1,
+                    "name": "thebigbang:music_disc_square"
+                },
+                {
+                    "type": "empty",
+                    "weight": 999
                 }
             ]
         }

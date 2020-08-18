@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [128, 64],
 	"textures": {
-		"body": "thebigbang:block/danger_sign_body",
+		"body": "thebigbang:block/danger_sign",
 		"face": "thebigbang:block/danger_sign_part_topleft",
 		"particle": "minecraft:block/acacia_planks"
 	},

@@ -10,8 +10,18 @@
                     "name": "thebigbang:drakes_blood"
                 },
                 {
+                	"type": "item",
+                	"weight": 10,
+                	"name": "thebigbang:dragon_skin"
+                },
+                {
+                	"type": "item",
+                	"weight": 50,
+                	"name": "thebigbang:drakes_skull"
+                },
+                {
                     "type": "empty",
-                    "weight": 97
+                    "weight": 27
                 }
         	]
         },
@@ -34,6 +44,20 @@
                 {
                     "type": "empty",
                     "weight": 82
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 1,
+                    "name": "thebigbang:music_disc_ludibrium"
+                },
+                {
+                    "type": "empty",
+                    "weight": 999
                 }
             ]
         }
