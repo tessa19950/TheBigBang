@@ -1,0 +1,10 @@
+{
+  "type": "thebigbang:refining",
+  "ingredient": 
+  {
+    "item": "minecraft:gold_ingot"
+  },
+  "result": "thebigbang:gold_plate",
+  "experience": 2.0,
+  "cookingtime": 200
+}

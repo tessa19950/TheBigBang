@@ -1,7 +1,6 @@
 package com.homebrewCult.TheBigBang.particles;
 
 import com.homebrewCult.TheBigBang.init.ModItems;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.IAnimatedSprite;
 import net.minecraft.client.particle.IParticleFactory;

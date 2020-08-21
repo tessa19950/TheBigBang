@@ -27,6 +27,7 @@ public class Packet_SetHasChild  {
 		return new Packet_SetHasChild(buf.readInt());	
 	}
 	
+	@SuppressWarnings("resource")
 	public static void handle(Packet_SetHasChild msg, Supplier<NetworkEvent.Context> ctx) {
 		AbstractMushroomEntity momEntity = (AbstractMushroomEntity) Minecraft.getInstance().player.world.getEntityByID(msg.momID);
 		momEntity.setHasChild();

@@ -6,12 +6,12 @@
         	"entries": [
         		{
                     "type": "item",
-                    "weight": 70,
+                    "weight": 55,
                     "name": "thebigbang:stone_golem_rubble"
                 },
                 {
                     "type": "empty",
-                    "weight": 30
+                    "weight": 45
                 }
         	]
         },

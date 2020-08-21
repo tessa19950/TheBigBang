@@ -1,0 +1,9 @@
+{
+    "parent": "block/orientable_with_bottom",
+    "textures": {
+        "bottom": "thebigbang:block/monster_furnace_bottom",
+        "top": "thebigbang:block/monster_furnace_top",
+        "front": "thebigbang:block/monster_furnace_front",
+        "side": "thebigbang:block/monster_furnace_side"
+    }
+}

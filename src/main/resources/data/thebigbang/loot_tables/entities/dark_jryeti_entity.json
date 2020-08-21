@@ -6,12 +6,12 @@
             "entries": [
                 {
                     "type": "item",
-                    "weight": 30,
+                    "weight": 55,
                     "name": "thebigbang:dark_jryeti_skin"
                 },
                 {
                     "type": "empty",
-                    "weight": 70
+                    "weight": 45
                 }
             ]
         },

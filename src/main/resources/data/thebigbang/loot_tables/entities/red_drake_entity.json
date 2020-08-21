@@ -16,12 +16,12 @@
                 },
                 {
                 	"type": "item",
-                	"weight": 50,
+                	"weight": 55,
                 	"name": "thebigbang:drakes_skull"
                 },
                 {
                     "type": "empty",
-                    "weight": 27
+                    "weight": 22
                 }
         	]
         },

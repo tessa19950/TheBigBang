@@ -8,7 +8,10 @@ import com.homebrewCult.TheBigBang.blocks.DarkGolemStoneBlock;
 import com.homebrewCult.TheBigBang.blocks.GolemStoneBlock;
 import com.homebrewCult.TheBigBang.blocks.GrassyDarkGolemStoneBlock;
 import com.homebrewCult.TheBigBang.blocks.GrassyGolemStoneBlock;
+import com.homebrewCult.TheBigBang.blocks.MonsterFurnaceBlock;
+import com.homebrewCult.TheBigBang.blocks.MonsterFurnaceTile;
 import com.homebrewCult.TheBigBang.inventory.DangerSignContainer;
+import com.homebrewCult.TheBigBang.inventory.MonsterFurnaceContainer;
 import com.homebrewCult.TheBigBang.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -28,28 +31,25 @@ import net.minecraftforge.registries.ObjectHolder;
 @ObjectHolder(TheBigBang.MODID)
 public class ModBlocks {
 	
-	@ObjectHolder("mithril_ore")
 	public static Block MITHRIL_ORE = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "mithril_ore");
-	@ObjectHolder("adamantium_ore")
 	public static Block ADAMANTIUM_ORE = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "adamantium_ore");
-	@ObjectHolder("orihalcon_ore")
 	public static Block ORIHALCON_ORE = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "orihalcon_ore");
 	
-	@ObjectHolder("danger_sign")
 	public static final Block DANGER_SIGN = null;
+	public static final Block MONSTER_FURNACE = null;
 	@ObjectHolder("danger_sign")
 	public static final TileEntityType<DangerSignTile> DANGER_SIGN_TILE = null;
+	@ObjectHolder("monster_furnace")
+	public static final TileEntityType<MonsterFurnaceTile> MONSTER_FURNACE_TILE = null;
 	@ObjectHolder("danger_sign")
 	public static final ContainerType<DangerSignContainer> DANGER_SIGN_CONTAINER = null;
+	@ObjectHolder("monster_furnace")
+	public static final ContainerType<MonsterFurnaceContainer> MONSTER_FURNACE_CONTAINER = null;
 	public static final int DANGER_SIGN_GUI_ID = 0;
 	
-	@ObjectHolder("golem_stone")
 	public static final Block GOLEM_STONE = new GolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "golem_stone");
-	@ObjectHolder("dark_golem_stone")
 	public static final Block DARK_GOLEM_STONE = new DarkGolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "dark_golem_stone");
-	@ObjectHolder("grassy_golem_stone")
 	public static final Block GRASSY_GOLEM_STONE = new GrassyGolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "grassy_golem_stone");
-	@ObjectHolder("grassy_dark_golem_stone")
 	public static final Block GRASSY_DARK_GOLEM_STONE = new GrassyDarkGolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "grassy_dark_golem_stone");
 	
 	@SubscribeEvent
@@ -64,7 +64,8 @@ public class ModBlocks {
 			ModBlocks.GRASSY_GOLEM_STONE,
 			ModBlocks.GRASSY_DARK_GOLEM_STONE,
 			
-			new DangerSignBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.WOOD)).setRegistryName(TheBigBang.MODID, "danger_sign")
+			new DangerSignBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.WOOD)).setRegistryName(TheBigBang.MODID, "danger_sign"),
+			new MonsterFurnaceBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "monster_furnace")
 		);
 	}
 	
@@ -74,8 +75,9 @@ public class ModBlocks {
 	
 	@SubscribeEvent
 	public static void registerTileEntities(final RegistryEvent.Register<TileEntityType<?>> event) {
-		event.getRegistry().register (			
-			TileEntityType.Builder.create(DangerSignTile::new, DANGER_SIGN).build(null).setRegistryName(TheBigBang.MODID, "danger_sign")
+		event.getRegistry().registerAll (			
+			TileEntityType.Builder.create(DangerSignTile::new, DANGER_SIGN).build(null).setRegistryName(TheBigBang.MODID, "danger_sign"),
+			TileEntityType.Builder.create(MonsterFurnaceTile::new, MONSTER_FURNACE).build(null).setRegistryName(TheBigBang.MODID, "monster_furnace")
 		);
 	}
 	
@@ -86,5 +88,10 @@ public class ModBlocks {
 			World world = TheBigBang.proxy.getClientWorld();
 			return new DangerSignContainer(id, inv, world, pos);
 		}).setRegistryName("danger_sign"));
+		event.getRegistry().register (IForgeContainerType.create((id, inv, data) -> {
+			BlockPos pos = data.readBlockPos();
+			World world = TheBigBang.proxy.getClientWorld();
+			return new MonsterFurnaceContainer(id, inv, world, pos);
+		}).setRegistryName("monster_furnace"));
 	}
 }

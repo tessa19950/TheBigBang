@@ -33,6 +33,7 @@ public class Packet_AddSpawnParticle  {
 		return new Packet_AddSpawnParticle(buf.readBlockPos());	
 	}
 	
+	@SuppressWarnings("resource")
 	public static void handle(Packet_AddSpawnParticle msg, Supplier<NetworkEvent.Context> ctx) {
 		for(int i = 0; i < count; i++) {
 			Random r = new Random();

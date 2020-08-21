@@ -13,6 +13,7 @@ import com.homebrewCult.TheBigBang.config.BigBangConfigSetup;
 import com.homebrewCult.TheBigBang.init.ModEntities;
 import com.homebrewCult.TheBigBang.init.ModItems;
 import com.homebrewCult.TheBigBang.init.ModParticleTypes;
+import com.homebrewCult.TheBigBang.init.ModRecipeTypes;
 import com.homebrewCult.TheBigBang.network.BigBangPacketHandler;
 import com.homebrewCult.TheBigBang.util.ClientProxy;
 import com.homebrewCult.TheBigBang.util.IProxy;
@@ -37,6 +38,7 @@ public final class TheBigBang {
 		BigBangConfigSetup.LoadConfig(BigBangConfigSetup.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("thebigbang-client.toml").toString());
 		BigBangConfigSetup.LoadConfig(BigBangConfigSetup.SERVER_CONFIG, FMLPaths.CONFIGDIR.get().resolve("thebigbang-server.toml").toString());
 		
+		ModRecipeTypes.RECIPES.register(FMLJavaModLoadingContext.get().getModEventBus());
 		ModParticleTypes.particleInit();
 	}
 	

@@ -50,18 +50,24 @@ import net.minecraftforge.registries.ObjectHolder;
 @ObjectHolder(TheBigBang.MODID)
 public class ModItems {	
 	public static final Item ADAMANTIUM_ORE = new BlockItem(ModBlocks.ADAMANTIUM_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ADAMANTIUM_ORE.getRegistryName());	
+	public static final Item ADAMANTIUM_INGOT = registerMiscItem("adamantium_ingot");	
 	public static final Item ADAMANTIUM_PLATE = registerMiscItem("adamantium_plate");
 	public static final Item ADAMANTIUM_NUGGET = registerMiscItem("adamantium_nugget"); 	
 	public static final Item ADAMANTIUM = registerMiscItem("adamantium");
 	public static final Item MITHRIL_ORE = new BlockItem(ModBlocks.MITHRIL_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.MITHRIL_ORE.getRegistryName());
 	public static final Item MITHRIL = 	registerMiscItem("mithril");
+	public static final Item MITHRIL_INGOT = registerMiscItem("mithril_ingot");
 	public static final Item MITHRIL_PLATE = registerMiscItem("mithril_plate");
 	public static final Item MITHRIL_NUGGET = registerMiscItem("mithril_nugget");
 	public static final Item ORIHALCON_ORE = new BlockItem(ModBlocks.ORIHALCON_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ORIHALCON_ORE.getRegistryName());
 	public static final Item ORIHALCON = registerMiscItem("orihalcon");
-	public static final Item ORIHALCON_PLATE = registerMiscItem("orihalcon_plate");;
+	public static final Item ORIHALCON_INGOT = registerMiscItem("orihalcon_ingot");
+	public static final Item ORIHALCON_PLATE = registerMiscItem("orihalcon_plate");
 	public static final Item ORIHALCON_NUGGET = registerMiscItem("orihalcon_nugget");
+	public static final Item GOLD_PLATE = registerMiscItem("gold_plate");
+	
 	public static final Item DANGER_SIGN = null;
+	public static final Item MONSTER_FURNACE = null;
 	public static final Item GOLEM_STONE = new BlockItem(ModBlocks.GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GOLEM_STONE.getRegistryName());
 	public static final Item DARK_GOLEM_STONE = new BlockItem(ModBlocks.DARK_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.DARK_GOLEM_STONE.getRegistryName());
 	public static final Item GRASSY_GOLEM_STONE = new BlockItem(ModBlocks.GRASSY_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GRASSY_GOLEM_STONE.getRegistryName());
@@ -101,9 +107,9 @@ public class ModItems {
 	public static final Item COLD_EYE_RAMEN = registerFoodItem("cold_eye_ramen", ModFoods.COLD_EYE_RAMEN);
 	public static final Item SUNRISE_DEW = registerFoodItem("sunrise_dew", ModFoods.SUNRISE_DEW, true);
 	public static final Item SUNSET_DEW = registerFoodItem("sunset_dew", ModFoods.SUNSET_DEW, true);
-	public static final Item FRESH_WATER = registerFoodItem("pure_water", ModFoods.PURE_WATER, true);
+	public static final Item PURE_WATER = registerFoodItem("pure_water", ModFoods.PURE_WATER, true);
 	public static final Item CIDER = registerFoodItem("cider", ModFoods.CIDER, true);
-	public static final Item VERY_SPECIAL_SUNDAE_ITEM = registerFoodItem("very_special_sundae", ModFoods.VERY_SPECIAL_SUNDAE, false);
+	public static final Item VERY_SPECIAL_SUNDAE = registerFoodItem("very_special_sundae", ModFoods.VERY_SPECIAL_SUNDAE, false);
 	public static final Item ICE_CREAM_POP = registerFoodItem("ice_cream_pop", ModFoods.ICE_CREAM_POP, true);
 	public static final Item DRAKES_BLOOD = registerFoodItem("drakes_blood", ModFoods.DRAKE_BLOOD, true);
 	public static final Item SAP_OF_ANCIENT_TREE = registerFoodItem("sap_of_ancient_tree", ModFoods.SAP_OF_ANCIENT_TREE, true);
@@ -205,14 +211,18 @@ public class ModItems {
 		event.getRegistry().registerAll
 		(
 				ModItems.ADAMANTIUM,
+				ModItems.ADAMANTIUM_INGOT,
 				ModItems.ADAMANTIUM_PLATE,
 				ModItems.ADAMANTIUM_NUGGET,
 				ModItems.MITHRIL,
+				ModItems.MITHRIL_INGOT,
 				ModItems.MITHRIL_PLATE,
 				ModItems.MITHRIL_NUGGET,
 				ModItems.ORIHALCON,
+				ModItems.ORIHALCON_INGOT,
 				ModItems.ORIHALCON_PLATE,
 				ModItems.ORIHALCON_NUGGET,
+				ModItems.GOLD_PLATE,
 				
 				ModItems.LETTER,
 				ModItems.OCTOPUS_LEG,
@@ -248,9 +258,9 @@ public class ModItems {
 				ModItems.COLD_EYE_RAMEN,
 				ModItems.SUNRISE_DEW,
 				ModItems.SUNSET_DEW,
-				ModItems.FRESH_WATER,
+				ModItems.PURE_WATER,
 				ModItems.CIDER,
-				ModItems.VERY_SPECIAL_SUNDAE_ITEM,
+				ModItems.VERY_SPECIAL_SUNDAE,
 				ModItems.ICE_CREAM_POP,
 				ModItems.DRAKES_BLOOD,
 				ModItems.SAP_OF_ANCIENT_TREE,
@@ -277,7 +287,8 @@ public class ModItems {
 				new IlbiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "ilbi"),
 				registerMiscItem("ilbi_projectile", false),
 				
-				new DangerSignItem(ModBlocks.DANGER_SIGN, new Item.Properties().maxStackSize(1).group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.DANGER_SIGN.getRegistryName()),
+				new DangerSignItem(ModBlocks.DANGER_SIGN, new Item.Properties().maxStackSize(1).group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.DANGER_SIGN.getRegistryName()),
+				new BlockItem(ModBlocks.MONSTER_FURNACE, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.MONSTER_FURNACE.getRegistryName()),
 				
 				new BigBangDiskItem(ModSounds.RECORD_AMORIA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_amoria"),
 				new BigBangDiskItem(ModSounds.RECORD_AQUA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_aqua"),

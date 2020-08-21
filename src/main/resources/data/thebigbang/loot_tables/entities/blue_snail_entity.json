@@ -6,12 +6,12 @@
             "entries": [
                 {
                     "type": "item",
-                    "weight": 30,
+                    "weight": 55,
                     "name": "thebigbang:blue_snail_shell"
                 },
                 {
                     "type": "empty",
-                    "weight": 70
+                    "weight": 45
                 }
             ]
         },

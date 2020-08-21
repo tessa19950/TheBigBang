@@ -1,7 +1,5 @@
 package com.homebrewCult.TheBigBang.particles;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.particle.IAnimatedSprite;
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.IParticleRenderType;

@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "weight": 1,
+                    "weight": 55,
                     "functions": [
                         {
                             "function": "minecraft:furnace_smelt",
@@ -27,7 +27,7 @@
                 },
                 {
                     "type": "empty",
-                    "weight": 1
+                    "weight": 45
                 }
             ]
         },

@@ -6,18 +6,24 @@ import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.init.ModParticleTypes;
 import com.homebrewCult.TheBigBang.init.ModSounds;
 import com.homebrewCult.TheBigBang.util.MathUtility;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.storage.loot.LootContext;
+import net.minecraft.world.storage.loot.LootParameterSets;
+import net.minecraft.world.storage.loot.LootParameters;
+import net.minecraft.world.storage.loot.LootTable;
 
 public class MithrilWandItem extends Item {
 	
@@ -28,6 +34,21 @@ public class MithrilWandItem extends Item {
 	
 	public MithrilWandItem(Properties properties) {
 		super(properties);
+	}
+	
+	@Override
+	public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
+		if(!player.world.isRemote) {
+			LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerWorld)player.world)).withRandom(player.getRNG()).withLuck(player.getLuck());
+			lootcontext$builder = lootcontext$builder.withParameter(LootParameters.THIS_ENTITY, player).withParameter(LootParameters.POSITION, new BlockPos(player)).withParameter(LootParameters.DAMAGE_SOURCE, DamageSource.GENERIC);
+			LootTable lootTable = entity.world.getServer().getLootTableManager().getLootTableFromLocation(entity.getType().getLootTable());
+			List<ItemStack> items = lootTable.generate(lootcontext$builder.build(LootParameterSets.ENTITY));
+			TheBigBang.print("LootTable of entity " + entity.getName().getString());
+			for(ItemStack i : items) {
+				TheBigBang.print("-----> " + i.getDisplayName().getString());
+			}
+		}
+		return super.onLeftClickEntity(stack, player, entity);
 	}
 	
 	@Override

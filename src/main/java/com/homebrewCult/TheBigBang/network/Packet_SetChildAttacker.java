@@ -32,6 +32,7 @@ public class Packet_SetChildAttacker  {
 		return new Packet_SetChildAttacker(buf.readInt(), buf.readInt());	
 	}
 	
+	@SuppressWarnings("resource")
 	public static void handle(Packet_SetChildAttacker msg, Supplier<NetworkEvent.Context> ctx) {
 		AbstractMushroomEntity momEntity = (AbstractMushroomEntity) Minecraft.getInstance().player.world.getEntityByID(msg.momID);
 		LivingEntity childAttackerEntity = (LivingEntity) Minecraft.getInstance().player.world.getEntityByID(msg.childAttackerID);

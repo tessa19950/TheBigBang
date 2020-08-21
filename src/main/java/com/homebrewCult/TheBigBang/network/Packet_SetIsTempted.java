@@ -31,6 +31,7 @@ public class Packet_SetIsTempted  {
 		return new Packet_SetIsTempted(buf.readInt(), buf.readBoolean());	
 	}
 	
+	@SuppressWarnings("resource")
 	public static void handle(Packet_SetIsTempted msg, Supplier<NetworkEvent.Context> ctx) {
 		AbstractGolemEntity golemEntity = (AbstractGolemEntity) Minecraft.getInstance().player.world.getEntityByID(msg.golemID);
 		golemEntity.setIsTempted(msg.isTempted);

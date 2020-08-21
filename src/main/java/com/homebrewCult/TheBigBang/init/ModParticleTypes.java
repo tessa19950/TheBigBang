@@ -3,15 +3,12 @@ package com.homebrewCult.TheBigBang.init;
 import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.particles.BlueSlimeParticle;
 import com.homebrewCult.TheBigBang.particles.MagicClawParticle;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
@@ -32,6 +29,7 @@ public class ModParticleTypes {
 		PARTICLE_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
 	}
 	
+	@SuppressWarnings("resource")
 	@SubscribeEvent
 	public static void registerParticleFactories(final ParticleFactoryRegisterEvent event) {
 		Minecraft.getInstance().particles.registerFactory(ITEM_BLUE_SLIME.get(), BlueSlimeParticle.BlueSlimeFactory::new);
