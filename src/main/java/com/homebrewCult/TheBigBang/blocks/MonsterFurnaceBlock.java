@@ -1,13 +1,15 @@
 package com.homebrewCult.TheBigBang.blocks;
 
 import java.util.Random;
+import com.homebrewCult.TheBigBang.TheBigBang;
+import com.homebrewCult.TheBigBang.init.ModParticleTypes;
+import com.homebrewCult.TheBigBang.init.ModSounds;
 
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -35,13 +37,17 @@ public class MonsterFurnaceBlock extends AbstractFurnaceBlock {
 	@OnlyIn(Dist.CLIENT)
 	public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		if (stateIn.get(LIT)) {
+			MonsterFurnaceTile tile = (MonsterFurnaceTile) worldIn.getTileEntity(pos);
 			double d0 = (double)pos.getX() + 0.5D;
 			double d1 = (double)pos.getY();
 			double d2 = (double)pos.getZ() + 0.5D;
-			if (rand.nextDouble() < 0.1D) {
-				worldIn.playSound(d0, d1, d2, SoundEvents.BLOCK_SMOKER_SMOKE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+			if (tile.timer % 5 == 0) {
+				worldIn.playSound(d0, d1, d2, ModSounds.MONSTER_FURNACE_LIT, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
 			}
-			worldIn.addParticle(ParticleTypes.SMOKE, d0, d1 + 1.1D, d2, 0.0D, 0.0D, 0.0D);
+			if (tile.timer % 10 == 0) {
+				worldIn.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), d0, d1 + 1d, d2, 0.0D, 0.0D, 0.0D);
+			}
+			tile.timer++;
 		}
 	}
 	

@@ -45,7 +45,6 @@ public class ModBlocks {
 	public static final ContainerType<DangerSignContainer> DANGER_SIGN_CONTAINER = null;
 	@ObjectHolder("monster_furnace")
 	public static final ContainerType<MonsterFurnaceContainer> MONSTER_FURNACE_CONTAINER = null;
-	public static final int DANGER_SIGN_GUI_ID = 0;
 	
 	public static final Block GOLEM_STONE = new GolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "golem_stone");
 	public static final Block DARK_GOLEM_STONE = new DarkGolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "dark_golem_stone");

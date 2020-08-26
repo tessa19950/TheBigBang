@@ -54,6 +54,7 @@ public class ModSounds {
 	public static final SoundEvent ICE_DRAKE_AMBIENT = null;
 	
 	public static final SoundEvent MAGIC_CLAW_USE = null;
+	public static final SoundEvent MONSTER_FURNACE_LIT = null;
 	
 	public static final SoundEvent RECORD_AMORIA = registerSound("record.amoria");
 	public static final SoundEvent RECORD_AQUA = registerSound("record.aqua");
@@ -86,6 +87,7 @@ public class ModSounds {
 		//Register Single Sounds for other things
 		event.getRegistry().registerAll(
 				registerSound("magic_claw_use"),
+				registerSound("monster_furnace_lit"),
 				RECORD_AMORIA, RECORD_AQUA, RECORD_ARIANT, RECORD_DILLEKE, RECORD_ELLINIA, RECORD_HARBOR, RECORD_HENESYS, 
 				RECORD_KERNING, RECORD_LUDIBRIUM, RECORD_OMEGA, RECORD_ORBIS, RECORD_PERION, RECORD_RAINDROP, RECORD_SQUARE
 		);

@@ -15,7 +15,7 @@ public class ModRecipeTypes {
 	
 	public static final IRecipeType<? extends AbstractCookingRecipe> REFINING_RECIPE_TYPE = new RefiningRecipeType();
 	public static final DeferredRegister<IRecipeSerializer<?>> RECIPES = new DeferredRegister<>(ForgeRegistries.RECIPE_SERIALIZERS, TheBigBang.MODID);
-	public static final RegistryObject<RefiningSerializer<RefiningRecipe>> REFINING = RECIPES.register("refining", () -> new RefiningSerializer<>(RefiningRecipe::new, 200));
+	public static final RegistryObject<RefiningSerializer<RefiningRecipe>> REFINING = RECIPES.register("refining", () -> new RefiningSerializer<>(RefiningRecipe::new, 1600));
 	
 }
 

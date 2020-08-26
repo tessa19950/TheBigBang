@@ -10,7 +10,7 @@ import net.minecraft.util.text.ITextComponent;
 
 public class MonsterFurnaceScreen extends AbstractFurnaceScreen<MonsterFurnaceContainer> {
 
-	public static final ResourceLocation MONSTER_FURNACE = new ResourceLocation(TheBigBang.MODID, "textures/gui/monster_furnace.png"); 
+	public static final ResourceLocation MONSTER_FURNACE = new ResourceLocation(TheBigBang.MODID, "textures/gui/monster_furnace_gui.png"); 
 	
 	public MonsterFurnaceScreen(MonsterFurnaceContainer container, PlayerInventory playerInventory, ITextComponent titleIn) {
 		super(container, new FurnaceRecipeGui(), playerInventory, titleIn, MONSTER_FURNACE);

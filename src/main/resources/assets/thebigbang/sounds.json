@@ -6,6 +6,13 @@
 		"sounds": ["thebigbang:item/magic_claw_use"]
 	},
 
+	"monster_furnace_lit":
+	{
+		"category": "block",
+		"subtitle": "block.monster_furnace.lit",
+		"sounds": ["thebigbang:block/monster_furnace_noise_1", "thebigbang:block/monster_furnace_noise_2", "thebigbang:block/monster_furnace_noise_3", "thebigbang:block/monster_furnace_noise_4"]
+	},
+
 	"stump_damage":
 	{
 		"category": "entity",

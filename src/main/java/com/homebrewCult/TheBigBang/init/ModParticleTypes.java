@@ -2,6 +2,7 @@ package com.homebrewCult.TheBigBang.init;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.particles.BlueSlimeParticle;
+import com.homebrewCult.TheBigBang.particles.HolyHexagramParticle;
 import com.homebrewCult.TheBigBang.particles.MagicClawParticle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.particles.BasicParticleType;
@@ -24,6 +25,7 @@ public class ModParticleTypes {
 	public static final RegistryObject<BasicParticleType> ITEM_BLUE_SLIME = PARTICLE_TYPES.register("item_blue_slime", () -> new BasicParticleType(true));
 	public static final RegistryObject<BasicParticleType> MAGIC_CLAW_LEFT = PARTICLE_TYPES.register("magic_claw_left", () -> new BasicParticleType(true));
 	public static final RegistryObject<BasicParticleType> MAGIC_CLAW_RIGHT = PARTICLE_TYPES.register("magic_claw_right", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> HOLY_HEXAGRAM = PARTICLE_TYPES.register("holy_hexagram", () -> new BasicParticleType(true));
 	
 	public static void particleInit() {
 		PARTICLE_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
@@ -35,5 +37,6 @@ public class ModParticleTypes {
 		Minecraft.getInstance().particles.registerFactory(ITEM_BLUE_SLIME.get(), BlueSlimeParticle.BlueSlimeFactory::new);
 		Minecraft.getInstance().particles.registerFactory(MAGIC_CLAW_LEFT.get(), sprite -> new MagicClawParticle.MagicClawFactory(sprite));
 		Minecraft.getInstance().particles.registerFactory(MAGIC_CLAW_RIGHT.get(), sprite -> new MagicClawParticle.MagicClawFactory(sprite));
+		Minecraft.getInstance().particles.registerFactory(HOLY_HEXAGRAM.get(), sprite -> new HolyHexagramParticle.HolyHexagramFactory(sprite));
 	}
 }

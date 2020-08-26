@@ -3,7 +3,9 @@
     "textures": {
         "bottom": "thebigbang:block/monster_furnace_bottom",
         "top": "thebigbang:block/monster_furnace_top",
-        "front": "thebigbang:block/monster_furnace_front",
-        "side": "thebigbang:block/monster_furnace_side"
+        "north": "thebigbang:block/monster_furnace_front",
+        "east": "thebigbang:block/monster_furnace_east",
+        "south": "thebigbang:block/monster_furnace_back",
+        "west": "thebigbang:block/monster_furnace_west"
     }
 }

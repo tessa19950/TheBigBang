@@ -12,8 +12,8 @@
         "down": "thebigbang:block/monster_furnace_bottom",
         "up": "thebigbang:block/monster_furnace_top",
         "north": "thebigbang:block/monster_furnace_front_on",
-        "east": "thebigbang:block/monster_furnace_side",
-        "south": "thebigbang:block/monster_furnace_side",
-        "west": "thebigbang:block/monster_furnace_side"
+        "east": "thebigbang:block/monster_furnace_east",
+        "south": "thebigbang:block/monster_furnace_back",
+        "west": "thebigbang:block/monster_furnace_west"
     }
 }
