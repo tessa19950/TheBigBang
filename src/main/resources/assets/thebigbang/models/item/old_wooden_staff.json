@@ -1,7 +1,7 @@
 {
     "parent": "builtin/entity",
     "textures": {
-        "particle": "thebigbang:item/omega_spear_head"
+        "particle": "block/oak_log"
     },
     "display": {
         "thirdperson_righthand": {

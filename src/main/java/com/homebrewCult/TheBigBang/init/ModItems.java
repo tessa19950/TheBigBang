@@ -6,10 +6,12 @@ import com.homebrewCult.TheBigBang.items.BigBangDiskItem;
 import com.homebrewCult.TheBigBang.items.LiquidFoodItem;
 import com.homebrewCult.TheBigBang.items.QuestItem;
 import com.homebrewCult.TheBigBang.items.RydenItem;
+import com.homebrewCult.TheBigBang.items.ScorpioItem;
 import com.homebrewCult.TheBigBang.items.SteelyItem;
 import com.homebrewCult.TheBigBang.items.SubiItem;
 import com.homebrewCult.TheBigBang.items.TobiItem;
 import com.homebrewCult.TheBigBang.items.MithrilWandItem;
+import com.homebrewCult.TheBigBang.items.OldWoodenStaffItem;
 import com.homebrewCult.TheBigBang.items.OmegaSpearItem;
 import com.homebrewCult.TheBigBang.items.armor.AppleArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.GoldwindArmorItem;
@@ -25,6 +27,7 @@ import com.homebrewCult.TheBigBang.items.GarnierItem;
 import com.homebrewCult.TheBigBang.items.GolemStoneItemColorHandler;
 import com.homebrewCult.TheBigBang.items.IlbiItem;
 import com.homebrewCult.TheBigBang.items.KandayoItem;
+import com.homebrewCult.TheBigBang.items.LamaStaffItem;
 import com.homebrewCult.TheBigBang.items.model.AppleArmorModel;
 import com.homebrewCult.TheBigBang.items.model.GoldwindArmorModel;
 import com.homebrewCult.TheBigBang.items.model.HwarangArmorModel;
@@ -34,7 +37,7 @@ import com.homebrewCult.TheBigBang.items.model.NightshiftArmorModel;
 import com.homebrewCult.TheBigBang.items.model.PietteArmorModel;
 import com.homebrewCult.TheBigBang.items.model.PilferArmorModel;
 import com.homebrewCult.TheBigBang.items.model.StarlightArmorModel;
-import com.homebrewCult.TheBigBang.items.render.OmegaSpearRenderer;
+import com.homebrewCult.TheBigBang.items.render.BigBangISTER;
 import com.homebrewCult.TheBigBang.init.ModItems;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -159,9 +162,14 @@ public class ModItems {
 	public static final Item DARK_YETI_SPAWN_EGG = null;
 	
 	public static final Item MITHRIL_WAND = null;
+	public static final Item LAMA_STAFF = null;
+	public static final Item LAMA_STAFF_HEAD = null;
+	public static final Item OLD_WOODEN_STAFF = null;
 	public static final Item RYDEN = null;
 	public static final Item OMEGA_SPEAR = null;
 	public static final Item OMEGA_SPEAR_HEAD = null;
+	public static final Item SCORPIO = null;
+	public static final Item SCORPIO_HEAD = null;
 	public static final Item GARNIER = null;
 	public static final Item KANDAYO = null;
 	public static final Item SUBI = null;
@@ -278,11 +286,16 @@ public class ModItems {
 				ModItems.GRASSY_DARK_GOLEM_STONE,
 				
 				new MithrilWandItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "mithril_wand"),
+				new OldWoodenStaffItem(new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "old_wooden_staff"),
+				new LamaStaffItem(new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "lama_staff"),
+				registerMiscItem("lama_staff_head", false),
 				new RydenItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "ryden"),
 				new GarnierItem(new Item.Properties().maxStackSize(1).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "garnier"),
 				new KandayoItem(new Item.Properties().maxStackSize(1).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "kandayo"),
-				new OmegaSpearItem(new Item.Properties().setTEISR(() -> OmegaSpearRenderer::new).maxStackSize(1).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "omega_spear"),
+				new OmegaSpearItem(new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "omega_spear"),
 				registerMiscItem("omega_spear_head", false),
+				new ScorpioItem(new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "scorpio"),
+				registerMiscItem("scorpio_head", false),
 				
 				new SubiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "subi"),
 				registerMiscItem("subi_projectile", false),
