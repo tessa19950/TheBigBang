@@ -28,8 +28,7 @@ public class BigBangISTER extends ItemStackTileEntityRenderer {
 		Item item = itemStackIn.getItem();
 		if (item == ModItems.OMEGA_SPEAR) {	
 			//Render Head Item
-			if(OMEGA_SPEAR_HEAD == null) {OMEGA_SPEAR_HEAD = new ItemStack(ModItems.OMEGA_SPEAR_HEAD);};
-			renderItem(OMEGA_SPEAR_HEAD);
+			renderOmegaSpearHeadItem();
 			//Render the Model
 			Minecraft.getInstance().getTextureManager().bindTexture(OmegaSpearModel.TEXTURE_LOCATION);
 			GlStateManager.pushMatrix();
@@ -41,8 +40,7 @@ public class BigBangISTER extends ItemStackTileEntityRenderer {
 			GlStateManager.popMatrix();
 		} else if (item == ModItems.SCORPIO) {
 			//Render Head Item
-			if(SCORPIO_HEAD == null) {SCORPIO_HEAD = new ItemStack(ModItems.SCORPIO_HEAD);};
-			renderItem(SCORPIO_HEAD);
+			renderScorpioHeadItem();
 			//Render the Model
 			Minecraft.getInstance().getTextureManager().bindTexture(ScorpioModel.TEXTURE_LOCATION);
 			GlStateManager.pushMatrix();
@@ -54,8 +52,7 @@ public class BigBangISTER extends ItemStackTileEntityRenderer {
 			GlStateManager.popMatrix();
 		} else if (item == ModItems.LAMA_STAFF) {
 			//Render Head Item
-			if(LAMA_STAFF_HEAD == null) {LAMA_STAFF_HEAD = new ItemStack(ModItems.LAMA_STAFF_HEAD);};
-			renderItem(LAMA_STAFF_HEAD);
+			renderLamaStaffHeadItem();
 			//Render the Model
 			Minecraft.getInstance().getTextureManager().bindTexture(LamaStaffModel.TEXTURE_LOCATION);
 			GlStateManager.pushMatrix();
@@ -78,12 +75,33 @@ public class BigBangISTER extends ItemStackTileEntityRenderer {
 		}
 	}
 	
-	public void renderItem(ItemStack item) {		
+	public void renderOmegaSpearHeadItem() {	
+		if(OMEGA_SPEAR_HEAD == null) {OMEGA_SPEAR_HEAD = new ItemStack(ModItems.OMEGA_SPEAR_HEAD);};
 		GlStateManager.pushMatrix();
       	GlStateManager.rotatef(0.0F, 0.0F, 0.0F, 1.0F);
       	GlStateManager.scalef(0.5F, 0.5F, 1F);
-      	GlStateManager.translatef(-0.04F, 0.16F, 0.0F);
-      	Minecraft.getInstance().getItemRenderer().renderItem(item, ItemCameraTransforms.TransformType.FIXED);
+      	GlStateManager.translatef(-0.04F, 0.12F, 0.0F);
+      	Minecraft.getInstance().getItemRenderer().renderItem(OMEGA_SPEAR_HEAD, ItemCameraTransforms.TransformType.FIXED);
+		GlStateManager.popMatrix();
+	}
+	
+	public void renderScorpioHeadItem() {		
+		if(SCORPIO_HEAD == null) {SCORPIO_HEAD = new ItemStack(ModItems.SCORPIO_HEAD);};
+		GlStateManager.pushMatrix();
+      	GlStateManager.rotatef(0.0F, 0.0F, 0.0F, 1.0F);
+      	GlStateManager.scalef(0.5F, 0.5F, 1F);
+      	GlStateManager.translatef(-0.04F, 0.12F, 0.0F);
+      	Minecraft.getInstance().getItemRenderer().renderItem(SCORPIO_HEAD, ItemCameraTransforms.TransformType.FIXED);
+		GlStateManager.popMatrix();
+	}
+	
+	public void renderLamaStaffHeadItem() {	
+		if(LAMA_STAFF_HEAD == null) {LAMA_STAFF_HEAD = new ItemStack(ModItems.LAMA_STAFF_HEAD);};
+		GlStateManager.pushMatrix();
+      	GlStateManager.rotatef(0.0F, 0.0F, 0.0F, 1.0F);
+      	GlStateManager.scalef(0.5F, 0.5F, 1F);
+      	GlStateManager.translatef(-0.04F, 0.12F, 0.0F);
+      	Minecraft.getInstance().getItemRenderer().renderItem(LAMA_STAFF_HEAD, ItemCameraTransforms.TransformType.FIXED);
 		GlStateManager.popMatrix();
 	}
 	

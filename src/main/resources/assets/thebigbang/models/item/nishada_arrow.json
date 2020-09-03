@@ -1,0 +1,6 @@
+{
+    "parent": "thebigbang:item/nishada",
+    "textures": {
+        "layer0": "thebigbang:item/nishada_arrow"
+    }
+}

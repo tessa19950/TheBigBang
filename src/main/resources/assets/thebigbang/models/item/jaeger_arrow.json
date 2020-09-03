@@ -1,0 +1,6 @@
+{
+    "parent": "thebigbang:item/jaeger",
+    "textures": {
+        "layer0": "thebigbang:item/jaeger_arrow"
+    }
+}

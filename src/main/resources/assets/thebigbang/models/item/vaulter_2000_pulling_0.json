@@ -1,0 +1,10 @@
+{
+	"parent": "thebigbang:item/vaulter_2000",
+
+	"textures": {
+	
+		"layer0": "thebigbang:item/vaulter_2000_pulling_0"
+
+	}
+
+}

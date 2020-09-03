@@ -27,7 +27,6 @@ public class RefiningSerializer<T extends RefiningRecipe> extends ForgeRegistryE
 	@Override
 	public RefiningRecipe read(ResourceLocation recipeId, JsonObject json) {
 		String group = JSONUtils.getString(json, "group", "");
-		TheBigBang.print("Refining Serializer is reading " + group);
 		JsonElement jsonelement = (JsonElement)(JSONUtils.isJsonArray(json, "ingredient") ? JSONUtils.getJsonArray(json, "ingredient") : JSONUtils.getJsonObject(json, "ingredient"));
 		Ingredient ingredient = Ingredient.deserialize(jsonelement);
 		

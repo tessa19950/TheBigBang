@@ -22,11 +22,11 @@ public class ScorpioModel extends Model {
 		pole.cubeList.add(new ModelBox(pole, 0, 0, -0.5F, 3.0F, -0.5F, 1, 12, 1, 0.01F, false));
 
 		bone = new RendererModel(this);
-		bone.setRotationPoint(0.0F, 3.0F, 0.0F);
+		bone.setRotationPoint(0.0F, 4.0F, 0.0F);
 		pole.addChild(bone);
 		setRotationAngle(bone, 0.0F, 0.0F, -0.7854F);
-		bone.cubeList.add(new ModelBox(bone, 8, 0, -3.0F, -3.0F, 1.2F, 6, 6, 0, 0.0F, false));
-		bone.cubeList.add(new ModelBox(bone, 8, 0, -3.0F, -3.0F, -1.2F, 6, 6, 0, 0.0F, false));
+		bone.cubeList.add(new ModelBox(bone, 8, 0, -3.0F, -3.0F, 0.6F, 6, 6, 0, 0.0F, false));
+		bone.cubeList.add(new ModelBox(bone, 8, 0, -3.0F, -3.0F, -0.6F, 6, 6, 0, 0.0F, false));
 	}
 	
 	public void renderer() {

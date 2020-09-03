@@ -27,7 +27,7 @@ public class LamaStaffModel extends Model {
 		orb_pivot.setRotationPoint(0.0F, 0.0F, 0.0F);
 		pole.addChild(orb_pivot);
 		setRotationAngle(orb_pivot, -0.7854F, 0.0F, 0.6545F);
-		orb_pivot.cubeList.add(new ModelBox(orb_pivot, 8, 3, -1.0F, -1.0F, -1.0F, 2, 2, 2, 0.0F, false));
+		orb_pivot.cubeList.add(new ModelBox(orb_pivot, 10, 4, 0.05F, 0.0F, 0.0F, 1, 1, 1, 0.0F, false));
 
 		wrap2_pivot = new RendererModel(this);
 		wrap2_pivot.setRotationPoint(0.0F, 11.5F, 0.0F);
