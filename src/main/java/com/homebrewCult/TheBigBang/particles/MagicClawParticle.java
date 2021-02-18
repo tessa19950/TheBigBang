@@ -22,7 +22,7 @@ public class MagicClawParticle extends SpriteTexturedParticle {
 		super(worldIn, x, y, z);
 		this.maxAge = 7;
 		this.particleScale = 1;
-		sprites = spritesIn;
+		this.sprites = spritesIn;
 		this.selectSpriteWithAge(sprites);
 	}
 

@@ -6,6 +6,7 @@ import com.homebrewCult.TheBigBang.world.danger_sign_features.DangerSignDesertFe
 import com.homebrewCult.TheBigBang.world.danger_sign_features.DangerSignIceFeature;
 import com.homebrewCult.TheBigBang.world.danger_sign_features.DangerSignPlateauFeature;
 import com.homebrewCult.TheBigBang.world.danger_sign_features.DangerSignStoneFeature;
+import com.homebrewCult.TheBigBang.world.maple_gardens_features.MapleTreeFeature;
 
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
@@ -28,6 +29,8 @@ public class ModFeatures {
 	public static final Feature<NoFeatureConfig> DANGER_SIGN_ICE = null;
 	@ObjectHolder("danger_sign_cave")
 	public static final Feature<NoFeatureConfig> DANGER_SIGN_CAVE = null;
+	@ObjectHolder("maple_tree")
+	public static final Feature<NoFeatureConfig> MAPLE_TREE = null;
 	
 	@SubscribeEvent
 	public static void registerFeatures(final RegistryEvent.Register<Feature<?>> event) {
@@ -36,7 +39,8 @@ public class ModFeatures {
 				new DangerSignStoneFeature(NoFeatureConfig::deserialize).setRegistryName(TheBigBang.MODID, "danger_sign_stone"),
 				new DangerSignDesertFeature(NoFeatureConfig::deserialize).setRegistryName(TheBigBang.MODID, "danger_sign_desert"),
 				new DangerSignIceFeature(NoFeatureConfig::deserialize).setRegistryName(TheBigBang.MODID, "danger_sign_ice"),
-				new DangerSignCaveFeature(NoFeatureConfig::deserialize).setRegistryName(TheBigBang.MODID, "danger_sign_cave")
+				new DangerSignCaveFeature(NoFeatureConfig::deserialize).setRegistryName(TheBigBang.MODID, "danger_sign_cave"),
+				new MapleTreeFeature(NoFeatureConfig::deserialize, false).setRegistryName(TheBigBang.MODID, "maple_tree")
 		);
 	}
 }

@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_all",
+    "textures": 
+    {
+        "all": "thebigbang:block/red_maple_leaves"
+    }
+}

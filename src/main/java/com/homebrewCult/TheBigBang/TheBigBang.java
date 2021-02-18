@@ -1,17 +1,11 @@
 package com.homebrewCult.TheBigBang;
 
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLPaths;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import com.homebrewCult.TheBigBang.config.BigBangConfigSetup;
 import com.homebrewCult.TheBigBang.init.ModEntities;
-import com.homebrewCult.TheBigBang.init.ModItems;
+import com.homebrewCult.TheBigBang.init.ModLayers;
 import com.homebrewCult.TheBigBang.init.ModParticleTypes;
 import com.homebrewCult.TheBigBang.init.ModRecipeTypes;
 import com.homebrewCult.TheBigBang.network.BigBangPacketHandler;
@@ -20,7 +14,16 @@ import com.homebrewCult.TheBigBang.util.IProxy;
 import com.homebrewCult.TheBigBang.util.ServerProxy;
 import com.homebrewCult.TheBigBang.world.ModWorldGen;
 
-import org.apache.logging.log4j.LogManager;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLPaths;
 
 @Mod(TheBigBang.MODID)
 public final class TheBigBang {
@@ -38,8 +41,10 @@ public final class TheBigBang {
 		BigBangConfigSetup.LoadConfig(BigBangConfigSetup.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("thebigbang-client.toml").toString());
 		BigBangConfigSetup.LoadConfig(BigBangConfigSetup.SERVER_CONFIG, FMLPaths.CONFIGDIR.get().resolve("thebigbang-server.toml").toString());
 		
-		ModRecipeTypes.RECIPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-		ModParticleTypes.particleInit();
+		final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		ModRecipeTypes.RECIPES.register(eventBus);
+		ModParticleTypes.PARTICLE_TYPES.register(eventBus);
+		MinecraftForge.EVENT_BUS.register(this);
 	}
 	
 	private void setup(final FMLCommonSetupEvent event) {
@@ -50,9 +55,10 @@ public final class TheBigBang {
 	
 	private void clientRegistries(final FMLClientSetupEvent event) {
 		ModEntities.registerEntityRenders();
+		ModLayers.registerLayers();
 	}
 	
 	public static void print (String message) {
-		System.out.print("[The Big Bang Info] " + message + "\n");
+		LOGGER.debug("[The Big Bang Info] " + message);
 	}
 }

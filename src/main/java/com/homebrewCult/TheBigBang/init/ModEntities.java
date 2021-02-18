@@ -1,6 +1,7 @@
 package com.homebrewCult.TheBigBang.init;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
+import com.homebrewCult.TheBigBang.entities.GenesisBeamEntity;
 import com.homebrewCult.TheBigBang.entities.IlbiEntity;
 import com.homebrewCult.TheBigBang.entities.SteelyEntity;
 import com.homebrewCult.TheBigBang.entities.SubiEntity;
@@ -52,6 +53,7 @@ import com.homebrewCult.TheBigBang.entities.render.DarkYetiRenderer;
 import com.homebrewCult.TheBigBang.entities.render.DrakeRenderer;
 import com.homebrewCult.TheBigBang.entities.render.EvilEyeRenderer;
 import com.homebrewCult.TheBigBang.entities.render.FireGolemRenderer;
+import com.homebrewCult.TheBigBang.entities.render.GenesisBeamRenderer;
 import com.homebrewCult.TheBigBang.entities.render.GreenBubblingRenderer;
 import com.homebrewCult.TheBigBang.entities.render.GreenSnailRenderer;
 import com.homebrewCult.TheBigBang.entities.render.IceDrakeRenderer;
@@ -128,12 +130,13 @@ public class ModEntities {
 	new SteelyEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "steely").setRegistryName(TheBigBang.MODID, "steely");
 	public static final EntityType<IlbiEntity> ILBI = (EntityType<IlbiEntity>) EntityType.Builder.create(IlbiEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> 
 	new IlbiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "ilbi").setRegistryName(TheBigBang.MODID, "ilbi");
+	public static final EntityType<GenesisBeamEntity> GENESIS_BEAM = (EntityType<GenesisBeamEntity>) EntityType.Builder.create(GenesisBeamEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
+	new GenesisBeamEntity(world)).size(0.25f, 3f).build(TheBigBang.MODID + "genesis_beam").setRegistryName(TheBigBang.MODID, "genesis_beam");
 	
 	@SubscribeEvent
 	public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {	
-		
 		event.getRegistry().registerAll (
-				SUBI, TOBI, STEELY, ILBI, STUMP_ENTITY, DARK_STUMP_ENTITY, AXE_STUMP_ENTITY, DARK_AXE_STUMP_ENTITY, OCTOPUS_ENTITY, EVIL_EYE_ENTITY, CURSE_EYE_ENTITY, COLD_EYE_ENTITY, BUBBLING_ENTITY, GREEN_BUBBLING_ENTITY,
+				GENESIS_BEAM, SUBI, TOBI, STEELY, ILBI, STUMP_ENTITY, DARK_STUMP_ENTITY, AXE_STUMP_ENTITY, DARK_AXE_STUMP_ENTITY, OCTOPUS_ENTITY, EVIL_EYE_ENTITY, CURSE_EYE_ENTITY, COLD_EYE_ENTITY, BUBBLING_ENTITY, GREEN_BUBBLING_ENTITY,
 				ORANGE_MUSHROOM_ENTITY, BLUE_MUSHROOM_ENTITY, ZOMBIE_MUSHROOM_ENTITY, JRYETI_ENTITY, DARK_JRYETI_ENTITY, GREEN_SNAIL_ENTITY, BLUE_SNAIL_ENTITY, RED_SNAIL_ENTITY, 
 				RIBBON_PIG_ENTITY, STONE_GOLEM_ENTITY, DARK_STONE_GOLEM_ENTITY, MIXED_GOLEM_ENTITY, ICE_GOLEM_ENTITY, FIRE_GOLEM_ENTITY,
 				DRAKE_ENTITY, COPPER_DRAKE_ENTITY, DARK_DRAKE_ENTITY, ICE_DRAKE_ENTITY, RED_DRAKE_ENTITY, YETI_ENTITY, DARK_YETI_ENTITY
@@ -207,6 +210,7 @@ public class ModEntities {
 		RenderingRegistry.registerEntityRenderingHandler(TobiEntity.class, new ThrowingStarRenderer.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(SteelyEntity.class, new ThrowingStarRenderer.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(IlbiEntity.class, new ThrowingStarRenderer.RenderFactory());
+		RenderingRegistry.registerEntityRenderingHandler(GenesisBeamEntity.class, new GenesisBeamRenderer.RenderFactory());
 	}
 	
 	@SubscribeEvent

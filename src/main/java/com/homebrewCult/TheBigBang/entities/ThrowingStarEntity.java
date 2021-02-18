@@ -8,8 +8,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
+@OnlyIn(
+	value = Dist.CLIENT,
+	_interface = IRendersAsItem.class
+)
 public abstract class ThrowingStarEntity extends AbstractArrowEntity implements IRendersAsItem {
 	
 	public ThrowingStarEntity(EntityType<? extends AbstractArrowEntity> type, World worldIn) {

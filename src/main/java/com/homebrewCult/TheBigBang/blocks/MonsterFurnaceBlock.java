@@ -45,7 +45,7 @@ public class MonsterFurnaceBlock extends AbstractFurnaceBlock {
 				worldIn.playSound(d0, d1, d2, ModSounds.MONSTER_FURNACE_LIT, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
 			}
 			if (tile.timer % 10 == 0) {
-				worldIn.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), d0, d1 + 1d, d2, 0.0D, 0.0D, 0.0D);
+				worldIn.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), d0, d1 + 1d, d2, 0.0D, 0.005D, 0.0D);
 			}
 			tile.timer++;
 		}

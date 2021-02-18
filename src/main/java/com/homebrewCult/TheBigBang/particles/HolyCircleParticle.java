@@ -1,7 +1,5 @@
 package com.homebrewCult.TheBigBang.particles;
 
-import com.homebrewCult.TheBigBang.TheBigBang;
-
 import net.minecraft.client.particle.IAnimatedSprite;
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.IParticleRenderType;
@@ -16,18 +14,30 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class HolyHexagramParticle extends SpriteTexturedParticle {
+public class HolyCircleParticle extends SpriteTexturedParticle {
 	
+	private IAnimatedSprite sprites;
 	public float exp = 1.1f;
 	
-	protected HolyHexagramParticle(World worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, IAnimatedSprite sprites) {
+	protected HolyCircleParticle(World worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, IAnimatedSprite spritesIn) {
 		super(worldIn, x, y, z);
 		this.motionX = xSpeed;
 		this.motionY = ySpeed + (Math.random() * 2.0D - 1.0D) * (double)0.05F;
 		this.motionZ = zSpeed;
 		this.particleScale = 0;
-		this.maxAge = 30;
+		this.maxAge = 60;
+		this.sprites = spritesIn;
+		this.selectSpriteWithAge(spritesIn);
 	}
+	
+	/*
+	protected HolyCircleParticle(World worldIn, double x, double y, double z, IAnimatedSprite spritesIn) {
+		super(worldIn, x, y, z);
+		this.maxAge = 60;
+		this.particleScale = 0f;
+		this.selectSpriteWithAge(sprites);
+	}
+	*/
 	
 	@Override
 	public IParticleRenderType getRenderType() {
@@ -51,10 +61,13 @@ public class HolyHexagramParticle extends SpriteTexturedParticle {
 		if (this.age++ >= this.maxAge) {
 			this.setExpired();
 		} else {
+			this.selectSpriteWithAge(this.sprites);
 			this.move(this.motionX, this.motionY, this.motionZ);
 			this.particleAngle = this.particleAngle + 0.1f;
-			this.particleAlpha = ((float) this.age / (float) this.maxAge) * -1 + 1;
-			float newScale = (float) (Math.sin((float) this.age / 10f)) * 0.5f;
+			if(this.age > 50) {
+				this.particleAlpha = (((float)this.age - 50F) / 10F) * -1 + 1;
+			}
+			float newScale = (float) (Math.sin((float) this.age / 10f));
 			if(newScale > this.particleScale) {
 				this.particleScale = newScale;
 			}
@@ -63,7 +76,6 @@ public class HolyHexagramParticle extends SpriteTexturedParticle {
 	
 	@Override
 	public void renderParticle(BufferBuilder buffer, ActiveRenderInfo entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ) {
-		//super.renderParticle(buffer, entityIn, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);	
 		float f = this.getScale(partialTicks);
 		float f1 = this.getMinU();
 		float f2 = this.getMaxU();
@@ -96,17 +108,17 @@ public class HolyHexagramParticle extends SpriteTexturedParticle {
 	}
 	
 	@OnlyIn(Dist.CLIENT) 
-	public static class HolyHexagramFactory implements IParticleFactory<BasicParticleType> {		
+	public static class HolyCircleFactory implements IParticleFactory<BasicParticleType> {		
 		private final IAnimatedSprite factorySprites;
 		
-		public HolyHexagramFactory(IAnimatedSprite spritesIn) {
+		public HolyCircleFactory(IAnimatedSprite spritesIn) {
 			this.factorySprites = spritesIn;
 		}
 		
 		@Override
 		public Particle makeParticle(BasicParticleType typeIn, World worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			HolyHexagramParticle particle = new HolyHexagramParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.factorySprites);
-			particle.selectSpriteRandomly(this.factorySprites);
+			HolyCircleParticle particle = new HolyCircleParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.factorySprites);
+			particle.selectSpriteWithAge(this.factorySprites);
 			return particle;
 		}	
 	}

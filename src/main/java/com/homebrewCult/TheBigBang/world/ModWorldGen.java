@@ -59,31 +59,31 @@ public class ModWorldGen {
 		//Add Cave Sign Structures
 		for(Biome biome : caveBiomes) {
 			biome.addFeature(Decoration.UNDERGROUND_DECORATION, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_CAVE, IFeatureConfig.NO_FEATURE_CONFIG, 
-			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(12)));
+			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(2)));
 		}
 		
 		//Place Plateau Sign Structures
 		for(Biome biome : plateauBiomes) {
 			biome.addFeature(Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_PLATEAU, IFeatureConfig.NO_FEATURE_CONFIG, 
-			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(196)));
+			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(16))); //196
 		}
 		
 		//Place Stone Sign Structures
 		for(Biome biome : stoneBiomes) {
 			biome.addFeature(Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_STONE, IFeatureConfig.NO_FEATURE_CONFIG, 
-			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(196)));
+			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(16))); //196
 		}
 		
 		//Place Stone Sign Structures
 		for(Biome biome : desertBiomes) {
 			biome.addFeature(Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_DESERT, IFeatureConfig.NO_FEATURE_CONFIG, 
-			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(196)));
+			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(16))); //196
 		}
 		
 		//Place Stone Sign Structures
 		for(Biome biome : iceBiomes) {
 			biome.addFeature(Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_ICE, IFeatureConfig.NO_FEATURE_CONFIG, 
-			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(196)));
+			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(16))); //196
 		}
 	}
 }

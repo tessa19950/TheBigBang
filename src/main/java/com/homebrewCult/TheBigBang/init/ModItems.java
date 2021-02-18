@@ -52,6 +52,7 @@ import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
+import net.minecraft.item.Item.Properties;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -83,6 +84,10 @@ public class ModItems {
 	public static final Item DARK_GOLEM_STONE = new BlockItem(ModBlocks.DARK_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.DARK_GOLEM_STONE.getRegistryName());
 	public static final Item GRASSY_GOLEM_STONE = new BlockItem(ModBlocks.GRASSY_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GRASSY_GOLEM_STONE.getRegistryName());
 	public static final Item GRASSY_DARK_GOLEM_STONE = new BlockItem(ModBlocks.GRASSY_DARK_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GRASSY_DARK_GOLEM_STONE.getRegistryName());
+	public static final Item RED_MAPLE_LEAVES = new BlockItem(ModBlocks.RED_MAPLE_LEAVES, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.RED_MAPLE_LEAVES.getRegistryName());
+	public static final Item RED_MAPLE_SAPLING = new BlockItem(ModBlocks.RED_MAPLE_SAPLING, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.RED_MAPLE_SAPLING.getRegistryName());
+	public static final Item YELLOW_MAPLE_LEAVES = new BlockItem(ModBlocks.YELLOW_MAPLE_LEAVES, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.YELLOW_MAPLE_LEAVES.getRegistryName());
+	public static final Item YELLOW_MAPLE_SAPLING = new BlockItem(ModBlocks.YELLOW_MAPLE_SAPLING, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.YELLOW_MAPLE_SAPLING.getRegistryName());
 	
 	public static final QuestItem LETTER = (QuestItem) new QuestItem(new Item.Properties().maxStackSize(1)).setRegistryName(TheBigBang.MODID, "letter");
 	public static final Item OCTOPUS_LEG = 	registerMiscItem("octopus_leg");
@@ -298,6 +303,10 @@ public class ModItems {
 				ModItems.DARK_GOLEM_STONE,
 				ModItems.GRASSY_GOLEM_STONE,
 				ModItems.GRASSY_DARK_GOLEM_STONE,
+				ModItems.RED_MAPLE_LEAVES,
+				ModItems.RED_MAPLE_SAPLING,
+				ModItems.YELLOW_MAPLE_LEAVES,
+				ModItems.YELLOW_MAPLE_SAPLING,
 				
 				new ZardItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "zard"),
 				new HeliosItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "helios"),

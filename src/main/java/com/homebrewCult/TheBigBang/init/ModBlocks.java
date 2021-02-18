@@ -8,14 +8,20 @@ import com.homebrewCult.TheBigBang.blocks.DarkGolemStoneBlock;
 import com.homebrewCult.TheBigBang.blocks.GolemStoneBlock;
 import com.homebrewCult.TheBigBang.blocks.GrassyDarkGolemStoneBlock;
 import com.homebrewCult.TheBigBang.blocks.GrassyGolemStoneBlock;
+import com.homebrewCult.TheBigBang.blocks.MapleSaplingBlock;
 import com.homebrewCult.TheBigBang.blocks.MonsterFurnaceBlock;
 import com.homebrewCult.TheBigBang.blocks.MonsterFurnaceTile;
 import com.homebrewCult.TheBigBang.inventory.DangerSignContainer;
 import com.homebrewCult.TheBigBang.inventory.MonsterFurnaceContainer;
+import com.homebrewCult.TheBigBang.world.maple_gardens_features.RedMapleTree;
+import com.homebrewCult.TheBigBang.world.maple_gardens_features.YellowMapleTree;
 import com.homebrewCult.TheBigBang.init.ModBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.trees.OakTree;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.TileEntityType;
@@ -34,6 +40,11 @@ public class ModBlocks {
 	public static Block MITHRIL_ORE = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "mithril_ore");
 	public static Block ADAMANTIUM_ORE = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "adamantium_ore");
 	public static Block ORIHALCON_ORE = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "orihalcon_ore");
+	
+	public static Block RED_MAPLE_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT)).setRegistryName(TheBigBang.MODID, "red_maple_leaves");
+	public static Block RED_MAPLE_SAPLING = new MapleSaplingBlock(new RedMapleTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName(TheBigBang.MODID, "red_maple_sapling");
+	public static Block YELLOW_MAPLE_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT)).setRegistryName(TheBigBang.MODID, "yellow_maple_leaves");
+	public static Block YELLOW_MAPLE_SAPLING = new MapleSaplingBlock(new YellowMapleTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName(TheBigBang.MODID, "yellow_maple_sapling");
 	
 	public static final Block DANGER_SIGN = null;
 	public static final Block MONSTER_FURNACE = null;
@@ -62,6 +73,10 @@ public class ModBlocks {
 			ModBlocks.DARK_GOLEM_STONE,
 			ModBlocks.GRASSY_GOLEM_STONE,
 			ModBlocks.GRASSY_DARK_GOLEM_STONE,
+			ModBlocks.RED_MAPLE_LEAVES,
+			ModBlocks.RED_MAPLE_SAPLING,
+			ModBlocks.YELLOW_MAPLE_LEAVES,
+			ModBlocks.YELLOW_MAPLE_SAPLING,
 			
 			new DangerSignBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.WOOD)).setRegistryName(TheBigBang.MODID, "danger_sign"),
 			new MonsterFurnaceBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "monster_furnace")
@@ -69,7 +84,11 @@ public class ModBlocks {
 	}
 	
 	public static void registerBlockColors(BlockColors colors) {
-		colors.register(BlockColorHandler.INSTANCE, ModBlocks.GRASSY_GOLEM_STONE, ModBlocks.GRASSY_DARK_GOLEM_STONE);
+		colors.register(BlockColorHandler.INSTANCE, 
+				ModBlocks.GRASSY_GOLEM_STONE, 
+				ModBlocks.GRASSY_DARK_GOLEM_STONE,
+				ModBlocks.RED_MAPLE_LEAVES		
+				);
 	}
 	
 	@SubscribeEvent
