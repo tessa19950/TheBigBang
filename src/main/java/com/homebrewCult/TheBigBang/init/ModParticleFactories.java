@@ -5,6 +5,7 @@ import com.homebrewCult.TheBigBang.particles.BlueSlimeParticle;
 import com.homebrewCult.TheBigBang.particles.HolyCircleParticle;
 import com.homebrewCult.TheBigBang.particles.HolyHexagramParticle;
 import com.homebrewCult.TheBigBang.particles.MagicClawParticle;
+
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

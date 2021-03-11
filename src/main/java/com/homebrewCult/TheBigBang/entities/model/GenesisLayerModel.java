@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.model.Model;
 import net.minecraft.client.renderer.model.ModelBox;
 import net.minecraft.util.math.MathHelper;
 
-public class GenesisAngelModel extends Model {
+public class GenesisLayerModel extends Model {
 	private final RendererModel head;
 	private final RendererModel body;
 	private final RendererModel skirt_front;
@@ -17,7 +17,7 @@ public class GenesisAngelModel extends Model {
 	private final RendererModel rightUpperWing;
 	private final RendererModel rightLowerWing;
 
-	public GenesisAngelModel() {
+	public GenesisLayerModel() {
 		textureWidth = 64;
 		textureHeight = 64;
 

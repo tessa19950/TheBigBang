@@ -1,9 +1,10 @@
 package com.homebrewCult.TheBigBang.items;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
+import com.homebrewCult.TheBigBang.entities.HurricaneArrowEntity;
+
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -18,36 +19,9 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 public class Vaulter2000Item extends BowItem {
-
-	private static final String RYDEN_TIMER_KEY = TheBigBang.MODID + "ryden_timer";
-	private static final String RYDEN_VELOCITY_KEY = TheBigBang.MODID + "ryden_velocity";
 	
 	public Vaulter2000Item(Properties builder) {
 		super(builder);
-	}
-	
-	/**
-    * Called when the player stops using an Item (stops holding the right mouse button).
-    */
-	@Override
-	public void onPlayerStoppedUsing(ItemStack bowStack, World worldIn, LivingEntity entityLiving, int timeLeft) {
-		if (entityLiving instanceof PlayerEntity) {
-			PlayerEntity playerentity = (PlayerEntity)entityLiving;
-			boolean flag = playerentity.abilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, bowStack) > 0;
-			ItemStack itemstack = playerentity.findAmmo(bowStack);
-
-			int i = this.getUseDuration(bowStack) - timeLeft;
-			i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(bowStack, worldIn, playerentity, i, !itemstack.isEmpty() || flag);
-			if (i < 0) return;
-			
-			if (!itemstack.isEmpty() || flag) {
-				shootArrow(bowStack, worldIn, entityLiving, i, true);
-				CompoundNBT nbt = bowStack.getOrCreateTag();
-				nbt.putInt(RYDEN_TIMER_KEY, 10);
-				nbt.putInt(RYDEN_VELOCITY_KEY, i);
-				bowStack.setTag(nbt);
-			}
-		}
 	}
 	
 	@Override
@@ -56,19 +30,24 @@ public class Vaulter2000Item extends BowItem {
 	}
 	
 	@Override
-	public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-		CompoundNBT nbt = stack.getOrCreateTag();
-		if(nbt.contains(RYDEN_TIMER_KEY) && nbt.contains(RYDEN_VELOCITY_KEY)) {
-			int timer = nbt.getInt(RYDEN_TIMER_KEY);
-			if(timer > 0) {
-				if(timer == 1) {
-					shootArrow(stack, worldIn, (LivingEntity)entityIn, nbt.getInt(RYDEN_VELOCITY_KEY), false);
-				}
-				nbt.putInt(RYDEN_TIMER_KEY, timer - 1);
-				stack.setTag(nbt);
+	public void onUsingTick(ItemStack stack, LivingEntity entityLiving, int count) {
+		int useTime = this.getUseDuration(stack) - count;
+		boolean flag = useTime > 60 && useTime % 5 == 1;
+		if (entityLiving instanceof PlayerEntity && flag) {
+			PlayerEntity playerentity = (PlayerEntity)entityLiving;
+			boolean creative = playerentity.abilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
+			ItemStack itemstack = playerentity.findAmmo(stack);
+			
+			if (!itemstack.isEmpty() || creative) {
+				shootArrow(stack, entityLiving.world, entityLiving, 20, true);
 			}
 		}
-		super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
+		super.onUsingTick(stack, entityLiving, count);
+	}
+	
+	@Override
+	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
+		;
 	}
 	
 	public void shootArrow(ItemStack bowStack, World worldIn, LivingEntity entityLiving, int velocity, boolean consumeArrow) {
@@ -79,12 +58,11 @@ public class Vaulter2000Item extends BowItem {
 		}
 
 		float f = getArrowVelocity(velocity);
-		if (!((double)f < 0.1D)) {
+		if (f > 0.1F) {
 			boolean flag1 = playerentity.abilities.isCreativeMode || (itemstack.getItem() instanceof ArrowItem && ((ArrowItem)itemstack.getItem()).isInfinite(itemstack, bowStack, playerentity) || !consumeArrow);
 			if (!worldIn.isRemote) {
-				ArrowItem arrowitem = (ArrowItem)(itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
-				AbstractArrowEntity arrow1 = arrowitem.createArrow(worldIn, itemstack, playerentity);
-				arrow1 = customeArrow(arrow1);
+				HurricaneArrowEntity arrow1 = new HurricaneArrowEntity(worldIn, playerentity);
+				arrow1 = (HurricaneArrowEntity) customeArrow(arrow1);
 				arrow1.shoot(playerentity, playerentity.rotationPitch, playerentity.rotationYaw, 0.0F, f * 3.0F, 1.0F);
 				if (f == 1.0F) {
 					arrow1.setIsCritical(true);
@@ -110,7 +88,7 @@ public class Vaulter2000Item extends BowItem {
 				if (flag1 || playerentity.abilities.isCreativeMode && (itemstack.getItem() == Items.SPECTRAL_ARROW || itemstack.getItem() == Items.TIPPED_ARROW)) {
 					arrow1.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
 				}
-				
+
 				worldIn.addEntity(arrow1);
 			}
 

@@ -2,5 +2,12 @@
     "parent": "thebigbang:item/nishada",
     "textures": {
         "layer0": "thebigbang:item/nishada_pulling_2"
+    },
+    "display": {
+        "firstperson_righthand": {
+            "rotation": [ -105, 10, -45 ],
+            "translation": [ 2.5, -7, -12],
+            "scale": [ 0.68, 0.68, 0.68 ]
+        }
     }
 }

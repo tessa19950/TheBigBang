@@ -1,7 +1,5 @@
 package com.homebrewCult.TheBigBang.particles;
 
-import com.homebrewCult.TheBigBang.TheBigBang;
-
 import net.minecraft.client.particle.IAnimatedSprite;
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.IParticleRenderType;
@@ -23,7 +21,7 @@ public class HolyHexagramParticle extends SpriteTexturedParticle {
 	protected HolyHexagramParticle(World worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, IAnimatedSprite sprites) {
 		super(worldIn, x, y, z);
 		this.motionX = xSpeed;
-		this.motionY = ySpeed + (Math.random() * 2.0D - 1.0D) * (double)0.05F;
+		this.motionY = ySpeed;
 		this.motionZ = zSpeed;
 		this.particleScale = 0;
 		this.maxAge = 30;
@@ -77,6 +75,7 @@ public class HolyHexagramParticle extends SpriteTexturedParticle {
 		int k = i & '\uffff';
 	      
 		Vec3d[] avec3d = new Vec3d[]{new Vec3d(1*f, 0, 1*f), new Vec3d(1*f, 0, -1*f), new Vec3d(-1*f, 0, -1*f), new Vec3d(-1*f, 0, 1*f)};
+		
 		if (this.particleAngle != 0.0F) {
 			float f8 = MathHelper.lerp(partialTicks, this.prevParticleAngle, this.particleAngle);
 			float f9 = MathHelper.cos(f8 * 0.5F);

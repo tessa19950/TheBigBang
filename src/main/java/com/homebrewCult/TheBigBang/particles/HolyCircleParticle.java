@@ -22,22 +22,13 @@ public class HolyCircleParticle extends SpriteTexturedParticle {
 	protected HolyCircleParticle(World worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, IAnimatedSprite spritesIn) {
 		super(worldIn, x, y, z);
 		this.motionX = xSpeed;
-		this.motionY = ySpeed + (Math.random() * 2.0D - 1.0D) * (double)0.05F;
+		this.motionY = ySpeed;
 		this.motionZ = zSpeed;
 		this.particleScale = 0;
 		this.maxAge = 60;
 		this.sprites = spritesIn;
 		this.selectSpriteWithAge(spritesIn);
 	}
-	
-	/*
-	protected HolyCircleParticle(World worldIn, double x, double y, double z, IAnimatedSprite spritesIn) {
-		super(worldIn, x, y, z);
-		this.maxAge = 60;
-		this.particleScale = 0f;
-		this.selectSpriteWithAge(sprites);
-	}
-	*/
 	
 	@Override
 	public IParticleRenderType getRenderType() {

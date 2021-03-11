@@ -8,11 +8,11 @@ import net.minecraft.client.renderer.model.ModelBox;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.MathHelper;
 
-public class HyperBodyModel extends Model {
+public class HyperBodyLayerModel extends Model {
 	private final RendererModel coffin_front;
 	private final RendererModel coffin_back;
 
-	public HyperBodyModel() {
+	public HyperBodyLayerModel() {
 		textureWidth = 128;
 		textureHeight = 64;
 

@@ -51,6 +51,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemTier;
 import net.minecraft.item.Rarity;
 import net.minecraft.item.Item.Properties;
 import net.minecraftforge.fml.common.Mod;
@@ -308,8 +309,8 @@ public class ModItems {
 				ModItems.YELLOW_MAPLE_LEAVES,
 				ModItems.YELLOW_MAPLE_SAPLING,
 				
-				new ZardItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "zard"),
-				new HeliosItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "helios"),
+				new ZardItem(ItemTier.DIAMOND, 4, -3.0F, new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "zard"),
+				new HeliosItem(ItemTier.DIAMOND, 7.0F, -3.0F, new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "helios"),
 				new OmegaSpearItem(new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "omega_spear"),
 				registerMiscItem("omega_spear_head", false),
 				new ScorpioItem(new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "scorpio"),
