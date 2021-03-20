@@ -1,16 +1,7 @@
 package com.homebrewCult.TheBigBang.init;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.blocks.BlockColorHandler;
-import com.homebrewCult.TheBigBang.blocks.DangerSignBlock;
-import com.homebrewCult.TheBigBang.blocks.DangerSignTile;
-import com.homebrewCult.TheBigBang.blocks.DarkGolemStoneBlock;
-import com.homebrewCult.TheBigBang.blocks.GolemStoneBlock;
-import com.homebrewCult.TheBigBang.blocks.GrassyDarkGolemStoneBlock;
-import com.homebrewCult.TheBigBang.blocks.GrassyGolemStoneBlock;
-import com.homebrewCult.TheBigBang.blocks.MapleSaplingBlock;
-import com.homebrewCult.TheBigBang.blocks.MonsterFurnaceBlock;
-import com.homebrewCult.TheBigBang.blocks.MonsterFurnaceTile;
+import com.homebrewCult.TheBigBang.blocks.*;
 import com.homebrewCult.TheBigBang.inventory.DangerSignContainer;
 import com.homebrewCult.TheBigBang.inventory.MonsterFurnaceContainer;
 import com.homebrewCult.TheBigBang.world.maple_gardens_features.RedMapleTree;
@@ -61,7 +52,8 @@ public class ModBlocks {
 	public static final Block DARK_GOLEM_STONE = new DarkGolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "dark_golem_stone");
 	public static final Block GRASSY_GOLEM_STONE = new GrassyGolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "grassy_golem_stone");
 	public static final Block GRASSY_DARK_GOLEM_STONE = new GrassyDarkGolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "grassy_dark_golem_stone");
-	
+	public static final Block ROPE_FENCE = new RopeFenceBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(1.0f, 1.0f).sound(SoundType.WOOD)).setRegistryName(TheBigBang.MODID, "rope_fence");
+
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		event.getRegistry().registerAll (
@@ -77,6 +69,7 @@ public class ModBlocks {
 			ModBlocks.RED_MAPLE_SAPLING,
 			ModBlocks.YELLOW_MAPLE_LEAVES,
 			ModBlocks.YELLOW_MAPLE_SAPLING,
+			ModBlocks.ROPE_FENCE,
 			
 			new DangerSignBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.WOOD)).setRegistryName(TheBigBang.MODID, "danger_sign"),
 			new MonsterFurnaceBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(TheBigBang.MODID, "monster_furnace")

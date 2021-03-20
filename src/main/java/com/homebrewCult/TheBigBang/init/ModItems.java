@@ -1,22 +1,7 @@
 package com.homebrewCult.TheBigBang.init;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.items.BigBangArmorItemColorHandler;
-import com.homebrewCult.TheBigBang.items.BigBangDiskItem;
-import com.homebrewCult.TheBigBang.items.LiquidFoodItem;
-import com.homebrewCult.TheBigBang.items.MagicodarItem;
-import com.homebrewCult.TheBigBang.items.QuestItem;
-import com.homebrewCult.TheBigBang.items.RydenItem;
-import com.homebrewCult.TheBigBang.items.ScorpioItem;
-import com.homebrewCult.TheBigBang.items.SteelyItem;
-import com.homebrewCult.TheBigBang.items.SubiItem;
-import com.homebrewCult.TheBigBang.items.TobiItem;
-import com.homebrewCult.TheBigBang.items.Vaulter2000Item;
-import com.homebrewCult.TheBigBang.items.ZardItem;
-import com.homebrewCult.TheBigBang.items.MithrilWandItem;
-import com.homebrewCult.TheBigBang.items.NishadaItem;
-import com.homebrewCult.TheBigBang.items.OldWoodenStaffItem;
-import com.homebrewCult.TheBigBang.items.OmegaSpearItem;
+import com.homebrewCult.TheBigBang.items.*;
 import com.homebrewCult.TheBigBang.items.armor.AppleArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.GoldwindArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.HwarangArmorItem;
@@ -26,14 +11,6 @@ import com.homebrewCult.TheBigBang.items.armor.NightshiftArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.PietteArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.PilferArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.StarlightArmorItem;
-import com.homebrewCult.TheBigBang.items.DangerSignItem;
-import com.homebrewCult.TheBigBang.items.GarnierItem;
-import com.homebrewCult.TheBigBang.items.GolemStoneItemColorHandler;
-import com.homebrewCult.TheBigBang.items.HeliosItem;
-import com.homebrewCult.TheBigBang.items.IlbiItem;
-import com.homebrewCult.TheBigBang.items.JaegerItem;
-import com.homebrewCult.TheBigBang.items.KandayoItem;
-import com.homebrewCult.TheBigBang.items.LamaStaffItem;
 import com.homebrewCult.TheBigBang.items.model.AppleArmorModel;
 import com.homebrewCult.TheBigBang.items.model.GoldwindArmorModel;
 import com.homebrewCult.TheBigBang.items.model.HwarangArmorModel;
@@ -89,7 +66,8 @@ public class ModItems {
 	public static final Item RED_MAPLE_SAPLING = new BlockItem(ModBlocks.RED_MAPLE_SAPLING, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.RED_MAPLE_SAPLING.getRegistryName());
 	public static final Item YELLOW_MAPLE_LEAVES = new BlockItem(ModBlocks.YELLOW_MAPLE_LEAVES, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.YELLOW_MAPLE_LEAVES.getRegistryName());
 	public static final Item YELLOW_MAPLE_SAPLING = new BlockItem(ModBlocks.YELLOW_MAPLE_SAPLING, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.YELLOW_MAPLE_SAPLING.getRegistryName());
-	
+	public static final Item ROPE_FENCE = new RopeFenceItem(ModBlocks.ROPE_FENCE, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.ROPE_FENCE.getRegistryName());
+
 	public static final QuestItem LETTER = (QuestItem) new QuestItem(new Item.Properties().maxStackSize(1)).setRegistryName(TheBigBang.MODID, "letter");
 	public static final Item OCTOPUS_LEG = 	registerMiscItem("octopus_leg");
 	public static final Item EVIL_EYE_TAIL = registerMiscItem("evil_eye_tail");
@@ -308,6 +286,7 @@ public class ModItems {
 				ModItems.RED_MAPLE_SAPLING,
 				ModItems.YELLOW_MAPLE_LEAVES,
 				ModItems.YELLOW_MAPLE_SAPLING,
+				ModItems.ROPE_FENCE,
 				
 				new ZardItem(ItemTier.DIAMOND, 4, -3.0F, new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "zard"),
 				new HeliosItem(ItemTier.DIAMOND, 7.0F, -3.0F, new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "helios"),

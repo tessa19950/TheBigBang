@@ -9,73 +9,8 @@ import com.homebrewCult.TheBigBang.entities.SnipingArrowEntity;
 import com.homebrewCult.TheBigBang.entities.SteelyEntity;
 import com.homebrewCult.TheBigBang.entities.SubiEntity;
 import com.homebrewCult.TheBigBang.entities.TobiEntity;
-import com.homebrewCult.TheBigBang.entities.mob.AxeStumpEntity;
-import com.homebrewCult.TheBigBang.entities.mob.BlueMushroomEntity;
-import com.homebrewCult.TheBigBang.entities.mob.BlueSnailEntity;
-import com.homebrewCult.TheBigBang.entities.mob.BubblingEntity;
-import com.homebrewCult.TheBigBang.entities.mob.ColdEyeEntity;
-import com.homebrewCult.TheBigBang.entities.mob.CopperDrakeEntity;
-import com.homebrewCult.TheBigBang.entities.mob.CurseEyeEntity;
-import com.homebrewCult.TheBigBang.entities.mob.DarkAxeStumpEntity;
-import com.homebrewCult.TheBigBang.entities.mob.DarkDrakeEntity;
-import com.homebrewCult.TheBigBang.entities.mob.DarkJrYetiEntity;
-import com.homebrewCult.TheBigBang.entities.mob.DarkStoneGolemEntity;
-import com.homebrewCult.TheBigBang.entities.mob.DarkStumpEntity;
-import com.homebrewCult.TheBigBang.entities.mob.DarkYetiEntity;
-import com.homebrewCult.TheBigBang.entities.mob.DrakeEntity;
-import com.homebrewCult.TheBigBang.entities.mob.EvilEyeEntity;
-import com.homebrewCult.TheBigBang.entities.mob.FireGolemEntity;
-import com.homebrewCult.TheBigBang.entities.mob.GreenBubblingEntity;
-import com.homebrewCult.TheBigBang.entities.mob.GreenSnailEntity;
-import com.homebrewCult.TheBigBang.entities.mob.IceDrakeEntity;
-import com.homebrewCult.TheBigBang.entities.mob.IceGolemEntity;
-import com.homebrewCult.TheBigBang.entities.mob.JrYetiEntity;
-import com.homebrewCult.TheBigBang.entities.mob.MixedGolemEntity;
-import com.homebrewCult.TheBigBang.entities.mob.OctopusEntity;
-import com.homebrewCult.TheBigBang.entities.mob.OrangeMushroomEntity;
-import com.homebrewCult.TheBigBang.entities.mob.RedDrakeEntity;
-import com.homebrewCult.TheBigBang.entities.mob.RedSnailEntity;
-import com.homebrewCult.TheBigBang.entities.mob.RibbonPigEntity;
-import com.homebrewCult.TheBigBang.entities.mob.StoneGolemEntity;
-import com.homebrewCult.TheBigBang.entities.mob.StumpEntity;
-import com.homebrewCult.TheBigBang.entities.mob.YetiEntity;
-import com.homebrewCult.TheBigBang.entities.mob.ZombieMushroomEntity;
-import com.homebrewCult.TheBigBang.entities.render.AxeStumpRenderer;
-import com.homebrewCult.TheBigBang.entities.render.BlueMushroomRenderer;
-import com.homebrewCult.TheBigBang.entities.render.BlueSnailRenderer;
-import com.homebrewCult.TheBigBang.entities.render.BombArrowRenderer;
-import com.homebrewCult.TheBigBang.entities.render.BubblingRenderer;
-import com.homebrewCult.TheBigBang.entities.render.ColdEyeRenderer;
-import com.homebrewCult.TheBigBang.entities.render.CopperDrakeRenderer;
-import com.homebrewCult.TheBigBang.entities.render.CurseEyeRenderer;
-import com.homebrewCult.TheBigBang.entities.render.DarkAxeStumpRenderer;
-import com.homebrewCult.TheBigBang.entities.render.DarkDrakeRenderer;
-import com.homebrewCult.TheBigBang.entities.render.DarkJrYetiRenderer;
-import com.homebrewCult.TheBigBang.entities.render.DarkStoneGolemRenderer;
-import com.homebrewCult.TheBigBang.entities.render.DarkStumpRenderer;
-import com.homebrewCult.TheBigBang.entities.render.DarkYetiRenderer;
-import com.homebrewCult.TheBigBang.entities.render.DrakeRenderer;
-import com.homebrewCult.TheBigBang.entities.render.EvilEyeRenderer;
-import com.homebrewCult.TheBigBang.entities.render.FireGolemRenderer;
-import com.homebrewCult.TheBigBang.entities.render.GenesisBeamRenderer;
-import com.homebrewCult.TheBigBang.entities.render.GreenBubblingRenderer;
-import com.homebrewCult.TheBigBang.entities.render.GreenSnailRenderer;
-import com.homebrewCult.TheBigBang.entities.render.HurricaneArrowRenderer;
-import com.homebrewCult.TheBigBang.entities.render.IceDrakeRenderer;
-import com.homebrewCult.TheBigBang.entities.render.IceGolemRenderer;
-import com.homebrewCult.TheBigBang.entities.render.JrYetiRenderer;
-import com.homebrewCult.TheBigBang.entities.render.MixedGolemRenderer;
-import com.homebrewCult.TheBigBang.entities.render.OctopusRenderer;
-import com.homebrewCult.TheBigBang.entities.render.OrangeMushroomRenderer;
-import com.homebrewCult.TheBigBang.entities.render.RedDrakeRenderer;
-import com.homebrewCult.TheBigBang.entities.render.RedSnailRenderer;
-import com.homebrewCult.TheBigBang.entities.render.RibbonPigRenderer;
-import com.homebrewCult.TheBigBang.entities.render.SnipingArrowRenderer;
-import com.homebrewCult.TheBigBang.entities.render.StoneGolemRenderer;
-import com.homebrewCult.TheBigBang.entities.render.StumpRenderer;
-import com.homebrewCult.TheBigBang.entities.render.ThrowingStarRenderer;
-import com.homebrewCult.TheBigBang.entities.render.YetiRenderer;
-import com.homebrewCult.TheBigBang.entities.render.ZombieMushroomRenderer;
+import com.homebrewCult.TheBigBang.entities.mob.*;
+import com.homebrewCult.TheBigBang.entities.render.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -127,6 +62,8 @@ public class ModEntities {
 	public static final EntityType<RedDrakeEntity> RED_DRAKE_ENTITY = (EntityType<RedDrakeEntity>)buildEntityType(RedDrakeEntity::new, EntityClassification.MONSTER, 1.8f, 2f, "red_drake_entity");
 	public static final EntityType<YetiEntity> YETI_ENTITY = (EntityType<YetiEntity>)buildEntityType(YetiEntity::new, EntityClassification.MONSTER, 2f, 3f, "yeti_entity");
 	public static final EntityType<DarkYetiEntity> DARK_YETI_ENTITY = (EntityType<DarkYetiEntity>)buildEntityType(DarkYetiEntity::new, EntityClassification.MONSTER, 2f, 3f, "dark_yeti_entity");
+	public static final EntityType<PepeEntity> PEPE_ENTITY = (EntityType<PepeEntity>)buildEntityType(PepeEntity::new, EntityClassification.CREATURE, 0.75f, 1f, "pepe_entity");
+	public static final EntityType<DarkPepeEntity> DARK_PEPE_ENTITY = (EntityType<DarkPepeEntity>)buildEntityType(DarkPepeEntity::new, EntityClassification.CREATURE, 0.75f, 1f, "dark_pepe_entity");
 
 	public static final EntityType<SubiEntity> SUBI = (EntityType<SubiEntity>) EntityType.Builder.create(SubiEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> 
 	new SubiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "subi").setRegistryName(TheBigBang.MODID, "subi");
@@ -152,7 +89,7 @@ public class ModEntities {
 				STUMP_ENTITY, DARK_STUMP_ENTITY, AXE_STUMP_ENTITY, DARK_AXE_STUMP_ENTITY, OCTOPUS_ENTITY, EVIL_EYE_ENTITY, CURSE_EYE_ENTITY, COLD_EYE_ENTITY, BUBBLING_ENTITY, GREEN_BUBBLING_ENTITY,
 				ORANGE_MUSHROOM_ENTITY, BLUE_MUSHROOM_ENTITY, ZOMBIE_MUSHROOM_ENTITY, JRYETI_ENTITY, DARK_JRYETI_ENTITY, GREEN_SNAIL_ENTITY, BLUE_SNAIL_ENTITY, RED_SNAIL_ENTITY, 
 				RIBBON_PIG_ENTITY, STONE_GOLEM_ENTITY, DARK_STONE_GOLEM_ENTITY, MIXED_GOLEM_ENTITY, ICE_GOLEM_ENTITY, FIRE_GOLEM_ENTITY,
-				DRAKE_ENTITY, COPPER_DRAKE_ENTITY, DARK_DRAKE_ENTITY, ICE_DRAKE_ENTITY, RED_DRAKE_ENTITY, YETI_ENTITY, DARK_YETI_ENTITY
+				DRAKE_ENTITY, COPPER_DRAKE_ENTITY, DARK_DRAKE_ENTITY, ICE_DRAKE_ENTITY, RED_DRAKE_ENTITY, YETI_ENTITY, DARK_YETI_ENTITY, PEPE_ENTITY, DARK_PEPE_ENTITY
 		);
 	}
 	
@@ -176,6 +113,7 @@ public class ModEntities {
 		registerEntityWorldSpawn(BLUE_SNAIL_ENTITY, 2, 8, Biomes.FLOWER_FOREST, Biomes.SUNFLOWER_PLAINS);
 		registerEntityWorldSpawn(RED_SNAIL_ENTITY, 2, 8, Biomes.FLOWER_FOREST, Biomes.SUNFLOWER_PLAINS);
 		registerEntityWorldSpawn(RIBBON_PIG_ENTITY, 2, 8, Biomes.BEACH);
+		registerEntityWorldSpawn(PEPE_ENTITY, 4, 10, Biomes.ICE_SPIKES, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA_HILLS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TUNDRA);
     }
     
 	public static void registerEntityWorldSpawn(EntityType<?> entity, int minGroupCount, int maxGroupCount, Biome... biomes) {
@@ -218,6 +156,8 @@ public class ModEntities {
 		RenderingRegistry.registerEntityRenderingHandler(RedDrakeEntity.class, new RedDrakeRenderer.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(YetiEntity.class, new YetiRenderer.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(DarkYetiEntity.class, new DarkYetiRenderer.RenderFactory());
+		RenderingRegistry.registerEntityRenderingHandler(PepeEntity.class, new PepeRenderer.RenderFactory());
+		RenderingRegistry.registerEntityRenderingHandler(DarkPepeEntity.class, new DarkPepeRenderer.RenderFactory());
 		
 		RenderingRegistry.registerEntityRenderingHandler(SubiEntity.class, new ThrowingStarRenderer.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(TobiEntity.class, new ThrowingStarRenderer.RenderFactory());
@@ -262,7 +202,9 @@ public class ModEntities {
 				registerEntitySpawnEgg(ICE_DRAKE_ENTITY, 0x7F9FBE, 0xDCDCEC, "ice_drake_spawn_egg"),
 				registerEntitySpawnEgg(RED_DRAKE_ENTITY, 0x7A5B5B, 0xEAEADA, "red_drake_spawn_egg"),
 				registerEntitySpawnEgg(YETI_ENTITY, 0xFEFEFC, 0xD7A583, "yeti_spawn_egg"),
-				registerEntitySpawnEgg(DARK_YETI_ENTITY, 0x968574, 0xD7A583, "dark_yeti_spawn_egg")
+				registerEntitySpawnEgg(DARK_YETI_ENTITY, 0x968574, 0xD7A583, "dark_yeti_spawn_egg"),
+				registerEntitySpawnEgg(PEPE_ENTITY, 0x112233, 0xFFFFFF, "pepe_spawn_egg"),
+				registerEntitySpawnEgg(DARK_PEPE_ENTITY, 0x4477DD, 0xFFFFFF, "dark_pepe_spawn_egg")
 		);
 	}
 	

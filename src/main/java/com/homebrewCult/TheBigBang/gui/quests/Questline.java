@@ -23,7 +23,7 @@ public enum Questline implements IStringSerializable {
 	
 	Mushrooms("Mushrooms", new EntityType<?>[] {ModEntities.ORANGE_MUSHROOM_ENTITY, ModEntities.BLUE_MUSHROOM_ENTITY}, 
 	new Quest[] {Quest.ANewHouseForBlackbull, Quest.Polluted, Quest.Polluted2},
-	new Biome[] {Biomes.PLAINS, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.TALL_BIRCH_FOREST, Biomes.TALL_BIRCH_HILLS, Biomes.MUSHROOM_FIELD_SHORE, Biomes.MUSHROOM_FIELDS}),
+	new Biome[] {Biomes.PLAINS, Biomes.FOREST, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.TALL_BIRCH_FOREST, Biomes.TALL_BIRCH_HILLS, Biomes.MUSHROOM_FIELD_SHORE, Biomes.MUSHROOM_FIELDS}),
 	
 	ZombieMushrooms("Zombie Mushrooms", new EntityType<?>[] {ModEntities.ZOMBIE_MUSHROOM_ENTITY}, 
 	new Quest[] {Quest.Polluted, Quest.Polluted2},
@@ -39,7 +39,7 @@ public enum Questline implements IStringSerializable {
 	
 	Snails("Snails", new EntityType<?>[] {ModEntities.GREEN_SNAIL_ENTITY, ModEntities.BLUE_SNAIL_ENTITY, ModEntities.RED_SNAIL_ENTITY}, 
 	new Quest[] {Quest.Polluted, Quest.Polluted2},
-	new Biome[] {Biomes.FLOWER_FOREST, Biomes.SUNFLOWER_PLAINS, Biomes.FOREST}),
+	new Biome[] {Biomes.FLOWER_FOREST, Biomes.SUNFLOWER_PLAINS}),
 	
 	JrYetis("Jr. Yetis", new EntityType<?>[] {ModEntities.JRYETI_ENTITY, ModEntities.DARK_JRYETI_ENTITY}, 
 	new Quest[] {Quest.Polluted, Quest.Polluted2},

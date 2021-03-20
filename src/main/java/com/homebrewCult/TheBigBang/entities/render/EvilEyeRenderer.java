@@ -17,15 +17,12 @@ public class EvilEyeRenderer extends MobRenderer<EvilEyeEntity, AbstractEyeModel
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(EvilEyeEntity entity) 
-	{
+	protected ResourceLocation getEntityTexture(EvilEyeEntity entity) {
 		return new ResourceLocation(TheBigBang.MODID, "textures/entity/evil_eye_entity.png");
 	}
 	
-	public static class RenderFactory implements IRenderFactory<EvilEyeEntity>
-	{
-		public EntityRenderer<? super EvilEyeEntity> createRenderFor(EntityRendererManager manager) 
-		{
+	public static class RenderFactory implements IRenderFactory<EvilEyeEntity> {
+		public EntityRenderer<? super EvilEyeEntity> createRenderFor(EntityRendererManager manager) {
 			return new EvilEyeRenderer(manager);
 		}
 	}

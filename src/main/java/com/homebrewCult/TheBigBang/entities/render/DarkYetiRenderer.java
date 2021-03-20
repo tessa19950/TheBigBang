@@ -14,6 +14,7 @@ public class DarkYetiRenderer extends MobRenderer<DarkYetiEntity, AbstractYetiMo
 	
 	public DarkYetiRenderer(EntityRendererManager manager) {
 		super(manager, new AbstractYetiModel<>(), 0.5f);
+		this.layerRenderers.add(new YetiSaddleLayer(this));
 	}
 
 	@Override
@@ -22,8 +23,7 @@ public class DarkYetiRenderer extends MobRenderer<DarkYetiEntity, AbstractYetiMo
 	}
 	
 	public static class RenderFactory implements IRenderFactory<DarkYetiEntity> {
-		public EntityRenderer<? super DarkYetiEntity> createRenderFor(EntityRendererManager manager) 
-		{
+		public EntityRenderer<? super DarkYetiEntity> createRenderFor(EntityRendererManager manager) {
 			return new DarkYetiRenderer(manager);
 		}
 	}

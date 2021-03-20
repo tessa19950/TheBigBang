@@ -1,11 +1,13 @@
 package com.homebrewCult.TheBigBang.entities.render;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
+import com.homebrewCult.TheBigBang.entities.mob.AbstractYetiEntity;
 import com.homebrewCult.TheBigBang.entities.mob.YetiEntity;
 import com.homebrewCult.TheBigBang.entities.model.AbstractYetiModel;
 
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
@@ -14,6 +16,7 @@ public class YetiRenderer extends MobRenderer<YetiEntity, AbstractYetiModel<Yeti
 	
 	public YetiRenderer(EntityRendererManager manager) {
 		super(manager, new AbstractYetiModel<>(), 0.5f);
+		this.layerRenderers.add(new YetiSaddleLayer(this));
 	}
 
 	@Override
@@ -22,8 +25,7 @@ public class YetiRenderer extends MobRenderer<YetiEntity, AbstractYetiModel<Yeti
 	}
 	
 	public static class RenderFactory implements IRenderFactory<YetiEntity> {
-		public EntityRenderer<? super YetiEntity> createRenderFor(EntityRendererManager manager) 
-		{
+		public EntityRenderer<? super YetiEntity> createRenderFor(EntityRendererManager manager) {
 			return new YetiRenderer(manager);
 		}
 	}

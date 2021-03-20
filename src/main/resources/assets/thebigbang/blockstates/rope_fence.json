@@ -1,0 +1,88 @@
+{
+  "multipart": [
+    {   "when": { "corner_left": "false", "corner_right": "false", "facing": "north"},
+      "apply": { "model": "thebigbang:block/rope_fence_post" }
+    },
+    {   "when": { "corner_left": "false", "corner_right": "false", "facing": "east"},
+      "apply": { "model": "thebigbang:block/rope_fence_post", "y": 90 }
+    },
+    {   "when": { "corner_left": "false", "corner_right": "false", "facing": "south"},
+      "apply": { "model": "thebigbang:block/rope_fence_post", "y": 180 }
+    },
+    {   "when": { "corner_left": "false", "corner_right": "false", "facing": "west"},
+      "apply": { "model": "thebigbang:block/rope_fence_post", "y": 270 }
+    },
+    {   "when": { "OR": [
+        { "corner_left": "true", "facing": "north" },
+        { "corner_right": "true", "facing": "north" }
+      ]},
+      "apply": { "model": "thebigbang:block/rope_fence_corner_posts" }
+    },
+    {   "when": { "OR": [
+        { "corner_left": "true", "facing": "east" },
+        { "corner_right": "true", "facing": "east" }
+      ]},
+      "apply": { "model": "thebigbang:block/rope_fence_corner_posts", "y": 90 }
+    },
+    {   "when": { "OR": [
+        { "corner_left": "true", "facing": "south" },
+        { "corner_right": "true", "facing": "south" }
+      ]},
+      "apply": { "model": "thebigbang:block/rope_fence_corner_posts", "y": 180 }
+    },
+    {   "when": { "OR": [
+        { "corner_left": "true", "facing": "west" },
+        { "corner_right": "true", "facing": "west" }
+      ]},
+      "apply": { "model": "thebigbang:block/rope_fence_corner_posts", "y": 270 }
+    },
+    {   "when": { "side_left": "true", "facing": "north" },
+      "apply": { "model": "thebigbang:block/rope_fence_half_side_left", "uvlock": true }
+    },
+    {   "when": { "side_left": "true", "facing": "east" },
+      "apply": { "model": "thebigbang:block/rope_fence_half_side_left", "y": 90 , "uvlock": true }
+    },
+    {   "when": { "side_left": "true", "facing": "south" },
+      "apply": { "model": "thebigbang:block/rope_fence_half_side_left", "y": 180 , "uvlock": true }
+    },
+    {   "when": { "side_left": "true", "facing": "west" },
+      "apply": { "model": "thebigbang:block/rope_fence_half_side_left", "y": 270 , "uvlock": true }
+    },
+    {   "when": { "side_right": "true", "facing": "north" },
+      "apply": { "model": "thebigbang:block/rope_fence_half_side_right", "uvlock": true }
+    },
+    {   "when": { "side_right": "true", "facing": "east" },
+      "apply": { "model": "thebigbang:block/rope_fence_half_side_right", "y": 90 , "uvlock": true }
+    },
+    {   "when": { "side_right": "true", "facing": "south" },
+      "apply": { "model": "thebigbang:block/rope_fence_half_side_right", "y": 180 , "uvlock": true }
+    },
+    {   "when": { "side_right": "true", "facing": "west" },
+      "apply": { "model": "thebigbang:block/rope_fence_half_side_right", "y": 270 , "uvlock": true }
+    },
+    {   "when": { "corner_left": "true", "facing": "north" },
+      "apply": { "model": "thebigbang:block/rope_fence_full_side", "y": 270 ,"uvlock": true }
+    },
+    {   "when": { "corner_left": "true", "facing": "east" },
+      "apply": { "model": "thebigbang:block/rope_fence_full_side", "uvlock": true }
+    },
+    {   "when": { "corner_left": "true", "facing": "south" },
+      "apply": { "model": "thebigbang:block/rope_fence_full_side", "y": 90 , "uvlock": true }
+    },
+    {   "when": { "corner_left": "true", "facing": "west" },
+      "apply": { "model": "thebigbang:block/rope_fence_full_side", "y": 180 , "uvlock": true }
+    },
+    {   "when": { "corner_right": "true", "facing": "north" },
+      "apply": { "model": "thebigbang:block/rope_fence_full_side", "y": 90 ,"uvlock": true }
+    },
+    {   "when": { "corner_right": "true", "facing": "east" },
+      "apply": { "model": "thebigbang:block/rope_fence_full_side", "y": 180,"uvlock": true }
+    },
+    {   "when": { "corner_right": "true", "facing": "south" },
+      "apply": { "model": "thebigbang:block/rope_fence_full_side", "y": 270 , "uvlock": true }
+    },
+    {   "when": { "corner_right": "true", "facing": "west" },
+      "apply": { "model": "thebigbang:block/rope_fence_full_side", "uvlock": true }
+    }
+  ]
+}
