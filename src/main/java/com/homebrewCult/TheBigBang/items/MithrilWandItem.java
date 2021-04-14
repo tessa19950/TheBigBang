@@ -1,121 +1,131 @@
 package com.homebrewCult.TheBigBang.items;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.function.Predicate;
+
 import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.init.ModParticleTypes;
 import com.homebrewCult.TheBigBang.init.ModSounds;
 import com.homebrewCult.TheBigBang.util.MathUtility;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.particles.IParticleData;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.loot.LootContext;
-import net.minecraft.world.storage.loot.LootParameterSets;
-import net.minecraft.world.storage.loot.LootParameters;
-import net.minecraft.world.storage.loot.LootTable;
 
-public class MithrilWandItem extends Item {
-	
-	private static final String SPELL_TIMER_KEY = TheBigBang.MODID + "spell_timer";
+public class MithrilWandItem extends TieredItem implements IBigBangWeapon {
+
+	private static final String SPELL_TIME_KEY = TheBigBang.MODID + "spell_timer";
 	private static final String SPELL_TARGET_ID_KEY = TheBigBang.MODID + "spell_target_id"; 
 	private static final int SPELL_RANGE = 24;
 	private static final double SPELL_ANGLE_THRESHOLD = 30;
 	
-	public MithrilWandItem(Properties properties) {
-		super(properties);
+	public MithrilWandItem(IItemTier tierIn, Item.Properties builder) {
+		super(tierIn, builder);
 	}
-	
+
 	@Override
-	public boolean onEntitySwing(ItemStack stack, LivingEntity user) {	
-		//Grab the timer information from the stack nbt
-		int timer = 0;
-		CompoundNBT nbt = stack.getOrCreateTag();
-		if(nbt.contains(SPELL_TIMER_KEY)) {
-			timer = nbt.getInt(SPELL_TIMER_KEY);
-		} else {
-			nbt.putInt(SPELL_TIMER_KEY, 0);
+	public void onUsingTick(ItemStack stack, LivingEntity player, int timeLeft) {
+		onSpellCharging(stack, player.world, player, timeLeft);
+		super.onUsingTick(stack, player, timeLeft);
+	}
+
+	@Override
+	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity user, int timeLeft) {
+		trySpellAttack(stack, worldIn, user, timeLeft);
+		super.onPlayerStoppedUsing(stack, worldIn, user, timeLeft);
+	}
+
+	@Override
+	public void onSpellAttack(ItemStack stack, World worldIn, PlayerEntity player) {
+		Entity bestTarget = getBestTargetInCone(stack, worldIn, player, SPELL_RANGE, SPELL_ANGLE_THRESHOLD);
+		if(bestTarget != null && !worldIn.isRemote) {
+			CompoundNBT nbt = stack.getOrCreateTag();
+			nbt.putInt(SPELL_TARGET_ID_KEY, bestTarget.getEntityId());
+			nbt.putInt(SPELL_TIME_KEY, player.ticksExisted);
 			stack.setTag(nbt);
 		}
+	}
 
-		if(timer <= 0) {
-			World world = user.world;
-			AxisAlignedBB AABB = new AxisAlignedBB(user.getPosition().add(-SPELL_RANGE, -SPELL_RANGE, -SPELL_RANGE), user.getPosition().add(SPELL_RANGE, SPELL_RANGE, SPELL_RANGE));
-			
-			//Instantiate a List and populate it with Entities within the AABB
-			List<Entity> targets = new ArrayList<Entity>();
-			targets.addAll(world.getEntitiesWithinAABB(MobEntity.class, AABB, (entityIn) -> {return true;}));
-			
-			//Find an entity within the aim cone and range
-			Entity bestTarget = null;
-			double bestDis = SPELL_RANGE;
-			if(targets.size() > 0) {
-				for(Entity t : targets) {
-					double tDis = user.getPositionVec().distanceTo(t.getPositionVec());
-					Vec3d tDir = t.getPositionVec().subtract(user.getPositionVec()).normalize();
-					double tAngle = Math.acos(user.getLookVec().dotProduct(tDir)) / Math.PI * 180;
-					if(tAngle < SPELL_ANGLE_THRESHOLD && tDis < bestDis) {
-						bestTarget = t;
-						bestDis = tDis;
-					}
-				}
-			}	
-			
-			//If an entity is found, save it's information for the Spelltick to use
-			if(bestTarget != null) {
-				nbt.putInt(SPELL_TARGET_ID_KEY, bestTarget.getEntityId());
-				nbt.putInt(SPELL_TIMER_KEY, 30);
-				stack.setTag(nbt);
-				stack.attemptDamageItem(1, world.rand, null);
-			}
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+		ItemStack itemstack = playerIn.getHeldItem(handIn);
+		CompoundNBT nbt = itemstack.getOrCreateTag();
+		int spellTime = 100;
+		if(nbt.contains(SPELL_TIME_KEY))
+			spellTime = playerIn.ticksExisted - nbt.getInt(SPELL_TIME_KEY);
+		if(spellTime > 20) {
+			playerIn.setActiveHand(handIn);
+			return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
 		}
-		return super.onEntitySwing(stack, user);
+		return new ActionResult<>(ActionResultType.FAIL, itemstack);
 	}
 	
 	@Override
 	public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 		super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);	
-		spellTick(stack, worldIn);
+		spellTick(stack, worldIn, entityIn);
 	}
 	
-	public void spellTick(ItemStack stack, World worldIn) {
+	public void spellTick(ItemStack stack, World worldIn, Entity user) {
 		CompoundNBT nbt = stack.getOrCreateTag();
-		if(nbt.contains(SPELL_TIMER_KEY) && nbt.contains(SPELL_TARGET_ID_KEY)) {
+		if(nbt.contains(SPELL_TIME_KEY) && nbt.contains(SPELL_TARGET_ID_KEY)) {
 			Entity target = worldIn.getEntityByID(nbt.getInt(SPELL_TARGET_ID_KEY));
-			int timer = nbt.getInt(SPELL_TIMER_KEY);
-			
+			int timer = user.ticksExisted - nbt.getInt(SPELL_TIME_KEY);
 			//Handle the spell if it's still in effect
 			if(timer > 0) {
 				if(worldIn.isRemote && target != null) { 
-					if(timer == 30) {
-						
-					} else if(timer == 20) {
+					if(timer == 21) {
 						worldIn.addParticle(ModParticleTypes.MAGIC_CLAW_LEFT.get(), target.posX, target.posY + 1, target.posZ, 0, 0, 0);
-					} else if (timer == 10) {
+					} else if (timer == 31) {
 						worldIn.addParticle(ModParticleTypes.MAGIC_CLAW_RIGHT.get(), target.posX, target.posY + 1, target.posZ, 0, 0, 0);
 					} 
 				} else if (target != null) {
-					if(timer == 30) {
+					if(timer == 1) {
 						worldIn.playSound(null, target.posX, target.posY, target.posZ, ModSounds.MAGIC_CLAW_USE, SoundCategory.PLAYERS, 1, 1 + (MathUtility.floatInRange(worldIn.rand, -0.2f, 0.2f)));
-					} else if (timer == 20) {
+					} else if (timer == 21) {
 						target.attackEntityFrom(DamageSource.MAGIC, 2);
-					} else if (timer == 10) {
+					} else if (timer == 31) {
 						target.attackEntityFrom(DamageSource.MAGIC, 2);
 					} 
 				}
-				nbt.putInt(SPELL_TIMER_KEY, timer - 1);
-				stack.setTag(nbt);
 			}
 		}
+	}
+
+	@Override
+	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+		return slotChanged;
+	}
+
+	@Override
+	public UseAction getUseAction(ItemStack stack) {
+		return UseAction.SPEAR;
+	}
+
+	@Override
+	public int getUseDuration(ItemStack stack) {
+		return 72000;
+	}
+
+	@Override
+	public Predicate<ItemStack> getAmmoPredicate() {
+		return MAGIC_ROCKS;
+	}
+
+	@Override
+	public int getChargeDuration() {
+		return 10;
+	}
+
+	@Override
+	public IParticleData getChargingParticle() {
+		return ModParticleTypes.SYMBOL_BLUE.get();
+	}
+
+	@Override
+	public IParticleData getChargedParticle() {
+		return ModParticleTypes.GLOWLEAF_BLUE.get();
 	}
 }

@@ -1,0 +1,9 @@
+{
+  "type": "thebigbang:refining",
+  "ingredient": 
+  {
+    "item": "thebigbang:dormant_mithril_ingot"
+  },
+  "result": "thebigbang:blessed_mithril_ingot",
+  "experience": 2.0
+}

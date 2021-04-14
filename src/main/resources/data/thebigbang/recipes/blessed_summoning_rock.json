@@ -1,0 +1,9 @@
+{
+  "type": "thebigbang:refining",
+  "ingredient": 
+  {
+    "item": "thebigbang:dormant_summoning_rock"
+  },
+  "result": "thebigbang:blessed_summoning_rock",
+  "experience": 2.0
+}

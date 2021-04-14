@@ -10,11 +10,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -25,19 +23,29 @@ import net.minecraft.world.storage.loot.LootParameterSets;
 import net.minecraft.world.storage.loot.LootParameters;
 import net.minecraft.world.storage.loot.LootTable;
 
-public class MagicodarItem extends Item {
-	
+public class MagicodarItem extends TieredItem {
+
 	private static final String SPELL_TIMER_KEY = TheBigBang.MODID + "spell_timer";
 	private static final String SPELL_TARGET_ID_KEY = TheBigBang.MODID + "spell_target_id"; 
 	private static final int SPELL_RANGE = 24;
 	private static final double SPELL_ANGLE_THRESHOLD = 30;
 	
-	public MagicodarItem(Properties properties) {
-		super(properties);
+	public MagicodarItem(IItemTier tierIn, Item.Properties builder) {
+		super(tierIn, builder);
 	}
-	
+
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+		ItemStack itemstack = playerIn.getHeldItem(handIn);
+		if (itemstack.getDamage() >= itemstack.getMaxDamage()) {
+			return new ActionResult<>(ActionResultType.FAIL, itemstack);
+		} else {
+			playerIn.setActiveHand(handIn);
+			return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
+		}
+	}
+
 	@Override
-	public boolean onEntitySwing(ItemStack stack, LivingEntity user) {	
+	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity user, int timeLeft) {
 		//Grab the timer information from the stack nbt
 		int timer = 0;
 		CompoundNBT nbt = stack.getOrCreateTag();
@@ -79,7 +87,7 @@ public class MagicodarItem extends Item {
 				stack.attemptDamageItem(1, world.rand, null);
 			}
 		}
-		return super.onEntitySwing(stack, user);
+		super.onPlayerStoppedUsing(stack, worldIn, user, timeLeft);
 	}
 	
 	@Override
@@ -117,5 +125,20 @@ public class MagicodarItem extends Item {
 				stack.setTag(nbt);
 			}
 		}
+	}
+
+	@Override
+	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+		return slotChanged;
+	}
+
+	@Override
+	public UseAction getUseAction(ItemStack stack) {
+		return UseAction.SPEAR;
+	}
+
+	@Override
+	public int getUseDuration(ItemStack stack) {
+		return 72000;
 	}
 }

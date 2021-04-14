@@ -38,6 +38,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class HurricaneArrowEntity extends AbstractArrowEntity {
@@ -210,6 +212,15 @@ public class HurricaneArrowEntity extends AbstractArrowEntity {
 	@Override
 	public IPacket<?> createSpawnPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
+	}
+
+	public float getBrightness() {
+		return 1.0F;
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public int getBrightnessForRender() {
+		return 15728880;
 	}
 
 }

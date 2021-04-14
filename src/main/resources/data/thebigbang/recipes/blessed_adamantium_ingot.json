@@ -1,0 +1,9 @@
+{
+  "type": "thebigbang:refining",
+  "ingredient": 
+  {
+    "item": "thebigbang:dormant_adamantium_ingot"
+  },
+  "result": "thebigbang:blessed_adamantium_ingot",
+  "experience": 2.0
+}

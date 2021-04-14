@@ -7,10 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.ArrowItem;
-import net.minecraft.item.BowItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.SoundCategory;
@@ -19,11 +16,13 @@ import net.minecraft.world.World;
 
 public class RydenItem extends BowItem {
 
+	private final IItemTier tier;
 	private static final String RYDEN_TIMER_KEY = TheBigBang.MODID + "ryden_timer";
 	private static final String RYDEN_VELOCITY_KEY = TheBigBang.MODID + "ryden_velocity";
 	
-	public RydenItem(Properties builder) {
+	public RydenItem(IItemTier tierIn, Item.Properties builder) {
 		super(builder);
+		this.tier = tierIn;
 	}
 	
 	/**
@@ -124,5 +123,15 @@ public class RydenItem extends BowItem {
 
 			playerentity.addStat(Stats.ITEM_USED.get(this));
 		}
+	}
+
+	@Override
+	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+		return this.tier.getRepairMaterial().test(repair) || super.getIsRepairable(toRepair, repair);
+	}
+
+	@Override
+	public int getItemEnchantability() {
+		return this.tier.getEnchantability();
 	}
 }

@@ -8,9 +8,7 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShootableItem;
-import net.minecraft.item.UseAction;
+import net.minecraft.item.*;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
@@ -20,13 +18,16 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 public class GarnierItem extends ShootableItem {
-	
+
+	private final IItemTier tier;
+
 	public static final Predicate<ItemStack> THROWING_STARS = (itemstack) -> {
 		return itemstack.getItem() == ModItems.SUBI || itemstack.getItem() == ModItems.TOBI || itemstack.getItem() == ModItems.STEELY || itemstack.getItem() == ModItems.ILBI;
    	};
 	
-	public GarnierItem(Properties properties) {
-		super(properties);
+	public GarnierItem(IItemTier tierIn, Item.Properties builder) {
+		super(builder);
+		this.tier = tierIn;
 	}
 	
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
@@ -111,7 +112,7 @@ public class GarnierItem extends ShootableItem {
 		}
 		return f;
 	}
-	
+
 	@Override
 	public Predicate<ItemStack> getInventoryAmmoPredicate() {
 		return THROWING_STARS;
@@ -127,4 +128,13 @@ public class GarnierItem extends ShootableItem {
 		return 72000;
 	}
 
+	@Override
+	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+		return this.tier.getRepairMaterial().test(repair) || super.getIsRepairable(toRepair, repair);
+	}
+
+	@Override
+	public int getItemEnchantability() {
+		return this.tier.getEnchantability();
+	}
 }

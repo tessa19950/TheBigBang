@@ -16,11 +16,7 @@ import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.CrossbowItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.UseAction;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ActionResult;
@@ -31,10 +27,12 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class JaegerItem extends CrossbowItem
-{
-	public JaegerItem(Properties properties) {
-		super(properties);
+public class JaegerItem extends CrossbowItem {
+
+	private final IItemTier tier;
+	public JaegerItem(IItemTier tierIn, Item.Properties builder) {
+		super(builder);
+		this.tier = tierIn;
 	}
 	
 	@Override
@@ -46,7 +44,7 @@ public class JaegerItem extends CrossbowItem
 	public UseAction getUseAction(ItemStack stack) {
 		return UseAction.CROSSBOW;
 	}
-	
+
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
@@ -178,5 +176,15 @@ public class JaegerItem extends CrossbowItem
 	
 	public Predicate<ItemStack> getInventoryAmmoPredicate() {
 		return ARROWS;
+	}
+
+	@Override
+	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+		return this.tier.getRepairMaterial().test(repair) || super.getIsRepairable(toRepair, repair);
+	}
+
+	@Override
+	public int getItemEnchantability() {
+		return this.tier.getEnchantability();
 	}
 }

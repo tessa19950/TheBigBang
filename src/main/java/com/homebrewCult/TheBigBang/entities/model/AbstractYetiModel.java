@@ -1,4 +1,5 @@
 package com.homebrewCult.TheBigBang.entities.model; 
+import com.homebrewCult.TheBigBang.entities.mob.AbstractYetiEntity;
 import net.minecraft.client.renderer.entity.model.QuadrupedModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.ModelBox;
@@ -12,21 +13,24 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 // Make sure to generate all required imports
 
 @OnlyIn(Dist.CLIENT)
-public class AbstractYetiModel <T extends Entity> extends QuadrupedModel<T> {
+public class AbstractYetiModel <T extends AbstractYetiEntity> extends QuadrupedModel<T> {
 
 	private final RendererModel Hip_Bone;
 	private final RendererModel Back_Bone;
 	private final RendererModel Head_Bone;
+	private final RendererModel cube_r1;
 	private final RendererModel HornX_Bone;
 	private final RendererModel HornY_Bone;
 	private final RendererModel Jaw_Bone;
 	private final RendererModel LeftUpArm_Bone;
+	private final RendererModel LeftUpArm_Saddle;
 	private final RendererModel Furstrip_Bone3;
 	private final RendererModel LeftLowArm_Bone;
 	private final RendererModel FurStrip_Bone2;
 	private final RendererModel LeftHand_Bone;
 	private final RendererModel FurStrip_Bone;
 	private final RendererModel RightUpArm_Bone;
+	private final RendererModel RightUpArm_Saddle;
 	private final RendererModel Furstrip_Bone2;
 	private final RendererModel RightLowArm_Bone2;
 	private final RendererModel FurStrip_Bone3;
@@ -38,11 +42,9 @@ public class AbstractYetiModel <T extends Entity> extends QuadrupedModel<T> {
 	private final RendererModel RightLowLeg_Bone;
 	private final RendererModel Saddle;
 	private final RendererModel Saddle_Support_Left_r1;
-	private final RendererModel cube_r1;
 
 	public AbstractYetiModel() {
 		super(6, 0.0f);
-
 		textureWidth = 128;
 		textureHeight = 128;
 
@@ -72,13 +74,13 @@ public class AbstractYetiModel <T extends Entity> extends QuadrupedModel<T> {
 		HornX_Bone.setRotationPoint(0.0F, -15.5F, -15.5F);
 		Head_Bone.addChild(HornX_Bone);
 		setRotationAngle(HornX_Bone, 0.0F, -0.7854F, 0.0F);
-		HornX_Bone.cubeList.add(new ModelBox(HornX_Bone, 0, 5, 0.0F, -3.5F, -3.5F, 0, 7, 7, 0.0F, false));
+		HornX_Bone.cubeList.add(new ModelBox(HornX_Bone, 109, 46, 0.0F, -3.5F, -3.5F, 0, 7, 7, 0.0F, false));
 
 		HornY_Bone = new RendererModel(this);
 		HornY_Bone.setRotationPoint(0.0F, -15.5F, -15.5F);
 		Head_Bone.addChild(HornY_Bone);
 		setRotationAngle(HornY_Bone, 0.0F, 0.7854F, 0.0F);
-		HornY_Bone.cubeList.add(new ModelBox(HornY_Bone, 0, 5, 0.0F, -3.5F, -3.5F, 0, 7, 7, 0.0F, false));
+		HornY_Bone.cubeList.add(new ModelBox(HornY_Bone, 109, 46, 0.0F, -3.5F, -3.5F, 0, 7, 7, 0.0F, false));
 
 		Jaw_Bone = new RendererModel(this);
 		Jaw_Bone.setRotationPoint(0.0F, -2.0F, -3.0F);
@@ -91,11 +93,16 @@ public class AbstractYetiModel <T extends Entity> extends QuadrupedModel<T> {
 		setRotationAngle(LeftUpArm_Bone, -0.1745F, 0.0F, -0.0873F);
 		LeftUpArm_Bone.cubeList.add(new ModelBox(LeftUpArm_Bone, 0, 104, 0.0F, -4.0F, -4.0F, 8, 16, 8, 0.0F, false));
 
+		LeftUpArm_Saddle = new RendererModel(this);
+		LeftUpArm_Saddle.setRotationPoint(-13.0F, 41.0F, -7.0F);
+		LeftUpArm_Bone.addChild(LeftUpArm_Saddle);
+		LeftUpArm_Saddle.cubeList.add(new ModelBox(LeftUpArm_Saddle, 48, 107, 13.0F, -45.0F, 3.0F, 8, 13, 8, 0.2F, false));
+
 		Furstrip_Bone3 = new RendererModel(this);
 		Furstrip_Bone3.setRotationPoint(8.0F, 3.0F, 4.0F);
 		LeftUpArm_Bone.addChild(Furstrip_Bone3);
 		setRotationAngle(Furstrip_Bone3, 0.0F, -0.7854F, 0.0F);
-		Furstrip_Bone3.cubeList.add(new ModelBox(Furstrip_Bone3, 0, 0, 0.0F, -6.0F, 0.0F, 4, 12, 0, 0.0F, false));
+		Furstrip_Bone3.cubeList.add(new ModelBox(Furstrip_Bone3, 113, 21, 0.0F, -6.0F, 0.0F, 4, 12, 0, 0.0F, false));
 
 		LeftLowArm_Bone = new RendererModel(this);
 		LeftLowArm_Bone.setRotationPoint(4.0F, 11.0F, 0.0F);
@@ -107,7 +114,7 @@ public class AbstractYetiModel <T extends Entity> extends QuadrupedModel<T> {
 		FurStrip_Bone2.setRotationPoint(6.0F, 5.0F, 6.0F);
 		LeftLowArm_Bone.addChild(FurStrip_Bone2);
 		setRotationAngle(FurStrip_Bone2, 0.0F, -0.7854F, 0.0F);
-		FurStrip_Bone2.cubeList.add(new ModelBox(FurStrip_Bone2, 0, 0, 0.0F, -6.0F, 0.0F, 4, 12, 0, 0.0F, false));
+		FurStrip_Bone2.cubeList.add(new ModelBox(FurStrip_Bone2, 113, 21, 0.0F, -6.0F, 0.0F, 4, 12, 0, 0.0F, false));
 
 		LeftHand_Bone = new RendererModel(this);
 		LeftHand_Bone.setRotationPoint(0.0F, 11.0F, 0.0F);
@@ -120,7 +127,7 @@ public class AbstractYetiModel <T extends Entity> extends QuadrupedModel<T> {
 		FurStrip_Bone.setRotationPoint(8.0F, 6.0F, 8.0F);
 		LeftHand_Bone.addChild(FurStrip_Bone);
 		setRotationAngle(FurStrip_Bone, 0.0F, -0.7854F, 0.0F);
-		FurStrip_Bone.cubeList.add(new ModelBox(FurStrip_Bone, 0, 0, 0.0F, -6.0F, 0.0F, 4, 12, 0, 0.0F, false));
+		FurStrip_Bone.cubeList.add(new ModelBox(FurStrip_Bone, 113, 21, 0.0F, -6.0F, 0.0F, 4, 12, 0, 0.0F, false));
 
 		RightUpArm_Bone = new RendererModel(this);
 		RightUpArm_Bone.setRotationPoint(-13.0F, -15.0F, -3.0F);
@@ -128,11 +135,16 @@ public class AbstractYetiModel <T extends Entity> extends QuadrupedModel<T> {
 		setRotationAngle(RightUpArm_Bone, -0.1745F, 0.0F, 0.0873F);
 		RightUpArm_Bone.cubeList.add(new ModelBox(RightUpArm_Bone, 0, 104, -8.0F, -4.0F, -4.0F, 8, 16, 8, 0.0F, true));
 
+		RightUpArm_Saddle = new RendererModel(this);
+		RightUpArm_Saddle.setRotationPoint(-21.0F, 41.0F, -7.0F);
+		RightUpArm_Bone.addChild(RightUpArm_Saddle);
+		RightUpArm_Saddle.cubeList.add(new ModelBox(RightUpArm_Saddle, 48, 107, 13.0F, -45.0F, 3.0F, 8, 13, 8, 0.2F, true));
+
 		Furstrip_Bone2 = new RendererModel(this);
 		Furstrip_Bone2.setRotationPoint(-8.0F, 3.0F, 4.0F);
 		RightUpArm_Bone.addChild(Furstrip_Bone2);
 		setRotationAngle(Furstrip_Bone2, 0.0F, -2.3562F, 0.0F);
-		Furstrip_Bone2.cubeList.add(new ModelBox(Furstrip_Bone2, 0, 0, 0.0F, -6.0F, 0.0F, 4, 12, 0, 0.0F, false));
+		Furstrip_Bone2.cubeList.add(new ModelBox(Furstrip_Bone2, 113, 21, 0.0F, -6.0F, 0.0F, 4, 12, 0, 0.0F, false));
 
 		RightLowArm_Bone2 = new RendererModel(this);
 		RightLowArm_Bone2.setRotationPoint(-4.0F, 11.0F, 0.0F);
@@ -144,7 +156,7 @@ public class AbstractYetiModel <T extends Entity> extends QuadrupedModel<T> {
 		FurStrip_Bone3.setRotationPoint(-6.0F, 5.0F, 6.0F);
 		RightLowArm_Bone2.addChild(FurStrip_Bone3);
 		setRotationAngle(FurStrip_Bone3, 0.0F, -2.3562F, 0.0F);
-		FurStrip_Bone3.cubeList.add(new ModelBox(FurStrip_Bone3, 0, 0, 0.0F, -6.0F, 0.0F, 4, 12, 0, 0.0F, false));
+		FurStrip_Bone3.cubeList.add(new ModelBox(FurStrip_Bone3, 113, 21, 0.0F, -6.0F, 0.0F, 4, 12, 0, 0.0F, false));
 
 		RightHand_Bone2 = new RendererModel(this);
 		RightHand_Bone2.setRotationPoint(0.0F, 11.0F, 0.0F);
@@ -157,7 +169,7 @@ public class AbstractYetiModel <T extends Entity> extends QuadrupedModel<T> {
 		FurStrip_Bone4.setRotationPoint(-8.0F, 6.0F, 8.0F);
 		RightHand_Bone2.addChild(FurStrip_Bone4);
 		setRotationAngle(FurStrip_Bone4, 0.0F, -2.3562F, 0.0F);
-		FurStrip_Bone4.cubeList.add(new ModelBox(FurStrip_Bone4, 0, 0, 0.0F, -6.0F, 0.0F, 4, 12, 0, 0.0F, false));
+		FurStrip_Bone4.cubeList.add(new ModelBox(FurStrip_Bone4, 113, 21, 0.0F, -6.0F, 0.0F, 4, 12, 0, 0.0F, false));
 
 		LeftUpleg_Bone = new RendererModel(this);
 		LeftUpleg_Bone.setRotationPoint(5.0F, 14.0F, 7.0F);
@@ -168,7 +180,7 @@ public class AbstractYetiModel <T extends Entity> extends QuadrupedModel<T> {
 		LeftLowLeg_Bone.setRotationPoint(0.0F, 6.0F, 0.0F);
 		LeftUpleg_Bone.addChild(LeftLowLeg_Bone);
 		setRotationAngle(LeftLowLeg_Bone, 0.5236F, 0.0F, 0.0F);
-		LeftLowLeg_Bone.cubeList.add(new ModelBox(LeftLowLeg_Bone, 44, 104, -3.0F, -2.0F, -3.0F, 6, 6, 6, 0.0F, false));
+		LeftLowLeg_Bone.cubeList.add(new ModelBox(LeftLowLeg_Bone, 0, 1, -2.5F, -2.0F, -2.5F, 5, 6, 5, 0.2F, false));
 		LeftLowLeg_Bone.cubeList.add(new ModelBox(LeftLowLeg_Bone, 0, 46, -2.5F, 2.0F, -2.5F, 5, 3, 5, 0.0F, false));
 
 		RightUpleg_Bone = new RendererModel(this);
@@ -180,7 +192,7 @@ public class AbstractYetiModel <T extends Entity> extends QuadrupedModel<T> {
 		RightLowLeg_Bone.setRotationPoint(0.0F, 6.0F, 0.0F);
 		RightUpleg_Bone.addChild(RightLowLeg_Bone);
 		setRotationAngle(RightLowLeg_Bone, 0.5236F, 0.0F, 0.0F);
-		RightLowLeg_Bone.cubeList.add(new ModelBox(RightLowLeg_Bone, 44, 104, -3.0F, -2.0F, -3.0F, 6, 6, 6, 0.0F, false));
+		RightLowLeg_Bone.cubeList.add(new ModelBox(RightLowLeg_Bone, 0, 1, -2.5F, -2.0F, -2.5F, 5, 6, 5, 0.2F, false));
 		RightLowLeg_Bone.cubeList.add(new ModelBox(RightLowLeg_Bone, 0, 46, -2.5F, 2.0F, -2.5F, 5, 3, 5, 0.0F, false));
 
 		Saddle = new RendererModel(this);
@@ -191,12 +203,12 @@ public class AbstractYetiModel <T extends Entity> extends QuadrupedModel<T> {
 		Saddle_Support_Left_r1.setRotationPoint(0.0F, 0.0F, 0.0F);
 		Saddle.addChild(Saddle_Support_Left_r1);
 		setRotationAngle(Saddle_Support_Left_r1, 0.0F, 1.5708F, 0.0F);
-		Saddle_Support_Left_r1.cubeList.add(new ModelBox(Saddle_Support_Left_r1, 44, 116, -28.0F, -38.0F, 5.0F, 12, 12, 0, 0.0F, false));
-		Saddle_Support_Left_r1.cubeList.add(new ModelBox(Saddle_Support_Left_r1, 44, 116, -28.0F, -38.0F, -5.0F, 12, 12, 0, 0.0F, false));
+		Saddle_Support_Left_r1.cubeList.add(new ModelBox(Saddle_Support_Left_r1, 58, 0, -27.0F, -38.0F, 5.0F, 11, 12, 0, 0.0F, false));
+		Saddle_Support_Left_r1.cubeList.add(new ModelBox(Saddle_Support_Left_r1, 58, 0, -27.0F, -38.0F, -5.0F, 11, 12, 0, 0.0F, false));
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+	public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		Hip_Bone.render(f5);
 		LeftUpleg_Bone.render(f5);
 		RightUpleg_Bone.render(f5);
@@ -208,7 +220,12 @@ public class AbstractYetiModel <T extends Entity> extends QuadrupedModel<T> {
 		super.setRotationAngles(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
 		this.Head_Bone.rotateAngleX = Math.min(headPitch * ((float)Math.PI / 180F), 0);
 	    this.Head_Bone.rotateAngleY = MathHelper.clamp(netHeadYaw * ((float)Math.PI / 180F), -0.2f, 0.2f);
-	    
+
+	    boolean flag = entityIn.getSaddled();
+	    this.Saddle.showModel = flag;
+	    this.LeftUpArm_Saddle.showModel = flag;
+	    this.RightUpArm_Saddle.showModel = flag;
+
 	    //LegWork
 		float leftLegSwing = MathHelper.cos(limbSwing * 0.6f);
         float rightLegSwing = MathHelper.cos(limbSwing * 0.6f + (float)Math.PI);

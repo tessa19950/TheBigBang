@@ -1,0 +1,9 @@
+{
+  "type": "thebigbang:refining",
+  "ingredient": 
+  {
+    "item": "thebigbang:dormant_magic_rock"
+  },
+  "result": "thebigbang:blessed_magic_rock",
+  "experience": 2.0
+}

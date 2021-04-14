@@ -38,7 +38,7 @@ public class HurricaneArrowRenderer extends EntityRenderer<HurricaneArrowEntity>
 		GlStateManager.scalef(0.05625F, 0.05625F, 0.05625F);
 		
 	    GlStateManager.enableBlend();
-	    GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.DST_ALPHA);
+	    //GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.DST_ALPHA);
 	    GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 	    this.bindEntityTexture(entity);
 	    MODEL.render();

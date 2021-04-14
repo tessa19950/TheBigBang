@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": 
+  {
+    "item": "thebigbang:adamantium"
+  },
+  "result": "thebigbang:dormant_adamantium_ingot",
+  "experience": 2.0,
+  "cookingtime": 200
+}

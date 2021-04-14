@@ -1,0 +1,10 @@
+{
+  "type": "thebigbang:refining",
+  "ingredient": 
+  {
+    "item": "minecraft:gold_ingot"
+  },
+  "result": "thebigbang:blessed_gold_ingot",
+
+  "experience": 2.0
+}

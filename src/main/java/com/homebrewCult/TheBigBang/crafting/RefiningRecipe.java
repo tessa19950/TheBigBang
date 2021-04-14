@@ -35,7 +35,7 @@ public class RefiningRecipe extends AbstractCookingRecipe implements IRecipe<IIn
 	}
 
 	public ItemStack getIcon() {
-		return new ItemStack(ModBlocks.MONSTER_FURNACE);
+		return new ItemStack(ModBlocks.DIVINE_ALTAR);
 	}
 
 	public IRecipeSerializer<?> getSerializer() {

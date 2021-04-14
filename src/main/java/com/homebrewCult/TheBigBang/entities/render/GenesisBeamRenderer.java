@@ -13,7 +13,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 public class GenesisBeamRenderer extends EntityRenderer<GenesisBeamEntity> {
 
 	public static final GenesisBeamModel MODEL = new GenesisBeamModel();
-	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/genesis_beam.png");
+	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/entity/genesis_beam_entity.png");
 	
 	public GenesisBeamRenderer(EntityRendererManager manager) {
 		super(manager);

@@ -1,0 +1,9 @@
+{
+  "type": "thebigbang:refining",
+  "ingredient": 
+  {
+    "item": "thebigbang:dormant_orihalcon_ingot"
+  },
+  "result": "thebigbang:blessed_orihalcon_ingot",
+  "experience": 2.0
+}

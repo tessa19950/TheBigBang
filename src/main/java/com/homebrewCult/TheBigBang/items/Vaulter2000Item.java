@@ -8,10 +8,7 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.ArrowItem;
-import net.minecraft.item.BowItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.SoundCategory;
@@ -19,9 +16,11 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 public class Vaulter2000Item extends BowItem {
-	
-	public Vaulter2000Item(Properties builder) {
+
+	private final IItemTier tier;
+	public Vaulter2000Item(IItemTier tierIn, Item.Properties builder) {
 		super(builder);
+		this.tier = tierIn;
 	}
 	
 	@Override
@@ -102,5 +101,15 @@ public class Vaulter2000Item extends BowItem {
 
 			playerentity.addStat(Stats.ITEM_USED.get(this));
 		}
+	}
+
+	@Override
+	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+		return this.tier.getRepairMaterial().test(repair) || super.getIsRepairable(toRepair, repair);
+	}
+
+	@Override
+	public int getItemEnchantability() {
+		return this.tier.getEnchantability();
 	}
 }

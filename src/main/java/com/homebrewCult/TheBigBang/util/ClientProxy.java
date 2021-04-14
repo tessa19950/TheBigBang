@@ -14,7 +14,7 @@ public class ClientProxy implements IProxy {
 	@Override
 	public void Init() {
 		ScreenManager.registerFactory(ModBlocks.DANGER_SIGN_CONTAINER, DangerSignScreen::new);
-		ScreenManager.registerFactory(ModBlocks.MONSTER_FURNACE_CONTAINER, MonsterFurnaceScreen::new);
+		ScreenManager.registerFactory(ModBlocks.DIVINE_ALTAR_CONTAINER, MonsterFurnaceScreen::new);
 		ModItems.registerItemColors(Minecraft.getInstance().getItemColors());
 		ModBlocks.registerBlockColors(Minecraft.getInstance().getBlockColors());
 	}

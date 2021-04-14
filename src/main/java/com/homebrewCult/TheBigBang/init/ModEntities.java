@@ -1,14 +1,7 @@
 package com.homebrewCult.TheBigBang.init;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.entities.BombArrowEntity;
-import com.homebrewCult.TheBigBang.entities.GenesisBeamEntity;
-import com.homebrewCult.TheBigBang.entities.HurricaneArrowEntity;
-import com.homebrewCult.TheBigBang.entities.IlbiEntity;
-import com.homebrewCult.TheBigBang.entities.SnipingArrowEntity;
-import com.homebrewCult.TheBigBang.entities.SteelyEntity;
-import com.homebrewCult.TheBigBang.entities.SubiEntity;
-import com.homebrewCult.TheBigBang.entities.TobiEntity;
+import com.homebrewCult.TheBigBang.entities.*;
 import com.homebrewCult.TheBigBang.entities.mob.*;
 import com.homebrewCult.TheBigBang.entities.render.*;
 import net.minecraft.entity.Entity;
@@ -81,11 +74,13 @@ public class ModEntities {
 	new SnipingArrowEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "sniping_arrow").setRegistryName(TheBigBang.MODID, "sniping_arrow");
 	public static final EntityType<HurricaneArrowEntity> HURRICANE_ARROW = (EntityType<HurricaneArrowEntity>) EntityType.Builder.create(HurricaneArrowEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
 	new HurricaneArrowEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "hurricane_arrow").setRegistryName(TheBigBang.MODID, "hurricane_arrow");
+	public static final EntityType<DragonCrusherStabEntity> DRAGON_CRUSHER_STAB = (EntityType<DragonCrusherStabEntity>) EntityType.Builder.create(DragonCrusherStabEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
+	new DragonCrusherStabEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "dragon_crusher_stab").setRegistryName(TheBigBang.MODID, "dragon_crusher_stab");
 	
 	@SubscribeEvent
 	public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {	
 		event.getRegistry().registerAll (
-				HURRICANE_ARROW, BOMB_ARROW, SNIPING_ARROW, GENESIS_BEAM, SUBI, TOBI, STEELY, ILBI, 
+				HURRICANE_ARROW, BOMB_ARROW, SNIPING_ARROW, GENESIS_BEAM, SUBI, TOBI, STEELY, ILBI, DRAGON_CRUSHER_STAB,
 				STUMP_ENTITY, DARK_STUMP_ENTITY, AXE_STUMP_ENTITY, DARK_AXE_STUMP_ENTITY, OCTOPUS_ENTITY, EVIL_EYE_ENTITY, CURSE_EYE_ENTITY, COLD_EYE_ENTITY, BUBBLING_ENTITY, GREEN_BUBBLING_ENTITY,
 				ORANGE_MUSHROOM_ENTITY, BLUE_MUSHROOM_ENTITY, ZOMBIE_MUSHROOM_ENTITY, JRYETI_ENTITY, DARK_JRYETI_ENTITY, GREEN_SNAIL_ENTITY, BLUE_SNAIL_ENTITY, RED_SNAIL_ENTITY, 
 				RIBBON_PIG_ENTITY, STONE_GOLEM_ENTITY, DARK_STONE_GOLEM_ENTITY, MIXED_GOLEM_ENTITY, ICE_GOLEM_ENTITY, FIRE_GOLEM_ENTITY,
@@ -96,7 +91,7 @@ public class ModEntities {
     public static <T extends Entity> EntityType<?> buildEntityType(EntityType.IFactory<T> factoryIn, EntityClassification classification, float width, float height, String name) {
 		return EntityType.Builder.create(factoryIn, classification).size(width, height).build(TheBigBang.MODID + name).setRegistryName(TheBigBang.MODID, name);
 	}
-    
+
     @SubscribeEvent
     public static void registerSpawns (FMLCommonSetupEvent event) {
 		registerEntityWorldSpawn(STUMP_ENTITY, 2, 4, Biomes.FOREST);
@@ -167,6 +162,7 @@ public class ModEntities {
 		RenderingRegistry.registerEntityRenderingHandler(BombArrowEntity.class, new BombArrowRenderer.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(SnipingArrowEntity.class, new SnipingArrowRenderer.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(HurricaneArrowEntity.class, new HurricaneArrowRenderer.RenderFactory());
+		RenderingRegistry.registerEntityRenderingHandler(DragonCrusherStabEntity.class, new DragonCrusherStabRenderer.RenderFactory());
 	}
 	
 	@SubscribeEvent

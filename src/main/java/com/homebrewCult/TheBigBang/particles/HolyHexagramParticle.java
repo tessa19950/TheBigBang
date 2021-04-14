@@ -24,7 +24,7 @@ public class HolyHexagramParticle extends SpriteTexturedParticle {
 		this.motionY = ySpeed;
 		this.motionZ = zSpeed;
 		this.particleScale = 0;
-		this.maxAge = 30;
+		this.maxAge = 60;
 	}
 	
 	@Override

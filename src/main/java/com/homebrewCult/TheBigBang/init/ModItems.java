@@ -22,6 +22,7 @@ import com.homebrewCult.TheBigBang.items.model.PilferArmorModel;
 import com.homebrewCult.TheBigBang.items.model.StarlightArmorModel;
 import com.homebrewCult.TheBigBang.items.render.BigBangISTER;
 import com.homebrewCult.TheBigBang.init.ModItems;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockItem;
@@ -39,25 +40,25 @@ import net.minecraftforge.registries.ObjectHolder;
 @Mod.EventBusSubscriber(modid = TheBigBang.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @ObjectHolder(TheBigBang.MODID)
 public class ModItems {	
-	public static final Item ADAMANTIUM_ORE = new BlockItem(ModBlocks.ADAMANTIUM_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ADAMANTIUM_ORE.getRegistryName());	
-	public static final Item ADAMANTIUM_INGOT = registerMiscItem("adamantium_ingot");	
-	public static final Item ADAMANTIUM_PLATE = registerMiscItem("adamantium_plate");
+	public static final Item ADAMANTIUM_ORE = new BlockItem(ModBlocks.ADAMANTIUM_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ADAMANTIUM_ORE.getRegistryName());
+	public static final Item DORMANT_ADAMANTIUM_INGOT = registerMiscItem("dormant_adamantium_ingot");
+	public static final Item BLESSED_ADAMANTIUM_INGOT = registerMiscItem("blessed_adamantium_ingot");
 	public static final Item ADAMANTIUM_NUGGET = registerMiscItem("adamantium_nugget"); 	
 	public static final Item ADAMANTIUM = registerMiscItem("adamantium");
 	public static final Item MITHRIL_ORE = new BlockItem(ModBlocks.MITHRIL_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.MITHRIL_ORE.getRegistryName());
 	public static final Item MITHRIL = 	registerMiscItem("mithril");
-	public static final Item MITHRIL_INGOT = registerMiscItem("mithril_ingot");
-	public static final Item MITHRIL_PLATE = registerMiscItem("mithril_plate");
+	public static final Item DORMANT_MITHRIL_INGOT = registerMiscItem("dormant_mithril_ingot");
+	public static final Item BLESSED_MITHRIL_INGOT = registerMiscItem("blessed_mithril_ingot");
 	public static final Item MITHRIL_NUGGET = registerMiscItem("mithril_nugget");
 	public static final Item ORIHALCON_ORE = new BlockItem(ModBlocks.ORIHALCON_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ORIHALCON_ORE.getRegistryName());
 	public static final Item ORIHALCON = registerMiscItem("orihalcon");
-	public static final Item ORIHALCON_INGOT = registerMiscItem("orihalcon_ingot");
-	public static final Item ORIHALCON_PLATE = registerMiscItem("orihalcon_plate");
+	public static final Item DORMANT_ORIHALCON_INGOT = registerMiscItem("dormant_orihalcon_ingot");
+	public static final Item BLESSED_ORIHALCON_INGOT = registerMiscItem("blessed_orihalcon_ingot");
 	public static final Item ORIHALCON_NUGGET = registerMiscItem("orihalcon_nugget");
-	public static final Item GOLD_PLATE = registerMiscItem("gold_plate");
+	public static final Item BLESSED_GOLD_INGOT = registerMiscItem("blessed_gold_ingot");
 	
 	public static final Item DANGER_SIGN = null;
-	public static final Item MONSTER_FURNACE = null;
+	public static final Item DEVINE_ALTAR = null;
 	public static final Item GOLEM_STONE = new BlockItem(ModBlocks.GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GOLEM_STONE.getRegistryName());
 	public static final Item DARK_GOLEM_STONE = new BlockItem(ModBlocks.DARK_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.DARK_GOLEM_STONE.getRegistryName());
 	public static final Item GRASSY_GOLEM_STONE = new BlockItem(ModBlocks.GRASSY_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GRASSY_GOLEM_STONE.getRegistryName());
@@ -66,7 +67,14 @@ public class ModItems {
 	public static final Item RED_MAPLE_SAPLING = new BlockItem(ModBlocks.RED_MAPLE_SAPLING, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.RED_MAPLE_SAPLING.getRegistryName());
 	public static final Item YELLOW_MAPLE_LEAVES = new BlockItem(ModBlocks.YELLOW_MAPLE_LEAVES, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.YELLOW_MAPLE_LEAVES.getRegistryName());
 	public static final Item YELLOW_MAPLE_SAPLING = new BlockItem(ModBlocks.YELLOW_MAPLE_SAPLING, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.YELLOW_MAPLE_SAPLING.getRegistryName());
-	public static final Item ROPE_FENCE = new RopeFenceItem(ModBlocks.ROPE_FENCE, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.ROPE_FENCE.getRegistryName());
+	public static final Item ROPE_FENCE = new BlockItem(ModBlocks.ROPE_FENCE, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.ROPE_FENCE.getRegistryName());
+	public static final Item ROPE_LADDER = new BlockItem(ModBlocks.ROPE_LADDER, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.ROPE_LADDER.getRegistryName());
+	public static final Item ORANGE_MUSHROOM_BLOCK = new BlockItem(ModBlocks.ORANGE_MUSHROOM_BLOCK, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ORANGE_MUSHROOM_BLOCK.getRegistryName());
+	public static final Item ORANGE_MUSHROOM_SLAB = new BlockItem(ModBlocks.ORANGE_MUSHROOM_SLAB, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ORANGE_MUSHROOM_SLAB.getRegistryName());
+	public static final Item ORANGE_MUSHROOM_STAIRS = new BlockItem(ModBlocks.ORANGE_MUSHROOM_STAIRS, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ORANGE_MUSHROOM_STAIRS.getRegistryName());
+	public static final Item BLUE_MUSHROOM_BLOCK = new BlockItem(ModBlocks.BLUE_MUSHROOM_BLOCK, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.BLUE_MUSHROOM_BLOCK.getRegistryName());
+	public static final Item BLUE_MUSHROOM_SLAB = new BlockItem(ModBlocks.BLUE_MUSHROOM_SLAB, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.BLUE_MUSHROOM_SLAB.getRegistryName());
+	public static final Item BLUE_MUSHROOM_STAIRS = new BlockItem(ModBlocks.BLUE_MUSHROOM_STAIRS, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.BLUE_MUSHROOM_STAIRS.getRegistryName());
 
 	public static final QuestItem LETTER = (QuestItem) new QuestItem(new Item.Properties().maxStackSize(1)).setRegistryName(TheBigBang.MODID, "letter");
 	public static final Item OCTOPUS_LEG = 	registerMiscItem("octopus_leg");
@@ -90,7 +98,12 @@ public class ModItems {
 	public static final Item PIGS_RIBBON = registerMiscItem("pigs_ribbon");
 	public static final Item PIECE_OF_ICE = registerMiscItem("piece_of_ice");
 	public static final Item BLUE_SLIME_BALL = registerMiscItem("blue_slime_ball", false);
-	
+
+	public static final Item DORMANT_MAGIC_ROCK = registerMiscItem("dormant_magic_rock");
+	public static final Item DORMANT_SUMMONING_ROCK = registerMiscItem("dormant_summoning_rock");
+	public static final Item BLESSED_MAGIC_ROCK = registerMiscItem("blessed_magic_rock");
+	public static final Item BLESSED_SUMMONING_ROCK = registerMiscItem("blessed_summoning_rock");
+
 	public static final Item COOKED_OCTOPUS_LEG = registerFoodItem("cooked_octopus_leg", ModFoods.COOKED_OCTOPUS_LEG);
 	public static final Item COOKED_MUSHROOM_CAP = registerFoodItem("cooked_mushroom_cap", ModFoods.COOKED_MUSHROOM_CAP);
 	public static final Item COOKED_EYE_TAIL = registerFoodItem("cooked_eye_tail", ModFoods.COOKED_EYE_TAIL);
@@ -221,18 +234,18 @@ public class ModItems {
 		event.getRegistry().registerAll
 		(
 				ModItems.ADAMANTIUM,
-				ModItems.ADAMANTIUM_INGOT,
-				ModItems.ADAMANTIUM_PLATE,
+				ModItems.DORMANT_ADAMANTIUM_INGOT,
+				ModItems.BLESSED_ADAMANTIUM_INGOT,
 				ModItems.ADAMANTIUM_NUGGET,
 				ModItems.MITHRIL,
-				ModItems.MITHRIL_INGOT,
-				ModItems.MITHRIL_PLATE,
+				ModItems.DORMANT_MITHRIL_INGOT,
+				ModItems.BLESSED_MITHRIL_INGOT,
 				ModItems.MITHRIL_NUGGET,
 				ModItems.ORIHALCON,
-				ModItems.ORIHALCON_INGOT,
-				ModItems.ORIHALCON_PLATE,
+				ModItems.DORMANT_ORIHALCON_INGOT,
+				ModItems.BLESSED_ORIHALCON_INGOT,
 				ModItems.ORIHALCON_NUGGET,
-				ModItems.GOLD_PLATE,
+				ModItems.BLESSED_GOLD_INGOT,
 				
 				ModItems.LETTER,
 				ModItems.OCTOPUS_LEG,
@@ -256,7 +269,12 @@ public class ModItems {
 				ModItems.DRAGON_SKIN,
 				ModItems.PIECE_OF_ICE,
 				ModItems.BLUE_SLIME_BALL,
-				
+
+				ModItems.DORMANT_MAGIC_ROCK,
+				ModItems.DORMANT_SUMMONING_ROCK,
+				ModItems.BLESSED_MAGIC_ROCK,
+				ModItems.BLESSED_SUMMONING_ROCK,
+
 				ModItems.COOKED_OCTOPUS_LEG,
 				ModItems.COOKED_MUSHROOM_CAP,
 				ModItems.COOKED_EYE_TAIL,
@@ -282,41 +300,52 @@ public class ModItems {
 				ModItems.DARK_GOLEM_STONE,
 				ModItems.GRASSY_GOLEM_STONE,
 				ModItems.GRASSY_DARK_GOLEM_STONE,
-				ModItems.RED_MAPLE_LEAVES,
-				ModItems.RED_MAPLE_SAPLING,
-				ModItems.YELLOW_MAPLE_LEAVES,
-				ModItems.YELLOW_MAPLE_SAPLING,
+				//ModItems.RED_MAPLE_LEAVES,
+				//ModItems.RED_MAPLE_SAPLING,
+				//ModItems.YELLOW_MAPLE_LEAVES,
+				//ModItems.YELLOW_MAPLE_SAPLING,
 				ModItems.ROPE_FENCE,
+				ModItems.ROPE_LADDER,
+				ModItems.ORANGE_MUSHROOM_BLOCK,
+				ModItems.ORANGE_MUSHROOM_SLAB,
+				ModItems.ORANGE_MUSHROOM_STAIRS,
+				ModItems.BLUE_MUSHROOM_BLOCK,
+				ModItems.BLUE_MUSHROOM_SLAB,
+				ModItems.BLUE_MUSHROOM_STAIRS,
 				
-				new ZardItem(ItemTier.DIAMOND, 4, -3.0F, new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "zard"),
-				new HeliosItem(ItemTier.DIAMOND, 7.0F, -3.0F, new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "helios"),
-				new OmegaSpearItem(new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "omega_spear"),
-				registerMiscItem("omega_spear_head", false),
-				new ScorpioItem(new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "scorpio"),
-				registerMiscItem("scorpio_head", false),
-				new MithrilWandItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "mithril_wand"),
-				new MagicodarItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "magicodar"),
-				new OldWoodenStaffItem(new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "old_wooden_staff"),
-				new LamaStaffItem(new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "lama_staff"),
-				registerMiscItem("lama_staff_head", false),
-				new RydenItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "ryden"),
-				new Vaulter2000Item(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "vaulter_2000"),
-				new JaegerItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "jaeger"),
-				new NishadaItem(new Item.Properties().maxStackSize(1).maxDamage(64).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "nishada"),
-				new GarnierItem(new Item.Properties().maxStackSize(1).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "garnier"),
-				new KandayoItem(new Item.Properties().maxStackSize(1).maxDamage(250).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "kandayo"),
+				new ZardItem(ModItemTier.BLESSED_ADAMANTIUM, 4, -2.4F, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "zard"),
+				new HeliosItem(ModItemTier.BLESSED_ADAMANTIUM, 6, -3.6F, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "helios"),
+				new OmegaSpearItem(ModItemTier.BLESSED_ADAMANTIUM, 6, -3.6F, new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "omega_spear"),
+				new ScorpioItem(ModItemTier.BLESSED_ADAMANTIUM, 4, -2.4F, new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "scorpio"),
+				new MithrilWandItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "mithril_wand"),
+				new MagicodarItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "magicodar"),
+				new OldWoodenStaffItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "old_wooden_staff"),
+				new LamaStaffItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "lama_staff"),
+				new RydenItem(ModItemTier.BLESSED_GOLD, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "ryden"),
+				new Vaulter2000Item(ModItemTier.BLESSED_GOLD, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "vaulter_2000"),
+				new JaegerItem(ModItemTier.BLESSED_GOLD, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "jaeger"),
+				new NishadaItem(ModItemTier.BLESSED_GOLD, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "nishada"),
+				new GarnierItem(ModItemTier.BLESSED_ORIHALCON, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "garnier"),
+				new KandayoItem(ModItemTier.BLESSED_ORIHALCON, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "kandayo"),
+				new SaiItem(ModItemTier.BLESSED_ORIHALCON, 3, -0.4F, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "sai"),
+				new GephardItem(ModItemTier.BLESSED_ORIHALCON, 3, -0.4F, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "gephard"),
+
 				new SubiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "subi"),
-				registerMiscItem("subi_projectile", false),
 				new TobiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "tobi"),
-				registerMiscItem("tobi_projectile", false),
 				new SteelyItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "steely"),
-				registerMiscItem("steely_projectile", false),
 				new IlbiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "ilbi"),
+
+				registerMiscItem("omega_spear_head", false),
+				registerMiscItem("scorpio_head", false),
+				registerMiscItem("lama_staff_head", false),
+				registerMiscItem("subi_projectile", false),
+				registerMiscItem("tobi_projectile", false),
+				registerMiscItem("steely_projectile", false),
 				registerMiscItem("ilbi_projectile", false),
-				
+
 				new DangerSignItem(ModBlocks.DANGER_SIGN, new Item.Properties().maxStackSize(1).group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.DANGER_SIGN.getRegistryName()),
-				new BlockItem(ModBlocks.MONSTER_FURNACE, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.MONSTER_FURNACE.getRegistryName()),
-				
+				new BlockItem(ModBlocks.DIVINE_ALTAR, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.DIVINE_ALTAR.getRegistryName()),
+
 				new BigBangDiskItem(ModSounds.RECORD_AMORIA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_amoria"),
 				new BigBangDiskItem(ModSounds.RECORD_AQUA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_aqua"),
 				new BigBangDiskItem(ModSounds.RECORD_ARIANT, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_ariant"),

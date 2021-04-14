@@ -15,5 +15,8 @@ public class ModParticleTypes {
 	public static final RegistryObject<BasicParticleType> MAGIC_CLAW_RIGHT = PARTICLE_TYPES.register("magic_claw_right", () -> new BasicParticleType(true));
 	public static final RegistryObject<BasicParticleType> HOLY_HEXAGRAM = PARTICLE_TYPES.register("holy_hexagram", () -> new BasicParticleType(true));
 	public static final RegistryObject<BasicParticleType> HOLY_CIRCLE = PARTICLE_TYPES.register("holy_circle", () -> new BasicParticleType(true));
-
+	public static final RegistryObject<BasicParticleType> SYMBOL_BLUE = PARTICLE_TYPES.register("symbol_blue", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> SYMBOL_GOLD = PARTICLE_TYPES.register("symbol_gold", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> GLOWLEAF_BLUE = PARTICLE_TYPES.register("glowleaf_blue", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> GLOWLEAF_GOLD = PARTICLE_TYPES.register("glowleaf_gold", () -> new BasicParticleType(true));
 }

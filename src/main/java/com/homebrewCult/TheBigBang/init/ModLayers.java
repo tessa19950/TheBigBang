@@ -1,7 +1,7 @@
 package com.homebrewCult.TheBigBang.init;
 
-import com.homebrewCult.TheBigBang.entities.render.BigBangPlayerLayer;
-import com.homebrewCult.TheBigBang.entities.render.YetiSaddleLayer;
+import com.homebrewCult.TheBigBang.layers.BigBangPlayerLayer;
+import com.homebrewCult.TheBigBang.layers.YetiSaddleLayer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.PlayerRenderer;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -31,6 +31,7 @@ public class ModLayers {
 		event.addSprite(BigBangPlayerLayer.MONSTER_MAGNET_3_TEXTURE_LOCATION);
 		event.addSprite(BigBangPlayerLayer.MONSTER_MAGNET_4_TEXTURE_LOCATION);
 		event.addSprite(BigBangPlayerLayer.MONSTER_MAGNET_5_TEXTURE_LOCATION);
+		event.addSprite(BigBangPlayerLayer.MONSTER_MAGNET_6_TEXTURE_LOCATION);
 		event.addSprite(BigBangPlayerLayer.GENESIS_ANGEL_0_TEXTURE_LOCATION);
 		event.addSprite(BigBangPlayerLayer.GENESIS_ANGEL_1_TEXTURE_LOCATION);
 		event.addSprite(BigBangPlayerLayer.HURRICANE_TEXTURE_LOCATION);

@@ -22,7 +22,7 @@ import net.minecraftforge.registries.ObjectHolder;
 public class ModBiomes {
 	
 	public static Biome MAPLE_GARDENS;
-	
+
 	/*
 	public static final DeferredRegister<Biome> BIOMES = new DeferredRegister<>(ForgeRegistries.BIOMES, TheBigBang.MODID);
 	public static final RegistryObject<Biome> MAPLE_GARDENS = BIOMES.register("maple_gardens", () -> new MapleGardensBiome());
@@ -30,11 +30,13 @@ public class ModBiomes {
 	
 	@SubscribeEvent
 	public static void registerBiomes(final RegistryEvent.Register<Biome> event) {
+		/*
 		event.getRegistry().registerAll( 
 				MAPLE_GARDENS = new MapleGardensBiome().setRegistryName(TheBigBang.MODID, "maple_gardens")
 		);
 		BiomeDictionary.addTypes(ModBiomes.MAPLE_GARDENS, Type.PLAINS, Type.FOREST, Type.HILLS, Type.LUSH);
 		BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(ModBiomes.MAPLE_GARDENS, 30));
 		BiomeManager.addSpawnBiome(ModBiomes.MAPLE_GARDENS);
+		*/
 	}
 }

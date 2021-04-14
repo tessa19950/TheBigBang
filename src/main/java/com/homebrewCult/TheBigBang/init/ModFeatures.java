@@ -39,8 +39,8 @@ public class ModFeatures {
 				new DangerSignStoneFeature(NoFeatureConfig::deserialize).setRegistryName(TheBigBang.MODID, "danger_sign_stone"),
 				new DangerSignDesertFeature(NoFeatureConfig::deserialize).setRegistryName(TheBigBang.MODID, "danger_sign_desert"),
 				new DangerSignIceFeature(NoFeatureConfig::deserialize).setRegistryName(TheBigBang.MODID, "danger_sign_ice"),
-				new DangerSignCaveFeature(NoFeatureConfig::deserialize).setRegistryName(TheBigBang.MODID, "danger_sign_cave"),
-				new MapleTreeFeature(NoFeatureConfig::deserialize, false).setRegistryName(TheBigBang.MODID, "maple_tree")
+				new DangerSignCaveFeature(NoFeatureConfig::deserialize).setRegistryName(TheBigBang.MODID, "danger_sign_cave")
+				//new MapleTreeFeature(NoFeatureConfig::deserialize, false).setRegistryName(TheBigBang.MODID, "maple_tree")
 		);
 	}
 }

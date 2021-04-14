@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "thebigbang:block/blue_mushroom_block",
+        "top": "thebigbang:block/blue_mushroom_block",
+        "side": "thebigbang:block/blue_mushroom_block"
+    }
+}

@@ -1,13 +1,10 @@
 package com.homebrewCult.TheBigBang;
 
+import com.homebrewCult.TheBigBang.init.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.homebrewCult.TheBigBang.config.BigBangConfigSetup;
-import com.homebrewCult.TheBigBang.init.ModEntities;
-import com.homebrewCult.TheBigBang.init.ModLayers;
-import com.homebrewCult.TheBigBang.init.ModParticleTypes;
-import com.homebrewCult.TheBigBang.init.ModRecipeTypes;
 import com.homebrewCult.TheBigBang.network.BigBangPacketHandler;
 import com.homebrewCult.TheBigBang.util.ClientProxy;
 import com.homebrewCult.TheBigBang.util.IProxy;
@@ -54,6 +51,7 @@ public final class TheBigBang {
 	}
 	
 	private void clientRegistries(final FMLClientSetupEvent event) {
+		ModBlocks.registerBlockRenderers(event);
 		ModEntities.registerEntityRenders();
 		ModLayers.registerLayers();
 	}

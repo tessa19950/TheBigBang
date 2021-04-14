@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "thebigbang:block/blue_mushroom_slab" },
+        "type=top": { "model": "thebigbang:block/blue_mushroom_slab_top" },
+        "type=double": { "model": "thebigbang:block/blue_mushroom_block" }
+    }
+}

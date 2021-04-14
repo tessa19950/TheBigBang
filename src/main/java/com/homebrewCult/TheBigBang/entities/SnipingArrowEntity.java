@@ -40,6 +40,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class SnipingArrowEntity extends AbstractArrowEntity {
@@ -86,8 +88,8 @@ public class SnipingArrowEntity extends AbstractArrowEntity {
 	@Override
 	public void tick() {
 		if(world.isRemote && this.ticksExisted == 2) {
-			Vec3d v = this.getMotion().normalize().mul(0.2F, 0.2F, 0.2F);
-			this.world.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), this.posX, this.posY, this.posZ, v.x, v.y, v.z);
+			//Vec3d v = this.getMotion().normalize().mul(0.2F, 0.2F, 0.2F);
+			//this.world.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), this.posX, this.posY, this.posZ, v.x, v.y, v.z);
 		}
 		
 		boolean flag = this.func_203047_q();
@@ -270,6 +272,15 @@ public class SnipingArrowEntity extends AbstractArrowEntity {
 	@Override
 	public IPacket<?> createSpawnPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
+	}
+
+	public float getBrightness() {
+		return 1.0F;
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public int getBrightnessForRender() {
+		return 15728880;
 	}
 
 }

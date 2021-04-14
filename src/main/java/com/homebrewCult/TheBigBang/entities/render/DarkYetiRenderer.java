@@ -4,6 +4,7 @@ import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.entities.mob.DarkYetiEntity;
 import com.homebrewCult.TheBigBang.entities.model.AbstractYetiModel;
 
+import com.homebrewCult.TheBigBang.layers.YetiSaddleLayer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;

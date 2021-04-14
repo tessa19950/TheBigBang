@@ -74,13 +74,13 @@ public class ModWorldGen {
 			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(16))); //196
 		}
 		
-		//Place Stone Sign Structures
+		//Place Desert Sign Structures
 		for(Biome biome : desertBiomes) {
 			biome.addFeature(Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_DESERT, IFeatureConfig.NO_FEATURE_CONFIG, 
 			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(16))); //196
 		}
 		
-		//Place Stone Sign Structures
+		//Place Ice Sign Structures
 		for(Biome biome : iceBiomes) {
 			biome.addFeature(Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_ICE, IFeatureConfig.NO_FEATURE_CONFIG, 
 			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(16))); //196

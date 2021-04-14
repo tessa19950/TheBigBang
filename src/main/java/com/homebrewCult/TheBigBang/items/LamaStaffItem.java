@@ -2,6 +2,7 @@ package com.homebrewCult.TheBigBang.items;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
@@ -16,11 +17,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.item.UseAction;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.particles.IParticleData;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
@@ -30,90 +29,66 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class LamaStaffItem extends Item {
+public class LamaStaffItem extends TieredItem implements IBigBangWeapon {
 
 	public static final String SPELL_TIME_KEY = TheBigBang.MODID + "spell_timer";
 	private static final String SPELL_TARGET_ID_KEY = TheBigBang.MODID + "spell_target_id"; 
 	private static final int SPELL_RANGE = 24;
 	private static final double SPELL_ANGLE_THRESHOLD = 30;
 	
-	public LamaStaffItem(Properties properties) {
-		super(properties);
+	public LamaStaffItem(IItemTier tierIn, Item.Properties builder) {
+		super(tierIn, builder);
 	}
-	
+
 	@Override
-	public UseAction getUseAction(ItemStack stack) {
-		return UseAction.SPEAR;
+	public void onUsingTick(ItemStack stack, LivingEntity player, int timeLeft) {
+		onSpellCharging(stack, player.world, player, timeLeft);
+		super.onUsingTick(stack, player, timeLeft);
 	}
-	
-	@Override
-	public int getUseDuration(ItemStack stack) {
-		return 72000;
-	}
-	
-	@Override
-	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-		return slotChanged;
-	}
-	
+
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
-		if (itemstack.getDamage() >= itemstack.getMaxDamage()) {
-			return new ActionResult<>(ActionResultType.FAIL, itemstack);
-		} else {
+		CompoundNBT nbt = itemstack.getOrCreateTag();
+		int spellTime = 100;
+		if(nbt.contains(SPELL_TIME_KEY))
+			spellTime = playerIn.ticksExisted - nbt.getInt(SPELL_TIME_KEY);
+		if(spellTime > 40) {
 			playerIn.setActiveHand(handIn);
 			return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
 		}
+		return new ActionResult<>(ActionResultType.FAIL, itemstack);
 	}
 	
 	@Override
 	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-		TheBigBang.LOGGER.debug("item finish use");
 		return super.onItemUseFinish(stack, worldIn, entityLiving);
 	}
 	
 	@Override
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity user, int timeLeft) {
-		//Instantiate a List and populate it with Entities within the AABB
-		AxisAlignedBB AABB = new AxisAlignedBB(user.getPosition().add(-SPELL_RANGE, -SPELL_RANGE, -SPELL_RANGE), user.getPosition().add(SPELL_RANGE, SPELL_RANGE, SPELL_RANGE));
-		List<Entity> targets = new ArrayList<Entity>();
-		targets.addAll(worldIn.getEntitiesWithinAABB(MobEntity.class, AABB, (entityIn) -> {return true;}));
-		if(targets.size() > 0) {		
-			CompoundNBT nbt = stack.getOrCreateTag();	
-			//Find an entity within the aim cone and range
-			List<Entity> selectedTargets = new ArrayList<Entity>();
-			int selectedCount = 0;
-			for(Entity t : targets) {
-				++selectedCount;
-				if(selectedCount > 20) {
-					break;
-				}
-				double tDis = user.getPositionVec().distanceTo(t.getPositionVec());
-				Vec3d tDir = t.getPositionVec().subtract(user.getPositionVec()).normalize();
-				double tAngle = Math.acos(user.getLookVec().dotProduct(tDir)) / Math.PI * 180;
-				if(tAngle < SPELL_ANGLE_THRESHOLD && tDis < SPELL_RANGE) {
-					selectedTargets.add(t);
-					worldIn.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), t.posX, t.posY + 0.01D, t.posZ, 0, 0, 0);
-				}
-			}	
-			
-			//If an entity is found, save it's information for the Spelltick to use
-			if(selectedTargets.size() > 0) {
-				int[] ids = new int[selectedTargets.size()];
-				for(int i = 0; i < selectedTargets.size(); ++i) {
-					ids[i] = selectedTargets.get(i).getEntityId();
-				}
-				if(!worldIn.isRemote) {
-					nbt.putIntArray(SPELL_TARGET_ID_KEY, ids);
-					nbt.putInt(SPELL_TIME_KEY, user.ticksExisted);
-					stack.setTag(nbt);
-					stack.attemptDamageItem(1, worldIn.rand, null);
-				}
+		trySpellAttack(stack, worldIn, user, timeLeft);
+	}
+
+	@Override
+	public void onSpellAttack(ItemStack stack, World worldIn, PlayerEntity player) {
+		List<Entity> targets = getTargetsInCone(stack, worldIn, player, SPELL_RANGE, SPELL_ANGLE_THRESHOLD, 20);
+		//If entities are selected, save their ID's in NBT for the Spelltick to use
+		if(targets.size() > 0) {
+			int[] ids = new int[targets.size()];
+			for(int i = 0; i < targets.size(); ++i) {
+				worldIn.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), targets.get(i).posX, targets.get(i).posY + 0.01D, targets.get(i).posZ, 0, 0, 0);
+				ids[i] = targets.get(i).getEntityId();
+			}
+			if(!worldIn.isRemote) {
+				CompoundNBT nbt = stack.getOrCreateTag();
+				nbt.putIntArray(SPELL_TARGET_ID_KEY, ids);
+				nbt.putInt(SPELL_TIME_KEY, player.ticksExisted);
+				stack.setTag(nbt);
+				stack.attemptDamageItem(1, worldIn.rand, null);
 			}
 		}
-		super.onPlayerStoppedUsing(stack, worldIn, user, timeLeft);
 	}
-	
+
 	@Override
 	public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 		super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);	
@@ -155,5 +130,40 @@ public class LamaStaffItem extends Item {
 		GenesisBeamEntity beamEntity = new GenesisBeamEntity(worldIn); 
 		beamEntity.setPosition(pos.x, pos.y, pos.z);
 		worldIn.addEntity(beamEntity);
+	}
+
+	@Override
+	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+		return slotChanged;
+	}
+
+	@Override
+	public UseAction getUseAction(ItemStack stack) {
+		return UseAction.SPEAR;
+	}
+
+	@Override
+	public int getUseDuration(ItemStack stack) {
+		return 72000;
+	}
+
+	@Override
+	public Predicate<ItemStack> getAmmoPredicate() {
+		return SUMMONING_ROCKS;
+	}
+
+	@Override
+	public int getChargeDuration() {
+		return 60;
+	}
+
+	@Override
+	public IParticleData getChargingParticle() {
+		return ModParticleTypes.SYMBOL_GOLD.get();
+	}
+
+	@Override
+	public IParticleData getChargedParticle() {
+		return ModParticleTypes.GLOWLEAF_GOLD.get();
 	}
 }

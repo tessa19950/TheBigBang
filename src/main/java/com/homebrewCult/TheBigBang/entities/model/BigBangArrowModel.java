@@ -16,7 +16,6 @@ public class BigBangArrowModel extends Model {
 
 		bb_main = new RendererModel(this);
 		bb_main.setRotationPoint(0.0F, 24.0F, 0.0F);
-		
 
 		back_r1 = new RendererModel(this);
 		back_r1.setRotationPoint(0.0F, 0.0F, 8.0F);

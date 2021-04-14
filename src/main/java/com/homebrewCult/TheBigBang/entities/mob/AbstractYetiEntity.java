@@ -1,6 +1,5 @@
 package com.homebrewCult.TheBigBang.entities.mob;
 
-import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.init.ModEntities;
 import com.homebrewCult.TheBigBang.init.ModSounds;
 import com.homebrewCult.TheBigBang.util.IQuestEntity;
@@ -12,9 +11,7 @@ import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.entity.monster.SkeletonEntity;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -23,7 +20,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
@@ -243,6 +239,6 @@ public class AbstractYetiEntity extends AnimalEntity implements IQuestEntity {
 	}
 
 	static {
-		SADDLED = EntityDataManager.createKey(PigEntity.class, DataSerializers.BOOLEAN);
+		SADDLED = EntityDataManager.createKey(AbstractYetiEntity.class, DataSerializers.BOOLEAN);
 	}
 }

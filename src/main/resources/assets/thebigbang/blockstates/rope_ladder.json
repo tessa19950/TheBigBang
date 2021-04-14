@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "thebigbang:block/rope_ladder" },
+        "facing=east":  { "model": "thebigbang:block/rope_ladder", "y": 90 },
+        "facing=south": { "model": "thebigbang:block/rope_ladder", "y": 180 },
+        "facing=west":  { "model": "thebigbang:block/rope_ladder", "y": 270 }
+    }
+}
