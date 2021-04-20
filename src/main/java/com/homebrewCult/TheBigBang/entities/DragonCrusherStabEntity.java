@@ -1,6 +1,7 @@
 package com.homebrewCult.TheBigBang.entities;
 
 import com.homebrewCult.TheBigBang.init.ModEntities;
+import com.homebrewCult.TheBigBang.init.ModSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -10,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -38,6 +40,8 @@ public class DragonCrusherStabEntity extends AbstractArrowEntity {
     @Override
     public void onAddedToWorld() {
         super.onAddedToWorld();
+        float pitch = 0.9F + world.rand.nextFloat() * 0.2F;
+        world.playSound(null, getPosition(), ModSounds.DRAGON_CRUSHER_STAB_SPAWN, SoundCategory.PLAYERS, 1, pitch);
         this.setNoGravity(true);
     }
 

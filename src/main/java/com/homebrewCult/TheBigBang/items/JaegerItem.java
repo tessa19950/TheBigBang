@@ -7,6 +7,8 @@ import java.util.function.Predicate;
 import com.google.common.collect.Lists;
 import com.homebrewCult.TheBigBang.entities.SnipingArrowEntity;
 
+import com.homebrewCult.TheBigBang.init.ModParticleTypes;
+import com.homebrewCult.TheBigBang.init.ModSounds;
 import net.minecraft.client.renderer.Quaternion;
 import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -78,6 +80,8 @@ public class JaegerItem extends CrossbowItem {
 				}
 			}
 		}
+		float pitch = 0.9F + worldIn.rand.nextFloat() * 0.2F;
+		worldIn.playSound(null, shooter.getPosition(), ModSounds.SNIPING_USE, SoundCategory.PLAYERS, 1, pitch);
 		clearProjectiles(stack);
 	}
 	

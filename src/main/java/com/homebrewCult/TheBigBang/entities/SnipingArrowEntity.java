@@ -11,9 +11,12 @@ import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.init.ModEntities;
 import com.homebrewCult.TheBigBang.init.ModParticleTypes;
 
+import com.homebrewCult.TheBigBang.init.ModSounds;
+import com.sun.javafx.geom.Vec3f;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Quaternion;
+import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.EntityType;
@@ -30,6 +33,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.EntityPredicates;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
@@ -87,11 +91,27 @@ public class SnipingArrowEntity extends AbstractArrowEntity {
 	
 	@Override
 	public void tick() {
-		if(world.isRemote && this.ticksExisted == 2) {
-			//Vec3d v = this.getMotion().normalize().mul(0.2F, 0.2F, 0.2F);
-			//this.world.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), this.posX, this.posY, this.posZ, v.x, v.y, v.z);
+		if(world.isRemote && this.ticksExisted == 1) {
+			Entity shooter = this.world.getClosestPlayer(posX, posY, posZ);
+			if(shooter != null) {
+				for (int i = 0; i < 32; ++i) {
+					double x = Math.cos((double) i / 32D * Math.PI * 2D);
+					double y = Math.sin((double) i / 32D * Math.PI * 2D);
+					double radius = 0.2D;
+					Vec3d vec = new Vec3d(x, y, 0).mul(radius, radius, radius);
+					vec = vec.rotatePitch(-shooter.getPitch(1) * (float) Math.PI / 180).rotateYaw(-shooter.getYaw(1) * (float) Math.PI / 180);
+
+
+
+					double forwardSpeed = 0.2D;
+					double radialSpeed = 0.5D;
+					Vec3d motion = this.getMotion();
+					motion = motion.mul(forwardSpeed, forwardSpeed, forwardSpeed).add(vec.mul(radialSpeed, radialSpeed, radialSpeed));
+					this.world.addParticle(ModParticleTypes.SYMBOL_GOLD.get(), this.posX + vec.x, this.posY + vec.y, this.posZ + vec.z, motion.x, motion.y, motion.z);
+				}
+			}
 		}
-		
+
 		boolean flag = this.func_203047_q();
 		Vec3d motion = this.getMotion();
 		if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
@@ -260,6 +280,10 @@ public class SnipingArrowEntity extends AbstractArrowEntity {
 		boolean flag = raytraceresult$type == RayTraceResult.Type.ENTITY || raytraceresult$type == RayTraceResult.Type.BLOCK;
 		if (flag && !this.world.isRemote) {	
 			this.remove();
+		}
+		if (raytraceresult$type == RayTraceResult.Type.ENTITY) {
+			float pitch = 0.9F + world.rand.nextFloat() * 0.2F;
+			world.playSound(null, getPosition(), ModSounds.SNIPING_ARROW_HIT, SoundCategory.PLAYERS, 1, pitch);
 		}
 		super.onHit(raytraceResultIn);	
 	}

@@ -31,7 +31,8 @@ import java.util.function.Predicate;
 public class ScorpioItem extends AxeItem implements IBigBangWeapon {
 
 	public static final String DRAGON_CRUSHER_TIME_KEY = TheBigBang.MODID + "dragon_crusher_time";
-	
+	public int clientDragonCrusherTime;
+
 	public ScorpioItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Item.Properties builder) {
 		super(tier, attackDamageIn, attackSpeedIn, builder);
 	}
@@ -48,10 +49,14 @@ public class ScorpioItem extends AxeItem implements IBigBangWeapon {
 
 	@Override
 	public void onSpellAttack(ItemStack stack, World worldIn, PlayerEntity player) {
+		float pitch = 0.9F + worldIn.rand.nextFloat() * 0.2F;
+		worldIn.playSound(player, player.getPosition(), ModSounds.DRAGON_CRUSHER_USE, SoundCategory.PLAYERS, 1, pitch);
 		if(!worldIn.isRemote) {
 			CompoundNBT nbt = stack.getOrCreateTag();
 			nbt.putInt(DRAGON_CRUSHER_TIME_KEY, player.ticksExisted);
 			stack.setTag(nbt);
+		} else {
+			this.clientDragonCrusherTime = player.ticksExisted;
 		}
 	}
 
@@ -130,4 +135,7 @@ public class ScorpioItem extends AxeItem implements IBigBangWeapon {
 
 	@Override
 	public IParticleData getChargedParticle() { return ModParticleTypes.GLOWLEAF_BLUE.get(); }
+
+	@Override
+	public SoundEvent getChargedSound() { return SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL; }
 }

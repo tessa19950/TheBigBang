@@ -17,9 +17,7 @@ import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -71,6 +69,8 @@ public interface IBigBangWeapon {
     default void onSpellCharging(ItemStack weaponStack, World worldIn, LivingEntity entityLiving, int timeLeft) {
         int chargeTime = weaponStack.getUseDuration() - timeLeft;
         if(chargeTime == getChargeDuration()) {
+            float pitch = 0.9F + worldIn.rand.nextFloat() * 0.2F;
+            worldIn.playSound((PlayerEntity) entityLiving, entityLiving.getPosition(), getChargedSound(), SoundCategory.PLAYERS, 0.5F, pitch);
             for(int i = 0; i < 16; ++i) {
                 for(int j = 0; j < 8; ++j) {
                     double x = Math.cos((float) Math.PI * 2F / 16F * (float) i) * 1.2F;
@@ -138,6 +138,8 @@ public interface IBigBangWeapon {
     IParticleData getChargingParticle();
 
     IParticleData getChargedParticle();
+
+    SoundEvent getChargedSound();
 
     default Entity getBestTargetInCone(ItemStack stack, World worldIn, LivingEntity entityLiving, int spellRange, double angleThreshold) {
         AxisAlignedBB AABB = new AxisAlignedBB(entityLiving.getPosition().add(-spellRange, -spellRange, -spellRange), entityLiving.getPosition().add(spellRange, spellRange, spellRange));

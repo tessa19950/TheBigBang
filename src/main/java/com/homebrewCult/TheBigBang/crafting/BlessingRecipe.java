@@ -13,8 +13,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class RefiningRecipe extends AbstractCookingRecipe implements IRecipe<IInventory> {
-	
+public class BlessingRecipe extends AbstractCookingRecipe implements IRecipe<IInventory> {
+
 	public final IRecipeType<?> type;
 	public final ResourceLocation id;
 	public final String group;
@@ -22,10 +22,10 @@ public class RefiningRecipe extends AbstractCookingRecipe implements IRecipe<IIn
 	public final ItemStack result;
 	public final float experience;
 	public final int cookTime;
-	
-	public RefiningRecipe(ResourceLocation idIn, String groupIn, Ingredient ingredientIn, ItemStack resultIn, float experienceIn, int cookTimeIn) {
-		super(ModRecipeTypes.REFINING_RECIPE_TYPE, idIn, groupIn, ingredientIn, resultIn, experienceIn, cookTimeIn);
-		this.type = ModRecipeTypes.REFINING_RECIPE_TYPE;
+
+	public BlessingRecipe(ResourceLocation idIn, String groupIn, Ingredient ingredientIn, ItemStack resultIn, float experienceIn, int cookTimeIn) {
+		super(ModRecipeTypes.BLESSING_RECIPE, idIn, groupIn, ingredientIn, resultIn, experienceIn, cookTimeIn);
+		this.type = ModRecipeTypes.BLESSING_RECIPE;
 		this.id = idIn;
 		this.group = groupIn;
 		this.ingredient = ingredientIn;
@@ -39,7 +39,7 @@ public class RefiningRecipe extends AbstractCookingRecipe implements IRecipe<IIn
 	}
 
 	public IRecipeSerializer<?> getSerializer() {
-		return ModRecipeTypes.REFINING.get();
+		return ModRecipeTypes.BLESSING_SERIALIZER.get();
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class RefiningRecipe extends AbstractCookingRecipe implements IRecipe<IIn
 	public float getExperience() {
 		return this.experience;
 	}
-	
+
 	@Override
 	public ItemStack getRecipeOutput() {
 		return this.result;

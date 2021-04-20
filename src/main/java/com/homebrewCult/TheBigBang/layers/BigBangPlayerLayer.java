@@ -68,29 +68,29 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 			}
 		} else if(stack.getItem().equals(ModItems.LAMA_STAFF)) {
 			CompoundNBT nbt = stack.getOrCreateTag();
-			if(nbt.contains(LamaStaffItem.SPELL_TIME_KEY)) {
-				this.renderGenesisAngel(player, nbt, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scaleFactor);
-			}
+			//if(nbt.contains(LamaStaffItem.SPELL_TIME_KEY)) {
+				this.renderGenesisAngel(player, stack, nbt, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scaleFactor);
+			//}
 		} else if(stack.getItem().equals(ModItems.OMEGA_SPEAR)) {
 			CompoundNBT nbt = stack.getOrCreateTag();
-			if(nbt.contains(OmegaSpearItem.HYPER_BODY_TIME_KEY)) {
-				this.renderHyperBody(player, nbt, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scaleFactor);
-			}
+			//if(nbt.contains(OmegaSpearItem.HYPER_BODY_TIME_KEY)) {
+				this.renderHyperBody(player, stack, nbt, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scaleFactor);
+			//}
 		} else if(stack.getItem().equals(ModItems.SCORPIO)) {
 			CompoundNBT nbt = stack.getOrCreateTag();
-			if(nbt.contains(ScorpioItem.DRAGON_CRUSHER_TIME_KEY)) {
-				this.renderDragonCrusher(player, nbt, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scaleFactor);
-			}
+			//if(nbt.contains(ScorpioItem.DRAGON_CRUSHER_TIME_KEY)) {
+				this.renderDragonCrusher(player, stack, nbt, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scaleFactor);
+			//}
 		} else if(stack.getItem().equals(ModItems.HELIOS)) {
 			CompoundNBT nbt = stack.getOrCreateTag();
-			if(nbt.contains(HeliosItem.THREATEN_TIME_KEY)) {
-				this.renderThreaten(player, nbt, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scaleFactor);
-			}
+			//if(nbt.contains(HeliosItem.THREATEN_TIME_KEY)) {
+				this.renderThreaten(player, stack, nbt, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scaleFactor);
+			//}
 		} else if(stack.getItem().equals(ModItems.ZARD)) {
 			CompoundNBT nbt = stack.getOrCreateTag();
-			if(nbt.contains(ZardItem.MONSTER_MAGNET_TIME_KEY)) {
-				this.renderMonsterMagnet(player, nbt, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scaleFactor);
-			}
+			//if(nbt.contains(ZardItem.MONSTER_MAGNET_TIME_KEY)) {
+				this.renderMonsterMagnet(player, stack, nbt, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scaleFactor);
+			//}
 		}
 	}
 
@@ -113,8 +113,12 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 		GlStateManager.popMatrix();
 	}
 	
-	public void renderGenesisAngel(PlayerEntity player, CompoundNBT nbt, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-		int genesisTime = player.ticksExisted - nbt.getInt(LamaStaffItem.SPELL_TIME_KEY);
+	public void renderGenesisAngel(PlayerEntity player, ItemStack stack, CompoundNBT nbt, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+		//int genesisTime = player.ticksExisted - nbt.getInt(LamaStaffItem.SPELL_TIME_KEY);
+		int genesisTime = 0;
+		if(stack.getItem() instanceof LamaStaffItem) {
+			genesisTime = player.ticksExisted - ((LamaStaffItem) stack.getItem()).clientSpellTime;
+		}
 		if(genesisTime > 0 && genesisTime < 45) {
 			GlStateManager.pushMatrix();
 			if(genesisTime > 30) {
@@ -137,8 +141,13 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 		}
 	}
 	
-	public void renderHyperBody(PlayerEntity player, CompoundNBT nbt, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-		int hyperBodyTime = player.ticksExisted - nbt.getInt(OmegaSpearItem.HYPER_BODY_TIME_KEY);
+	public void renderHyperBody(PlayerEntity player, ItemStack stack, CompoundNBT nbt, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+		//int hyperBodyTime = player.ticksExisted - nbt.getInt(OmegaSpearItem.HYPER_BODY_TIME_KEY);
+		int hyperBodyTime = 0;
+		if(stack.getItem() instanceof OmegaSpearItem) {
+			hyperBodyTime = player.ticksExisted - ((OmegaSpearItem) stack.getItem()).clientHyperBodyTime;
+		}
+		TheBigBang.LOGGER.debug(hyperBodyTime);
 		if(hyperBodyTime < 30) {
 			GlStateManager.pushMatrix();
 			if(hyperBodyTime > 28) {
@@ -182,8 +191,12 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 		}
 	}
 	
-	public void renderDragonCrusher(PlayerEntity player, CompoundNBT nbt, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-		int dragonTime = player.ticksExisted - nbt.getInt(ScorpioItem.DRAGON_CRUSHER_TIME_KEY);
+	public void renderDragonCrusher(PlayerEntity player, ItemStack stack, CompoundNBT nbt, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+		//int dragonTime = player.ticksExisted - nbt.getInt(ScorpioItem.DRAGON_CRUSHER_TIME_KEY);
+		int dragonTime = 0;
+		if(stack.getItem() instanceof ScorpioItem) {
+			dragonTime = player.ticksExisted - ((ScorpioItem) stack.getItem()).clientDragonCrusherTime;
+		}
 		if(dragonTime > 0 && dragonTime < 60) {
 			GlStateManager.pushMatrix();
 			this.bindTexture(DRAGON_CRUSHER_TEXTURE_LOCATION);
@@ -201,8 +214,12 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 		}
 	}
 	
-	public void renderThreaten(PlayerEntity player, CompoundNBT nbt, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-		int threatenTime = player.ticksExisted - nbt.getInt(HeliosItem.THREATEN_TIME_KEY);
+	public void renderThreaten(PlayerEntity player, ItemStack stack, CompoundNBT nbt, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+		//int threatenTime = player.ticksExisted - nbt.getInt(HeliosItem.THREATEN_TIME_KEY);
+		int threatenTime = 0;
+		if(stack.getItem() instanceof HeliosItem) {
+			threatenTime = player.ticksExisted - ((HeliosItem) stack.getItem()).clientThreatenTime;
+		}
 		if(threatenTime > 0 && threatenTime < 45) {
 			GlStateManager.pushMatrix();
 			if(threatenTime > 9) {
@@ -229,8 +246,12 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 		}
 	}
 	
-	public void renderMonsterMagnet(PlayerEntity player, CompoundNBT nbt, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-		int magnetTime = player.ticksExisted - nbt.getInt(ZardItem.MONSTER_MAGNET_TIME_KEY);
+	public void renderMonsterMagnet(PlayerEntity player, ItemStack stack, CompoundNBT nbt, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+		//int magnetTime = player.ticksExisted - nbt.getInt(ZardItem.MONSTER_MAGNET_TIME_KEY);
+		int magnetTime = 0;
+		if(stack.getItem() instanceof ZardItem) {
+			magnetTime = player.ticksExisted - ((ZardItem) stack.getItem()).clientMonsterMagnetTime;
+		}
 		if(magnetTime > 0 && magnetTime < 30) {
 			GlStateManager.pushMatrix();
 			if(magnetTime > 6) {

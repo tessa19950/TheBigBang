@@ -3,6 +3,7 @@ package com.homebrewCult.TheBigBang.items;
 import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.entities.HurricaneArrowEntity;
 
+import com.homebrewCult.TheBigBang.init.ModSounds;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -36,7 +37,6 @@ public class Vaulter2000Item extends BowItem {
 			PlayerEntity playerentity = (PlayerEntity)entityLiving;
 			boolean creative = playerentity.abilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
 			ItemStack itemstack = playerentity.findAmmo(stack);
-			
 			if (!itemstack.isEmpty() || creative) {
 				shootArrow(stack, entityLiving.world, entityLiving, 20, true);
 			}
@@ -91,7 +91,7 @@ public class Vaulter2000Item extends BowItem {
 				worldIn.addEntity(arrow1);
 			}
 
-			worldIn.playSound((PlayerEntity)null, playerentity.posX, playerentity.posY, playerentity.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+			worldIn.playSound((PlayerEntity)null, playerentity.posX, playerentity.posY, playerentity.posZ, ModSounds.HURRICANE_USE, SoundCategory.PLAYERS, 0.8F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 			if (!flag1 && !playerentity.abilities.isCreativeMode && consumeArrow) {
 				itemstack.shrink(1);
 				if (itemstack.isEmpty()) {

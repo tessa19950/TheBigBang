@@ -1,9 +1,81 @@
 {
+	"hyper_body_use":
+	{
+		"category": "item",
+		"subtitle": "item.hyper_body.use",
+		"sounds": ["thebigbang:item/hyper_body_use"]
+	},
+	"monster_magnet_use":
+	{
+		"category": "item",
+		"subtitle": "item.monster_magnet.use",
+		"sounds": ["thebigbang:item/monster_magnet_use"]
+	},
+	"threaten_use":
+	{
+		"category": "item",
+		"subtitle": "item.threaten.use",
+		"sounds": ["thebigbang:item/threaten_use"]
+	},
+	"dragon_crusher_use":
+	{
+		"category": "item",
+		"subtitle": "item.dragon_crusher.use",
+		"sounds": ["thebigbang:item/dragon_crusher_use"]
+	},
+	"claw_use":
+	{
+		"category": "item",
+		"subtitle": "item.claw.use",
+		"sounds": ["thebigbang:item/claw_use"]
+	},
+	"lucky_seven_use":
+	{
+		"category": "item",
+		"subtitle": "item.lucky_seven.use",
+		"sounds": ["thebigbang:item/lucky_seven_use"]
+	},
+	"flash_jump_use":
+	{
+		"category": "item",
+		"subtitle": "item.flash_jump.use",
+		"sounds": ["thebigbang:item/flash_jump_use"]
+	},
+	"steal_use":
+	{
+		"category": "item",
+		"subtitle": "item.steal.use",
+		"sounds": ["thebigbang:item/steal_use"]
+	},
+	"sniping_use":
+	{
+		"category": "item",
+		"subtitle": "item.sniping.use",
+		"sounds": ["thebigbang:item/sniping_use"]
+	},
+	"hurricane_use":
+	{
+		"category": "item",
+		"subtitle": "item.hurricane.use",
+		"sounds": ["thebigbang:item/hurricane_use"]
+	},
 	"magic_claw_use":
 	{
 		"category": "item",
 		"subtitle": "item.magic_claw.use",
 		"sounds": ["thebigbang:item/magic_claw_use"]
+	},
+	"teleport_use":
+	{
+		"category": "item",
+		"subtitle": "item.teleport.use",
+		"sounds": ["thebigbang:item/teleport_use"]
+	},
+	"genesis_use":
+	{
+		"category": "item",
+		"subtitle": "item.genesis.use",
+		"sounds": ["thebigbang:item/genesis_use"]
 	},
 
 	"monster_furnace_lit":
@@ -11,6 +83,31 @@
 		"category": "block",
 		"subtitle": "block.monster_furnace.lit",
 		"sounds": ["thebigbang:block/monster_furnace_noise_1", "thebigbang:block/monster_furnace_noise_2", "thebigbang:block/monster_furnace_noise_3", "thebigbang:block/monster_furnace_noise_4"]
+	},
+
+	"dragon_crusher_stab_spawn":
+	{
+		"category": "entity",
+		"subtitle": "entity.dragon_crusher.spawn",
+		"sounds": ["thebigbang:entity/dragon_crusher_stab_spawn"]
+	},
+	"sniping_arrow_hit":
+	{
+		"category": "entity",
+		"subtitle": "entity.sniping_arrow.hit",
+		"sounds": ["thebigbang:entity/sniping_arrow_hit"]
+	},
+	"hurricane_arrow_hit":
+	{
+		"category": "entity",
+		"subtitle": "entity.hurricane_arrow.hit",
+		"sounds": ["thebigbang:entity/hurricane_arrow_hit"]
+	},
+	"genesis_beam_spawn":
+	{
+		"category": "item",
+		"subtitle": "item.genesis_beam.spawn",
+		"sounds": ["thebigbang:entity/genesis_beam_spawn"]
 	},
 
 	"stump_damage":

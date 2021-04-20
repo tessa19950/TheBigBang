@@ -17,11 +17,13 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -31,15 +33,17 @@ import javax.annotation.Nullable;
 public class DivineAltarTile extends AbstractFurnaceTileEntity {
 
 	public DivineAltarContainer container;
-	private final NonNullList<ItemStack> clientInventory = NonNullList.withSize(3, ItemStack.EMPTY);
+	private final NonNullList<ItemStack> clientInventory;
 	public int timer = 0;
 	
 	public DivineAltarTile() {
-		super(ModBlocks.DIVINE_ALTAR_TILE, ModRecipeTypes.REFINING_RECIPE_TYPE);
+		super(ModBlocks.DIVINE_ALTAR_TILE, ModRecipeTypes.BLESSING_RECIPE);
+		this.clientInventory = NonNullList.withSize(3, ItemStack.EMPTY);
 	}
 	
 	public DivineAltarTile(TileEntityType<?> tileTypeIn, IRecipeType<? extends AbstractCookingRecipe> recipeTypeIn) {
 		super(tileTypeIn, recipeTypeIn);
+		this.clientInventory = NonNullList.withSize(3, ItemStack.EMPTY);
 	}
 
 	public static Map<Item, Integer> getBurnTimes() {		
@@ -112,21 +116,27 @@ public class DivineAltarTile extends AbstractFurnaceTileEntity {
 
 
 	public NonNullList<ItemStack> getClientInventory() {
-		return clientInventory;
+		return items;
 	}
 
 	@Override
 	public void read(CompoundNBT compound) {
-		this.clientInventory.clear();
-		ItemStackHelper.loadAllItems(compound, this.clientInventory);
 		super.read(compound);
+		this.items.clear();
+		ItemStackHelper.loadAllItems(compound, this.items);
 	}
 
 	@Override
 	public CompoundNBT write(CompoundNBT compound) {
-		CompoundNBT nbt = super.write(compound);
-		this.writeItems(nbt);
-		return nbt;
+		this.writeItems(compound);
+		return compound;
+
+	}
+
+	private CompoundNBT writeItems(CompoundNBT compound) {
+		super.write(compound);
+		ItemStackHelper.saveAllItems(compound, this.items, true);
+		return compound;
 	}
 
 	@Override
@@ -136,18 +146,24 @@ public class DivineAltarTile extends AbstractFurnaceTileEntity {
 		return nbt;
 	}
 
+	@Override
+	public void handleUpdateTag(CompoundNBT tag) {
+		this.items.clear();
+		ItemStackHelper.loadAllItems(tag, this.items);
+		super.handleUpdateTag(tag);
+	}
+
 	@Nullable
 	@Override
 	public SUpdateTileEntityPacket getUpdatePacket() {
-		return new SUpdateTileEntityPacket(this.pos, 13, this.getUpdateTag());
+		return new SUpdateTileEntityPacket(this.pos, 0, getUpdateTag());
 	}
 
-	private CompoundNBT writeItems(CompoundNBT compound) {
-		super.write(compound);
-		ItemStackHelper.saveAllItems(compound, this.items, true);
-		return compound;
+	@Override
+	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+		this.handleUpdateTag(pkt.getNbtCompound());
 	}
-	
+
 	@Override
 	protected ITextComponent getDefaultName() {
 		return new StringTextComponent("Divine Altar");

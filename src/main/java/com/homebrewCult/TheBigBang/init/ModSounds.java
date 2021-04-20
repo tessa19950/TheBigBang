@@ -2,6 +2,7 @@ package com.homebrewCult.TheBigBang.init;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
 
+import net.minecraft.client.audio.Sound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -52,8 +53,28 @@ public class ModSounds {
 	public static final SoundEvent ICE_DRAKE_DAMAGE = null;
 	public static final SoundEvent ICE_DRAKE_DIE = null;
 	public static final SoundEvent ICE_DRAKE_AMBIENT = null;
-	
+
+	public static final SoundEvent SPELL_CHARGING = null;
+	public static final SoundEvent SPELL_CHARGED = null;
+
+	public static final SoundEvent HYPER_BODY_USE = null;
+	public static final SoundEvent MONSTER_MAGNET_USE = null;
+	public static final SoundEvent THREATEN_USE = null;
+	public static final SoundEvent DRAGON_CRUSHER_USE = null;
+	public static final SoundEvent DRAGON_CRUSHER_STAB_SPAWN = null;
+	public static final SoundEvent CLAW_USE = null;
+	public static final SoundEvent LUCKY_SEVEN_USE = null;
+	public static final SoundEvent FLASH_JUMP_USE = null;
+	public static final SoundEvent STEAL_USE = null;
+	public static final SoundEvent SNIPING_USE = null;
+	public static final SoundEvent SNIPING_ARROW_HIT = null;
+	public static final SoundEvent HURRICANE_USE = null;
+	public static final SoundEvent HURRICANE_ARROW_HIT = null;
 	public static final SoundEvent MAGIC_CLAW_USE = null;
+	public static final SoundEvent TELEPORT_USE = null;
+	public static final SoundEvent GENESIS_USE = null;
+	public static final SoundEvent GENESIS_BEAM_SPAWN = null;
+
 	public static final SoundEvent MONSTER_FURNACE_LIT = null;
 	
 	public static final SoundEvent RECORD_AMORIA = registerSound("record.amoria");
@@ -86,8 +107,25 @@ public class ModSounds {
 		
 		//Register Single Sounds for other things
 		event.getRegistry().registerAll(
+				registerSound("hyper_body_use"),
+				registerSound("monster_magnet_use"),
+				registerSound("threaten_use"),
+				registerSound("dragon_crusher_use"),
+				registerSound("dragon_crusher_stab_spawn"),
+				registerSound("claw_use"),
+				registerSound("lucky_seven_use"),
+				registerSound("flash_jump_use"),
+				registerSound("steal_use"),
 				registerSound("magic_claw_use"),
+				registerSound("teleport_use"),
+				registerSound("genesis_use"),
+				registerSound("genesis_beam_spawn"),
+				registerSound("hurricane_use"),
+				registerSound("hurricane_arrow_hit"),
+				registerSound("sniping_use"),
+				registerSound("sniping_arrow_hit"),
 				registerSound("monster_furnace_lit"),
+
 				RECORD_AMORIA, RECORD_AQUA, RECORD_ARIANT, RECORD_DILLEKE, RECORD_ELLINIA, RECORD_HARBOR, RECORD_HENESYS, 
 				RECORD_KERNING, RECORD_LUDIBRIUM, RECORD_OMEGA, RECORD_ORBIS, RECORD_PERION, RECORD_RAINDROP, RECORD_SQUARE
 		);

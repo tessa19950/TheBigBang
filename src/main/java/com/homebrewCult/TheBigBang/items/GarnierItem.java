@@ -3,6 +3,7 @@ package com.homebrewCult.TheBigBang.items;
 import java.util.function.Predicate;
 import com.homebrewCult.TheBigBang.entities.ThrowingStarEntity;
 import com.homebrewCult.TheBigBang.init.ModItems;
+import com.homebrewCult.TheBigBang.init.ModSounds;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -10,11 +11,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.*;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public class GarnierItem extends ShootableItem {
@@ -35,6 +32,8 @@ public class GarnierItem extends ShootableItem {
 			PlayerEntity playerentity = (PlayerEntity)entityLiving;
 			boolean isInfinite = playerentity.abilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
 			ItemStack ammostack = playerentity.findAmmo(stack);
+			if(ammostack.getItem() == Items.ARROW)
+				ammostack = new ItemStack(ModItems.STEELY);
 
 			int i = this.getUseDuration(stack) - timeLeft;
 			i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, playerentity, i, !ammostack.isEmpty() || isInfinite);
@@ -70,7 +69,9 @@ public class GarnierItem extends ShootableItem {
 					if (isInfinite) {
 						throwingStarEntity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
 					}
-	          
+
+					float pitch = 0.9F + worldIn.rand.nextFloat() * 0.2F;
+					worldIn.playSound(null, entityLiving.getPosition(), getThrowSound(), SoundCategory.PLAYERS, 1, pitch);
 					worldIn.addEntity(throwingStarEntity);
 				}
 				worldIn.playSound((PlayerEntity)null, playerentity.posX, playerentity.posY, playerentity.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + 1 * 0.5F);
@@ -111,6 +112,10 @@ public class GarnierItem extends ShootableItem {
 			f = 1f;
 		}
 		return f;
+	}
+
+	public SoundEvent getThrowSound() {
+		return ModSounds.CLAW_USE;
 	}
 
 	@Override

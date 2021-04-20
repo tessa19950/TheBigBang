@@ -3,11 +3,14 @@ package com.homebrewCult.TheBigBang.entities;
 import com.homebrewCult.TheBigBang.init.ModEntities;
 import com.homebrewCult.TheBigBang.init.ModParticleTypes;
 
+import com.homebrewCult.TheBigBang.init.ModSounds;
+import com.homebrewCult.TheBigBang.util.MathUtility;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -28,6 +31,7 @@ public class GenesisBeamEntity extends Entity {
 	@Override
 	public void onAddedToWorld() {
 		this.world.addParticle(ModParticleTypes.HOLY_CIRCLE.get(), this.posX, this.posY + 7.1f, this.posZ, 0, -0.04f, 0);
+		world.playSound(null, posX, posY, posZ, ModSounds.GENESIS_BEAM_SPAWN, SoundCategory.PLAYERS, 2, 1 + (MathUtility.floatInRange(world.rand, -0.2f, 0.2f)));
 		super.onAddedToWorld();
 	}
 

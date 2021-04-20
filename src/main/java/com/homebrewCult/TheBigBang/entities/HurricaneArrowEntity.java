@@ -10,6 +10,7 @@ import javax.vecmath.Vector3d;
 import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.init.ModEntities;
 
+import com.homebrewCult.TheBigBang.init.ModSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.Quaternion;
 import net.minecraft.entity.Entity;
@@ -28,6 +29,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.EntityPredicates;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
@@ -201,7 +203,12 @@ public class HurricaneArrowEntity extends AbstractArrowEntity {
 	
 	@Override
 	protected void onHit(RayTraceResult raytraceResultIn) {
-		super.onHit(raytraceResultIn);	
+		RayTraceResult.Type raytraceresult$type = raytraceResultIn.getType();
+		if (raytraceresult$type == RayTraceResult.Type.ENTITY) {
+			float pitch = 0.9F + world.rand.nextFloat() * 0.2F;
+			world.playSound(null, getPosition(), ModSounds.SNIPING_ARROW_HIT, SoundCategory.PLAYERS, 1, pitch);
+		}
+		super.onHit(raytraceResultIn);
 	}
 
 	@Override

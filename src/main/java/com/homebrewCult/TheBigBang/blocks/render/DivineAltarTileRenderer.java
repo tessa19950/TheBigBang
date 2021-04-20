@@ -26,6 +26,7 @@ public class DivineAltarTileRenderer<T extends DivineAltarTile> extends TileEnti
     @Override
     public void render(DivineAltarTile tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
         ItemStack stack = tileEntityIn.getClientInventory().get(0);
+        //TheBigBang.LOGGER.debug("Trying to render " + stack.getItem().getDisplayName(stack).getFormattedText());
         if(tileEntityIn.getBlockState().get(AbstractFurnaceBlock.LIT)) {
             GlStateManager.pushMatrix();
             float time = Objects.requireNonNull(tileEntityIn.getWorld()).getGameTime() + partialTicks;

@@ -41,24 +41,24 @@ import net.minecraftforge.registries.ObjectHolder;
 @ObjectHolder(TheBigBang.MODID)
 public class ModItems {	
 	public static final Item ADAMANTIUM_ORE = new BlockItem(ModBlocks.ADAMANTIUM_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ADAMANTIUM_ORE.getRegistryName());
-	public static final Item DORMANT_ADAMANTIUM_INGOT = registerMiscItem("dormant_adamantium_ingot");
-	public static final Item BLESSED_ADAMANTIUM_INGOT = registerMiscItem("blessed_adamantium_ingot");
-	public static final Item ADAMANTIUM_NUGGET = registerMiscItem("adamantium_nugget"); 	
 	public static final Item ADAMANTIUM = registerMiscItem("adamantium");
+	public static final Item ADAMANTIUM_NUGGET = registerMiscItem("adamantium_nugget");
+	public static final Item DORMANT_ADAMANTIUM_INGOT = registerDivineItem("dormant_adamantium_ingot", false);
+	public static final Item BLESSED_ADAMANTIUM_INGOT = registerDivineItem("blessed_adamantium_ingot", true);
 	public static final Item MITHRIL_ORE = new BlockItem(ModBlocks.MITHRIL_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.MITHRIL_ORE.getRegistryName());
 	public static final Item MITHRIL = 	registerMiscItem("mithril");
-	public static final Item DORMANT_MITHRIL_INGOT = registerMiscItem("dormant_mithril_ingot");
-	public static final Item BLESSED_MITHRIL_INGOT = registerMiscItem("blessed_mithril_ingot");
 	public static final Item MITHRIL_NUGGET = registerMiscItem("mithril_nugget");
+	public static final Item DORMANT_MITHRIL_INGOT = registerDivineItem("dormant_mithril_ingot", false);
+	public static final Item BLESSED_MITHRIL_INGOT = registerDivineItem("blessed_mithril_ingot", true);
 	public static final Item ORIHALCON_ORE = new BlockItem(ModBlocks.ORIHALCON_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ORIHALCON_ORE.getRegistryName());
 	public static final Item ORIHALCON = registerMiscItem("orihalcon");
-	public static final Item DORMANT_ORIHALCON_INGOT = registerMiscItem("dormant_orihalcon_ingot");
-	public static final Item BLESSED_ORIHALCON_INGOT = registerMiscItem("blessed_orihalcon_ingot");
 	public static final Item ORIHALCON_NUGGET = registerMiscItem("orihalcon_nugget");
+	public static final Item DORMANT_ORIHALCON_INGOT = registerDivineItem("dormant_orihalcon_ingot", false);
+	public static final Item BLESSED_ORIHALCON_INGOT = registerDivineItem("blessed_orihalcon_ingot", true);
 	public static final Item BLESSED_GOLD_INGOT = registerMiscItem("blessed_gold_ingot");
 	
 	public static final Item DANGER_SIGN = null;
-	public static final Item DEVINE_ALTAR = null;
+	public static final Item DIVINE_ALTAR = null;
 	public static final Item GOLEM_STONE = new BlockItem(ModBlocks.GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GOLEM_STONE.getRegistryName());
 	public static final Item DARK_GOLEM_STONE = new BlockItem(ModBlocks.DARK_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.DARK_GOLEM_STONE.getRegistryName());
 	public static final Item GRASSY_GOLEM_STONE = new BlockItem(ModBlocks.GRASSY_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GRASSY_GOLEM_STONE.getRegistryName());
@@ -99,10 +99,10 @@ public class ModItems {
 	public static final Item PIECE_OF_ICE = registerMiscItem("piece_of_ice");
 	public static final Item BLUE_SLIME_BALL = registerMiscItem("blue_slime_ball", false);
 
-	public static final Item DORMANT_MAGIC_ROCK = registerMiscItem("dormant_magic_rock");
-	public static final Item DORMANT_SUMMONING_ROCK = registerMiscItem("dormant_summoning_rock");
-	public static final Item BLESSED_MAGIC_ROCK = registerMiscItem("blessed_magic_rock");
-	public static final Item BLESSED_SUMMONING_ROCK = registerMiscItem("blessed_summoning_rock");
+	public static final Item DORMANT_MAGIC_ROCK = registerDivineItem("dormant_magic_rock", false);
+	public static final Item BLESSED_MAGIC_ROCK = registerDivineItem("blessed_magic_rock", true);
+	public static final Item DORMANT_SUMMONING_ROCK = registerDivineItem("dormant_summoning_rock", false);
+	public static final Item BLESSED_SUMMONING_ROCK = registerDivineItem("blessed_summoning_rock", true);
 
 	public static final Item COOKED_OCTOPUS_LEG = registerFoodItem("cooked_octopus_leg", ModFoods.COOKED_OCTOPUS_LEG);
 	public static final Item COOKED_MUSHROOM_CAP = registerFoodItem("cooked_mushroom_cap", ModFoods.COOKED_MUSHROOM_CAP);
@@ -446,7 +446,7 @@ public class ModItems {
 		ModItems.GOLDWIND_HELMET, ModItems.GOLDWIND_CHESTPLATE, ModItems.GOLDWIND_LEGGINGS, ModItems.GOLDWIND_BOOTS
 		);
 	}
-	
+
 	public static Item registerMiscItem(String name) {
 		return registerMiscItem(name, true);
 	}
@@ -456,6 +456,14 @@ public class ModItems {
 			return new Item(new Item.Properties().group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, name);
 		} else {
 			return new Item(new Item.Properties()).setRegistryName(TheBigBang.MODID, name);
+		}
+	}
+
+	public static Item registerDivineItem(String name, boolean isBlessed) {
+		if(isBlessed) {
+			return new BlessedItem(new Item.Properties().group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, name);
+		} else {
+			return new DormantItem(new Item.Properties().group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, name);
 		}
 	}
 	
