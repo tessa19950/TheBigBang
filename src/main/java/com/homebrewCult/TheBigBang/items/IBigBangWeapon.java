@@ -71,6 +71,8 @@ public interface IBigBangWeapon {
         if(chargeTime == getChargeDuration()) {
             float pitch = 0.9F + worldIn.rand.nextFloat() * 0.2F;
             worldIn.playSound((PlayerEntity) entityLiving, entityLiving.getPosition(), getChargedSound(), SoundCategory.PLAYERS, 0.5F, pitch);
+            if(getChargedParticle() == null)
+                return;
             for(int i = 0; i < 16; ++i) {
                 for(int j = 0; j < 8; ++j) {
                     double x = Math.cos((float) Math.PI * 2F / 16F * (float) i) * 1.2F;
@@ -83,7 +85,7 @@ public interface IBigBangWeapon {
                     worldIn.addParticle(this.getChargedParticle(), x1, y1, z1, vec.x * 0.1F, vec.y * 0.03F, vec.z * 0.1F);
                 }
             }
-        } else {
+        } else if (this.getChargingParticle() != null) {
             double t = chargeTime + entityLiving.ticksExisted;
             double y = Math.sin(t * 0.05D) * 0.5D;
             double y1 = entityLiving.posY + 1.5D + y;
@@ -142,6 +144,10 @@ public interface IBigBangWeapon {
     SoundEvent getChargedSound();
 
     default Entity getBestTargetInCone(ItemStack stack, World worldIn, LivingEntity entityLiving, int spellRange, double angleThreshold) {
+        return getBestTargetInCone(stack, worldIn, entityLiving, spellRange, angleThreshold, false);
+    }
+
+    default Entity getBestTargetInCone(ItemStack stack, World worldIn, LivingEntity entityLiving, int spellRange, double angleThreshold, boolean requireLineOfSight) {
         AxisAlignedBB AABB = new AxisAlignedBB(entityLiving.getPosition().add(-spellRange, -spellRange, -spellRange), entityLiving.getPosition().add(spellRange, spellRange, spellRange));
         List<Entity> targets = new ArrayList<Entity>();
         targets.addAll(worldIn.getEntitiesWithinAABB(MobEntity.class, AABB, (entityIn) -> {
@@ -155,7 +161,8 @@ public interface IBigBangWeapon {
             double tDis = entityLiving.getPositionVec().distanceTo(t.getPositionVec());
             Vec3d tDir = t.getPositionVec().subtract(entityLiving.getPositionVec()).normalize();
             double tAngle = Math.acos(entityLiving.getLookVec().dotProduct(tDir)) / Math.PI * 180;
-            if (tAngle < bestDis && tDis < bestAngle) {
+            boolean lineOfSight = !requireLineOfSight || entityLiving.canEntityBeSeen(t);
+            if (tAngle < bestDis && tDis < bestAngle && lineOfSight) {
                 bestTarget = t;
                 bestDis = tDis;
                 bestAngle = tAngle;
@@ -165,6 +172,10 @@ public interface IBigBangWeapon {
     }
 
     default List<Entity> getTargetsInCone(ItemStack stack, World worldIn, LivingEntity entityLiving, int spellRange, double angleThreshold, int maxTargetCount) {
+        return getTargetsInCone(stack, worldIn, entityLiving, spellRange, angleThreshold, maxTargetCount, false);
+    }
+
+    default List<Entity> getTargetsInCone(ItemStack stack, World worldIn, LivingEntity entityLiving, int spellRange, double angleThreshold, int maxTargetCount, boolean requireLineOfSight) {
         AxisAlignedBB AABB = new AxisAlignedBB(entityLiving.getPosition().add(-spellRange, -spellRange, -spellRange), entityLiving.getPosition().add(spellRange, spellRange, spellRange));
         List<Entity> targets = new ArrayList<Entity>();
         targets.addAll(worldIn.getEntitiesWithinAABB(MobEntity.class, AABB, (entityIn) -> {

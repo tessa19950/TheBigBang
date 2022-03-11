@@ -76,11 +76,16 @@ public class ModEntities {
 	new HurricaneArrowEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "hurricane_arrow").setRegistryName(TheBigBang.MODID, "hurricane_arrow");
 	public static final EntityType<DragonCrusherStabEntity> DRAGON_CRUSHER_STAB = (EntityType<DragonCrusherStabEntity>) EntityType.Builder.create(DragonCrusherStabEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
 	new DragonCrusherStabEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "dragon_crusher_stab").setRegistryName(TheBigBang.MODID, "dragon_crusher_stab");
+	public static final EntityType<StealEntity> STEAL = (EntityType<StealEntity>) EntityType.Builder.create(StealEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
+	new StealEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "steal").setRegistryName(TheBigBang.MODID, "steal");
+
+	public static final EntityType<ManaRockEntity> MANA_ROCK = (EntityType<ManaRockEntity>) EntityType.Builder.create(ManaRockEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
+	new ManaRockEntity(world)).size(0.6f, 1.6f).build(TheBigBang.MODID + "mana_rock").setRegistryName(TheBigBang.MODID, "mana_rock");
 	
 	@SubscribeEvent
 	public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {	
 		event.getRegistry().registerAll (
-				HURRICANE_ARROW, BOMB_ARROW, SNIPING_ARROW, GENESIS_BEAM, SUBI, TOBI, STEELY, ILBI, DRAGON_CRUSHER_STAB,
+				HURRICANE_ARROW, BOMB_ARROW, SNIPING_ARROW, GENESIS_BEAM, SUBI, TOBI, STEELY, ILBI, DRAGON_CRUSHER_STAB, STEAL, MANA_ROCK,
 				STUMP_ENTITY, DARK_STUMP_ENTITY, AXE_STUMP_ENTITY, DARK_AXE_STUMP_ENTITY, OCTOPUS_ENTITY, EVIL_EYE_ENTITY, CURSE_EYE_ENTITY, COLD_EYE_ENTITY, BUBBLING_ENTITY, GREEN_BUBBLING_ENTITY,
 				ORANGE_MUSHROOM_ENTITY, BLUE_MUSHROOM_ENTITY, ZOMBIE_MUSHROOM_ENTITY, JRYETI_ENTITY, DARK_JRYETI_ENTITY, GREEN_SNAIL_ENTITY, BLUE_SNAIL_ENTITY, RED_SNAIL_ENTITY, 
 				RIBBON_PIG_ENTITY, STONE_GOLEM_ENTITY, DARK_STONE_GOLEM_ENTITY, MIXED_GOLEM_ENTITY, ICE_GOLEM_ENTITY, FIRE_GOLEM_ENTITY,
@@ -163,6 +168,8 @@ public class ModEntities {
 		RenderingRegistry.registerEntityRenderingHandler(SnipingArrowEntity.class, new SnipingArrowRenderer.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(HurricaneArrowEntity.class, new HurricaneArrowRenderer.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(DragonCrusherStabEntity.class, new DragonCrusherStabRenderer.RenderFactory());
+		RenderingRegistry.registerEntityRenderingHandler(StealEntity.class, new StealRenderer.RenderFactory());
+		RenderingRegistry.registerEntityRenderingHandler(ManaRockEntity.class, new ManaRockRenderer.RenderFactory());
 	}
 	
 	@SubscribeEvent
@@ -200,7 +207,8 @@ public class ModEntities {
 				registerEntitySpawnEgg(YETI_ENTITY, 0xFEFEFC, 0xD7A583, "yeti_spawn_egg"),
 				registerEntitySpawnEgg(DARK_YETI_ENTITY, 0x968574, 0xD7A583, "dark_yeti_spawn_egg"),
 				registerEntitySpawnEgg(PEPE_ENTITY, 0x112233, 0xFFFFFF, "pepe_spawn_egg"),
-				registerEntitySpawnEgg(DARK_PEPE_ENTITY, 0x4477DD, 0xFFFFFF, "dark_pepe_spawn_egg")
+				registerEntitySpawnEgg(DARK_PEPE_ENTITY, 0x4477DD, 0xFFFFFF, "dark_pepe_spawn_egg"),
+				registerEntitySpawnEgg(MANA_ROCK, 0xFFFFFF, 0xFFFFFF, "mana_rock")
 		);
 	}
 	

@@ -18,23 +18,23 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModWorldGen {
 	
-	public static final ImmutableList<Biome> plateauBiomes = 
+	public static final ImmutableList<Biome> GRASSY_DANGER_SIGN_BIOMES =
 	ImmutableList.of(Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.DARK_FOREST, Biomes.DARK_FOREST_HILLS, Biomes.FLOWER_FOREST, Biomes.FOREST,
 	Biomes.GIANT_SPRUCE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.JUNGLE, Biomes.JUNGLE_EDGE, Biomes.JUNGLE_HILLS, Biomes.PLAINS,
 	Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.SHATTERED_SAVANNA, Biomes.SHATTERED_SAVANNA_PLATEAU, Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA_HILLS, Biomes.SNOWY_TUNDRA, 
 	Biomes.SUNFLOWER_PLAINS, Biomes.SWAMP, Biomes.SWAMP_HILLS, Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.TALL_BIRCH_FOREST, Biomes.TALL_BIRCH_HILLS);
 	
-	public static final ImmutableList<Biome> stoneBiomes = 
+	public static final ImmutableList<Biome> STONE_DANGER_SIGN_BIOMES =
 	ImmutableList.of(Biomes.GRAVELLY_MOUNTAINS, Biomes.MODIFIED_GRAVELLY_MOUNTAINS, Biomes.MOUNTAIN_EDGE, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS,
 	Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.TAIGA_MOUNTAINS, Biomes.WOODED_MOUNTAINS);
 	
-	public static final ImmutableList<Biome> desertBiomes =
+	public static final ImmutableList<Biome> SANDY_DANGER_SIGN_BIOMES =
 	ImmutableList.of(Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.DESERT_LAKES);
 	
-	public static final ImmutableList<Biome> iceBiomes =
+	public static final ImmutableList<Biome> ICY_DANGER_SIGN_BIOMES =
 	ImmutableList.of(Biomes.ICE_SPIKES, Biomes.SNOWY_BEACH, Biomes.DEEP_FROZEN_OCEAN, Biomes.FROZEN_OCEAN, Biomes.FROZEN_RIVER);
 	
-	public static final ImmutableList<Biome> caveBiomes =
+	public static final ImmutableList<Biome> CAVE_DANGER_SIGN_BIOMES =
 	ImmutableList.of(Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS, Biomes.DARK_FOREST, Biomes.DARK_FOREST_HILLS, Biomes.FLOWER_FOREST, Biomes.FOREST,
 	Biomes.GIANT_SPRUCE_TAIGA, Biomes.GIANT_SPRUCE_TAIGA_HILLS, Biomes.GIANT_TREE_TAIGA, Biomes.GIANT_TREE_TAIGA_HILLS, Biomes.JUNGLE, Biomes.JUNGLE_EDGE, Biomes.JUNGLE_HILLS, Biomes.PLAINS,
 	Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.SHATTERED_SAVANNA, Biomes.SHATTERED_SAVANNA_PLATEAU, Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA_HILLS, Biomes.SNOWY_TUNDRA, 
@@ -57,31 +57,31 @@ public class ModWorldGen {
 		} 
 		
 		//Add Cave Sign Structures
-		for(Biome biome : caveBiomes) {
+		for(Biome biome : CAVE_DANGER_SIGN_BIOMES) {
 			biome.addFeature(Decoration.UNDERGROUND_DECORATION, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_CAVE, IFeatureConfig.NO_FEATURE_CONFIG, 
 			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(2)));
 		}
 		
 		//Place Plateau Sign Structures
-		for(Biome biome : plateauBiomes) {
+		for(Biome biome : GRASSY_DANGER_SIGN_BIOMES) {
 			biome.addFeature(Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_PLATEAU, IFeatureConfig.NO_FEATURE_CONFIG, 
 			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(16))); //196
 		}
 		
 		//Place Stone Sign Structures
-		for(Biome biome : stoneBiomes) {
+		for(Biome biome : STONE_DANGER_SIGN_BIOMES) {
 			biome.addFeature(Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_STONE, IFeatureConfig.NO_FEATURE_CONFIG, 
 			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(16))); //196
 		}
 		
 		//Place Desert Sign Structures
-		for(Biome biome : desertBiomes) {
+		for(Biome biome : SANDY_DANGER_SIGN_BIOMES) {
 			biome.addFeature(Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_DESERT, IFeatureConfig.NO_FEATURE_CONFIG, 
 			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(16))); //196
 		}
 		
 		//Place Ice Sign Structures
-		for(Biome biome : iceBiomes) {
+		for(Biome biome : ICY_DANGER_SIGN_BIOMES) {
 			biome.addFeature(Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_ICE, IFeatureConfig.NO_FEATURE_CONFIG, 
 			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(16))); //196
 		}

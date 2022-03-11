@@ -101,8 +101,6 @@ public class SnipingArrowEntity extends AbstractArrowEntity {
 					Vec3d vec = new Vec3d(x, y, 0).mul(radius, radius, radius);
 					vec = vec.rotatePitch(-shooter.getPitch(1) * (float) Math.PI / 180).rotateYaw(-shooter.getYaw(1) * (float) Math.PI / 180);
 
-
-
 					double forwardSpeed = 0.2D;
 					double radialSpeed = 0.5D;
 					Vec3d motion = this.getMotion();

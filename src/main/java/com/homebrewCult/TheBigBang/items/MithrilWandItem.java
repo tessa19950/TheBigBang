@@ -22,9 +22,7 @@ public class MithrilWandItem extends TieredItem implements IBigBangWeapon {
 	private static final int SPELL_RANGE = 24;
 	private static final double SPELL_ANGLE_THRESHOLD = 30;
 	
-	public MithrilWandItem(IItemTier tierIn, Item.Properties builder) {
-		super(tierIn, builder);
-	}
+	public MithrilWandItem(IItemTier tierIn, Item.Properties builder) { super(tierIn, builder); }
 
 	@Override
 	public void onUsingTick(ItemStack stack, LivingEntity player, int timeLeft) {

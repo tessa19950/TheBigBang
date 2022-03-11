@@ -42,13 +42,9 @@ public class DangerSignBlock extends ContainerBlock {
 	
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		switch (state.get(FACING)) {
-        case WEST:
-            return SHAPE_HORIZONTAL;
-        case EAST: 
-            return SHAPE_HORIZONTAL;
-        case SOUTH: 
-            return SHAPE_VERTICAL;
-        default: case NORTH: 
+        	case WEST: case EAST:
+				return SHAPE_HORIZONTAL;
+			default: case NORTH:
             return SHAPE_VERTICAL;
 	    }
 	}

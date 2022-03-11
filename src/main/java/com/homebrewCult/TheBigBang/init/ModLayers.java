@@ -35,7 +35,9 @@ public class ModLayers {
 		event.addSprite(BigBangPlayerLayer.GENESIS_ANGEL_0_TEXTURE_LOCATION);
 		event.addSprite(BigBangPlayerLayer.GENESIS_ANGEL_1_TEXTURE_LOCATION);
 		event.addSprite(BigBangPlayerLayer.HURRICANE_TEXTURE_LOCATION);
+		event.addSprite(BigBangPlayerLayer.TELEPORT_TEXTURE_LOCATION);
 		event.addSprite(YetiSaddleLayer.YETI_SADDLE_TEXTURE);
+
 	}
 	
 }

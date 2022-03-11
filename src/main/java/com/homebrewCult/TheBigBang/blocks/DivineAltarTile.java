@@ -1,13 +1,18 @@
 package com.homebrewCult.TheBigBang.blocks;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import com.google.common.collect.Maps;
 import com.homebrewCult.TheBigBang.TheBigBang;
+import com.homebrewCult.TheBigBang.entities.ManaRockEntity;
 import com.homebrewCult.TheBigBang.init.ModBlocks;
 import com.homebrewCult.TheBigBang.init.ModItems;
 import com.homebrewCult.TheBigBang.init.ModRecipeTypes;
 import com.homebrewCult.TheBigBang.inventory.DivineAltarContainer;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
@@ -34,6 +39,7 @@ public class DivineAltarTile extends AbstractFurnaceTileEntity {
 
 	public DivineAltarContainer container;
 	private final NonNullList<ItemStack> clientInventory;
+	private final List<Entity> clientManaRocks = new ArrayList<>();
 	public int timer = 0;
 	
 	public DivineAltarTile() {
@@ -45,6 +51,8 @@ public class DivineAltarTile extends AbstractFurnaceTileEntity {
 		super(tileTypeIn, recipeTypeIn);
 		this.clientInventory = NonNullList.withSize(3, ItemStack.EMPTY);
 	}
+
+	public List<Entity> getClientManaRocks() { return clientManaRocks; };
 
 	public static Map<Item, Integer> getBurnTimes() {		
 		Map<Item, Integer> map = Maps.newLinkedHashMap();
@@ -93,6 +101,21 @@ public class DivineAltarTile extends AbstractFurnaceTileEntity {
 	@Override
 	public void tick() {
 		super.tick();
+		if(world instanceof ClientWorld) {
+			boolean update = (int)Math.floor(timer + (pos.getX() + pos.getY() + pos.getZ()) * 100) % 100 == 1;
+			if (update && world.isAreaLoaded(pos, DivineAltarBlock.MANA_ROCK_RADIUS)) {
+				DivineAltarBlock.updateManaRocks(world.getBlockState(pos), world, pos);
+
+			}
+		}
+		timer++;
+	}
+
+	protected int func_214005_h() {
+		int manaRockCount = this.getBlockState().get(DivineAltarBlock.MANA_ROCK_COUNT);
+		int cookTime = this.world.getRecipeManager().getRecipe((IRecipeType<AbstractCookingRecipe>)this.recipeType, this, this.world)
+				.map(AbstractCookingRecipe::getCookTime).orElse(200);
+		return (int)Math.floor((float)cookTime / 4.0F * (4 - manaRockCount));
 	}
 
 	private static void addItemBurnTime(Map<Item, Integer> map, IItemProvider itemProvider, int burnTimeIn) {
@@ -105,7 +128,7 @@ public class DivineAltarTile extends AbstractFurnaceTileEntity {
 		} else {
 			Item item = stack.getItem();
 			int ret = stack.getBurnTime();
-			return (ForgeEventFactory.getItemBurnTime(stack, ret == -1 ? getBurnTimes().getOrDefault(item, 0) : ret));
+			return ForgeEventFactory.getItemBurnTime(stack, ret == -1 ? getBurnTimes().getOrDefault(item, 0) : ret);
 		}
 	}
 	
@@ -113,7 +136,6 @@ public class DivineAltarTile extends AbstractFurnaceTileEntity {
 		int ret = stack.getBurnTime();
 		return (ForgeEventFactory.getItemBurnTime(stack, ret == -1 ? getBurnTimes().getOrDefault(stack.getItem(), 0) : ret)) > 0;
 	}
-
 
 	public NonNullList<ItemStack> getClientInventory() {
 		return items;

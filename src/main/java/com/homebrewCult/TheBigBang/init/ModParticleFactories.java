@@ -18,13 +18,17 @@ public class ModParticleFactories {
 	@SubscribeEvent
 	public static void registerParticleFactories(final ParticleFactoryRegisterEvent event) {
 		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.ITEM_BLUE_SLIME.get(), BlueSlimeParticle.BlueSlimeFactory::new);
-		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.MAGIC_CLAW_LEFT.get(), sprite -> new MagicClawParticle.MagicClawFactory(sprite));
-		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.MAGIC_CLAW_RIGHT.get(), sprite -> new MagicClawParticle.MagicClawFactory(sprite));
-		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.HOLY_HEXAGRAM.get(), sprite -> new HolyHexagramParticle.HolyHexagramFactory(sprite));
-		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.HOLY_CIRCLE.get(), sprite -> new HolyCircleParticle.HolyCircleFactory(sprite));
-		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.SYMBOL_BLUE.get(), sprite -> new SymbolParticle.SymbolFactory(sprite));
-		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.SYMBOL_GOLD.get(), sprite -> new SymbolParticle.SymbolFactory(sprite));
-		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.GLOWLEAF_BLUE.get(), sprite -> new GlowleafParticle.GlowleafFactory(sprite));
-		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.GLOWLEAF_GOLD.get(), sprite -> new GlowleafParticle.GlowleafFactory(sprite));
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.MAGIC_CLAW_LEFT.get(), MagicClawParticle.MagicClawFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.MAGIC_CLAW_RIGHT.get(), MagicClawParticle.MagicClawFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.HOLY_HEXAGRAM.get(), HolyHexagramParticle.HolyHexagramFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.HOLY_CIRCLE.get(), HolyCircleParticle.HolyCircleFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.SYMBOL_BLUE.get(), SymbolParticle.SymbolFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.SYMBOL_GOLD.get(), SymbolParticle.SymbolFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.GLOWLEAF_BLUE.get(), GlowleafParticle.GlowleafFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.GLOWLEAF_GOLD.get(), GlowleafParticle.GlowleafFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.FLASH_JUMP_SYMBOLS.get(), FlashJumpParticle.FlashJumpFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.FLASH_JUMP_RINGS.get(), FlashJumpParticle.FlashJumpFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.FLASH_JUMP_DASHES.get(), FlashJumpParticle.FlashJumpFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.TELEPORT_LINE.get(), TeleportLineParticle.TeleportLineFactory::new);
 	}
 }

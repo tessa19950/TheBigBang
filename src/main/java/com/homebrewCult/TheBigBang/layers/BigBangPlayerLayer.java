@@ -1,12 +1,9 @@
 package com.homebrewCult.TheBigBang.layers;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
+import com.homebrewCult.TheBigBang.entities.model.StealModel;
 import com.homebrewCult.TheBigBang.init.ModItems;
-import com.homebrewCult.TheBigBang.items.HeliosItem;
-import com.homebrewCult.TheBigBang.items.LamaStaffItem;
-import com.homebrewCult.TheBigBang.items.OmegaSpearItem;
-import com.homebrewCult.TheBigBang.items.ScorpioItem;
-import com.homebrewCult.TheBigBang.items.ZardItem;
+import com.homebrewCult.TheBigBang.items.*;
 import com.mojang.blaze3d.platform.GLX;
 import com.mojang.blaze3d.platform.GlStateManager;
 
@@ -15,6 +12,7 @@ import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ParticleTypes;
@@ -43,6 +41,7 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 	public static final ResourceLocation MONSTER_MAGNET_4_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/monster_magnet_4.png");
 	public static final ResourceLocation MONSTER_MAGNET_5_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/monster_magnet_5.png");
 	public static final ResourceLocation MONSTER_MAGNET_6_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/monster_magnet_6.png");
+	public static final ResourceLocation TELEPORT_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/teleport.png");
 	
 	private static final HyperBodyLayerModel HYPER_BODY_MODEL = new HyperBodyLayerModel();
 	private static final GenesisLayerModel GENESIS_MODEL = new GenesisLayerModel();
@@ -50,6 +49,7 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 	private static final DragonCrusherLayerModel DRAGON_CRUSHER_MODEL = new DragonCrusherLayerModel();
 	private static final ThreatenLayerModel THREATEN_MODEL = new ThreatenLayerModel();
 	private static final MonsterMagnetLayerModel MONSTER_MAGNET_MODEL = new MonsterMagnetLayerModel();
+	private static final TeleportLayerModel TELEPORT_MODEL = new TeleportLayerModel();
 	
 	private static final ResourceLocation PULL = new ResourceLocation("pull");
 	
@@ -63,9 +63,14 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 		ItemStack stack = player.getHeldItemMainhand();
 		if(stack.getItem().equals(ModItems.VAULTER_2000) && stack.getItem().properties.containsKey(PULL)) {
 			float pull = stack.getItem().getPropertyGetter(PULL).call(stack, player.world, player);
-			if(pull > 0) {
+			if (pull > 0) {
 				this.renderHurricane(player, pull, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scaleFactor);
 			}
+		} else if(stack.getItem().equals(ModItems.MAGICODAR)) {
+			CompoundNBT nbt = stack.getOrCreateTag();
+			//if(nbt.contains(LamaStaffItem.SPELL_TIME_KEY)) {
+				this.renderTeleport(player, stack, nbt, partialTicks, ageInTicks, scaleFactor);
+			//}
 		} else if(stack.getItem().equals(ModItems.LAMA_STAFF)) {
 			CompoundNBT nbt = stack.getOrCreateTag();
 			//if(nbt.contains(LamaStaffItem.SPELL_TIME_KEY)) {
@@ -112,7 +117,32 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 		GlStateManager.disableBlend();
 		GlStateManager.popMatrix();
 	}
-	
+
+	public void renderTeleport(PlayerEntity player, ItemStack stack, CompoundNBT nbt, float partialTicks, float ageInTicks, float scaleFactor) {
+		int teleTime = 0;
+		if(stack.getItem() instanceof MagicodarItem) {
+			teleTime = player.ticksExisted - ((MagicodarItem)stack.getItem()).getTeleportTime();
+		}
+		if(teleTime > 0 && teleTime < 8) {
+			GlStateManager.pushMatrix();
+			this.bindTexture(TELEPORT_TEXTURE_LOCATION);
+			GlStateManager.translatef(0f, 0f, 0f);
+			float p = teleTime / 8F;
+			float width = 0.07F * (p == 1 ? 1 : (float) (1 - Math.pow(2, -10 * p)));
+			float height = 0.07F * MathHelper.sin(p * (float)Math.PI);
+
+			GlStateManager.scalef(width, height, width);
+			int j = 15728880 % 65536;
+			int k = 15728880 / 65536;
+			GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float)j, (float)k);
+			GlStateManager.enableBlend();
+			GlStateManager.color4f(1.0F, 1.0F, 1.0F, MathHelper.sin(p * (float)Math.PI));
+			TELEPORT_MODEL.render(teleTime + partialTicks);
+			GlStateManager.disableBlend();
+			GlStateManager.popMatrix();
+		}
+	}
+
 	public void renderGenesisAngel(PlayerEntity player, ItemStack stack, CompoundNBT nbt, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
 		//int genesisTime = player.ticksExisted - nbt.getInt(LamaStaffItem.SPELL_TIME_KEY);
 		int genesisTime = 0;
@@ -147,7 +177,6 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 		if(stack.getItem() instanceof OmegaSpearItem) {
 			hyperBodyTime = player.ticksExisted - ((OmegaSpearItem) stack.getItem()).clientHyperBodyTime;
 		}
-		TheBigBang.LOGGER.debug(hyperBodyTime);
 		if(hyperBodyTime < 30) {
 			GlStateManager.pushMatrix();
 			if(hyperBodyTime > 28) {

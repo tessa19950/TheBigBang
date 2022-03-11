@@ -19,4 +19,8 @@ public class ModParticleTypes {
 	public static final RegistryObject<BasicParticleType> SYMBOL_GOLD = PARTICLE_TYPES.register("symbol_gold", () -> new BasicParticleType(true));
 	public static final RegistryObject<BasicParticleType> GLOWLEAF_BLUE = PARTICLE_TYPES.register("glowleaf_blue", () -> new BasicParticleType(true));
 	public static final RegistryObject<BasicParticleType> GLOWLEAF_GOLD = PARTICLE_TYPES.register("glowleaf_gold", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> FLASH_JUMP_SYMBOLS = PARTICLE_TYPES.register("flash_jump_symbols", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> FLASH_JUMP_RINGS = PARTICLE_TYPES.register("flash_jump_rings", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> FLASH_JUMP_DASHES = PARTICLE_TYPES.register("flash_jump_dashes", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> TELEPORT_LINE = PARTICLE_TYPES.register("teleport_line", () -> new BasicParticleType(true));
 }

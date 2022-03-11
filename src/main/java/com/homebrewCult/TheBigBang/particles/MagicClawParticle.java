@@ -15,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class MagicClawParticle extends SpriteTexturedParticle {
 
-	private IAnimatedSprite sprites;
+	private final IAnimatedSprite sprites;
 	private boolean doOnce = false;
 	
 	protected MagicClawParticle(World worldIn, double x, double y, double z, IAnimatedSprite spritesIn) {
