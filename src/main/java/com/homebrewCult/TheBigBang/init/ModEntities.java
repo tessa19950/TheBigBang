@@ -59,25 +59,29 @@ public class ModEntities {
 	public static final EntityType<DarkPepeEntity> DARK_PEPE_ENTITY = (EntityType<DarkPepeEntity>)buildEntityType(DarkPepeEntity::new, EntityClassification.CREATURE, 0.75f, 1f, "dark_pepe_entity");
 
 	public static final EntityType<SubiEntity> SUBI = (EntityType<SubiEntity>) EntityType.Builder.create(SubiEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> 
-	new SubiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "subi").setRegistryName(TheBigBang.MODID, "subi");
+		new SubiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "subi").setRegistryName(TheBigBang.MODID, "subi");
 	public static final EntityType<TobiEntity> TOBI = (EntityType<TobiEntity>) EntityType.Builder.create(TobiEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> 
-	new TobiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "tobi").setRegistryName(TheBigBang.MODID, "tobi");
+		new TobiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "tobi").setRegistryName(TheBigBang.MODID, "tobi");
 	public static final EntityType<SteelyEntity> STEELY = (EntityType<SteelyEntity>) EntityType.Builder.create(SteelyEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> 
-	new SteelyEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "steely").setRegistryName(TheBigBang.MODID, "steely");
+		new SteelyEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "steely").setRegistryName(TheBigBang.MODID, "steely");
 	public static final EntityType<IlbiEntity> ILBI = (EntityType<IlbiEntity>) EntityType.Builder.create(IlbiEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> 
-	new IlbiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "ilbi").setRegistryName(TheBigBang.MODID, "ilbi");
+		new IlbiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "ilbi").setRegistryName(TheBigBang.MODID, "ilbi");
+	public static final EntityType<FireGearEntity> FIRE_GEAR = (EntityType<FireGearEntity>) EntityType.Builder.create(FireGearEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
+		new FireGearEntity(world)).size(2.0f, 2f).build(TheBigBang.MODID + "fire_gear").setRegistryName(TheBigBang.MODID, "fire_gear");
+	public static final EntityType<PoisonMistEntity> POISON_MIST = (EntityType<PoisonMistEntity>) EntityType.Builder.create(PoisonMistEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
+		new PoisonMistEntity(world)).size(2.0f, 2f).build(TheBigBang.MODID + "poison_mist").setRegistryName(TheBigBang.MODID, "poison_mist");
 	public static final EntityType<GenesisBeamEntity> GENESIS_BEAM = (EntityType<GenesisBeamEntity>) EntityType.Builder.create(GenesisBeamEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
-	new GenesisBeamEntity(world)).size(0.25f, 3f).build(TheBigBang.MODID + "genesis_beam").setRegistryName(TheBigBang.MODID, "genesis_beam");
+		new GenesisBeamEntity(world)).size(0.25f, 3f).build(TheBigBang.MODID + "genesis_beam").setRegistryName(TheBigBang.MODID, "genesis_beam");
 	public static final EntityType<BombArrowEntity> BOMB_ARROW = (EntityType<BombArrowEntity>) EntityType.Builder.create(BombArrowEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
-	new BombArrowEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "bomb_arrow").setRegistryName(TheBigBang.MODID, "bomb_arrow");
+		new BombArrowEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "bomb_arrow").setRegistryName(TheBigBang.MODID, "bomb_arrow");
 	public static final EntityType<SnipingArrowEntity> SNIPING_ARROW = (EntityType<SnipingArrowEntity>) EntityType.Builder.create(SnipingArrowEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
-	new SnipingArrowEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "sniping_arrow").setRegistryName(TheBigBang.MODID, "sniping_arrow");
+		new SnipingArrowEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "sniping_arrow").setRegistryName(TheBigBang.MODID, "sniping_arrow");
 	public static final EntityType<HurricaneArrowEntity> HURRICANE_ARROW = (EntityType<HurricaneArrowEntity>) EntityType.Builder.create(HurricaneArrowEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
-	new HurricaneArrowEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "hurricane_arrow").setRegistryName(TheBigBang.MODID, "hurricane_arrow");
+		new HurricaneArrowEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "hurricane_arrow").setRegistryName(TheBigBang.MODID, "hurricane_arrow");
 	public static final EntityType<DragonCrusherStabEntity> DRAGON_CRUSHER_STAB = (EntityType<DragonCrusherStabEntity>) EntityType.Builder.create(DragonCrusherStabEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
-	new DragonCrusherStabEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "dragon_crusher_stab").setRegistryName(TheBigBang.MODID, "dragon_crusher_stab");
+		new DragonCrusherStabEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "dragon_crusher_stab").setRegistryName(TheBigBang.MODID, "dragon_crusher_stab");
 	public static final EntityType<StealEntity> STEAL = (EntityType<StealEntity>) EntityType.Builder.create(StealEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
-	new StealEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "steal").setRegistryName(TheBigBang.MODID, "steal");
+		new StealEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "steal").setRegistryName(TheBigBang.MODID, "steal");
 
 	public static final EntityType<ManaRockEntity> MANA_ROCK = (EntityType<ManaRockEntity>) EntityType.Builder.create(ManaRockEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
 	new ManaRockEntity(world)).size(0.6f, 1.6f).build(TheBigBang.MODID + "mana_rock").setRegistryName(TheBigBang.MODID, "mana_rock");
@@ -85,7 +89,7 @@ public class ModEntities {
 	@SubscribeEvent
 	public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {	
 		event.getRegistry().registerAll (
-				HURRICANE_ARROW, BOMB_ARROW, SNIPING_ARROW, GENESIS_BEAM, SUBI, TOBI, STEELY, ILBI, DRAGON_CRUSHER_STAB, STEAL, MANA_ROCK,
+				HURRICANE_ARROW, BOMB_ARROW, SNIPING_ARROW, GENESIS_BEAM, SUBI, TOBI, STEELY, ILBI, DRAGON_CRUSHER_STAB, STEAL, FIRE_GEAR, POISON_MIST, MANA_ROCK,
 				STUMP_ENTITY, DARK_STUMP_ENTITY, AXE_STUMP_ENTITY, DARK_AXE_STUMP_ENTITY, OCTOPUS_ENTITY, EVIL_EYE_ENTITY, CURSE_EYE_ENTITY, COLD_EYE_ENTITY, BUBBLING_ENTITY, GREEN_BUBBLING_ENTITY,
 				ORANGE_MUSHROOM_ENTITY, BLUE_MUSHROOM_ENTITY, ZOMBIE_MUSHROOM_ENTITY, JRYETI_ENTITY, DARK_JRYETI_ENTITY, GREEN_SNAIL_ENTITY, BLUE_SNAIL_ENTITY, RED_SNAIL_ENTITY, 
 				RIBBON_PIG_ENTITY, STONE_GOLEM_ENTITY, DARK_STONE_GOLEM_ENTITY, MIXED_GOLEM_ENTITY, ICE_GOLEM_ENTITY, FIRE_GOLEM_ENTITY,

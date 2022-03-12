@@ -1,12 +1,21 @@
 package com.homebrewCult.TheBigBang.init;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
+import com.homebrewCult.TheBigBang.particles.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleType;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+@OnlyIn(Dist.CLIENT)
+@Mod.EventBusSubscriber(modid=TheBigBang.MODID, value=Dist.CLIENT, bus=Mod.EventBusSubscriber.Bus.MOD)
 public class ModParticleTypes {	
 	
 	public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = new DeferredRegister<>(ForgeRegistries.PARTICLE_TYPES, TheBigBang.MODID);
@@ -23,4 +32,26 @@ public class ModParticleTypes {
 	public static final RegistryObject<BasicParticleType> FLASH_JUMP_RINGS = PARTICLE_TYPES.register("flash_jump_rings", () -> new BasicParticleType(true));
 	public static final RegistryObject<BasicParticleType> FLASH_JUMP_DASHES = PARTICLE_TYPES.register("flash_jump_dashes", () -> new BasicParticleType(true));
 	public static final RegistryObject<BasicParticleType> TELEPORT_LINE = PARTICLE_TYPES.register("teleport_line", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> POISON_CLOUD = PARTICLE_TYPES.register("poison_cloud", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> FIRE_GEAR = PARTICLE_TYPES.register("fire_gear", () -> new BasicParticleType(true));
+
+	@SuppressWarnings("resource")
+	@SubscribeEvent
+	public static void registerParticleFactories(final ParticleFactoryRegisterEvent event) {
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.ITEM_BLUE_SLIME.get(), BlueSlimeParticle.BlueSlimeFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.MAGIC_CLAW_LEFT.get(), MagicClawParticle.MagicClawFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.MAGIC_CLAW_RIGHT.get(), MagicClawParticle.MagicClawFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.HOLY_HEXAGRAM.get(), HolyHexagramParticle.HolyHexagramFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.HOLY_CIRCLE.get(), HolyCircleParticle.HolyCircleFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.SYMBOL_BLUE.get(), SymbolParticle.SymbolFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.SYMBOL_GOLD.get(), SymbolParticle.SymbolFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.GLOWLEAF_BLUE.get(), GlowleafParticle.GlowleafFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.GLOWLEAF_GOLD.get(), GlowleafParticle.GlowleafFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.FLASH_JUMP_SYMBOLS.get(), FlashJumpParticle.FlashJumpFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.FLASH_JUMP_RINGS.get(), FlashJumpParticle.FlashJumpFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.FLASH_JUMP_DASHES.get(), FlashJumpParticle.FlashJumpFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.TELEPORT_LINE.get(), TeleportLineParticle.TeleportLineFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.POISON_CLOUD.get(), PoisonCloudParticle.ParticleFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.FIRE_GEAR.get(), FireGearParticle.ParticleFactory::new);
+	}
 }
