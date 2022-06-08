@@ -4,7 +4,6 @@ import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.blocks.DivineAltarTile;
 import com.homebrewCult.TheBigBang.init.ModItems;
 import com.mojang.blaze3d.platform.GlStateManager;
-import com.sun.javafx.geom.Vec3f;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.RedstoneOreBlock;
 import net.minecraft.client.Minecraft;
@@ -26,7 +25,6 @@ public class DivineAltarTileRenderer<T extends DivineAltarTile> extends TileEnti
     @Override
     public void render(DivineAltarTile tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage) {
         ItemStack stack = tileEntityIn.getClientInventory().get(0);
-        //TheBigBang.LOGGER.debug("Trying to render " + stack.getItem().getDisplayName(stack).getFormattedText());
         if(tileEntityIn.getBlockState().get(AbstractFurnaceBlock.LIT)) {
             GlStateManager.pushMatrix();
             float time = Objects.requireNonNull(tileEntityIn.getWorld()).getGameTime() + partialTicks;

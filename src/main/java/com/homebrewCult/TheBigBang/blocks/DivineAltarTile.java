@@ -101,21 +101,22 @@ public class DivineAltarTile extends AbstractFurnaceTileEntity {
 	@Override
 	public void tick() {
 		super.tick();
-		if(world instanceof ClientWorld) {
-			boolean update = (int)Math.floor(timer + (pos.getX() + pos.getY() + pos.getZ()) * 100) % 100 == 1;
-			if (update && world.isAreaLoaded(pos, DivineAltarBlock.MANA_ROCK_RADIUS)) {
-				DivineAltarBlock.updateManaRocks(world.getBlockState(pos), world, pos);
-
-			}
-		}
+		boolean update = (int)Math.floor(timer + (pos.getX() + pos.getY() + pos.getZ()) * 100) % 100 == 1;
+		if (update && world.isAreaLoaded(pos, DivineAltarBlock.MANA_ROCK_RADIUS))
+			DivineAltarBlock.updateManaRocks(world.getBlockState(pos), world, pos);
 		timer++;
+	}
+
+	public void forceUdateCookTime() {
+		furnaceData.set(3, func_214005_h());
 	}
 
 	protected int func_214005_h() {
 		int manaRockCount = this.getBlockState().get(DivineAltarBlock.MANA_ROCK_COUNT);
-		int cookTime = this.world.getRecipeManager().getRecipe((IRecipeType<AbstractCookingRecipe>)this.recipeType, this, this.world)
+		int baseCookTime = this.world.getRecipeManager().getRecipe((IRecipeType<AbstractCookingRecipe>)this.recipeType, this, this.world)
 				.map(AbstractCookingRecipe::getCookTime).orElse(200);
-		return (int)Math.floor((float)cookTime / 4.0F * (4 - manaRockCount));
+		int modifiedCookTime = (int)Math.floor((float)baseCookTime / 4.0F * (4 - manaRockCount));
+		return modifiedCookTime;
 	}
 
 	private static void addItemBurnTime(Map<Item, Integer> map, IItemProvider itemProvider, int burnTimeIn) {

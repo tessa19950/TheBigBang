@@ -126,11 +126,12 @@ public class DivineAltarBlock extends AbstractFurnaceBlock {
 		if(state.get(MANA_ROCK_COUNT) != rockCount) {
 			worldIn.setBlockState(pos, state.with(MANA_ROCK_COUNT, rockCount));
 		}
-		if(worldIn.isRemote) {
-			TileEntity tile = worldIn.getTileEntity(pos);
-			if(tile instanceof DivineAltarTile) {
-				((DivineAltarTile)tile).getClientManaRocks().clear();
-				((DivineAltarTile)tile).getClientManaRocks().addAll(rocks);
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if(tile instanceof DivineAltarTile) {
+			((DivineAltarTile) tile).forceUdateCookTime();
+			if (worldIn.isRemote) {
+				((DivineAltarTile) tile).getClientManaRocks().clear();
+				((DivineAltarTile) tile).getClientManaRocks().addAll(rocks);
 			}
 		}
 	}

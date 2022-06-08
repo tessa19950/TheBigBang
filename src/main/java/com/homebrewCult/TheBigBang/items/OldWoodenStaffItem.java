@@ -1,7 +1,9 @@
 package com.homebrewCult.TheBigBang.items;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
+import com.homebrewCult.TheBigBang.entities.BigBangAreaEffectCloudEntity;
 import com.homebrewCult.TheBigBang.entities.FireGearEntity;
+import com.homebrewCult.TheBigBang.entities.PoisonMistEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,11 +16,6 @@ import net.minecraft.world.World;
 import java.util.function.Predicate;
 
 public class OldWoodenStaffItem extends TieredItem implements IBigBangWeapon {
-
-	public static final String SPELL_TIME_KEY = TheBigBang.MODID + "spell_timer";
-	private static final String SPELL_TARGET_ID_KEY = TheBigBang.MODID + "spell_target_id";
-	private static final int SPELL_RANGE = 24;
-	private static final double SPELL_ANGLE_THRESHOLD = 30;
 
 	public OldWoodenStaffItem(IItemTier tierIn, Item.Properties builder) {
 		super(tierIn, builder);
@@ -48,9 +45,12 @@ public class OldWoodenStaffItem extends TieredItem implements IBigBangWeapon {
 
 	@Override
 	public void onSpellAttack(ItemStack stack, World worldIn, PlayerEntity player) {
-		FireGearEntity fireGearEntity = new FireGearEntity(worldIn, player.posX, player.posY, player.posZ);
-		fireGearEntity.setPosition(player.posX, player.posY, player.posZ);
-		worldIn.addEntity(fireGearEntity);
+		BigBangAreaEffectCloudEntity aoeEntity = new FireGearEntity(worldIn, player.posX, player.posY, player.posZ);
+		if(player.getHeldItem(Hand.OFF_HAND).getItem().equals(Items.POISONOUS_POTATO))
+			aoeEntity = new PoisonMistEntity(worldIn, player.posX, player.posY, player.posZ);
+		aoeEntity.setPosition(player.posX, player.posY, player.posZ);
+		aoeEntity.setOwner(player);
+		worldIn.addEntity(aoeEntity);
 	}
 
 	@Override
@@ -60,13 +60,7 @@ public class OldWoodenStaffItem extends TieredItem implements IBigBangWeapon {
 	}
 
 	public void spellTick(ItemStack stack, World worldIn, Entity user) {
-		CompoundNBT nbt = stack.getOrCreateTag();
-		if(nbt.contains(SPELL_TIME_KEY) && nbt.contains(SPELL_TARGET_ID_KEY)) {
-			int timer = user.ticksExisted -	nbt.getInt(SPELL_TIME_KEY) - 40;
-			if(timer <= 60) {
 
-			}
-		}
 	}
 
 	@Override

@@ -68,22 +68,22 @@ public class StealEntity extends Entity {
         if(target == null)
             target = world.getEntityByID(getTarget());
         if(summoner != null && target != null) {
+            Vec3d vec3d = this.getMotion();
+            this.posX += vec3d.x;
+            this.posY += vec3d.y;
+            this.posZ += vec3d.z;
             if(!hasHit) {
                 this.setMotion(target.getPositionVec().subtract(getPositionVec()).normalize().scale(2));
                 this.setRotation(summoner.getYaw(0), summoner.getPitch(0));
-
                 if (getDistanceSq(target) < 5 && summoner instanceof PlayerEntity) {
                     target.attackEntityFrom(DamageSource.MAGIC, 5);
                     target.addVelocity(getMotion().x/2D, getMotion().y/2D, getMotion().z/2D);
                     lootEntity((PlayerEntity) summoner, target);
                     hasHit = true;
                 }
+            } else {
+                this.setMotion(vec3d.scale(0.65));
             }
-            Vec3d vec3d = this.getMotion();
-            this.posX += vec3d.x;
-            this.posY += vec3d.y;
-            this.posZ += vec3d.z;
-            this.setMotion(vec3d.scale(0.99));
             this.setPosition(this.posX, this.posY, this.posZ);
         }
 

@@ -1,12 +1,16 @@
 package com.homebrewCult.TheBigBang.entities;
 
 import com.google.common.collect.Maps;
+import com.homebrewCult.TheBigBang.TheBigBang;
 import net.minecraft.entity.*;
+import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
+import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -19,11 +23,12 @@ public abstract class BigBangAreaEffectCloudEntity extends AreaEffectCloudEntity
     protected int waitTime = 10;
     protected int reapplicationDelay = 20;
     protected float radiusPerTick;
+    protected LivingEntity owner;
     protected UUID ownerUniqueId;
 
     public BigBangAreaEffectCloudEntity(EntityType<? extends AreaEffectCloudEntity> entityType, World worldIn) {
         super(entityType, worldIn);
-        setRadius(3.0F);
+        setRadius(4.0F);
         radiusPerTick = -(getRadius() / duration);
     }
 
@@ -31,7 +36,7 @@ public abstract class BigBangAreaEffectCloudEntity extends AreaEffectCloudEntity
     public void tick() {
         float f = this.getRadius();
         if (this.world.isRemote) {
-            spawnAreaParticles(f);
+            spawnAreaParticles(f - 0.5F);
         } else {
             if (this.ticksExisted >= this.waitTime + this.duration) {
                 this.remove();
@@ -58,14 +63,21 @@ public abstract class BigBangAreaEffectCloudEntity extends AreaEffectCloudEntity
 
                 List<LivingEntity> list = this.world.getEntitiesWithinAABB(LivingEntity.class, this.getBoundingBox());
                 if (!list.isEmpty()) {
-                    for(LivingEntity livingentity : list) {
-                        if (!this.reapplicationDelayMap.containsKey(livingentity) && livingentity.canBeHitWithPotion()) {
-                            double d0 = livingentity.posX - this.posX;
-                            double d1 = livingentity.posZ - this.posZ;
+                    for(LivingEntity e : list) {
+                        boolean isAffected = true;
+                        if(e instanceof TameableEntity) {
+                            isAffected = ((TameableEntity)e).getOwnerId() != ownerUniqueId;
+                        } else if (e instanceof PlayerEntity) {
+                            isAffected = e.getUniqueID() != ownerUniqueId;
+                        }
+
+                        if (!this.reapplicationDelayMap.containsKey(e) && e.canBeHitWithPotion() && isAffected) {
+                            double d0 = e.posX - this.posX;
+                            double d1 = e.posZ - this.posZ;
                             double d2 = d0 * d0 + d1 * d1;
                             if (d2 <= (double)(f * f)) {
-                                this.reapplicationDelayMap.put(livingentity, this.ticksExisted + this.reapplicationDelay);
-                                applyEffectToEntity(livingentity);
+                                this.reapplicationDelayMap.put(e, this.ticksExisted + this.reapplicationDelay);
+                                applyEffectToEntity(e);
                             }
                         }
                     }
@@ -108,5 +120,12 @@ public abstract class BigBangAreaEffectCloudEntity extends AreaEffectCloudEntity
 
     public EntitySize getSize(Pose poseIn) {
         return EntitySize.flexible(this.getRadius() * this.getType().getSize().width, this.getType().getSize().height);
+    }
+
+    @Override
+    public void setOwner(@Nullable LivingEntity owner) {
+        this.owner = owner;
+        this.ownerUniqueId = owner == null ? null : owner.getUniqueID();
+        super.setOwner(owner);
     }
 }

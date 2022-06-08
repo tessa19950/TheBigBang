@@ -29,26 +29,28 @@ public class StealRenderer extends EntityRenderer<StealEntity> {
 
     @Override
     public void doRender(StealEntity entity, double x, double y, double z, float entityYaw, float partialTicks) {
-        int stealTime = entity.ticksExisted - 20;
-        //if(stealTime >= 0 && stealTime <= 20) {
+        float stealTime = entity.ticksExisted + partialTicks;
+        if(stealTime >= 0 && stealTime <= 40) {
             GlStateManager.pushMatrix();
             GlStateManager.translatef((float)x, (float)y + 1.5f, (float)z);
             float scale = 0.0625F;
             GlStateManager.scalef(scale, scale, scale);
             GlStateManager.rotatef(180, 0, 0, 1);
+            GlStateManager.rotatef(entityYaw + 180, 0, 1, 0);
 
             this.bindEntityTexture(entity);
             int j = 15728880 % 65536;
             int k = 15728880 / 65536;
             GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float) j, (float) k);
             GlStateManager.enableBlend();
-            GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);//MathHelper.sin((stealTime / 20F) * (float) Math.PI));
+            float fade = MathHelper.sin((stealTime / 40F) * (float)Math.PI/2);
+            GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F - fade);
 
-            MODEL.renderAttack();
+            MODEL.renderAttack(entity, stealTime);
             GlStateManager.disableBlend();
             GlStateManager.popMatrix();
             super.doRender(entity, x, y, z, entityYaw, partialTicks);
-        //}
+        }
     }
 
     public static class RenderFactory implements IRenderFactory<StealEntity> {

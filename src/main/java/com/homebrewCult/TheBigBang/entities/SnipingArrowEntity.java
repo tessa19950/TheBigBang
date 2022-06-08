@@ -12,7 +12,6 @@ import com.homebrewCult.TheBigBang.init.ModEntities;
 import com.homebrewCult.TheBigBang.init.ModParticleTypes;
 
 import com.homebrewCult.TheBigBang.init.ModSounds;
-import com.sun.javafx.geom.Vec3f;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Quaternion;

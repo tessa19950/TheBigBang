@@ -33,7 +33,7 @@ public class GenesisBeamRenderer extends EntityRenderer<GenesisBeamEntity> {
 		GlStateManager.translatef((float)x, (float)y + heightOffset, (float)z);
 		GlStateManager.scalef(scale - (animTime * scale), MathHelper.lerp(doubleAnimTime, 0, scale), scale - (animTime * scale));
 
-	    GlStateManager.rotatef((entity.ticksExisted + partialTicks) * 1f, 0.0F, 1.0F, 0.0F);
+	    GlStateManager.rotatef((entity.ticksExisted + partialTicks), 0.0F, 1.0F, 0.0F);
 	    GlStateManager.enableBlend();
 	    GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.DST_ALPHA);
 	    GlStateManager.color4f(1.0F, 1.0F, 1.0F, 0.75F);
