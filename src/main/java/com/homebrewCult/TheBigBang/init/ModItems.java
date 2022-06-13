@@ -98,6 +98,7 @@ public class ModItems {
 	public static final Item PIGS_RIBBON = registerMiscItem("pigs_ribbon");
 	public static final Item PIECE_OF_ICE = registerMiscItem("piece_of_ice");
 	public static final Item BLUE_SLIME_BALL = registerMiscItem("blue_slime_ball", false);
+	public static final Item PEPE_BEAK = registerMiscItem("pepe_beak");
 
 	public static final Item DORMANT_MAGIC_ROCK = registerDivineItem("dormant_magic_rock", false);
 	public static final Item BLESSED_MAGIC_ROCK = registerDivineItem("blessed_magic_rock", true);
@@ -269,6 +270,7 @@ public class ModItems {
 				ModItems.DRAGON_SKIN,
 				ModItems.PIECE_OF_ICE,
 				ModItems.BLUE_SLIME_BALL,
+				ModItems.PEPE_BEAK,
 
 				ModItems.DORMANT_MAGIC_ROCK,
 				ModItems.DORMANT_SUMMONING_ROCK,
