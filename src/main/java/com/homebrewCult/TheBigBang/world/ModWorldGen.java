@@ -7,14 +7,14 @@ import com.homebrewCult.TheBigBang.init.ModFeatures;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.GenerationStage.Decoration;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.OreFeatureConfig.FillerBlockType;
-import net.minecraft.world.gen.placement.ChanceConfig;
-import net.minecraft.world.gen.placement.CountRangeConfig;
-import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.feature.structure.PillagerOutpostConfig;
+import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.placement.*;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.concurrent.CompletableFuture;
 
 public class ModWorldGen {
 	
@@ -41,49 +41,40 @@ public class ModWorldGen {
 	Biomes.SUNFLOWER_PLAINS, Biomes.SWAMP, Biomes.SWAMP_HILLS, Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.TALL_BIRCH_FOREST, Biomes.TALL_BIRCH_HILLS, 
 	Biomes.GRAVELLY_MOUNTAINS, Biomes.MODIFIED_GRAVELLY_MOUNTAINS, Biomes.MOUNTAIN_EDGE, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA_MOUNTAINS, 
 	Biomes.TAIGA_MOUNTAINS, Biomes.WOODED_MOUNTAINS, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.DESERT_LAKES);
-	
+
 	public static void worldGenInit() {
-		//Generate Ores
-		for(Biome biome : ForgeRegistries.BIOMES) {
-			//Add Adamantium
-			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ModBlocks.ADAMANTIUM_ORE.getDefaultState(), 5), 
-			Placement.COUNT_RANGE, new CountRangeConfig(BigBangConfig.adamantiumOreChance.get(), 62, 0, 256)));	
-			//Add Mithril
-			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ModBlocks.MITHRIL_ORE.getDefaultState(), 5), 
-			Placement.COUNT_RANGE, new CountRangeConfig(BigBangConfig.mithrilOreChance.get(), 62, 0, 256)));	
-			//Add Orihalcon
-			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ModBlocks.ORIHALCON_ORE.getDefaultState(), 5), 
-			Placement.COUNT_RANGE, new CountRangeConfig(BigBangConfig.orihalconOreChance.get(), 62, 0, 256)));	
-		} 
-		
-		//Add Cave Sign Structures
-		for(Biome biome : CAVE_DANGER_SIGN_BIOMES) {
-			biome.addFeature(Decoration.UNDERGROUND_DECORATION, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_CAVE, IFeatureConfig.NO_FEATURE_CONFIG, 
-			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(2)));
-		}
-		
-		//Place Plateau Sign Structures
-		for(Biome biome : GRASSY_DANGER_SIGN_BIOMES) {
-			biome.addFeature(Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_PLATEAU, IFeatureConfig.NO_FEATURE_CONFIG, 
-			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(16))); //196
-		}
-		
-		//Place Stone Sign Structures
-		for(Biome biome : STONE_DANGER_SIGN_BIOMES) {
-			biome.addFeature(Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_STONE, IFeatureConfig.NO_FEATURE_CONFIG, 
-			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(16))); //196
-		}
-		
-		//Place Desert Sign Structures
-		for(Biome biome : SANDY_DANGER_SIGN_BIOMES) {
-			biome.addFeature(Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_DESERT, IFeatureConfig.NO_FEATURE_CONFIG, 
-			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(16))); //196
-		}
-		
-		//Place Ice Sign Structures
-		for(Biome biome : ICY_DANGER_SIGN_BIOMES) {
-			biome.addFeature(Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_ICE, IFeatureConfig.NO_FEATURE_CONFIG, 
-			Placement.CHANCE_HEIGHTMAP, new ChanceConfig(16))); //196
+		CompletableFuture.runAsync(() -> {
+			//Generate Ores
+			for(Biome biome : ForgeRegistries.BIOMES) {
+				//Add Adamantium
+				biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ModBlocks.ADAMANTIUM_ORE.getDefaultState(), 5),
+						Placement.COUNT_RANGE, new CountRangeConfig(BigBangConfig.adamantiumOreChance.get(), 62, 0, 256)));
+				//Add Mithril
+				biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ModBlocks.MITHRIL_ORE.getDefaultState(), 5),
+						Placement.COUNT_RANGE, new CountRangeConfig(BigBangConfig.mithrilOreChance.get(), 62, 0, 256)));
+				//Add Orihalcon
+				biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ModBlocks.ORIHALCON_ORE.getDefaultState(), 5),
+						Placement.COUNT_RANGE, new CountRangeConfig(BigBangConfig.orihalconOreChance.get(), 62, 0, 256)));
+			}
+			//Add Surface Danger Signs Structures
+			addSurfaceStructures(GRASSY_DANGER_SIGN_BIOMES, ModFeatures.DANGER_SIGN_PLATEAU_STRUCTURE, 100);
+			addSurfaceStructures(STONE_DANGER_SIGN_BIOMES, ModFeatures.DANGER_SIGN_STONE_STRUCTURE, 1000);
+			addSurfaceStructures(SANDY_DANGER_SIGN_BIOMES, ModFeatures.DANGER_SIGN_DESERT_STRUCTURE, 100);
+			addSurfaceStructures(ICY_DANGER_SIGN_BIOMES, ModFeatures.DANGER_SIGN_ICE_STRUCTURE, 100);
+
+			//Add Cave Sign Features
+			for(Biome biome : CAVE_DANGER_SIGN_BIOMES) {
+				biome.addFeature(Decoration.UNDERGROUND_DECORATION, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_CAVE, IFeatureConfig.NO_FEATURE_CONFIG,
+						Placement.CHANCE_HEIGHTMAP, new ChanceConfig(1)));
+			}
+		});
+	}
+
+	private static void addSurfaceStructures(ImmutableList<Biome> biomes, Structure<PillagerOutpostConfig> structure, int count) {
+		for(Biome biome : biomes) {
+			biome.addStructure(structure, new PillagerOutpostConfig(100.0D));
+			biome.addFeature(Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(structure,
+					new PillagerOutpostConfig(100.0D), Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
 		}
 	}
 }

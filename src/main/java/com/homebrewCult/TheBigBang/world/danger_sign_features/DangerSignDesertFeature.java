@@ -48,8 +48,7 @@ public class DangerSignDesertFeature extends AbstractDangerSignFeature {
 		switch(index) {
 			case 0: return new Vec3i(-3,-6,-2);
 			case 1: return new Vec3i(-3,-4,-2);
-			case 2: return new Vec3i(-2,-2,-3);
-			case 3: return new Vec3i(-2,-2,-3);
+			case 2: case 3: return new Vec3i(-2,-2,-3);
 			default: return new Vec3i(0,0,0);
 		}
 	}
@@ -57,7 +56,6 @@ public class DangerSignDesertFeature extends AbstractDangerSignFeature {
 	@Override
 	public Direction getTemplateDirection(int index) {
 		switch(index) {
-			case 0: return Direction.NORTH;
 			case 1: return Direction.SOUTH;
 			case 2: return Direction.EAST;
 			case 3: return Direction.WEST;

@@ -46,10 +46,8 @@ public class DangerSignStoneFeature extends AbstractDangerSignFeature {
 	@Override
 	public Vec3i getTemplateOffset(int index) {
 		switch(index) {
-			case 0: return new Vec3i(-3,-4,-2);
-			case 1: return new Vec3i(-3,-4,-2);
-			case 2: return new Vec3i(-2,-4,-3);
-			case 3: return new Vec3i(-2,-4,-3);
+			case 0: case 1: return new Vec3i(-3,-4,-2);
+			case 2: case 3: return new Vec3i(-2,-4,-3);
 			default: return new Vec3i(0,0,0);
 		}
 	}
@@ -58,7 +56,6 @@ public class DangerSignStoneFeature extends AbstractDangerSignFeature {
 	public Direction getTemplateDirection(int index) {
 		switch(index) {
 			case 0: return Direction.SOUTH;
-			case 1: return Direction.NORTH;
 			case 2: return Direction.EAST;
 			case 3: return Direction.WEST;
 			default: return Direction.NORTH;
