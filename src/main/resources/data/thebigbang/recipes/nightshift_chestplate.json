@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"opo",
+		"o&o",
+		"ppp"
+	],
+
+	"key":
+	{
+		"o": { "item": "thebigbang:blessed_orihalcon_ingot" },
+		"p": { "item": "thebigbang:octopus_leg" },
+		"&": { "item": "minecraft:iron_chestplate" }
+	},
+
+	"result": { "item": "thebigbang:nightshift_chestplate" }
+}

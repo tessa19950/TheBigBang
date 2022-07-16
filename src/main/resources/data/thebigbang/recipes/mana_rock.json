@@ -1,0 +1,21 @@
+{
+ 	"type": "minecraft:crafting_shaped",
+  	"pattern": 
+  	[
+  		" % ",
+    	"#x#",
+    	" % "
+  	],
+  
+  	"key": 
+  	{
+  	    "%": { "item": "thebigbang:dormant_magic_rock" },
+    	"#": { "item": "thebigbang:dormant_summoning_rock" },
+    	"x": [
+			{ "item": "thebigbang:stone_golem_rubble" },
+			{ "item": "thebigbang:dark_stone_golem_rubble" }
+		]
+  	},
+  
+  	"result": { "item": "thebigbang:mana_rock" }
+}

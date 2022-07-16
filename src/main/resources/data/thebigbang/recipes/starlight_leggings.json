@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"sws",
+		"m&m",
+		"mfm"
+	],
+
+	"key":
+	{
+		"m": { "item": "thebigbang:blessed_mithril_ingot" },
+		"w": { "item": "minecraft:white_wool" },
+		"f": { "item": "minecraft:sunflower" },
+		"s": [
+			{ "item": "thebigbang:red_snail_shell" },
+			{ "item": "thebigbang:blue_snail_shell" },
+			{ "item": "thebigbang:green_snail_shell" }
+		],
+		"&": { "item": "minecraft:iron_leggings" }
+	},
+
+	"result": { "item": "thebigbang:starlight_leggings" }
+}

@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thebigbang:piette_helmet",
+      "thebigbang:piette_chestplate",
+      "thebigbang:piette_leggings",
+      "thebigbang:piette_boots"
+    ]
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "item": "thebigbang:blessed_gold_ingot" }] }
+    },
+    "has_item2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "item": "thebigbang:stone_golem_rubble" }] }
+    },
+    "has_item3": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "item": "thebigbang:dark_stone_golem_rubble" }] }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thebigbang:piette_boots"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_item",
+      "has_item2",
+      "has_item3",
+      "has_the_recipe"
+    ]
+  ]
+}

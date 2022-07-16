@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"rdr",
+		"uou",
+		" o "
+	],
+
+	"key":
+	{
+		"o": { "item": "thebigbang:blessed_orihalcon_ingot" },
+		"r": { "item": "thebigbang:red_snail_shell" },
+		"u": { "item": "thebigbang:undead_charm" },
+		"d": { "item": "thebigbang:drakes_blood" }
+	},
+
+	"result": { "item": "thebigbang:lama_staff" }
+}

@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"ads",
+		"a s",
+		"ads"
+	],
+
+	"key":
+	{
+		"a": { "item": "thebigbang:blessed_adamantium_ingot" },
+		"s": { "item": "minecraft:string" },
+		"d": { "item": "thebigbang:drakes_skull" }
+	},
+
+	"result": { "item": "thebigbang:vaulter_2000" }
+}

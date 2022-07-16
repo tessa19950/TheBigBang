@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"mum",
+		"m&m",
+		"yuy"
+	],
+
+	"key":
+	{
+		"m": { "item": "thebigbang:blessed_mithril_ingot" },
+		"u": { "item": "thebigbang:undead_charm" },
+		"y": [
+			{ "item": "thebigbang:jryeti_skin" },
+			{ "item": "thebigbang:dark_jryeti_skin" }
+		],
+		"&": { "item": "minecraft:diamond_chestplate" }
+	},
+
+	"result": { "item": "thebigbang:goldwind_chestplate" }
+}

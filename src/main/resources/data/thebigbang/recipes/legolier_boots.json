@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"w w",
+		"m&m",
+		"g g"
+	],
+
+	"key":
+	{
+		"g": { "item": "thebigbang:blessed_gold_ingot" },
+		"w": { "item": "minecraft:white_wool" },
+		"m": [
+			{ "item": "thebigbang:orange_mushroom_cap" },
+			{ "item": "thebigbang:blue_mushroom_cap" }
+		],
+		"&": { "item": "minecraft:iron_boots" }
+	},
+
+	"result": { "item": "thebigbang:legolier_boots" }
+}

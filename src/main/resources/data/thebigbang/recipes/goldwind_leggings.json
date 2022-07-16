@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"uyu",
+		"m&m",
+		"m m"
+	],
+
+	"key":
+	{
+		"m": { "item": "thebigbang:blessed_mithril_ingot" },
+		"u": { "item": "thebigbang:undead_charm" },
+		"y": [
+			{ "item": "thebigbang:jryeti_skin" },
+			{ "item": "thebigbang:dark_jryeti_skin" }
+		],
+		"&": { "item": "minecraft:diamond_leggings" }
+	},
+
+	"result": { "item": "thebigbang:goldwind_leggings" }
+}

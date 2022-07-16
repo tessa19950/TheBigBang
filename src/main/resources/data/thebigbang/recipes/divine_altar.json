@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"rgr",
+		"gdg",
+		"rmr"
+	],
+
+	"key":
+	{
+		"m": { "item": "thebigbang:mana_rock" },
+		"d": { "item": "minecraft:diamond" },
+		"r": [
+			{ "item": "thebigbang:stone_golem_rubble" },
+			{ "item": "thebigbang:dark_stone_golem_rubble" }
+		],
+		"g": { "item": "minecraft:gold_ingot" }
+	},
+
+	"result": { "item": "thebigbang:divine_altar" }
+}

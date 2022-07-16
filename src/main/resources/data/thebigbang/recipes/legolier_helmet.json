@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"wgf",
+		"g&g",
+		"m m"
+	],
+
+	"key":
+	{
+		"g": { "item": "thebigbang:blessed_gold_ingot" },
+		"w": { "item": "minecraft:white_wool" },
+		"f": { "item": "minecraft:feather" },
+		"m": [
+			{ "item": "thebigbang:orange_mushroom_cap" },
+			{ "item": "thebigbang:blue_mushroom_cap" }
+		],
+		"&": { "item": "minecraft:iron_helmet" }
+	},
+
+	"result": { "item": "thebigbang:legolier_helmet" }
+}

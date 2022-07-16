@@ -1,0 +1,22 @@
+{
+ 	"type": "minecraft:crafting_shaped",
+  	"pattern": 
+  	[
+  		"yby",
+    	"a&a",
+    	"a a"
+  	],
+  
+  	"key": 
+  	{
+  	    "a": { "item": "thebigbang:blessed_adamantium_ingot" },
+    	"b": { "item": "minecraft:blaze_powder" },
+    	"y": [
+			{ "item": "thebigbang:yeti_horn" },
+			{ "item": "thebigbang:dark_yeti_horn" }
+		],
+    	"&": { "item": "minecraft:diamond_leggings" }
+  	},
+  
+  	"result": { "item": "thebigbang:jangoon_leggings" }
+}

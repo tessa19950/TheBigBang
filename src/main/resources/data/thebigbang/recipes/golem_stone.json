@@ -1,0 +1,15 @@
+{
+ 	"type": "minecraft:crafting_shaped",
+  	"pattern": 
+  	[
+    	"##",
+    	"##"
+  	],
+  
+  	"key": 
+  	{
+    	"#": { "item": "thebigbang:stone_golem_rubble" }
+  	},
+  
+  	"result": { "item": "thebigbang:golem_stone" }
+}

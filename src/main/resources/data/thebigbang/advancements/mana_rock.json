@@ -1,0 +1,41 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thebigbang:mana_rock"
+    ]
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "item": "thebigbang:stone_golem_rubble" }] }
+    },
+    "has_item2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "item": "thebigbang:dark_stone_golem_rubble" }] }
+    },
+    "has_item3": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "item": "thebigbang:dormant_magic_rock" }] }
+    },
+    "has_item4": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "item": "thebigbang:dormant_summoning_rock" }] }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thebigbang:mana_rock"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_item",
+      "has_item2",
+      "has_item3",
+      "has_item4",
+      "has_the_recipe"
+    ]
+  ]
+}

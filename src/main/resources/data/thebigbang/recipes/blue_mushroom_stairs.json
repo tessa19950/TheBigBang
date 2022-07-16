@@ -1,0 +1,19 @@
+{
+ 	"type": "minecraft:crafting_shaped",
+  	"pattern": 
+  	[
+    	"  #",
+    	" ##",
+		"###"
+  	],
+  
+  	"key": 
+  	{
+    	"#": { "item": "thebigbang:blue_mushroom_block" }
+  	},
+  
+  	"result": {
+		"item": "thebigbang:blue_mushroom_stairs",
+		"count": 4
+	}
+}

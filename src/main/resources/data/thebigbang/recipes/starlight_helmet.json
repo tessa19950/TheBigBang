@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		" m ",
+		"m&m",
+		"sss"
+	],
+
+	"key":
+	{
+		"m": { "item": "thebigbang:blessed_mithril_ingot" },
+		"s": [
+			{ "item": "thebigbang:red_snail_shell" },
+			{ "item": "thebigbang:blue_snail_shell" },
+			{ "item": "thebigbang:green_snail_shell" }
+		],
+		"&": { "item": "minecraft:iron_helmet" }
+	},
+
+	"result": { "item": "thebigbang:starlight_helmet" }
+}

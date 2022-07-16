@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"dr ",
+		"raa",
+		" a "
+	],
+
+	"key":
+	{
+		"a": { "item": "thebigbang:blessed_adamantium_ingot" },
+		"r": { "item": "thebigbang:red_snail_shell" },
+		"d": { "item": "thebigbang:drakes_blood" }
+	},
+
+	"result": { "item": "thebigbang:kandayo" }
+}

@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"#x#",
+		"%&%",
+		"% %"
+	],
+
+	"key":
+	{
+		"%": { "item": "thebigbang:blessed_adamantium_ingot" },
+		"#": [
+			{ "item": "thebigbang:evil_eye_tail" },
+			{ "item": "thebigbang:curse_eye_tail" },
+			{ "item": "thebigbang:cold_eye_tail" }
+		],
+		"&": { "item": "minecraft:iron_chestplate" },
+		"x": { "item": "thebigbang:pigs_ribbon" }
+	},
+
+	"result": { "item": "thebigbang:hwarang_leggings" }
+}

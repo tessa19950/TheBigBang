@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"  p",
+		"oo ",
+		"oo "
+	],
+
+	"key":
+	{
+		"p": { "item": "thebigbang:pigs_ribbon" },
+		"o": { "item": "thebigbang:blessed_orihalcon_ingot" }
+	},
+
+	"result": {
+		"item": "thebigbang:steely",
+		"count": 16
+	}
+}

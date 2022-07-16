@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		" m ",
+		"m&m",
+		"ulu"
+	],
+
+	"key":
+	{
+		"m": { "item": "thebigbang:blessed_mithril_ingot" },
+		"l": { "item": "minecraft:lapis_lazuli" },
+		"u": { "item": "thebigbang:undead_charm" },
+		"&": { "item": "minecraft:diamond_helmet" }
+	},
+
+	"result": { "item": "thebigbang:goldwind_helmet" }
+}

@@ -1,0 +1,22 @@
+{
+ 	"type": "minecraft:crafting_shaped",
+  	"pattern": 
+  	[
+  		"#%#",
+    	"%&%",
+    	"# #"
+  	],
+  
+  	"key": 
+  	{
+  	    "%": { "item": "thebigbang:blessed_adamantium_ingot" },
+    	"#": [
+			{ "item": "thebigbang:evil_eye_tail" },
+			{ "item": "thebigbang:curse_eye_tail" },
+			{ "item": "thebigbang:cold_eye_tail" }
+		],
+    	"&": { "item": "minecraft:iron_helmet" }
+  	},
+  
+  	"result": { "item": "thebigbang:hwarang_helmet" }
+}

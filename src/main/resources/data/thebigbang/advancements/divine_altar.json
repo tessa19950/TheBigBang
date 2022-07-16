@@ -1,0 +1,46 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thebigbang:divine_altar"
+    ]
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "item": "thebigbang:stone_golem_rubble" }] }
+    },
+    "has_item2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "item": "thebigbang:dark_stone_golem_rubble" }] }
+    },
+    "has_item3": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "item": "thebigbang:mana_rock" }] }
+    },
+    "has_item4": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "item": "minecraft:diamond" }] }
+    },
+    "has_item5": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "item": "minecraft:gold_ingot" }] }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thebigbang:divine_altar"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_item",
+      "has_item2",
+      "has_item3",
+      "has_item4",
+      "has_item5",
+      "has_the_recipe"
+    ]
+  ]
+}

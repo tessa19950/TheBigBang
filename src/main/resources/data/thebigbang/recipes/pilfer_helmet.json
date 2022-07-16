@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"bob",
+		"o&o",
+		"sss"
+	],
+
+	"key":
+	{
+		"o": { "item": "thebigbang:blessed_orihalcon_ingot" },
+		"b": { "item": "minecraft:bone" },
+		"s": { "item": "thebigbang:drakes_skull" },
+		"&": { "item": "minecraft:diamond_helmet" }
+	},
+
+	"result": { "item": "thebigbang:pilfer_helmet" }
+}

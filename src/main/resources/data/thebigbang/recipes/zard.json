@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"m",
+		"m",
+		"s"
+	],
+
+	"key":
+	{
+		"m": { "item": "thebigbang:blessed_mithril_ingot" },
+		"s": { "item": "minecraft:stick" }
+	},
+
+	"result": { "item": "thebigbang:zard" }
+}

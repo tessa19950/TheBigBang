@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		" s ",
+		" j ",
+		" j "
+	],
+
+	"key":
+	{
+		"j": { "item": "minecraft:jungle_log" },
+		"s": { "item": "thebigbang:sap_of_ancient_tree" }
+	},
+
+	"result": { "item": "thebigbang:old_wooden_staff" }
+}

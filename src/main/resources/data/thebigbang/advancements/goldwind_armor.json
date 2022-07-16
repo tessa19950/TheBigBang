@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thebigbang:goldwind_helmet",
+      "thebigbang:goldwind_chestplate",
+      "thebigbang:goldwind_leggings",
+      "thebigbang:goldwind_boots"
+    ]
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "item": "thebigbang:blessed_mithril_ingot" }] }
+    },
+    "has_item2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "item": "thebigbang:undead_charm" }] }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thebigbang:goldwind_boots"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_item",
+      "has_item2",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"ggg",
+		"gsg",
+		" s "
+	],
+
+	"key":
+	{
+		"g": { "item": "thebigbang:blessed_gold_ingot" },
+		"s": { "item": "minecraft:stick" }
+	},
+
+	"result": { "item": "thebigbang:helios" }
+}

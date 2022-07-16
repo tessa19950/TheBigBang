@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		" mm",
+		"drm",
+		" s "
+	],
+
+	"key":
+	{
+		"m": { "item": "thebigbang:blessed_mithril_ingot" },
+		"r": { "item": "thebigbang:red_snail_shell" },
+		"s": { "item": "minecraft:stick" },
+		"d": { "item": "thebigbang:drakes_blood" }
+	},
+
+	"result": { "item": "thebigbang:scorpio" }
+}

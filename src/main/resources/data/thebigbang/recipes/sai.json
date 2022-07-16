@@ -1,0 +1,20 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"y",
+		"a",
+		"a"
+	],
+
+	"key":
+	{
+		"a": { "item": "thebigbang:blessed_adamantium_ingot" },
+		"y": [
+			{ "item": "thebigbang:yeti_horn" },
+			{ "item": "thebigbang:dark_yeti_horn" }
+		]
+	},
+
+	"result": { "item": "thebigbang:sai" }
+}

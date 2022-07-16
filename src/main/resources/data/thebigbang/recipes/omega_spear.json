@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"y y",
+		"isi",
+		" s "
+	],
+
+	"key":
+	{
+		"i": { "item": "minecraft:iron_ingot" },
+		"s": { "item": "minecraft:stick" },
+		"y": [
+			{ "item": "thebigbang:yeti_horn" },
+			{ "item": "thebigbang:dark_yeti_horn" }
+		]
+	},
+
+	"result": { "item": "thebigbang:omega_spear" }
+}

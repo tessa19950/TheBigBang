@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		" y ",
+		"jtj",
+		"j j"
+	],
+
+	"key":
+	{
+		"j": { "item": "minecraft:jungle_log" },
+		"t": { "item": "minecraft:tripwire_hook" },
+		"y": [
+			{ "item": "thebigbang:yeti_horn" },
+			{ "item": "thebigbang:dark_yeti_horn" }
+		]
+	},
+
+	"result": { "item": "thebigbang:jaeger" }
+}

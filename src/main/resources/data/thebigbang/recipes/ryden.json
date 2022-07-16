@@ -1,0 +1,18 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"gos",
+		"o s",
+		"gos"
+	],
+
+	"key":
+	{
+		"o": { "item": "thebigbang:blessed_orihalcon_ingot" },
+		"s": { "item": "minecraft:string" },
+		"g": { "item": "minecraft:gold_ingot" }
+	},
+
+	"result": { "item": "thebigbang:ryden" }
+}

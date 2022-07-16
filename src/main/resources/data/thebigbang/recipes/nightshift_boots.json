@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"l l",
+		"p&p",
+		"o o"
+	],
+
+	"key":
+	{
+		"o": { "item": "thebigbang:blessed_orihalcon_ingot" },
+		"l": { "item": "minecraft:leather" },
+		"p": { "item": "thebigbang:octopus_leg" },
+		"&": { "item": "minecraft:iron_boots" }
+	},
+
+	"result": { "item": "thebigbang:nightshift_boots" }
+}

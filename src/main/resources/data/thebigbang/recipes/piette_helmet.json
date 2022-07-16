@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"fgf",
+		"g&g",
+		"rpr"
+	],
+
+	"key":
+	{
+		"g": { "item": "thebigbang:blessed_gold_ingot" },
+		"f": { "item": "minecraft:feather" },
+		"p": { "item": "thebigbang:pepe_beak" },
+		"r": [
+			{ "item": "thebigbang:stone_golem_rubble" },
+			{ "item": "thebigbang:dark_stone_golem_rubble" }
+		],
+		"&": { "item": "minecraft:diamond_helmet" }
+	},
+
+	"result": { "item": "thebigbang:piette_helmet" }
+}

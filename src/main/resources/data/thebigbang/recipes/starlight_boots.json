@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"s s",
+		"g&g",
+		"m m"
+	],
+
+	"key":
+	{
+		"m": { "item": "thebigbang:blessed_mithril_ingot" },
+		"g": { "item": "minecraft:gold_ingot" },
+		"s": [
+			{ "item": "thebigbang:red_snail_shell" },
+			{ "item": "thebigbang:blue_snail_shell" },
+			{ "item": "thebigbang:green_snail_shell" }
+		],
+		"&": { "item": "minecraft:iron_boots" }
+	},
+
+	"result": { "item": "thebigbang:starlight_boots" }
+}

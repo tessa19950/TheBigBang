@@ -1,0 +1,23 @@
+{
+ 	"type": "minecraft:crafting_shaped",
+  	"pattern": 
+  	[
+  		"yfy",
+    	"a&a",
+    	"iai"
+  	],
+  
+  	"key": 
+  	{
+  	    "a": { "item": "thebigbang:blessed_adamantium_ingot" },
+    	"f": { "item": "minecraft:feather" },
+		"i": { "item": "minecraft:iron_ingot" },
+    	"y": [
+			{ "item": "thebigbang:yeti_horn" },
+			{ "item": "thebigbang:dark_yeti_horn" }
+		],
+    	"&": { "item": "minecraft:diamond_helmet" }
+  	},
+  
+  	"result": { "item": "thebigbang:jangoon_helmet" }
+}

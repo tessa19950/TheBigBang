@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "thebigbang:nightshift_helmet",
+      "thebigbang:nightshift_chestplate",
+      "thebigbang:nightshift_leggings",
+      "thebigbang:nightshift_boots"
+    ]
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "item": "thebigbang:blessed_orihalcon_ingot" }] }
+    },
+    "has_item2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "item": "thebigbang:octopus_leg" }] }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "thebigbang:nightshift_boots"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_item",
+      "has_item2",
+      "has_the_recipe"
+    ]
+  ]
+}

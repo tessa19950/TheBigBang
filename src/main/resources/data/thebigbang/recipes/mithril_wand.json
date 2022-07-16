@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"d",
+		"m",
+		"m"
+	],
+
+	"key":
+	{
+		"m": { "item": "thebigbang:blessed_mithril_ingot" },
+		"d": { "item": "minecraft:diamond" }
+	},
+
+	"result": { "item": "thebigbang:mithril_wand" }
+}

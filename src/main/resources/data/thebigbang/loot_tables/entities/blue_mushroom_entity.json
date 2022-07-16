@@ -62,6 +62,25 @@
                 {
                     "type": "item",
                     "weight": 1,
+                    "name": "thebigbang:dormant_magic_rock"
+                },
+                {
+                    "type": "item",
+                    "weight": 1,
+                    "name": "thebigbang:dormant_summoning_rock"
+                },
+                {
+                    "type": "empty",
+                    "weight": 98
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "weight": 1,
                     "name": "thebigbang:music_disc_ellinia"
                 },
                 {

@@ -1,0 +1,17 @@
+{
+ 	"type": "minecraft:crafting_shaped",
+  	"pattern": 
+  	[
+    	"##",
+    	"##"
+  	],
+  
+  	"key": 
+  	{
+    	"#": { "item": "thebigbang:orange_mushroom_cap" }
+  	},
+  
+  	"result": {
+		"item": "thebigbang:orange_mushroom_block"
+	}
+}

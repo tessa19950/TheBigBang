@@ -1,0 +1,22 @@
+{
+ 	"type": "minecraft:crafting_shaped",
+  	"pattern": 
+  	[
+  		"a a",
+    	"a&a",
+    	"ypy"
+  	],
+  
+  	"key": 
+  	{
+  	    "a": { "item": "thebigbang:blessed_adamantium_ingot" },
+    	"p": { "item": "thebigbang:pigs_ribbon" },
+    	"y": [
+			{ "item": "thebigbang:yeti_horn" },
+			{ "item": "thebigbang:dark_yeti_horn" }
+		],
+    	"&": { "item": "minecraft:diamond_chestplate" }
+  	},
+  
+  	"result": { "item": "thebigbang:jangoon_chestplate" }
+}

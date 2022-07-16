@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		"q q",
+		"r&r",
+		"g g"
+	],
+
+	"key":
+	{
+		"g": { "item": "thebigbang:blessed_gold_ingot" },
+		"q": { "item": "minecraft:quartz" },
+		"r": [
+			{ "item": "thebigbang:stone_golem_rubble" },
+			{ "item": "thebigbang:dark_stone_golem_rubble" }
+		],
+		"&": { "item": "minecraft:diamond_boots" }
+	},
+
+	"result": { "item": "thebigbang:piette_boots" }
+}

@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern":
+	[
+		" m ",
+		"m m",
+		" m "
+	],
+
+	"key":
+	{
+		"m": { "item": "thebigbang:blessed_mithril_ingot" }
+	},
+
+	"result": {
+		"item": "thebigbang:tobi",
+		"count": 16
+	}
+}

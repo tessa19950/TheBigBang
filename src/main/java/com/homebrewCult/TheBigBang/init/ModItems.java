@@ -55,7 +55,7 @@ public class ModItems {
 	public static final Item ORIHALCON_NUGGET = registerMiscItem("orihalcon_nugget");
 	public static final Item DORMANT_ORIHALCON_INGOT = registerDivineItem("dormant_orihalcon_ingot", false);
 	public static final Item BLESSED_ORIHALCON_INGOT = registerDivineItem("blessed_orihalcon_ingot", true);
-	public static final Item BLESSED_GOLD_INGOT = registerMiscItem("blessed_gold_ingot");
+	public static final Item BLESSED_GOLD_INGOT = registerDivineItem("blessed_gold_ingot", true);
 	
 	public static final Item DANGER_SIGN = null;
 	public static final Item DIVINE_ALTAR = null;
