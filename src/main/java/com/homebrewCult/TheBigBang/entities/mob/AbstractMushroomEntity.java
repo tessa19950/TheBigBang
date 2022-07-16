@@ -49,8 +49,7 @@ public class AbstractMushroomEntity extends AnimalEntity implements IQuestEntity
 	}
 	
 	@Override
-	protected void registerGoals()
-	{
+	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new BreedGoal(this, 1D));
 		this.goalSelector.addGoal(2, new AbstractMushroomTemptGoal(this, 1D, false, TEMPTATION_ITEMS));
@@ -78,10 +77,11 @@ public class AbstractMushroomEntity extends AnimalEntity implements IQuestEntity
 		if (source.getTrueSource() instanceof LivingEntity) {
 			LivingEntity trueTarget = (LivingEntity)source.getTrueSource();
 			setAttackTarget(trueTarget);
+			this.isAngry = true;
         	if(this.isChild() && this.hasMom()) {
         		this.getMom().setChildAttacker(trueTarget);
         		BigBangPacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(), new Packet_SetChildAttacker(this.getMom().getEntityId(), trueTarget.getEntityId()));
-        	}      	
+        	}
         }
 		return super.attackEntityFrom(source, amount);
 	}
@@ -108,8 +108,7 @@ public class AbstractMushroomEntity extends AnimalEntity implements IQuestEntity
 		return null;
 	}
 	
-	public boolean isBreedingItem(ItemStack stack) 
-	{
+	public boolean isBreedingItem(ItemStack stack) {
 		if(!this.isAngry) {
 			return TEMPTATION_ITEMS.test(stack);
 		} else {

@@ -10,7 +10,6 @@ import com.homebrewCult.TheBigBang.init.ModItems;
 public enum Quest {
 	BlankQuest("TITLE", 100,
 			"QUEST_DESCRIPTION"),
-
 	Polluted("POLLUTED!", 100,
 			"Eliminate #kill_amount# #entity# for the Rememberer.",
 			100),

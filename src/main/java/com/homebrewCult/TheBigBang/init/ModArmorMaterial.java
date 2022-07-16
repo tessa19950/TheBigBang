@@ -13,41 +13,34 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public enum ModArmorMaterial implements IArmorMaterial {
 	
-	APPLE("apple", 5, new int[]{1, 2, 3, 1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
-		return Ingredient.fromItems(Items.APPLE);
-	}),
-	
-	HWARANG("hwarang", 5, new int[]{1, 2, 3, 1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
-		return null;
-	}),
-	
-	LEGOLIER("legolier", 5, new int[]{1, 2, 3, 1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
-		return null;
-	}),
-	
-	STARLIGHT("starlight", 5, new int[]{1, 2, 3, 1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
-		return null;
-	}),
-	
-	NIGHTSHIFT("nightshift", 5, new int[]{1, 2, 3, 1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
-		return null;
-	}),
-	
-	JANGOON("jangoon", 5, new int[]{1, 2, 3, 1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
-		return null;
-	}),
+	APPLE("apple", 5, new int[]{1, 2, 3, 1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC,
+			0.0F, () -> Ingredient.fromItems(Items.APPLE)),
 
-	PIETTE("piette", 5, new int[]{1, 2, 3, 1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
-		return null;
-	}),
+	// ********** TIER 1 ARMOR SETS *********
+	HWARANG("hwarang", 15, new int[]{2, 5, 6, 2}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC,
+			0.0F, () -> Ingredient.fromItems(ModItems.BLESSED_ADAMANTIUM_INGOT)),
+	
+	LEGOLIER("legolier", 15, new int[]{2, 5, 6, 2}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC,
+			0.0F, () -> Ingredient.fromItems(ModItems.BLESSED_GOLD_INGOT)),
+	
+	STARLIGHT("starlight", 15, new int[]{2, 5, 6, 2}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC,
+			0.0F, () -> Ingredient.fromItems(ModItems.BLESSED_MITHRIL_INGOT)),
 
-	GOLDWIND("goldwind", 5, new int[]{1, 2, 3, 1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
-		return null;
-	}),
+	NIGHTSHIFT("nightshift", 15, new int[]{2, 5, 6, 2}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC,
+			0.0F, () -> Ingredient.fromItems(ModItems.BLESSED_ORIHALCON_INGOT)),
 
-	PILFER("pilfer", 5, new int[]{1, 2, 3, 1}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0.0F, () -> {
-		return null;
-	});
+	// ********** TIER 2 ARMOR SETS **********
+	JANGOON("jangoon", 33, new int[]{3, 6, 8, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC,
+			0.0F, () -> Ingredient.fromItems(ModItems.BLESSED_ADAMANTIUM_INGOT)),
+
+	PIETTE("piette", 33, new int[]{3, 6, 8, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC,
+			0.0F, () -> Ingredient.fromItems(ModItems.BLESSED_GOLD_INGOT)),
+
+	GOLDWIND("goldwind", 33, new int[]{3, 6, 8, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC,
+			0.0F, () -> Ingredient.fromItems(ModItems.BLESSED_MITHRIL_INGOT)),
+
+	PILFER("pilfer", 33, new int[]{3, 6, 8, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC,
+			0.0F, () -> Ingredient.fromItems(ModItems.BLESSED_ORIHALCON_INGOT));
 	
 	private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
 	private final String name;
