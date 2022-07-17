@@ -1,18 +1,16 @@
 package com.homebrewCult.TheBigBang.entities.mob;
 
 import com.homebrewCult.TheBigBang.init.ModEntities;
+import com.homebrewCult.TheBigBang.init.ModItems;
 import com.homebrewCult.TheBigBang.init.ModSounds;
 import com.homebrewCult.TheBigBang.util.IQuestEntity;
 import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.TemptGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Food;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
@@ -31,24 +29,27 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class AbstractYetiEntity extends AnimalEntity implements IQuestEntity {
+public class AbstractYetiEntity extends TameableEntity implements IQuestEntity {
 	private boolean isAngry;
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.COD, Items.SALMON, Items.PUFFERFISH, Items.TROPICAL_FISH);
-	private QuestEntityHandler questEntityHandler = new QuestEntityHandler();
+	private final QuestEntityHandler questEntityHandler = new QuestEntityHandler();
 	private static final DataParameter<Boolean> SADDLED;
 	
-	public AbstractYetiEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
+	public AbstractYetiEntity(EntityType<? extends TameableEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
 	
 	@Override
 	protected void registerGoals() {
+		  this.sitGoal = new SitGoal(this);
 	      this.goalSelector.addGoal(0, new SwimGoal(this));
-	      this.targetSelector.addGoal(1, new TemptGoal(this, 1D, false, TEMPTATION_ITEMS));
-	      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-	      this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-	      this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 1f));
-	      this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
+		  this.goalSelector.addGoal(1, this.sitGoal);
+	      this.goalSelector.addGoal(2, new TemptGoal(this, 1D, false, TEMPTATION_ITEMS));
+	      this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+		  this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F));
+	      this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+	      this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 1f));
+	      this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
 	}
 	
 	@Override
@@ -64,11 +65,11 @@ public class AbstractYetiEntity extends AnimalEntity implements IQuestEntity {
 	@Nullable
 	@Override
 	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-		if (worldIn.getRandom().nextInt(100) == 0) {
+		if (worldIn.getRandom().nextInt(100) == 0 && !reason.equals(SpawnReason.CONVERSION)) {
 			setSaddled(true);
-			PepeEntity pepe = (PepeEntity) ModEntities.PEPE_ENTITY.create(this.world);
+			PepeEntity pepe = ModEntities.PEPE_ENTITY.create(this.world);
 			pepe.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-			pepe.onInitialSpawn(worldIn, difficultyIn, reason, (ILivingEntityData)null, (CompoundNBT)null);
+			pepe.onInitialSpawn(worldIn, difficultyIn, reason, null, null);
 			worldIn.addEntity(pepe);
 			pepe.startRiding(this);
 		}
@@ -76,27 +77,38 @@ public class AbstractYetiEntity extends AnimalEntity implements IQuestEntity {
 	}
 
 	public boolean processInteract(PlayerEntity player, Hand hand) {
-		if (!super.processInteract(player, hand)) {
-			ItemStack itemstack = player.getHeldItem(hand);
-			if (itemstack.getItem() == Items.NAME_TAG) {
-				itemstack.interactWithEntity(player, this, hand);
+		ItemStack itemstack = player.getHeldItem(hand);
+		Food food = itemstack.getItem().getFood();
+		if (this.getOwner() != null) {
+			boolean isFishOrMeat = food != null && (isFish(itemstack) || food.isMeat());
+			if (isFishOrMeat && getHealth() < 20.0F) {
+				if (!player.abilities.isCreativeMode)
+					itemstack.shrink(1);
+				this.heal(food.getHealing());
 				return true;
-			} else if (this.getSaddled() && !this.isBeingRidden()) {
-				if (!this.world.isRemote) {
-					player.startRiding(this);
-				}
-				return true;
-			} else if (itemstack.getItem() == Items.SADDLE) {
-				setSaddled(true);
-				itemstack.shrink(1);
-				//itemstack.interactWithEntity(player, this, hand);
-				return true;
-			} else {
-				return false;
 			}
-		} else {
-			return true;
+			if (this.isOwner(player) && !this.world.isRemote) {
+				if (itemstack.getItem() == Items.SADDLE && !this.getSaddled()) {
+					setSaddled(true);
+					itemstack.shrink(1);
+					return true;
+				} else if (!player.isSneaking() && this.getSaddled() && !this.isBeingRidden()) {
+					player.startRiding(this);
+					this.sitGoal.setSitting(false);
+					return true;
+				} else if (player.isSneaking() || !this.getSaddled()) {
+					this.sitGoal.setSitting(!this.isSitting());
+					this.navigator.clearPath();
+				}
+			}
 		}
+		return super.processInteract(player, hand);
+	}
+
+	private boolean isFish(ItemStack stack) {
+		if(!stack.isFood())
+			return false;
+		return TEMPTATION_ITEMS.test(stack);
 	}
 
 	@Override
@@ -116,7 +128,7 @@ public class AbstractYetiEntity extends AnimalEntity implements IQuestEntity {
 
 	@Nullable
 	public Entity getControllingPassenger() {
-		return this.getPassengers().isEmpty() ? null : (Entity)this.getPassengers().get(0);
+		return this.getPassengers().isEmpty() ? null : this.getPassengers().get(0);
 	}
 
 	public boolean canBeSteered() {
@@ -124,7 +136,7 @@ public class AbstractYetiEntity extends AnimalEntity implements IQuestEntity {
 	}
 
 	public boolean getSaddled() {
-		return (Boolean)this.dataManager.get(SADDLED);
+		return this.dataManager.get(SADDLED);
 	}
 
 	public void setSaddled(boolean saddled) {
@@ -133,7 +145,6 @@ public class AbstractYetiEntity extends AnimalEntity implements IQuestEntity {
 		} else {
 			this.dataManager.set(SADDLED, false);
 		}
-
 	}
 
 	public void travel(Vec3d direction) {

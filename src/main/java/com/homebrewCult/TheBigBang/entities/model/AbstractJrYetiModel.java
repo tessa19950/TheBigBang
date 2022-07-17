@@ -1,5 +1,6 @@
 package com.homebrewCult.TheBigBang.entities.model;
 
+import com.homebrewCult.TheBigBang.entities.mob.AbstractJrYetiEntity;
 import net.minecraft.client.renderer.entity.model.QuadrupedModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.ModelBox;
@@ -11,7 +12,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 //Paste this code into your mod.
 
 @OnlyIn(Dist.CLIENT)
-public class AbstractJrYetiModel<T extends Entity> extends QuadrupedModel<T> {
+public class AbstractJrYetiModel<T extends AbstractJrYetiEntity> extends QuadrupedModel<T> {
 	
 	private float oscillationTimer = 0f;
 	
@@ -78,27 +79,32 @@ public class AbstractJrYetiModel<T extends Entity> extends QuadrupedModel<T> {
 	}
 	
 	@Override
-	public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
-		super.setLivingAnimations(entityIn, limbSwing, limbSwingAmount, partialTick);		
+	public void setLivingAnimations(T jrYeti, float limbSwing, float limbSwingAmount, float partialTick) {
+		super.setLivingAnimations(jrYeti, limbSwing, limbSwingAmount, partialTick);
 		
 		RendererModel[] furStrips = {this.FeetFur_Bone1, this.FeetFur_Bone2, this.FeetFur_Bone3, this.FeetFur_Bone4, this.SideFur_Bone1, this.SideFur_Bone2};
-		if(valueInRange(entityIn.getMotion().x, -0.0001D, 0.0001D) && valueInRange(entityIn.getMotion().z, -0.0001D, 0.0001D)) {
-			oscillationTimer = (entityIn.ticksExisted + partialTick) * 0.05f;
+		if(jrYeti.isSitting()) {
 			for (RendererModel fur : furStrips) {
-				fur.rotateAngleX = -0.2f - (float)Math.abs(0.3f * Math.cos(oscillationTimer));
+				fur.rotateAngleX = (fur == this.SideFur_Bone1 || fur == this.SideFur_Bone2) ? -0.2f : -1.5F;
 			}
-			this.Body_Bone.offsetY = 0.05f - (float)Math.abs(0.05f * Math.cos(oscillationTimer));
+			this.Body_Bone.offsetY = 0.15F;
 		} else {
-			oscillationTimer = (entityIn.ticksExisted + partialTick) * 0.4f;
-			for (RendererModel fur : furStrips) {
-				fur.rotateAngleX = -0.2f - (float)Math.abs(0.9f * Math.cos(oscillationTimer));
+			if (valueInRange(jrYeti.getMotion().x, -0.0001D, 0.0001D) && valueInRange(jrYeti.getMotion().z, -0.0001D, 0.0001D)) {
+				oscillationTimer = (jrYeti.ticksExisted + partialTick) * 0.05f;
+				for (RendererModel fur : furStrips)
+					fur.rotateAngleX = -0.2f - (float) Math.abs(0.3f * Math.cos(oscillationTimer));
+				this.Body_Bone.offsetY = 0.05f - (float) Math.abs(0.05f * Math.cos(oscillationTimer));
+			} else {
+				oscillationTimer = (jrYeti.ticksExisted + partialTick) * 0.4f;
+				for (RendererModel fur : furStrips)
+					fur.rotateAngleX = -0.2f - (float) Math.abs(0.9f * Math.cos(oscillationTimer));
+				this.Body_Bone.offsetY = 0.05f - (float) Math.abs(0.1f * Math.cos(oscillationTimer));
 			}
-			this.Body_Bone.offsetY = 0.05f - (float)Math.abs(0.1f * Math.cos(oscillationTimer));
 		}
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+	public void render(AbstractJrYetiEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		Body_Bone.render(f5);
 	}
 	
@@ -108,12 +114,7 @@ public class AbstractJrYetiModel<T extends Entity> extends QuadrupedModel<T> {
 		RendererModel.rotateAngleZ = z;
 	}
 	
-	private boolean valueInRange(double inValue, double min, double max)
-	{
-		if(inValue > min && inValue < max) {
-			return true;
-		} else {
-			return false;
-		}
+	private boolean valueInRange(double inValue, double min, double max) {
+		return inValue > min && inValue < max;
 	}
 }

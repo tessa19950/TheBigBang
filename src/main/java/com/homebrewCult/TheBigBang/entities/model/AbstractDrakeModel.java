@@ -1,5 +1,7 @@
 package com.homebrewCult.TheBigBang.entities.model; 
 
+import com.homebrewCult.TheBigBang.entities.mob.AbstractDrakeEntity;
+import com.homebrewCult.TheBigBang.entities.mob.AbstractGolemEntity;
 import net.minecraft.client.renderer.entity.model.QuadrupedModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.client.renderer.model.ModelBox;
@@ -13,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 // Make sure to generate all required imports
 
 @OnlyIn(Dist.CLIENT)
-public class AbstractDrakeModel <T extends Entity> extends QuadrupedModel<T> {
+public class AbstractDrakeModel <T extends AbstractDrakeEntity> extends QuadrupedModel<T> {
 	
 	private float oscillationTimer = 0f;
 	private float oscillationSpeed = .2f;
@@ -187,7 +189,7 @@ public class AbstractDrakeModel <T extends Entity> extends QuadrupedModel<T> {
 
 		Jaw_Bone = new RendererModel(this);
 		Jaw_Bone.setRotationPoint(0.0F, 2.5884F, 1.619F);
-		setRotationAngle(Jaw_Bone, -0.1745F, 0.0F, 0.0F);
+		setRotationAngle(Jaw_Bone, -0.17F, 0.0F, 0.0F);
 		Head_Bone.addChild(Jaw_Bone);
 		Jaw_Bone.cubeList.add(new ModelBox(Jaw_Bone, 34, 17, -3.5F, -2.1428F, -11.234F, 7, 4, 12, 0.0F, false));
 
@@ -308,7 +310,7 @@ public class AbstractDrakeModel <T extends Entity> extends QuadrupedModel<T> {
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+	public void render(AbstractDrakeEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		Body.render(f5);
 		NeckStart_Bone.render(f5);
 		TailStart_Bone.render(f5);
@@ -319,26 +321,46 @@ public class AbstractDrakeModel <T extends Entity> extends QuadrupedModel<T> {
 	}
 	
 	@Override
-	public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
-		super.setLivingAnimations(entityIn, limbSwing, limbSwingAmount, partialTick);		
-		oscillationTimer = (entityIn.ticksExisted + partialTick) * oscillationSpeed;
+	public void setLivingAnimations(T drake, float limbSwing, float limbSwingAmount, float partialTick) {
+		super.setLivingAnimations(drake, limbSwing, limbSwingAmount, partialTick);
+		oscillationTimer = (drake.ticksExisted + partialTick) * oscillationSpeed;
 	}
 	
 	@Override
-	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-		super.setRotationAngles(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
-		this.EyeLeft_Bone.rotateAngleX = -0.2f + (headPitch) * ((float)Math.PI / 180F);
-		this.EyeLeft_Bone.rotateAngleY = (netHeadYaw / 4) * ((float)Math.PI / 180F);
-		this.EyeRight_Bone.rotateAngleX = -0.2f + (headPitch) * ((float)Math.PI / 180F);
-		this.EyeRight_Bone.rotateAngleY = (netHeadYaw / 4) * ((float)Math.PI / 180F);
-		
-	    this.Head_Bone.rotateAngleX = 1f + (headPitch * ((float)Math.PI / 180F));
-	    this.Head_Bone.rotateAngleY = (netHeadYaw * 0.1f) * ((float)Math.PI / 180F);
-	    this.Head_Bone.rotateAngleZ = (netHeadYaw * 0.4f) * ((float)Math.PI / 180F);
-	    
-	    this.NeckStart_Bone.rotateAngleY = (netHeadYaw * 0.1f) * ((float)Math.PI / 180F);
-	    this.NeckEnd_Bone.rotateAngleY = (netHeadYaw * 0.7f) * ((float)Math.PI / 180F);
-		
+	public void setRotationAngles(T drake, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+		super.setRotationAngles(drake, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
+
+		this.EyeLeft_Bone.rotateAngleX = -0.2f + (headPitch) * ((float) Math.PI / 180F);
+		this.EyeLeft_Bone.rotateAngleY = (netHeadYaw / 4) * ((float) Math.PI / 180F);
+		this.EyeRight_Bone.rotateAngleX = -0.2f + (headPitch) * ((float) Math.PI / 180F);
+		this.EyeRight_Bone.rotateAngleY = (netHeadYaw / 4) * ((float) Math.PI / 180F);
+
+		this.Head_Bone.rotateAngleX = 1f + (headPitch * ((float) Math.PI / 180F));
+		this.Head_Bone.rotateAngleY = (netHeadYaw * 0.1f) * ((float) Math.PI / 180F);
+		this.Head_Bone.rotateAngleZ = (netHeadYaw * 0.4f) * ((float) Math.PI / 180F);
+		this.Jaw_Bone.rotateAngleX = -0.17F;
+
+		this.NeckStart_Bone.rotateAngleY = (netHeadYaw * 0.1f) * ((float) Math.PI / 180F);
+		this.NeckEnd_Bone.rotateAngleY = (netHeadYaw * 0.7f) * ((float) Math.PI / 180F);
+
+		int t = drake.getFireballTick();
+		if(t != -1 && ageInTicks - t < AbstractDrakeEntity.FIREBALL_DURATION) {
+			float attackTimer = (ageInTicks - t)/AbstractDrakeEntity.FIREBALL_DURATION;
+			if(attackTimer < 0.5F) {
+				this.NeckStart_Bone.rotateAngleX = -0.6F - attackTimer;
+				this.NeckEnd_Bone.rotateAngleX = -0.2F - attackTimer;
+			} else {
+				float f = MathHelper.clamp((attackTimer - 0.5F) * 4F, 0, 1);
+				this.NeckStart_Bone.rotateAngleX = -1.1F + f;
+				this.NeckEnd_Bone.rotateAngleX = -0.7F + f;
+				this.Head_Bone.rotateAngleX = -f;
+				this.Jaw_Bone.rotateAngleX = f;
+			}
+		} else {
+			this.NeckStart_Bone.rotateAngleX = -0.6F;
+			this.NeckEnd_Bone.rotateAngleX = -0.2F;
+		}
+
 		this.TailStart_Bone.rotateAngleY = (float)Math.cos(oscillationTimer) * tailStartMaxRot;
 		this.TailEnd_Bone.rotateAngleY = (float)Math.cos(oscillationTimer + tailEndTimeOffset) * tailEndMaxRot;
 		

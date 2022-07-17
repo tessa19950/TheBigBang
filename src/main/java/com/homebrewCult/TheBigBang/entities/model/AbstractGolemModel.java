@@ -1,5 +1,6 @@
 package com.homebrewCult.TheBigBang.entities.model; 
 
+import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.entities.mob.AbstractGolemEntity;
 
 import net.minecraft.client.renderer.entity.model.QuadrupedModel;
@@ -15,7 +16,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 // Make sure to generate all required imports
 
 @OnlyIn(Dist.CLIENT)
-public class AbstractGolemModel <T extends Entity> extends QuadrupedModel<T> {
+public class AbstractGolemModel <T extends AbstractGolemEntity> extends QuadrupedModel<T> {
 	
 	private float oscillationTimer = 0f;
 	private float oscillationSpeed = .05f;
@@ -123,7 +124,7 @@ public class AbstractGolemModel <T extends Entity> extends QuadrupedModel<T> {
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+	public void render(AbstractGolemEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		LeftUpperLeg_Bone.render(f5);
 		RightUpperLeg_Bone.render(f5);
 		LeftLowerLeg_Bone.render(f5);
@@ -132,44 +133,61 @@ public class AbstractGolemModel <T extends Entity> extends QuadrupedModel<T> {
 	}
 	
 	@Override
-	public void setLivingAnimations(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
-		super.setLivingAnimations(entityIn, limbSwing, limbSwingAmount, partialTick);		
-		oscillationTimer = (entityIn.ticksExisted + partialTick) * oscillationSpeed;
+	public void setLivingAnimations(T golem, float limbSwing, float limbSwingAmount, float partialTick) {
+		super.setLivingAnimations(golem, limbSwing, limbSwingAmount, partialTick);
+		oscillationTimer = (golem.ticksExisted + partialTick) * oscillationSpeed;
 	}
 	
 	@Override
-	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-		super.setRotationAngles(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
-        AbstractGolemEntity golem = (AbstractGolemEntity) entityIn;
+	public void setRotationAngles(T golem, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+		super.setRotationAngles(golem, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
 		
 		//Legwork
 		float leftLegSwing = MathHelper.cos(limbSwing * 0.6f);
         float rightLegSwing = MathHelper.cos(limbSwing * 0.6f + (float)Math.PI);
-        
-        if(golem.getIsTempted() && limbSwingAmount < 0.01f) {
+
+		int t = golem.getShockwaveTick();
+		if(golem.getIsTempted() && limbSwingAmount < 0.01f) {
         	//Move Hip Offset into Squat Position
-	        this.Hip_Bone.offsetY = MathHelper.lerp(0.1f, this.Hip_Bone.offsetY, 0.3f);
-	        this.Hip_Bone.offsetZ = MathHelper.lerp(0.1f, this.Hip_Bone.offsetZ, 0.3f);
+	        this.Hip_Bone.offsetY = 0.3f;
+	        this.Hip_Bone.offsetZ = 0.3f;
 	        //Move Leg Rotations into Squat Positions
-	        this.LeftUpperLeg_Bone.rotateAngleX = MathHelper.lerp(0.1f, this.LeftUpperLeg_Bone.rotateAngleX, -1f);
-	        this.RightUpperLeg_Bone.rotateAngleX = MathHelper.lerp(0.1f, this.LeftUpperLeg_Bone.rotateAngleX, -1f);
+	        this.LeftUpperLeg_Bone.rotateAngleX = -1f;
+	        this.RightUpperLeg_Bone.rotateAngleX = -1f;
 	        //Move Leg Offsets into Squat Positions
-	        this.LeftUpperLeg_Bone.offsetY = MathHelper.lerp(0.1f, this.LeftUpperLeg_Bone.offsetY, 0.3f);
-	        this.RightUpperLeg_Bone.offsetY = MathHelper.lerp(0.1f, this.RightUpperLeg_Bone.offsetY, 0.3f);
-	        this.LeftUpperLeg_Bone.offsetZ = MathHelper.lerp(0.1f, this.LeftUpperLeg_Bone.offsetZ, 0.2f);
-	        this.RightUpperLeg_Bone.offsetZ = MathHelper.lerp(0.1f, this.RightUpperLeg_Bone.offsetZ, 0.2f);
+	        this.LeftUpperLeg_Bone.offsetY = 0.3f;
+	        this.RightUpperLeg_Bone.offsetY = 0.3f;
+	        this.LeftUpperLeg_Bone.offsetZ = 0.2f;
+	        this.RightUpperLeg_Bone.offsetZ = 0.2f;
+		} else if(t != -1 && ageInTicks - t <= AbstractGolemEntity.SHOCKWAVE_DURATION) {
+			float attackTime = ageInTicks - golem.getShockwaveTick();
+			float swingPct = MathHelper.clamp(attackTime / 40F, 0, 1);
+			if(swingPct < 0.85F) {
+				float upSwing = (float) -Math.sin(swingPct * 0.85F * Math.PI);
+				this.LeftUpperArm_Bone.rotateAngleX = upSwing * 3F;
+				this.RightUpperArm_Bone.rotateAngleX = upSwing * 3F;
+				this.Hip_Bone.rotateAngleX = 0.4F + upSwing;
+			} else {
+				float downSwing = (swingPct - 0.85F) * 10F;
+				this.LeftUpperArm_Bone.rotateAngleX = MathHelper.lerp(downSwing, -3, -2.3F);
+				this.RightUpperArm_Bone.rotateAngleX = MathHelper.lerp(downSwing, -3, -2.3F);
+				this.LeftLowerArm_Bone.rotateAngleX = MathHelper.lerp(downSwing, 1, -0.1F);
+				this.RightLowerArm_Bone.rotateAngleX = MathHelper.lerp(downSwing, 1, -0.1F);
+				this.Hip_Bone.rotateAngleX = 0.4F + MathHelper.lerp(downSwing, -1, 0.5F);
+			}
 		} else {
-			//Move Hip Offset into Squat Position
-	        this.Hip_Bone.offsetY = MathHelper.lerp(0.1f, this.Hip_Bone.offsetY, -0.1f);
-	        this.Hip_Bone.offsetZ = MathHelper.lerp(0.1f, this.Hip_Bone.offsetZ, 0);
+			//Move Hip Offset into Original Position
+			this.Hip_Bone.rotateAngleX = 0;
+	        this.Hip_Bone.offsetY = -0.1f;
+	        this.Hip_Bone.offsetZ = 0;
 	        //Animate Leg Rotations for Walking
 	        this.LeftUpperLeg_Bone.rotateAngleX = MathHelper.clamp(-0.5f + leftLegSwing * 6F * limbSwingAmount, -1.4f, 1.4f);
 	        this.RightUpperLeg_Bone.rotateAngleX = MathHelper.clamp(-0.5f + rightLegSwing * 6F * limbSwingAmount,  -1.4f, 1.4f);;
 	        //Move Leg Offsets into Original Positions
-	        this.LeftUpperLeg_Bone.offsetY = MathHelper.lerp(0.1f, this.LeftUpperLeg_Bone.offsetY, 0f);
-	        this.RightUpperLeg_Bone.offsetY = MathHelper.lerp(0.1f, this.RightUpperLeg_Bone.offsetY, 0f);
-	        this.LeftUpperLeg_Bone.offsetZ = MathHelper.lerp(0.1f, this.LeftUpperLeg_Bone.offsetZ, 0f);
-	        this.RightUpperLeg_Bone.offsetZ = MathHelper.lerp(0.1f, this.RightUpperLeg_Bone.offsetZ, 0f);
+	        this.LeftUpperLeg_Bone.offsetY = 0f;
+	        this.RightUpperLeg_Bone.offsetY = 0f;
+	        this.LeftUpperLeg_Bone.offsetZ = 0f;
+	        this.RightUpperLeg_Bone.offsetZ = 0f;
 		}
         
         //Footwork
@@ -182,10 +200,14 @@ public class AbstractGolemModel <T extends Entity> extends QuadrupedModel<T> {
         
         //Looking at Player
 		this.Torso_Bone.rotateAngleX = headPitch * (float)Math.PI / 180F * 0.6f;
-		this.LeftUpperArm_Bone.rotateAngleX = (headPitch * -1) * (float)Math.PI / 180 * 0.6f;
-		this.RightUpperArm_Bone.rotateAngleX = (headPitch * -1) * (float)Math.PI / 180 * 0.6f;
 	    this.Head_Bone.rotateAngleY = netHeadYaw * 0.8f * ((float)Math.PI / 180F);
-		
+		if(ageInTicks - t > AbstractGolemEntity.SHOCKWAVE_DURATION) {
+			this.LeftUpperArm_Bone.rotateAngleX = (headPitch * -1) * (float) Math.PI / 180 * 0.6f;
+			this.RightUpperArm_Bone.rotateAngleX = (headPitch * -1) * (float) Math.PI / 180 * 0.6f;
+			this.LeftLowerArm_Bone.rotateAngleX = (headPitch * -1) * (float) Math.PI / 180 * 0.6f;
+			this.RightLowerArm_Bone.rotateAngleX = (headPitch * -1) * (float) Math.PI / 180 * 0.6f;
+		}
+
 		//Breathing
 		this.Torso_Bone.offsetY = (float)Math.cos(oscillationTimer) * 0.05f;
 		this.LeftUpperArm_Bone.offsetY = (float)Math.cos(oscillationTimer) * 0.05f;

@@ -226,21 +226,38 @@ public class AbstractYetiModel <T extends AbstractYetiEntity> extends QuadrupedM
 	    this.LeftUpArm_Saddle.showModel = flag;
 	    this.RightUpArm_Saddle.showModel = flag;
 
-	    //LegWork
-		float leftLegSwing = MathHelper.cos(limbSwing * 0.6f);
-        float rightLegSwing = MathHelper.cos(limbSwing * 0.6f + (float)Math.PI);
-	    this.LeftUpleg_Bone.rotateAngleX = MathHelper.clamp(-0.4f + leftLegSwing * 3F * limbSwingAmount, -1.4f, 1.4f);
-	    this.RightUpleg_Bone.rotateAngleX = MathHelper.clamp(-0.4f + rightLegSwing * 3F * limbSwingAmount, -1.4f, 1.4f);
-	    this.LeftLowLeg_Bone.rotateAngleX = MathHelper.clamp(0.4f + leftLegSwing * 1F * limbSwingAmount, -1.4f, 1.4f);
-	    this.RightLowLeg_Bone.rotateAngleX = MathHelper.clamp(0.4f + rightLegSwing * 1F * limbSwingAmount, -1.4f, 1.4f);
-	    
-	    //ArmWork
-		float leftArmSwing = MathHelper.cos(limbSwing * 0.6f);
-        float rightArmSwing = MathHelper.cos(limbSwing * 0.6f + (float)Math.PI);
-	    this.LeftUpArm_Bone.rotateAngleX = MathHelper.clamp(-0.4f + leftArmSwing * 2F * limbSwingAmount, -1.4f, 1.4f);
-	    this.RightUpArm_Bone.rotateAngleX = MathHelper.clamp(-0.4f + rightArmSwing * 2F * limbSwingAmount, -1.4f, 1.4f);
-	    this.LeftLowArm_Bone.rotateAngleX = MathHelper.clamp(-0.3f + leftLegSwing * -2F * limbSwingAmount, -1.4f, 1.4f);
-	    this.RightLowArm_Bone2.rotateAngleX = MathHelper.clamp(-0.3f + rightLegSwing * -2F * limbSwingAmount, -1.4f, 1.4f);
+		if(entityIn.isSitting()) {
+			this.Hip_Bone.offsetY = 0.4F;
+			this.LeftUpleg_Bone.offsetY = 0.4F;
+			this.RightUpleg_Bone.offsetY = 0.4F;
+			this.LeftUpleg_Bone.rotateAngleX = -1.6F;
+			this.RightUpleg_Bone.rotateAngleX = -1.6F;
+			this.LeftLowLeg_Bone.rotateAngleX = 0.3F;
+			this.RightLowLeg_Bone.rotateAngleX = 0.3F;
+			this.LeftUpArm_Bone.rotateAngleX = 0.2F;
+			this.RightUpArm_Bone.rotateAngleX = 0.2F;
+			this.LeftLowArm_Bone.rotateAngleX = -1.3F;
+			this.RightLowArm_Bone2.rotateAngleX = -1.3F;
+		} else {
+			this.Hip_Bone.offsetY = 0F;
+			this.LeftUpleg_Bone.offsetY = 0F;
+			this.RightUpleg_Bone.offsetY = 0F;
+			//LegWork
+			float leftLegSwing = MathHelper.cos(limbSwing * 0.6f);
+			float rightLegSwing = MathHelper.cos(limbSwing * 0.6f + (float) Math.PI);
+			this.LeftUpleg_Bone.rotateAngleX = MathHelper.clamp(-0.4f + leftLegSwing * 3F * limbSwingAmount, -1.4f, 1.4f);
+			this.RightUpleg_Bone.rotateAngleX = MathHelper.clamp(-0.4f + rightLegSwing * 3F * limbSwingAmount, -1.4f, 1.4f);
+			this.LeftLowLeg_Bone.rotateAngleX = MathHelper.clamp(0.4f + leftLegSwing * 1F * limbSwingAmount, -1.4f, 1.4f);
+			this.RightLowLeg_Bone.rotateAngleX = MathHelper.clamp(0.4f + rightLegSwing * 1F * limbSwingAmount, -1.4f, 1.4f);
+
+			//ArmWork
+			float leftArmSwing = MathHelper.cos(limbSwing * 0.6f);
+			float rightArmSwing = MathHelper.cos(limbSwing * 0.6f + (float) Math.PI);
+			this.LeftUpArm_Bone.rotateAngleX = MathHelper.clamp(-0.4f + leftArmSwing * 2F * limbSwingAmount, -1.4f, 1.4f);
+			this.RightUpArm_Bone.rotateAngleX = MathHelper.clamp(-0.4f + rightArmSwing * 2F * limbSwingAmount, -1.4f, 1.4f);
+			this.LeftLowArm_Bone.rotateAngleX = MathHelper.clamp(-0.3f + leftLegSwing * -2F * limbSwingAmount, -1.4f, 1.4f);
+			this.RightLowArm_Bone2.rotateAngleX = MathHelper.clamp(-0.3f + rightLegSwing * -2F * limbSwingAmount, -1.4f, 1.4f);
+		}
 	}
 	
 	public void setRotationAngle(RendererModel RendererModel, float x, float y, float z) {
