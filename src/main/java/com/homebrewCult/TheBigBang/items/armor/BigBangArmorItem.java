@@ -1,26 +1,51 @@
 package com.homebrewCult.TheBigBang.items.armor;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
+import com.homebrewCult.TheBigBang.init.ModItems;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.DyeableArmorItem;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.IDyeableArmorItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 
-public class BigBangArmorItem extends DyeableArmorItem implements IItemColor, IDyeableArmorItem {
+import java.util.Arrays;
+import java.util.Set;
+import java.util.function.Predicate;
 
-	private String name;
+public abstract class BigBangArmorItem extends DyeableArmorItem implements IItemColor, IDyeableArmorItem {
+
+	private final String name;
 	protected int defaultColor;
+	private Set<Item> armorSet;
+	private static final EquipmentSlotType[] ARMOR_SLOTS = new EquipmentSlotType[] {
+			EquipmentSlotType.HEAD, EquipmentSlotType.CHEST,
+			EquipmentSlotType.LEGS, EquipmentSlotType.FEET
+	};
 	
 	public BigBangArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot, int defaultColorIn, Properties builder) {
 		super(materialIn, slot, builder);
 		this.name = materialIn.getName();
 		this.defaultColor = defaultColorIn;
 	}
-	
+
+	public void onArmorEquip(PlayerEntity player) {
+		if(armorSet == null)
+			armorSet = getArmorSet();
+		if(Arrays.stream(ARMOR_SLOTS).allMatch(slot -> armorSet.stream().anyMatch(player.getItemStackFromSlot(slot).getItem()::equals)))
+			onApplyArmorSetEffect(player);
+	}
+
+	protected abstract void onApplyArmorSetEffect(PlayerEntity player);
+
+	protected abstract Set<Item> getArmorSet();
+
+	public void onArmorUnequip(PlayerEntity player) {
+		TheBigBang.LOGGER.debug("Unequipped Armor");
+		TheBigBang.LOGGER.debug("Removing Effect");
+	}
+
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String layer){
 		if(layer == null) {
@@ -29,7 +54,7 @@ public class BigBangArmorItem extends DyeableArmorItem implements IItemColor, ID
 			return TheBigBang.MODID + ":textures/models/armor/" + name + ".png";
 		}
 	}
-	
+
 	public int getDefaultColor() {
 		return this.defaultColor;
 	}

@@ -28,6 +28,7 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.PacketDistributor;
 
@@ -123,7 +124,12 @@ public class AbstractMushroomEntity extends AnimalEntity implements IQuestEntity
 			return null;
 		}
 	}
-	
+
+	@Override
+	public AxisAlignedBB getBoundingBox() {
+		return super.getBoundingBox().grow((this.hasChild && this.isChildHurt) ? 0 : 1);
+	}
+
 	//Extra Family Information
 	public boolean hasMom() {
 		return(this.mom != null);

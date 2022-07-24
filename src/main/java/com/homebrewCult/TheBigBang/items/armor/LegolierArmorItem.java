@@ -1,12 +1,19 @@
 package com.homebrewCult.TheBigBang.items.armor;
 
 import javax.annotation.Nullable;
+
+import com.google.common.collect.ImmutableSet;
+import com.homebrewCult.TheBigBang.init.ModItems;
 import com.homebrewCult.TheBigBang.items.model.LegolierArmorModel;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import java.util.Set;
 
 public class LegolierArmorItem extends BigBangArmorItem {
 
@@ -16,7 +23,22 @@ public class LegolierArmorItem extends BigBangArmorItem {
 		super(materialIn, slot, defaultColorIn, builder);
 		this.model = modelIn;
 	}
-	
+
+	@Override
+	protected void onApplyArmorSetEffect(PlayerEntity player) {
+
+	}
+
+	@Override
+	protected Set<Item> getArmorSet() {
+		return new ImmutableSet.Builder<Item>().add(
+				ModItems.LEGOLIER_HELMET.getItem(),
+				ModItems.LEGOLIER_CHESTPLATE.getItem(),
+				ModItems.LEGOLIER_LEGGINGS.getItem(),
+				ModItems.LEGOLIER_BOOTS.getItem()
+		).build();
+	}
+
 	@SuppressWarnings("unchecked")
 	@Nullable
 	@Override

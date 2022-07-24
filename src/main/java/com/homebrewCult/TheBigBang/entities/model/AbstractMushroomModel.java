@@ -73,8 +73,8 @@ public class AbstractMushroomModel<T extends Entity> extends QuadrupedModel<T> {
 		
 		AbstractMushroomEntity mushroomIn = (AbstractMushroomEntity) entityIn;
 		if(mushroomIn.hasChild && mushroomIn.isChildHurt) {
-	        GlStateManager.translatef(0.0F, -0.2F, 0.0F);
-			GlStateManager.scalef(1.1F, 1.1F, 1.1F);
+	        GlStateManager.translatef(0.0F, -1.6F, 0.0F);
+			GlStateManager.scalef(2F, 2F, 2F);
 		}
 		if(this.isChild) {
 	        GlStateManager.translatef(0.0F, 0.6F, 0.0F);

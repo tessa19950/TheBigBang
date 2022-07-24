@@ -7,8 +7,10 @@ import com.homebrewCult.TheBigBang.util.IQuestEntity;
 import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.monster.AbstractSkeletonEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Food;
 import net.minecraft.item.ItemStack;
@@ -41,25 +43,29 @@ public class AbstractYetiEntity extends TameableEntity implements IQuestEntity {
 	
 	@Override
 	protected void registerGoals() {
-		  this.sitGoal = new SitGoal(this);
-	      this.goalSelector.addGoal(0, new SwimGoal(this));
-		  this.goalSelector.addGoal(1, this.sitGoal);
-	      this.goalSelector.addGoal(2, new TemptGoal(this, 1D, false, TEMPTATION_ITEMS));
-	      this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-		  this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F));
-	      this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-	      this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 1f));
-	      this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
+		this.sitGoal = new SitGoal(this);
+		this.goalSelector.addGoal(0, new SwimGoal(this));
+		this.goalSelector.addGoal(1, this.sitGoal);
+		this.goalSelector.addGoal(2, new TemptGoal(this, 1D, false, TEMPTATION_ITEMS));
+		this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.2D, true));
+		this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F));
+		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 1f));
+		this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
+
+		this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
+		this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
+		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
 	}
 	
 	@Override
 	protected void registerAttributes() {
-	      super.registerAttributes();
-	      this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30D);
-	      this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
-	      this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double)0.2F);
-	      this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-	      this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
+		super.registerAttributes();
+		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30D);
+		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
+		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double)0.2F);
+		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
+		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
 	}
 
 	@Nullable

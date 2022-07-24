@@ -1,6 +1,12 @@
 package com.homebrewCult.TheBigBang;
 
 import com.homebrewCult.TheBigBang.init.*;
+import com.homebrewCult.TheBigBang.items.armor.BigBangArmorItem;
+import com.homebrewCult.TheBigBang.listeners.BigBangArmorListener;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.Item;
+import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,6 +28,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 
+import java.util.function.Predicate;
+
 @Mod(TheBigBang.MODID)
 public final class TheBigBang {
 	
@@ -42,6 +50,7 @@ public final class TheBigBang {
 		ModRecipeTypes.RECIPES.register(eventBus);
 		ModParticleTypes.PARTICLE_TYPES.register(eventBus);
 		MinecraftForge.EVENT_BUS.register(this);
+		MinecraftForge.EVENT_BUS.register(new BigBangArmorListener());
 	}
 	
 	private void setup(final FMLCommonSetupEvent event) {

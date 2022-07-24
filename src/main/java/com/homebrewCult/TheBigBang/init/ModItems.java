@@ -84,9 +84,9 @@ public class ModItems {
 	public static final Item ORANGE_MUSHROOM_CAP = registerMiscItem("orange_mushroom_cap");
 	public static final Item BLUE_MUSHROOM_CAP = registerMiscItem("blue_mushroom_cap");
 	public static final Item UNDEAD_CHARM = registerMiscItem("undead_charm");
-	public static final Item RED_SNAIL_SHELL = registerMiscItem("red_snail_shell");
-	public static final Item BLUE_SNAIL_SHELL = registerMiscItem("blue_snail_shell");
-	public static final Item GREEN_SNAIL_SHELL = registerMiscItem("green_snail_shell");
+	public static final SnailShellItem RED_SNAIL_SHELL = (SnailShellItem) new SnailShellItem(new Properties().group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, "red_snail_shell");
+	public static final SnailShellItem BLUE_SNAIL_SHELL = (SnailShellItem) new SnailShellItem(new Properties().group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, "blue_snail_shell");
+	public static final SnailShellItem GREEN_SNAIL_SHELL = (SnailShellItem) new SnailShellItem(new Properties().group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, "green_snail_shell");
 	public static final Item JRYETI_SKIN = registerMiscItem("jryeti_skin");
 	public static final Item DARK_JRYETI_SKIN = registerMiscItem("dark_jryeti_skin");
 	public static final Item YETI_HORN = registerMiscItem("yeti_horn");
@@ -230,10 +230,8 @@ public class ModItems {
 	public static final Item GOLDWIND_BOOTS = null;
 	
 	@SubscribeEvent
-	public static void registerItems(final RegistryEvent.Register<Item> event)
-	{
-		event.getRegistry().registerAll
-		(
+	public static void registerItems(final RegistryEvent.Register<Item> event) {
+		event.getRegistry().registerAll(
 				ModItems.ADAMANTIUM,
 				ModItems.DORMANT_ADAMANTIUM_INGOT,
 				ModItems.BLESSED_ADAMANTIUM_INGOT,

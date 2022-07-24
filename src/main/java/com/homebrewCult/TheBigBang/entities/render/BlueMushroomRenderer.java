@@ -17,17 +17,14 @@ public class BlueMushroomRenderer extends MobRenderer<BlueMushroomEntity, Abstra
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(BlueMushroomEntity entity) 
-	{
-		return new ResourceLocation(TheBigBang.MODID, "textures/entity/blue_mushroom_entity.png");
+	protected ResourceLocation getEntityTexture(BlueMushroomEntity entity) {
+		String type = (entity.isAngry && entity.hasChild && entity.isChildHurt) ? "mushmom" : "mushroom";
+		return new ResourceLocation(TheBigBang.MODID, "textures/entity/blue_" + type + "_entity.png");
 	}
-	
-	public static class RenderFactory implements IRenderFactory<BlueMushroomEntity>
-	{
-		public EntityRenderer<? super BlueMushroomEntity> createRenderFor(EntityRendererManager manager) 
-		{
+
+	public static class RenderFactory implements IRenderFactory<BlueMushroomEntity> {
+		public EntityRenderer<? super BlueMushroomEntity> createRenderFor(EntityRendererManager manager) {
 			return new BlueMushroomRenderer(manager);
 		}
 	}
-	
 }

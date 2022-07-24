@@ -41,7 +41,7 @@ public class AbstractDrakeEntity extends MonsterEntity implements IQuestEntity {
 	protected void registerGoals() {
 	      this.goalSelector.addGoal(0, new SwimGoal(this));
 	      this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-		if(this instanceof DarkDrakeEntity)
+		if(this instanceof DarkDrakeEntity || this instanceof RedDrakeEntity)
 			this.goalSelector.addGoal(2, new DrakeFireballGoal(this));
 	      this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1D, false));
 	      this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));

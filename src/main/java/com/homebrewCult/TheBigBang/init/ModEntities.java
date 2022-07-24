@@ -4,6 +4,8 @@ import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.entities.*;
 import com.homebrewCult.TheBigBang.entities.mob.*;
 import com.homebrewCult.TheBigBang.entities.render.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -58,6 +60,8 @@ public class ModEntities {
 	public static final EntityType<PepeEntity> PEPE_ENTITY = (EntityType<PepeEntity>)buildEntityType(PepeEntity::new, EntityClassification.CREATURE, 0.75f, 1f, "pepe_entity");
 	public static final EntityType<DarkPepeEntity> DARK_PEPE_ENTITY = (EntityType<DarkPepeEntity>)buildEntityType(DarkPepeEntity::new, EntityClassification.CREATURE, 0.75f, 1f, "dark_pepe_entity");
 
+	public static final EntityType<SnailShellEntity> SNAIL_SHELL = (EntityType<SnailShellEntity>) EntityType.Builder.create(SnailShellEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
+		new SnailShellEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "snail_shell").setRegistryName(TheBigBang.MODID, "snail_shell");
 	public static final EntityType<SubiEntity> SUBI = (EntityType<SubiEntity>) EntityType.Builder.create(SubiEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> 
 		new SubiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "subi").setRegistryName(TheBigBang.MODID, "subi");
 	public static final EntityType<TobiEntity> TOBI = (EntityType<TobiEntity>) EntityType.Builder.create(TobiEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> 
@@ -89,7 +93,7 @@ public class ModEntities {
 	@SubscribeEvent
 	public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {	
 		event.getRegistry().registerAll (
-				HURRICANE_ARROW, BOMB_ARROW, SNIPING_ARROW, GENESIS_BEAM, SUBI, TOBI, STEELY, ILBI, DRAGON_CRUSHER_STAB, STEAL, FIRE_GEAR, POISON_MIST, MANA_ROCK,
+				SNAIL_SHELL, HURRICANE_ARROW, BOMB_ARROW, SNIPING_ARROW, GENESIS_BEAM, SUBI, TOBI, STEELY, ILBI, DRAGON_CRUSHER_STAB, STEAL, FIRE_GEAR, POISON_MIST, MANA_ROCK,
 				STUMP_ENTITY, DARK_STUMP_ENTITY, AXE_STUMP_ENTITY, DARK_AXE_STUMP_ENTITY, OCTOPUS_ENTITY, EVIL_EYE_ENTITY, CURSE_EYE_ENTITY, COLD_EYE_ENTITY, BUBBLING_ENTITY, GREEN_BUBBLING_ENTITY,
 				ORANGE_MUSHROOM_ENTITY, BLUE_MUSHROOM_ENTITY, ZOMBIE_MUSHROOM_ENTITY, JRYETI_ENTITY, DARK_JRYETI_ENTITY, GREEN_SNAIL_ENTITY, BLUE_SNAIL_ENTITY, RED_SNAIL_ENTITY, 
 				RIBBON_PIG_ENTITY, STONE_GOLEM_ENTITY, DARK_STONE_GOLEM_ENTITY, MIXED_GOLEM_ENTITY, ICE_GOLEM_ENTITY, FIRE_GOLEM_ENTITY,
@@ -162,7 +166,8 @@ public class ModEntities {
 		RenderingRegistry.registerEntityRenderingHandler(DarkYetiEntity.class, new DarkYetiRenderer.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(PepeEntity.class, new PepeRenderer.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(DarkPepeEntity.class, new DarkPepeRenderer.RenderFactory());
-		
+
+		RenderingRegistry.registerEntityRenderingHandler(SnailShellEntity.class, m -> new SpriteRenderer<>(m, Minecraft.getInstance().getItemRenderer()));
 		RenderingRegistry.registerEntityRenderingHandler(SubiEntity.class, new ThrowingStarRenderer.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(TobiEntity.class, new ThrowingStarRenderer.RenderFactory());
 		RenderingRegistry.registerEntityRenderingHandler(SteelyEntity.class, new ThrowingStarRenderer.RenderFactory());
