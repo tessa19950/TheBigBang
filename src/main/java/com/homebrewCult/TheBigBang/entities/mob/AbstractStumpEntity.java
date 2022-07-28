@@ -3,18 +3,21 @@ package com.homebrewCult.TheBigBang.entities.mob;
 import com.homebrewCult.TheBigBang.init.ModSounds;
 import com.homebrewCult.TheBigBang.util.IQuestEntity;
 import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 public class AbstractStumpEntity extends AnimalEntity implements IQuestEntity {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.BONE_MEAL, Items.POISONOUS_POTATO, Items.ROTTEN_FLESH);
@@ -41,6 +44,14 @@ public class AbstractStumpEntity extends AnimalEntity implements IQuestEntity {
 		super.registerAttributes();
 		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0d);
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3d);
+	}
+
+	@Nullable
+	@Override
+	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+		if(reason.equals(SpawnReason.SPAWNER) && world.isRemote)
+			spawnPoofParticles(this, world, rand);
+		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	@Override

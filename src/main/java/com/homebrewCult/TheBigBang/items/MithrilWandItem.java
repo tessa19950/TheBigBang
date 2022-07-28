@@ -107,9 +107,9 @@ public class MithrilWandItem extends TieredItem implements IBigBangWeapon {
 					if(timer == 1) {
 						worldIn.playSound(null, target.posX, target.posY, target.posZ, ModSounds.MAGIC_CLAW_USE, SoundCategory.PLAYERS, 1, 1 + (MathUtility.floatInRange(worldIn.rand, -0.2f, 0.2f)));
 					} else if (timer == 10) {
-						target.attackEntityFrom(DamageSource.MAGIC, 5);
+						target.attackEntityFrom(new EntityDamageSource("magic", user), 5);
 					} else if (timer == 20) {
-						target.attackEntityFrom(DamageSource.MAGIC, 5);
+						target.attackEntityFrom(new EntityDamageSource("magic", user), 5);
 					} 
 				}
 			}

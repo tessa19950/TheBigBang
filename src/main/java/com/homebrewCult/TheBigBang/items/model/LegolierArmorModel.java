@@ -8,7 +8,9 @@ import net.minecraft.client.renderer.model.ModelBox;
 
 public class LegolierArmorModel extends BigBangArmorModel {	
 	public final RendererModel hatFeatherPivot;
-	
+
+	public static final LegolierArmorModel INSTANCE = new LegolierArmorModel();
+
 	public LegolierArmorModel() {	
 		super();
 		//Paste the Blockbench exported file from here

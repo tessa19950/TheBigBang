@@ -1,12 +1,11 @@
 package com.homebrewCult.TheBigBang;
 
+import com.homebrewCult.TheBigBang.effects.BowmanEffect;
+import com.homebrewCult.TheBigBang.effects.MagicianEffect;
+import com.homebrewCult.TheBigBang.effects.ThiefEffect;
+import com.homebrewCult.TheBigBang.effects.WarriorEffect;
 import com.homebrewCult.TheBigBang.init.*;
-import com.homebrewCult.TheBigBang.items.armor.BigBangArmorItem;
-import com.homebrewCult.TheBigBang.listeners.BigBangArmorListener;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
-import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
+import com.homebrewCult.TheBigBang.listeners.BigBangListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,46 +22,43 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
-
-import java.util.function.Predicate;
 
 @Mod(TheBigBang.MODID)
 public final class TheBigBang {
 	
 	public static final String MODID = "thebigbang";
 	public static final Logger LOGGER = LogManager.getLogger(MODID);
-	public static IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
+	public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 	
 	public TheBigBang() {
 		LOGGER.debug("Constructing the Big Bang.");
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
 		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, BigBangConfigSetup.SERVER_CONFIG);
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, BigBangConfigSetup.CLIENT_CONFIG);
 		BigBangConfigSetup.LoadConfig(BigBangConfigSetup.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("thebigbang-client.toml").toString());
 		BigBangConfigSetup.LoadConfig(BigBangConfigSetup.SERVER_CONFIG, FMLPaths.CONFIGDIR.get().resolve("thebigbang-server.toml").toString());
 		
 		final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		eventBus.addListener(this::onCommonSetup);
 		ModRecipeTypes.RECIPES.register(eventBus);
+		ModEffects.EFFECTS.register(eventBus);
 		ModParticleTypes.PARTICLE_TYPES.register(eventBus);
+
 		MinecraftForge.EVENT_BUS.register(this);
-		MinecraftForge.EVENT_BUS.register(new BigBangArmorListener());
+		MinecraftForge.EVENT_BUS.register(new BigBangListener());
+		MinecraftForge.EVENT_BUS.register(new WarriorEffect());
+		MinecraftForge.EVENT_BUS.register(new MagicianEffect());
+		MinecraftForge.EVENT_BUS.register(new BowmanEffect());
+		MinecraftForge.EVENT_BUS.register(new ThiefEffect());
+
 	}
-	
-	private void setup(final FMLCommonSetupEvent event) {
+
+	public void onCommonSetup(final FMLCommonSetupEvent event) {
 		proxy.Init();
 		BigBangPacketHandler.packetHandlerInit();
 		ModWorldGen.worldGenInit();
-	}
-	
-	private void clientRegistries(final FMLClientSetupEvent event) {
-		ModBlocks.registerBlockRenderers(event);
-		ModEntities.registerEntityRenders();
-		ModLayers.registerLayers();
 	}
 	
 	public static void print (String message) {

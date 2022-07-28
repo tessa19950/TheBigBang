@@ -23,6 +23,8 @@ public class JangoonArmorModel extends BigBangArmorModel {
 	public final RendererModel armorRightLeg;
 	public final RendererModel armorRightBoot;
 
+	public static final JangoonArmorModel INSTANCE = new JangoonArmorModel();
+
 	public JangoonArmorModel() {	
 		super();
 		//Paste the Blockbench exported file from here

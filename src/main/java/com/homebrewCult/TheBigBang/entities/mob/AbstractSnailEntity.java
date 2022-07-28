@@ -3,9 +3,7 @@ package com.homebrewCult.TheBigBang.entities.mob;
 import com.homebrewCult.TheBigBang.init.ModSounds;
 import com.homebrewCult.TheBigBang.util.IQuestEntity;
 import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.BreedGoal;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
@@ -19,9 +17,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 public class AbstractSnailEntity extends AnimalEntity implements IQuestEntity {
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.APPLE, Items.BEETROOT, Items.POTATO, Items.CARROT, Items.SWEET_BERRIES, Items.MELON_SLICE,																Items.VINE, Items.KELP);
@@ -32,8 +35,7 @@ public class AbstractSnailEntity extends AnimalEntity implements IQuestEntity {
 	}
 
 	@Override
-	protected void registerGoals()
-	{
+	protected void registerGoals() {
 	      this.goalSelector.addGoal(0, new SwimGoal(this));
 	      this.goalSelector.addGoal(1, new PanicGoal(this, 1D));
 	      this.goalSelector.addGoal(2, new BreedGoal(this, 1D));
@@ -50,6 +52,14 @@ public class AbstractSnailEntity extends AnimalEntity implements IQuestEntity {
 		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(4D);
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2f);
 		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
+	}
+
+	@Nullable
+	@Override
+	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+		if(reason.equals(SpawnReason.SPAWNER) && world.isRemote)
+			spawnPoofParticles(this, world, rand);
+		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	@Override

@@ -20,6 +20,8 @@ public class GoldwindArmorModel extends BigBangArmorModel {
 	public final RendererModel goldwind_overhang_back;
 	public final RendererModel goldwind_overhang_front;
 
+	public static final GoldwindArmorModel INSTANCE = new GoldwindArmorModel();
+
 	public GoldwindArmorModel() {	
 		super();
 		//Paste the Blockbench exported file from here

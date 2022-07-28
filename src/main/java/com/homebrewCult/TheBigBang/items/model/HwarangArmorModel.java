@@ -19,6 +19,8 @@ public class HwarangArmorModel extends BigBangArmorModel {
 	private final RendererModel hwarang_shoulder_pivot;
 	private final RendererModel hwarang_shoulder_pivot2;
 
+	public static final HwarangArmorModel INSTANCE = new HwarangArmorModel();
+
 	public HwarangArmorModel() {	
 		super();
 		//Paste the Blockbench exported file from here

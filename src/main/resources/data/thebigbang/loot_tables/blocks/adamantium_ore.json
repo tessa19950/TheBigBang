@@ -9,6 +9,7 @@
           "children": [
             {
               "type": "minecraft:item",
+              "name": "thebigbang:adamantium_ore",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -23,8 +24,7 @@
                     ]
                   }
                 }
-              ],
-              "name": "thebigbang:adamantium_ore"
+              ]
             },
             {
               "type": "minecraft:item",

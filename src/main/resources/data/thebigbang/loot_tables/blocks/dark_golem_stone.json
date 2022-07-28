@@ -9,6 +9,7 @@
           "children": [
             {
               "type": "minecraft:item",
+              "name": "thebigbang:dark_golem_stone",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -23,8 +24,7 @@
                     ]
                   }
                 }
-              ],
-              "name": "thebigbang:dark_golem_stone"
+              ]
             },
             {
               "type": "minecraft:item",

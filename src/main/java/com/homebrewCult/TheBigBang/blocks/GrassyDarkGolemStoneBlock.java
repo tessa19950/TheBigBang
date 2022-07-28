@@ -8,7 +8,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.SnowBlock;
-import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -16,24 +15,18 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.lighting.LightEngine;
 import net.minecraftforge.common.IPlantable;
 
-public class GrassyDarkGolemStoneBlock extends Block implements IBlockColor {
+public class GrassyDarkGolemStoneBlock extends Block {
 	
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 	
 	public GrassyDarkGolemStoneBlock(Properties builder) {
 		super(builder);
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
-	}
-
-	@Override
-	public int getColor(BlockState state, IEnviromentBlockReader biome, BlockPos pos, int p_getColor_4_) {
-		return biome.getBiome(pos).getGrassColor(pos);
 	}
 	
 	@Override

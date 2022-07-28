@@ -12,39 +12,39 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class AppleArmorItem extends ArmorItem {
 
 	private String name;
-	private AppleArmorModel model;
 	
-	public AppleArmorItem(AppleArmorModel modelIn, IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {
+	public AppleArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builder) {
 		super(materialIn, slot, builder);
-		this.name = materialIn.getName();
-		this.model = modelIn;
+		this.name = materialIn.toString().toLowerCase();
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	@Nullable
 	@Override
+	@OnlyIn(Dist.CLIENT)
 	public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack, EquipmentSlotType armorSlot, A _default) {
-		this.model.bipedHead.showModel = armorSlot == EquipmentSlotType.HEAD;
-		this.model.bipedHeadwear.showModel = armorSlot == EquipmentSlotType.HEAD;
-		
-		this.model.armorTorso.showModel = (armorSlot == EquipmentSlotType.CHEST);
-		this.model.bipedRightArm.showModel = (armorSlot == EquipmentSlotType.CHEST);
-		this.model.bipedLeftArm.showModel = (armorSlot == EquipmentSlotType.CHEST);
-		
-		this.model.armorWaist.showModel = (armorSlot == EquipmentSlotType.LEGS);
-		this.model.bipedRightLeg.showModel = (armorSlot == EquipmentSlotType.LEGS) || (armorSlot == EquipmentSlotType.FEET);
-		this.model.bipedLeftLeg.showModel = (armorSlot == EquipmentSlotType.LEGS) || (armorSlot == EquipmentSlotType.FEET);
-		
-        this.model.isChild = _default.isChild;
-        this.model.isSneak = _default.isSneak;
-        this.model.isSitting = _default.isSitting;
-        this.model.rightArmPose = _default.rightArmPose;
-        this.model.leftArmPose = _default.leftArmPose;
-        return (A) model;
+		AppleArmorModel model = AppleArmorModel.INSTANCE;
+
+		model.bipedHead.showModel = armorSlot == EquipmentSlotType.HEAD;
+		model.bipedHeadwear.showModel = armorSlot == EquipmentSlotType.HEAD;
+		model.armorTorso.showModel = (armorSlot == EquipmentSlotType.CHEST);
+		model.bipedRightArm.showModel = (armorSlot == EquipmentSlotType.CHEST);
+		model.bipedLeftArm.showModel = (armorSlot == EquipmentSlotType.CHEST);
+		model.armorWaist.showModel = (armorSlot == EquipmentSlotType.LEGS);
+		model.bipedRightLeg.showModel = (armorSlot == EquipmentSlotType.LEGS) || (armorSlot == EquipmentSlotType.FEET);
+		model.bipedLeftLeg.showModel = (armorSlot == EquipmentSlotType.LEGS) || (armorSlot == EquipmentSlotType.FEET);
+
+        model.isChild = _default.isChild;
+        model.isSneak = _default.isSneak;
+        model.isSitting = _default.isSitting;
+        model.rightArmPose = _default.rightArmPose;
+        model.leftArmPose = _default.leftArmPose;
+		return (A) model;
 	}
 	
 	@Override

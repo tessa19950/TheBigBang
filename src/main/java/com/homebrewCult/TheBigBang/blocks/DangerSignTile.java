@@ -18,14 +18,11 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraftforge.fml.network.PacketDistributor;
 import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.gui.quests.Quest;
 import com.homebrewCult.TheBigBang.gui.quests.Questline;
 import com.homebrewCult.TheBigBang.init.ModBlocks;
 import com.homebrewCult.TheBigBang.inventory.DangerSignContainer;
-import com.homebrewCult.TheBigBang.network.BigBangPacketHandler;
-import com.homebrewCult.TheBigBang.network.Packet_AddSpawnParticle;
 import com.homebrewCult.TheBigBang.util.DangerSignPart;
 import com.homebrewCult.TheBigBang.util.IQuestEntity;
 import com.homebrewCult.TheBigBang.util.MathUtility;
@@ -35,7 +32,7 @@ import java.util.Random;
 
 public class DangerSignTile extends TileEntity implements ITickableTileEntity, INamedContainerProvider
 {
-	private static final Double ACTIVATION_RADIUS = 24d;
+	private static final Double ACTIVATION_RADIUS = 24.0D;
 	private static final int MAX_SPAWN_COUNT = 8;
 	private static final int MAX_SPAWN_RANGE = 8;
 	private static final int SPAWN_DELAY = 40;
@@ -49,6 +46,7 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 	private int[] completedQuests;
 	public Questline questline = Questline.None;
 	private ArrayList<Entity> entityList;
+	private Random rand = new Random();
 	
 	public DangerSignTile() {
 		super(ModBlocks.DANGER_SIGN_TILE);
@@ -90,19 +88,16 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 		//Check if we're on the server and a player is in range.
 		if(!world.isRemote) {
 			PlayerEntity p = world.getClosestPlayer(this.pos.getX(), this.pos.getY(), this.pos.getZ(), ACTIVATION_RADIUS, false);		
-			if(p != null) {
+			if(p != null)
 				spawnerTick();
-			}
 		}
 	}
 
 	public void spawnerTick() {
 		//Check if we have a list of enemies, if not, search the area for entities matching my questline.
 		if(entityList == null) {
-			entityList = new ArrayList<Entity>();
-			for (Entity e : getQuestEntitiesInRange()) {
-				entityList.add(e);
-			}
+			entityList = new ArrayList<>();
+			entityList.addAll(getQuestEntitiesInRange());
 			return;
 		}
 		
@@ -119,14 +114,13 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 	
 	public void spawnQuestEntity() {
 		boolean validSpawn = false;
-		Random r = new Random();
 		BlockPos spawnPos = new BlockPos(0,0,0);
 		
 		//Try 8 times to find a valid spawn position.
 		for(int i = 0; i < 8; i++) {
-			int spawnX = pos.getX() + MathUtility.intInRange(r, -MAX_SPAWN_RANGE, MAX_SPAWN_RANGE);
-			int spawnY = pos.getY() + MathUtility.intInRange(r, 0, 4);
-			int spawnZ = pos.getZ() + MathUtility.intInRange(r, -MAX_SPAWN_RANGE, MAX_SPAWN_RANGE);
+			int spawnX = pos.getX() + MathUtility.intInRange(rand, -MAX_SPAWN_RANGE, MAX_SPAWN_RANGE);
+			int spawnY = pos.getY() + MathUtility.intInRange(rand, 0, 4);
+			int spawnZ = pos.getZ() + MathUtility.intInRange(rand, -MAX_SPAWN_RANGE, MAX_SPAWN_RANGE);
 			spawnPos = new BlockPos(spawnX, spawnY, spawnZ);
 			
 			//Try 8 times to find an air block, followed by a non air block.
@@ -150,14 +144,11 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 		}
 		
 		if(validSpawn) {
-			BigBangPacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(), new Packet_AddSpawnParticle(spawnPos));
 			IQuestEntity questEntity = (IQuestEntity) questline.getRandomEntityType().spawn(world, null, null, spawnPos, SpawnReason.SPAWNER, true, true);
 			Quest[] availableQuests = this.getAvailableQuests(); 
 			for(int i = 0; i < 3 && i < this.getAvailableQuestCount(); i++) {
-				if(availableQuests[i].hasQuestItem()) {
+				if(availableQuests[i].hasQuestItem())
 					questEntity.getQuestEntityHandler().addQuestItem(availableQuests[i].getRequiredQuestItem());
-					TheBigBang.print("Spawning entity with " + i + " quest items.");
-				}
 			}
 			Entity newEntity = (Entity) questEntity;
 			entityList.add(newEntity);

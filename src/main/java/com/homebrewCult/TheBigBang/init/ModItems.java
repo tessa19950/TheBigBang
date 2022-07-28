@@ -40,41 +40,41 @@ import net.minecraftforge.registries.ObjectHolder;
 @Mod.EventBusSubscriber(modid = TheBigBang.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @ObjectHolder(TheBigBang.MODID)
 public class ModItems {	
-	public static final Item ADAMANTIUM_ORE = new BlockItem(ModBlocks.ADAMANTIUM_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ADAMANTIUM_ORE.getRegistryName());
 	public static final Item ADAMANTIUM = registerMiscItem("adamantium");
 	public static final Item ADAMANTIUM_NUGGET = registerMiscItem("adamantium_nugget");
 	public static final Item DORMANT_ADAMANTIUM_INGOT = registerDivineItem("dormant_adamantium_ingot", false);
 	public static final Item BLESSED_ADAMANTIUM_INGOT = registerDivineItem("blessed_adamantium_ingot", true);
-	public static final Item MITHRIL_ORE = new BlockItem(ModBlocks.MITHRIL_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.MITHRIL_ORE.getRegistryName());
 	public static final Item MITHRIL = 	registerMiscItem("mithril");
 	public static final Item MITHRIL_NUGGET = registerMiscItem("mithril_nugget");
 	public static final Item DORMANT_MITHRIL_INGOT = registerDivineItem("dormant_mithril_ingot", false);
 	public static final Item BLESSED_MITHRIL_INGOT = registerDivineItem("blessed_mithril_ingot", true);
-	public static final Item ORIHALCON_ORE = new BlockItem(ModBlocks.ORIHALCON_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ORIHALCON_ORE.getRegistryName());
 	public static final Item ORIHALCON = registerMiscItem("orihalcon");
 	public static final Item ORIHALCON_NUGGET = registerMiscItem("orihalcon_nugget");
 	public static final Item DORMANT_ORIHALCON_INGOT = registerDivineItem("dormant_orihalcon_ingot", false);
 	public static final Item BLESSED_ORIHALCON_INGOT = registerDivineItem("blessed_orihalcon_ingot", true);
 	public static final Item BLESSED_GOLD_INGOT = registerDivineItem("blessed_gold_ingot", true);
-	
+
+	public static final Item ADAMANTIUM_ORE = null;
+	public static final Item MITHRIL_ORE = null;
+	public static final Item ORIHALCON_ORE = null;
 	public static final Item DANGER_SIGN = null;
 	public static final Item DIVINE_ALTAR = null;
-	public static final Item GOLEM_STONE = new BlockItem(ModBlocks.GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GOLEM_STONE.getRegistryName());
-	public static final Item DARK_GOLEM_STONE = new BlockItem(ModBlocks.DARK_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.DARK_GOLEM_STONE.getRegistryName());
-	public static final Item GRASSY_GOLEM_STONE = new BlockItem(ModBlocks.GRASSY_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GRASSY_GOLEM_STONE.getRegistryName());
-	public static final Item GRASSY_DARK_GOLEM_STONE = new BlockItem(ModBlocks.GRASSY_DARK_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GRASSY_DARK_GOLEM_STONE.getRegistryName());
-	public static final Item RED_MAPLE_LEAVES = new BlockItem(ModBlocks.RED_MAPLE_LEAVES, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.RED_MAPLE_LEAVES.getRegistryName());
-	public static final Item RED_MAPLE_SAPLING = new BlockItem(ModBlocks.RED_MAPLE_SAPLING, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.RED_MAPLE_SAPLING.getRegistryName());
-	public static final Item YELLOW_MAPLE_LEAVES = new BlockItem(ModBlocks.YELLOW_MAPLE_LEAVES, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.YELLOW_MAPLE_LEAVES.getRegistryName());
-	public static final Item YELLOW_MAPLE_SAPLING = new BlockItem(ModBlocks.YELLOW_MAPLE_SAPLING, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.YELLOW_MAPLE_SAPLING.getRegistryName());
-	public static final Item ROPE_FENCE = new BlockItem(ModBlocks.ROPE_FENCE, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.ROPE_FENCE.getRegistryName());
-	public static final Item ROPE_LADDER = new BlockItem(ModBlocks.ROPE_LADDER, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.ROPE_LADDER.getRegistryName());
-	public static final Item ORANGE_MUSHROOM_BLOCK = new BlockItem(ModBlocks.ORANGE_MUSHROOM_BLOCK, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ORANGE_MUSHROOM_BLOCK.getRegistryName());
-	public static final Item ORANGE_MUSHROOM_SLAB = new BlockItem(ModBlocks.ORANGE_MUSHROOM_SLAB, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ORANGE_MUSHROOM_SLAB.getRegistryName());
-	public static final Item ORANGE_MUSHROOM_STAIRS = new BlockItem(ModBlocks.ORANGE_MUSHROOM_STAIRS, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ORANGE_MUSHROOM_STAIRS.getRegistryName());
-	public static final Item BLUE_MUSHROOM_BLOCK = new BlockItem(ModBlocks.BLUE_MUSHROOM_BLOCK, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.BLUE_MUSHROOM_BLOCK.getRegistryName());
-	public static final Item BLUE_MUSHROOM_SLAB = new BlockItem(ModBlocks.BLUE_MUSHROOM_SLAB, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.BLUE_MUSHROOM_SLAB.getRegistryName());
-	public static final Item BLUE_MUSHROOM_STAIRS = new BlockItem(ModBlocks.BLUE_MUSHROOM_STAIRS, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.BLUE_MUSHROOM_STAIRS.getRegistryName());
+	public static final Item GOLEM_STONE = null;
+	public static final Item DARK_GOLEM_STONE = null;
+	public static final Item GRASSY_GOLEM_STONE = null;
+	public static final Item GRASSY_DARK_GOLEM_STONE = null;
+	public static final Item RED_MAPLE_LEAVES = null;
+	public static final Item RED_MAPLE_SAPLING = null;
+	public static final Item YELLOW_MAPLE_LEAVES = null;
+	public static final Item YELLOW_MAPLE_SAPLING = null;
+	public static final Item ROPE_FENCE = null;
+	public static final Item ROPE_LADDER = null;
+	public static final Item ORANGE_MUSHROOM_BLOCK = null;
+	public static final Item ORANGE_MUSHROOM_SLAB = null;
+	public static final Item ORANGE_MUSHROOM_STAIRS = null;
+	public static final Item BLUE_MUSHROOM_BLOCK = null;
+	public static final Item BLUE_MUSHROOM_SLAB = null;
+	public static final Item BLUE_MUSHROOM_STAIRS = null;
 
 	public static final QuestItem LETTER = (QuestItem) new QuestItem(new Item.Properties().maxStackSize(1)).setRegistryName(TheBigBang.MODID, "letter");
 	public static final Item OCTOPUS_LEG = 	registerMiscItem("octopus_leg");
@@ -245,7 +245,7 @@ public class ModItems {
 				ModItems.BLESSED_ORIHALCON_INGOT,
 				ModItems.ORIHALCON_NUGGET,
 				ModItems.BLESSED_GOLD_INGOT,
-				
+
 				ModItems.LETTER,
 				ModItems.OCTOPUS_LEG,
 				ModItems.EVIL_EYE_TAIL,
@@ -292,26 +292,26 @@ public class ModItems {
 				ModItems.ICE_CREAM_POP,
 				ModItems.DRAKES_BLOOD,
 				ModItems.SAP_OF_ANCIENT_TREE,
-				
-				ModItems.ADAMANTIUM_ORE,
-				ModItems.MITHRIL_ORE,
-				ModItems.ORIHALCON_ORE,
-				ModItems.GOLEM_STONE,
-				ModItems.DARK_GOLEM_STONE,
-				ModItems.GRASSY_GOLEM_STONE,
-				ModItems.GRASSY_DARK_GOLEM_STONE,
-				//ModItems.RED_MAPLE_LEAVES,
-				//ModItems.RED_MAPLE_SAPLING,
-				//ModItems.YELLOW_MAPLE_LEAVES,
-				//ModItems.YELLOW_MAPLE_SAPLING,
-				ModItems.ROPE_FENCE,
-				ModItems.ROPE_LADDER,
-				ModItems.ORANGE_MUSHROOM_BLOCK,
-				ModItems.ORANGE_MUSHROOM_SLAB,
-				ModItems.ORANGE_MUSHROOM_STAIRS,
-				ModItems.BLUE_MUSHROOM_BLOCK,
-				ModItems.BLUE_MUSHROOM_SLAB,
-				ModItems.BLUE_MUSHROOM_STAIRS,
+
+				new BlockItem(ModBlocks.ADAMANTIUM_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ADAMANTIUM_ORE.getRegistryName()),
+				new BlockItem(ModBlocks.MITHRIL_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.MITHRIL_ORE.getRegistryName()),
+				new BlockItem(ModBlocks.ORIHALCON_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ORIHALCON_ORE.getRegistryName()),
+				new BlockItem(ModBlocks.GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GOLEM_STONE.getRegistryName()),
+				new BlockItem(ModBlocks.DARK_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.DARK_GOLEM_STONE.getRegistryName()),
+				new BlockItem(ModBlocks.GRASSY_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GRASSY_GOLEM_STONE.getRegistryName()),
+				new BlockItem(ModBlocks.GRASSY_DARK_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GRASSY_DARK_GOLEM_STONE.getRegistryName()),
+				//new BlockItem(ModBlocks.RED_MAPLE_LEAVES, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.RED_MAPLE_LEAVES.getRegistryName()),
+				//new BlockItem(ModBlocks.RED_MAPLE_SAPLING, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.RED_MAPLE_SAPLING.getRegistryName()),
+				//new BlockItem(ModBlocks.YELLOW_MAPLE_LEAVES, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.YELLOW_MAPLE_LEAVES.getRegistryName()),
+				//new BlockItem(ModBlocks.YELLOW_MAPLE_SAPLING, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.YELLOW_MAPLE_SAPLING.getRegistryName()),
+				new BlockItem(ModBlocks.ROPE_FENCE, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.ROPE_FENCE.getRegistryName()),
+				new BlockItem(ModBlocks.ROPE_LADDER, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.ROPE_LADDER.getRegistryName()),
+				new BlockItem(ModBlocks.ORANGE_MUSHROOM_BLOCK, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ORANGE_MUSHROOM_BLOCK.getRegistryName()),
+				new BlockItem(ModBlocks.ORANGE_MUSHROOM_SLAB, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ORANGE_MUSHROOM_SLAB.getRegistryName()),
+				new BlockItem(ModBlocks.ORANGE_MUSHROOM_STAIRS, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ORANGE_MUSHROOM_STAIRS.getRegistryName()),
+				new BlockItem(ModBlocks.BLUE_MUSHROOM_BLOCK, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.BLUE_MUSHROOM_BLOCK.getRegistryName()),
+				new BlockItem(ModBlocks.BLUE_MUSHROOM_SLAB, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.BLUE_MUSHROOM_SLAB.getRegistryName()),
+				new BlockItem(ModBlocks.BLUE_MUSHROOM_STAIRS, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.BLUE_MUSHROOM_STAIRS.getRegistryName()),
 				
 				new ZardItem(ModItemTier.BLESSED_ADAMANTIUM, 4, -2.4F, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "zard"),
 				new HeliosItem(ModItemTier.BLESSED_ADAMANTIUM, 6, -3.6F, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "helios"),
@@ -361,89 +361,76 @@ public class ModItems {
 				new BigBangDiskItem(ModSounds.RECORD_RAINDROP, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_raindrop"),
 				new BigBangDiskItem(ModSounds.RECORD_SQUARE, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_square"),
 				
-				new AppleArmorItem(new AppleArmorModel(), ModArmorMaterial.APPLE, EquipmentSlotType.HEAD, 
+				new AppleArmorItem(ModArmorMaterial.APPLE, EquipmentSlotType.HEAD,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "apple_helmet"),
-				new AppleArmorItem(new AppleArmorModel(), ModArmorMaterial.APPLE, EquipmentSlotType.CHEST, 
+				new AppleArmorItem(ModArmorMaterial.APPLE, EquipmentSlotType.CHEST,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "apple_chestplate"),
-				new AppleArmorItem(new AppleArmorModel(), ModArmorMaterial.APPLE, EquipmentSlotType.LEGS, 
+				new AppleArmorItem(ModArmorMaterial.APPLE, EquipmentSlotType.LEGS,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "apple_leggings"),
-				new HwarangArmorItem(new HwarangArmorModel(), ModArmorMaterial.HWARANG, EquipmentSlotType.HEAD, 11546150,
+				new HwarangArmorItem(ModArmorMaterial.HWARANG, EquipmentSlotType.HEAD, 11546150,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "hwarang_helmet"),
-				new HwarangArmorItem(new HwarangArmorModel(), ModArmorMaterial.HWARANG, EquipmentSlotType.CHEST, 11546150,
+				new HwarangArmorItem(ModArmorMaterial.HWARANG, EquipmentSlotType.CHEST, 11546150,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "hwarang_chestplate"),
-				new HwarangArmorItem(new HwarangArmorModel(), ModArmorMaterial.HWARANG, EquipmentSlotType.LEGS, 11546150,
+				new HwarangArmorItem(ModArmorMaterial.HWARANG, EquipmentSlotType.LEGS, 11546150,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "hwarang_leggings"),
-				new HwarangArmorItem(new HwarangArmorModel(), ModArmorMaterial.HWARANG, EquipmentSlotType.FEET, 16383998,
+				new HwarangArmorItem(ModArmorMaterial.HWARANG, EquipmentSlotType.FEET, 16383998,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "hwarang_boots"),
-				new LegolierArmorItem(new LegolierArmorModel(), ModArmorMaterial.LEGOLIER, EquipmentSlotType.HEAD, 3949738,
+				new LegolierArmorItem(ModArmorMaterial.LEGOLIER, EquipmentSlotType.HEAD, 3949738,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "legolier_helmet"),
-				new LegolierArmorItem(new LegolierArmorModel(), ModArmorMaterial.LEGOLIER, EquipmentSlotType.CHEST, 3949738,
+				new LegolierArmorItem(ModArmorMaterial.LEGOLIER, EquipmentSlotType.CHEST, 3949738,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "legolier_chestplate"),
-				new LegolierArmorItem(new LegolierArmorModel(), ModArmorMaterial.LEGOLIER, EquipmentSlotType.LEGS, 3949738,
+				new LegolierArmorItem(ModArmorMaterial.LEGOLIER, EquipmentSlotType.LEGS, 3949738,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "legolier_leggings"),
-				new LegolierArmorItem(new LegolierArmorModel(), ModArmorMaterial.LEGOLIER, EquipmentSlotType.FEET, 3949738,
+				new LegolierArmorItem(ModArmorMaterial.LEGOLIER, EquipmentSlotType.FEET, 3949738,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "legolier_boots"),
-				new NightshiftArmorItem(new NightshiftArmorModel(), ModArmorMaterial.NIGHTSHIFT, EquipmentSlotType.HEAD, 6192150,
+				new NightshiftArmorItem(ModArmorMaterial.NIGHTSHIFT, EquipmentSlotType.HEAD, 6192150,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "nightshift_helmet"),
-				new NightshiftArmorItem(new NightshiftArmorModel(), ModArmorMaterial.NIGHTSHIFT, EquipmentSlotType.CHEST, 6192150,
+				new NightshiftArmorItem(ModArmorMaterial.NIGHTSHIFT, EquipmentSlotType.CHEST, 6192150,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "nightshift_chestplate"),
-				new NightshiftArmorItem(new NightshiftArmorModel(), ModArmorMaterial.NIGHTSHIFT, EquipmentSlotType.LEGS, 4673362,
+				new NightshiftArmorItem(ModArmorMaterial.NIGHTSHIFT, EquipmentSlotType.LEGS, 4673362,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "nightshift_leggings"),
-				new NightshiftArmorItem(new NightshiftArmorModel(), ModArmorMaterial.NIGHTSHIFT, EquipmentSlotType.FEET, 6192150,
+				new NightshiftArmorItem(ModArmorMaterial.NIGHTSHIFT, EquipmentSlotType.FEET, 6192150,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "nightshift_boots"),
-				new StarlightArmorItem(new StarlightArmorModel(), ModArmorMaterial.STARLIGHT, EquipmentSlotType.HEAD, 4673362,
+				new StarlightArmorItem(ModArmorMaterial.STARLIGHT, EquipmentSlotType.HEAD, 4673362,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "starlight_helmet"),
-				new StarlightArmorItem(new StarlightArmorModel(), ModArmorMaterial.STARLIGHT, EquipmentSlotType.CHEST, 4673362,
+				new StarlightArmorItem(ModArmorMaterial.STARLIGHT, EquipmentSlotType.CHEST, 4673362,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "starlight_chestplate"),
-				new StarlightArmorItem(new StarlightArmorModel(), ModArmorMaterial.STARLIGHT, EquipmentSlotType.LEGS, 4673362,
+				new StarlightArmorItem(ModArmorMaterial.STARLIGHT, EquipmentSlotType.LEGS, 4673362,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "starlight_leggings"),
-				new StarlightArmorItem(new StarlightArmorModel(), ModArmorMaterial.STARLIGHT, EquipmentSlotType.FEET, 4673362,
+				new StarlightArmorItem(ModArmorMaterial.STARLIGHT, EquipmentSlotType.FEET, 4673362,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "starlight_boots"),
-				new JangoonArmorItem(new JangoonArmorModel(), ModArmorMaterial.JANGOON, EquipmentSlotType.HEAD, 11546150,
+				new JangoonArmorItem(ModArmorMaterial.JANGOON, EquipmentSlotType.HEAD, 11546150,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "jangoon_helmet"),
-				new JangoonArmorItem(new JangoonArmorModel(), ModArmorMaterial.JANGOON, EquipmentSlotType.CHEST, 11546150,
+				new JangoonArmorItem(ModArmorMaterial.JANGOON, EquipmentSlotType.CHEST, 11546150,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "jangoon_chestplate"),
-				new JangoonArmorItem(new JangoonArmorModel(), ModArmorMaterial.JANGOON, EquipmentSlotType.LEGS, 4673362,
+				new JangoonArmorItem(ModArmorMaterial.JANGOON, EquipmentSlotType.LEGS, 4673362,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "jangoon_leggings"),
-				new JangoonArmorItem(new JangoonArmorModel(), ModArmorMaterial.JANGOON, EquipmentSlotType.FEET, 11546150,
+				new JangoonArmorItem(ModArmorMaterial.JANGOON, EquipmentSlotType.FEET, 11546150,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "jangoon_boots"),
-				new PietteArmorItem(new PietteArmorModel(), ModArmorMaterial.PIETTE, EquipmentSlotType.HEAD, 16351261,
+				new PietteArmorItem(ModArmorMaterial.PIETTE, EquipmentSlotType.HEAD, 16351261,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "piette_helmet"),
-				new PietteArmorItem(new PietteArmorModel(), ModArmorMaterial.PIETTE, EquipmentSlotType.CHEST, 16351261,
+				new PietteArmorItem(ModArmorMaterial.PIETTE, EquipmentSlotType.CHEST, 16351261,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "piette_chestplate"),
-				new PietteArmorItem(new PietteArmorModel(), ModArmorMaterial.PIETTE, EquipmentSlotType.LEGS, 8606770,
+				new PietteArmorItem(ModArmorMaterial.PIETTE, EquipmentSlotType.LEGS, 8606770,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "piette_leggings"),
-				new PietteArmorItem(new PietteArmorModel(), ModArmorMaterial.PIETTE, EquipmentSlotType.FEET, 16383998,
+				new PietteArmorItem(ModArmorMaterial.PIETTE, EquipmentSlotType.FEET, 16383998,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "piette_boots"),
-				new PilferArmorItem(new PilferArmorModel(), ModArmorMaterial.PILFER, EquipmentSlotType.HEAD, 4673362,
+				new PilferArmorItem(ModArmorMaterial.PILFER, EquipmentSlotType.HEAD, 4673362,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "pilfer_helmet"),
-				new PilferArmorItem(new PilferArmorModel(), ModArmorMaterial.PILFER, EquipmentSlotType.CHEST, 8606770,
+				new PilferArmorItem(ModArmorMaterial.PILFER, EquipmentSlotType.CHEST, 8606770,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "pilfer_chestplate"),
-				new PilferArmorItem(new PilferArmorModel(), ModArmorMaterial.PILFER, EquipmentSlotType.LEGS, 4673362,
+				new PilferArmorItem(ModArmorMaterial.PILFER, EquipmentSlotType.LEGS, 4673362,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "pilfer_leggings"),
-				new PilferArmorItem(new PilferArmorModel(), ModArmorMaterial.PILFER, EquipmentSlotType.FEET, 4673362,
+				new PilferArmorItem(ModArmorMaterial.PILFER, EquipmentSlotType.FEET, 4673362,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "pilfer_boots"),
-				new GoldwindArmorItem(new GoldwindArmorModel(), ModArmorMaterial.GOLDWIND, EquipmentSlotType.HEAD, 8991416,
+				new GoldwindArmorItem(ModArmorMaterial.GOLDWIND, EquipmentSlotType.HEAD, 8991416,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "goldwind_helmet"),
-				new GoldwindArmorItem(new GoldwindArmorModel(), ModArmorMaterial.GOLDWIND, EquipmentSlotType.CHEST, 16383998,
+				new GoldwindArmorItem(ModArmorMaterial.GOLDWIND, EquipmentSlotType.CHEST, 16383998,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "goldwind_chestplate"),
-				new GoldwindArmorItem(new GoldwindArmorModel(), ModArmorMaterial.GOLDWIND, EquipmentSlotType.LEGS, 16383998,
+				new GoldwindArmorItem(ModArmorMaterial.GOLDWIND, EquipmentSlotType.LEGS, 16383998,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "goldwind_leggings"),
-				new GoldwindArmorItem(new GoldwindArmorModel(), ModArmorMaterial.GOLDWIND, EquipmentSlotType.FEET, 8991416,
+				new GoldwindArmorItem(ModArmorMaterial.GOLDWIND, EquipmentSlotType.FEET, 8991416,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "goldwind_boots")
-		);
-	}
-	
-	public static void registerItemColors(ItemColors colors) {
-		colors.register(GolemStoneItemColorHandler.INSTANCE, ModItems.GRASSY_GOLEM_STONE, ModItems.GRASSY_DARK_GOLEM_STONE);
-		colors.register(BigBangArmorItemColorHandler.INSTANCE, ModItems.HWARANG_HELMET, ModItems.HWARANG_CHESTPLATE, ModItems.HWARANG_LEGGINGS, ModItems.HWARANG_BOOTS,
-		ModItems.LEGOLIER_HELMET, ModItems.LEGOLIER_CHESTPLATE, ModItems.LEGOLIER_LEGGINGS, ModItems.LEGOLIER_BOOTS,
-		ModItems.NIGHTSHIFT_HELMET, ModItems.NIGHTSHIFT_CHESTPLATE, ModItems.NIGHTSHIFT_LEGGINGS, ModItems.NIGHTSHIFT_BOOTS,
-		ModItems.STARLIGHT_HELMET, ModItems.STARLIGHT_CHESTPLATE, ModItems.STARLIGHT_LEGGINGS, ModItems.STARLIGHT_BOOTS,
-		ModItems.JANGOON_HELMET, ModItems.JANGOON_CHESTPLATE, ModItems.JANGOON_LEGGINGS, ModItems.JANGOON_BOOTS,
-		ModItems.PIETTE_HELMET, ModItems.PIETTE_CHESTPLATE, ModItems.PIETTE_LEGGINGS, ModItems.PIETTE_BOOTS,
-		ModItems.PILFER_HELMET, ModItems.PILFER_CHESTPLATE, ModItems.PILFER_LEGGINGS, ModItems.PILFER_BOOTS,
-		ModItems.GOLDWIND_HELMET, ModItems.GOLDWIND_CHESTPLATE, ModItems.GOLDWIND_LEGGINGS, ModItems.GOLDWIND_BOOTS
 		);
 	}
 

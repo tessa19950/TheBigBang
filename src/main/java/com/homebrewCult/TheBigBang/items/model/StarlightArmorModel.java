@@ -26,6 +26,8 @@ public class StarlightArmorModel extends BigBangArmorModel {
 	public final RendererModel tabardLegs_front;
 	public final RendererModel tabardLegs_back;
 
+	public static final StarlightArmorModel INSTANCE = new StarlightArmorModel();
+
 	public StarlightArmorModel() {	
 		super();
 		//Paste the Blockbench exported file from here

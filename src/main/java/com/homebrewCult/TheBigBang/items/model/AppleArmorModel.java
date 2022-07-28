@@ -19,6 +19,8 @@ public class AppleArmorModel extends BipedModel<LivingEntity> {
 	public final RendererModel armorLeftLeg;
 	public final RendererModel armorLeftBoot;
 
+	public static final AppleArmorModel INSTANCE = new AppleArmorModel();
+
 	public AppleArmorModel() {	
 		super(1f, 0.0F, 128, 64);
 		

@@ -21,6 +21,8 @@ public class PietteArmorModel extends BigBangArmorModel {
 	public final RendererModel armorRightLeg;
 	public final RendererModel armorRightBoot;
 
+	public static final PietteArmorModel INSTANCE = new PietteArmorModel();
+
 	public PietteArmorModel() {	
 		super();
 		//Paste the Blockbench exported file from here

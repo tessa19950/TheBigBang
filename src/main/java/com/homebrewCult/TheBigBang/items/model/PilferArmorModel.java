@@ -18,6 +18,8 @@ public class PilferArmorModel extends BigBangArmorModel {
 	public final RendererModel armorRightLeg;
 	public final RendererModel armorRightBoot;
 
+	public static final PilferArmorModel INSTANCE = new PilferArmorModel();
+
 	public PilferArmorModel() {	
 		super();
 		//Paste the Blockbench exported file from here

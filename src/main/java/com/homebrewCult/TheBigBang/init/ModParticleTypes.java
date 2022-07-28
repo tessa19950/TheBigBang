@@ -14,7 +14,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-@OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid=TheBigBang.MODID, value=Dist.CLIENT, bus=Mod.EventBusSubscriber.Bus.MOD)
 public class ModParticleTypes {	
 	
@@ -34,8 +33,9 @@ public class ModParticleTypes {
 	public static final RegistryObject<BasicParticleType> TELEPORT_LINE = PARTICLE_TYPES.register("teleport_line", () -> new BasicParticleType(true));
 	public static final RegistryObject<BasicParticleType> POISON_CLOUD = PARTICLE_TYPES.register("poison_cloud", () -> new BasicParticleType(true));
 	public static final RegistryObject<BasicParticleType> FIRE_GEAR = PARTICLE_TYPES.register("fire_gear", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> DAMAGE_NUMBER = PARTICLE_TYPES.register("dmg_number", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> CRITICAL_NUMBER = PARTICLE_TYPES.register("crit_number", () -> new BasicParticleType(true));
 
-	@SuppressWarnings("resource")
 	@SubscribeEvent
 	public static void registerParticleFactories(final ParticleFactoryRegisterEvent event) {
 		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.ITEM_BLUE_SLIME.get(), BlueSlimeParticle.BlueSlimeFactory::new);
@@ -53,5 +53,7 @@ public class ModParticleTypes {
 		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.TELEPORT_LINE.get(), TeleportLineParticle.TeleportLineFactory::new);
 		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.POISON_CLOUD.get(), PoisonCloudParticle.ParticleFactory::new);
 		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.FIRE_GEAR.get(), FireGearParticle.ParticleFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.DAMAGE_NUMBER.get(), DmgNumberParticle.ParticleFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.CRITICAL_NUMBER.get(), CritNumberParticle.ParticleFactory::new);
 	}
 }

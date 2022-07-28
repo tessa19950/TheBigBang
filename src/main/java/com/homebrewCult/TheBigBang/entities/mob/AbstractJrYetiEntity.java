@@ -5,22 +5,23 @@ import com.homebrewCult.TheBigBang.init.ModItems;
 import com.homebrewCult.TheBigBang.init.ModSounds;
 import com.homebrewCult.TheBigBang.util.IQuestEntity;
 import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.Objects;
 
 public class AbstractJrYetiEntity extends TameableEntity implements IQuestEntity {
@@ -43,6 +44,14 @@ public class AbstractJrYetiEntity extends TameableEntity implements IQuestEntity
 	      this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.3D));
 	      this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 0.3F));
 	      this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
+	}
+
+	@Nullable
+	@Override
+	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+		if(reason.equals(SpawnReason.SPAWNER) && world.isRemote)
+			spawnPoofParticles(this, world, rand);
+		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	public boolean processInteract(PlayerEntity player, Hand hand) {

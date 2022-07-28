@@ -7,7 +7,7 @@ public class ServerProxy implements IProxy {
 	
 	@Override
 	public void Init() {
-		throw new IllegalStateException("Only run this on the client!");	
+
 	}
 	
 	@Override

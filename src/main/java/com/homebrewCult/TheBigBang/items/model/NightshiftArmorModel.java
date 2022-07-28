@@ -17,6 +17,8 @@ public class NightshiftArmorModel extends BigBangArmorModel {
 	public final RendererModel armorRightLeg;
 	public final RendererModel armorRightBoot;
 
+	public static final NightshiftArmorModel INSTANCE = new NightshiftArmorModel();
+
 	public NightshiftArmorModel() {	
 		super();
 		textureWidth = 128;

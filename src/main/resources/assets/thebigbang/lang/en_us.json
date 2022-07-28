@@ -227,8 +227,10 @@
 	"item.thebigbang.music_disc_orbis.desc": "The Big Bang - Station",
 	"item.thebigbang.music_disc_perion.desc": "The Big Bang - Camp",
 	"item.thebigbang.music_disc_raindrop.desc": "The Big Bang - Egg",
-	"item.thebigbang.music_disc_square.desc": "The Big Bang - Square"
+	"item.thebigbang.music_disc_square.desc": "The Big Bang - Square",
 	
-
-
+	"effect.thebigbang.warrior_effect": "Melee Mastery",
+	"effect.thebigbang.magician_effect": "Meditation",
+	"effect.thebigbang.bowman_effect": "Eye of Amazon",
+	"effect.thebigbang.thief_effect": "Nimble Body"
 }

@@ -2,17 +2,9 @@ package com.homebrewCult.TheBigBang.init;
 
 import com.homebrewCult.TheBigBang.layers.BigBangPlayerLayer;
 import com.homebrewCult.TheBigBang.layers.YetiSaddleLayer;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.PlayerRenderer;
 import net.minecraftforge.client.event.TextureStitchEvent;
 
 public class ModLayers {
-
-	public static void registerLayers() {
-		for(PlayerRenderer playerRender : Minecraft.getInstance().getRenderManager().getSkinMap().values()) {
-			playerRender.addLayer(new BigBangPlayerLayer<>(playerRender));
-		}
-	}
 	
 	public static void onTextureStitch(TextureStitchEvent.Pre event) {
 		event.addSprite(BigBangPlayerLayer.HYPER_BODY_0_TEXTURE_LOCATION);
@@ -37,7 +29,6 @@ public class ModLayers {
 		event.addSprite(BigBangPlayerLayer.HURRICANE_TEXTURE_LOCATION);
 		event.addSprite(BigBangPlayerLayer.TELEPORT_TEXTURE_LOCATION);
 		event.addSprite(YetiSaddleLayer.YETI_SADDLE_TEXTURE);
-
 	}
 	
 }
