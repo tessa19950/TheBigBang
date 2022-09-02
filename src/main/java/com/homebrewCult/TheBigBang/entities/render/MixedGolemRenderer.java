@@ -11,21 +11,17 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class MixedGolemRenderer extends MobRenderer<MixedGolemEntity, AbstractGolemModel<MixedGolemEntity>> {
 	
-	public MixedGolemRenderer(EntityRendererManager manager) 
-	{
+	public MixedGolemRenderer(EntityRendererManager manager) {
 		super(manager, new AbstractGolemModel<>(), 0.5f);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(MixedGolemEntity entity) 
-	{
+	protected ResourceLocation getEntityTexture(MixedGolemEntity entity) {
 		return new ResourceLocation(TheBigBang.MODID, "textures/entity/mixed_golem_entity.png");
 	}
 	
-	public static class RenderFactory implements IRenderFactory<MixedGolemEntity>
-	{
-		public EntityRenderer<? super MixedGolemEntity> createRenderFor(EntityRendererManager manager) 
-		{
+	public static class RenderFactory implements IRenderFactory<MixedGolemEntity> {
+		public EntityRenderer<? super MixedGolemEntity> createRenderFor(EntityRendererManager manager) {
 			return new MixedGolemRenderer(manager);
 		}
 	}

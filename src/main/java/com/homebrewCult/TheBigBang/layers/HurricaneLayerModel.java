@@ -59,7 +59,7 @@ public class HurricaneLayerModel extends Model {
 
 	public void render(float pullTime) {
 		float pullPct = MathHelper.clamp((pullTime - 1) / 2, 0, 1);
-		TheBigBang.LOGGER.debug("Pct = " + pullPct);
+		TheBigBang.print("Pct = " + pullPct);
 		body.rotateAngleZ = MathHelper.clamp(pullTime - 1, 0, 72000) * MathHelper.clamp(pullTime - 1, 0, 72000);
 		for(int i = 0; i < 6; ++i) {
 			float y = (float) Math.sin(pullTime * 8 + 2 + (i * 0.1f)) * -0.25f;

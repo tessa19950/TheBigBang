@@ -25,11 +25,11 @@ public class BigBangConfigSetup {
 	}
 	
 	public static void LoadConfig(ForgeConfigSpec config, String path) {
-		TheBigBang.LOGGER.info("Loading config: " + path);
+		TheBigBang.print("Loading config: " + path);
 		final CommentedFileConfig file = CommentedFileConfig.builder(new File(path)).sync().autosave().writingMode(WritingMode.REPLACE).build();
-		TheBigBang.LOGGER.info("Built config: " + path);
+		TheBigBang.print("Built config: " + path);
 		file.load();
-		TheBigBang.LOGGER.info("Loaded config: " + path);
+		TheBigBang.print("Loaded config: " + path);
 		config.setConfig(file);
 	}
 	

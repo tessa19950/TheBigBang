@@ -38,6 +38,8 @@ public class ModParticleTypes {
 
 	@SubscribeEvent
 	public static void registerParticleFactories(final ParticleFactoryRegisterEvent event) {
+
+
 		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.ITEM_BLUE_SLIME.get(), BlueSlimeParticle.BlueSlimeFactory::new);
 		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.MAGIC_CLAW_LEFT.get(), MagicClawParticle.MagicClawFactory::new);
 		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.MAGIC_CLAW_RIGHT.get(), MagicClawParticle.MagicClawFactory::new);

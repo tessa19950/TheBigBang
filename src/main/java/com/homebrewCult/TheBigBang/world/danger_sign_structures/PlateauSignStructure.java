@@ -17,7 +17,7 @@ public class PlateauSignStructure extends AbstractDangerSignStructure {
 
     public static final String[] TEMPLATE_PATHS = new String[]{ "plateau_sign_1", "plateau_sign_2", "plateau_sign_3", "plateau_sign_4" };
 
-    public PlateauSignStructure(Function<Dynamic<?>, ? extends PillagerOutpostConfig> config) {
+    public PlateauSignStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> config) {
         super(config);
     }
 

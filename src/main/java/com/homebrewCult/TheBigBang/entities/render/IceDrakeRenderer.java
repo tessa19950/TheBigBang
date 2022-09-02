@@ -11,21 +11,17 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class IceDrakeRenderer extends MobRenderer<IceDrakeEntity, AbstractDrakeModel<IceDrakeEntity>> {
 	
-	public IceDrakeRenderer(EntityRendererManager manager) 
-	{
+	public IceDrakeRenderer(EntityRendererManager manager) {
 		super(manager, new AbstractDrakeModel<>(), 0.5f);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(IceDrakeEntity entity) 
-	{
+	protected ResourceLocation getEntityTexture(IceDrakeEntity entity) {
 		return new ResourceLocation(TheBigBang.MODID, "textures/entity/ice_drake_entity.png");
 	}
 	
-	public static class RenderFactory implements IRenderFactory<IceDrakeEntity>
-	{
-		public EntityRenderer<? super IceDrakeEntity> createRenderFor(EntityRendererManager manager) 
-		{
+	public static class RenderFactory implements IRenderFactory<IceDrakeEntity> {
+		public EntityRenderer<? super IceDrakeEntity> createRenderFor(EntityRendererManager manager) {
 			return new IceDrakeRenderer(manager);
 		}
 	}

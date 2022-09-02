@@ -13,6 +13,7 @@ import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
+@Deprecated
 public class DangerSignPlateauFeature extends AbstractDangerSignFeature {
 	
 	public DangerSignPlateauFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn) {

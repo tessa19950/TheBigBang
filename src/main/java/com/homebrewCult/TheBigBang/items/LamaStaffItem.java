@@ -108,7 +108,7 @@ public class LamaStaffItem extends TieredItem implements IBigBangWeapon {
 					if(entity != null) {
 						if (timer == i * 3) {
 							spawnGenesisBeam(stack, worldIn, entity.getPositionVec());
-							TheBigBang.LOGGER.debug("Killing enemy " + (i + 1) + " out of " + idArray.length + " at timer tick " + timer + ". ");
+							TheBigBang.print("Killing enemy " + (i + 1) + " out of " + idArray.length + " at timer tick " + timer + ". ");
 							break;
 						} else if (timer == i * 3 + 5) {
 							entity.attackEntityFrom(DamageSource.MAGIC, 100);

@@ -11,8 +11,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class EvilEyeRenderer extends MobRenderer<EvilEyeEntity, AbstractEyeModel<EvilEyeEntity>> {
 	
-	public EvilEyeRenderer(EntityRendererManager manager) 
-	{
+	public EvilEyeRenderer(EntityRendererManager manager) {
 		super(manager, new AbstractEyeModel<>(), 0.5f);
 	}
 

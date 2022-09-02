@@ -6,12 +6,13 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
+@Deprecated
 public class DangerSignIceFeature extends AbstractDangerSignFeature {
 	
 	public DangerSignIceFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn) {
 		super(configFactoryIn);
 	}
-	
+
 	@Override
 	public String getTemplateName() {
 		return "ice_sign";

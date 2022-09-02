@@ -8,23 +8,18 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-public class DarkStumpRenderer extends MobRenderer<AbstractStumpEntity, AbstractStumpModel<AbstractStumpEntity>>
-{
-	public DarkStumpRenderer(EntityRendererManager manager) 
-	{
+public class DarkStumpRenderer extends MobRenderer<AbstractStumpEntity, AbstractStumpModel<AbstractStumpEntity>> {
+	public DarkStumpRenderer(EntityRendererManager manager) {
 		super(manager, new AbstractStumpModel<>(), 0.5f);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(AbstractStumpEntity entity) 
-	{
+	protected ResourceLocation getEntityTexture(AbstractStumpEntity entity) {
 		return new ResourceLocation(TheBigBang.MODID, "textures/entity/dark_stump_entity.png");
 	}
 	
-	public static class RenderFactory implements IRenderFactory<AbstractStumpEntity>
-	{
-		public EntityRenderer<? super AbstractStumpEntity> createRenderFor(EntityRendererManager manager) 
-		{
+	public static class RenderFactory implements IRenderFactory<AbstractStumpEntity> {
+		public EntityRenderer<? super AbstractStumpEntity> createRenderFor(EntityRendererManager manager) {
 			return new DarkStumpRenderer(manager);
 		}
 	}

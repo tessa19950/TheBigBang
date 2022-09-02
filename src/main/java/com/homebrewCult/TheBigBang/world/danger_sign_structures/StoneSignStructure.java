@@ -17,7 +17,7 @@ public class StoneSignStructure extends AbstractDangerSignStructure{
 
     public static final String[] TEMPLATE_PATHS = new String[]{ "stone_sign_1", "stone_sign_2", "stone_sign_3", "stone_sign_4" };
 
-    public StoneSignStructure(Function<Dynamic<?>, ? extends PillagerOutpostConfig> config) {
+    public StoneSignStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> config) {
         super(config);
     }
 

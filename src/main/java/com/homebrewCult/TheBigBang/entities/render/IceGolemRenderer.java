@@ -11,21 +11,17 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class IceGolemRenderer extends MobRenderer<IceGolemEntity, AbstractGolemModel<IceGolemEntity>> {
 	
-	public IceGolemRenderer(EntityRendererManager manager) 
-	{
+	public IceGolemRenderer(EntityRendererManager manager) {
 		super(manager, new AbstractGolemModel<>(), 0.5f);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(IceGolemEntity entity) 
-	{
+	protected ResourceLocation getEntityTexture(IceGolemEntity entity) {
 		return new ResourceLocation(TheBigBang.MODID, "textures/entity/ice_golem_entity.png");
 	}
 	
-	public static class RenderFactory implements IRenderFactory<IceGolemEntity>
-	{
-		public EntityRenderer<? super IceGolemEntity> createRenderFor(EntityRendererManager manager) 
-		{
+	public static class RenderFactory implements IRenderFactory<IceGolemEntity> {
+		public EntityRenderer<? super IceGolemEntity> createRenderFor(EntityRendererManager manager) {
 			return new IceGolemRenderer(manager);
 		}
 	}

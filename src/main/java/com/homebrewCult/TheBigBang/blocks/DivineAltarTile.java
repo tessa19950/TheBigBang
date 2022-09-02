@@ -43,7 +43,7 @@ public class DivineAltarTile extends AbstractFurnaceTileEntity {
 	public int timer = 0;
 	
 	public DivineAltarTile() {
-		super(ModBlocks.DIVINE_ALTAR_TILE, ModRecipeTypes.BLESSING_RECIPE);
+		super(ModBlocks.DIVINE_ALTAR_TILE, ModRecipeTypes.BLESSING);
 		this.clientInventory = NonNullList.withSize(3, ItemStack.EMPTY);
 	}
 	

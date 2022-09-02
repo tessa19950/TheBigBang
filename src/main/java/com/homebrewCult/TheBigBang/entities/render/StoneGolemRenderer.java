@@ -11,21 +11,17 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class StoneGolemRenderer extends MobRenderer<StoneGolemEntity, AbstractGolemModel<StoneGolemEntity>> {
 	
-	public StoneGolemRenderer(EntityRendererManager manager) 
-	{
+	public StoneGolemRenderer(EntityRendererManager manager) {
 		super(manager, new AbstractGolemModel<>(), 0.5f);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(StoneGolemEntity entity) 
-	{
+	protected ResourceLocation getEntityTexture(StoneGolemEntity entity) {
 		return new ResourceLocation(TheBigBang.MODID, "textures/entity/stone_golem_entity.png");
 	}
 	
-	public static class RenderFactory implements IRenderFactory<StoneGolemEntity>
-	{
-		public EntityRenderer<? super StoneGolemEntity> createRenderFor(EntityRendererManager manager) 
-		{
+	public static class RenderFactory implements IRenderFactory<StoneGolemEntity> {
+		public EntityRenderer<? super StoneGolemEntity> createRenderFor(EntityRendererManager manager) {
 			return new StoneGolemRenderer(manager);
 		}
 	}

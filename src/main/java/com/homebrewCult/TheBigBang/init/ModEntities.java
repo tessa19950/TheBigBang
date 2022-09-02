@@ -110,6 +110,7 @@ public class ModEntities {
 	@OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerSpawns (FMLCommonSetupEvent event) {
+		TheBigBang.print("Setting up entity world spawns.");
 		registerEntityWorldSpawn(STUMP_ENTITY, 2, 4, Biomes.FOREST);
 		registerEntityWorldSpawn(OCTOPUS_ENTITY, 2, 8, Biomes.GRAVELLY_MOUNTAINS, Biomes.STONE_SHORE);
 		registerEntityWorldSpawn(EVIL_EYE_ENTITY, 1, 2, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.BADLANDS, Biomes.BADLANDS_PLATEAU, Biomes.ERODED_BADLANDS, Biomes.MODIFIED_BADLANDS_PLATEAU, Biomes.MODIFIED_WOODED_BADLANDS_PLATEAU, Biomes.WOODED_BADLANDS_PLATEAU);

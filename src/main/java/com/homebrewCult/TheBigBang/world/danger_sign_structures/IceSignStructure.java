@@ -17,7 +17,7 @@ public class IceSignStructure extends AbstractDangerSignStructure{
 
     public static final String[] TEMPLATE_PATHS = new String[]{ "ice_sign_1", "ice_sign_2", "ice_sign_3", "ice_sign_4" };
 
-    public IceSignStructure(Function<Dynamic<?>, ? extends PillagerOutpostConfig> config) {
+    public IceSignStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> config) {
         super(config);
     }
 

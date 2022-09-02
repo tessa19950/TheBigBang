@@ -11,21 +11,17 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class ColdEyeRenderer extends MobRenderer<ColdEyeEntity, AbstractEyeModel<ColdEyeEntity>> {
 	
-	public ColdEyeRenderer(EntityRendererManager manager) 
-	{
+	public ColdEyeRenderer(EntityRendererManager manager) {
 		super(manager, new AbstractEyeModel<>(), 0.5f);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(ColdEyeEntity entity) 
-	{
+	protected ResourceLocation getEntityTexture(ColdEyeEntity entity) {
 		return new ResourceLocation(TheBigBang.MODID, "textures/entity/cold_eye_entity.png");
 	}
 	
-	public static class RenderFactory implements IRenderFactory<ColdEyeEntity>
-	{
-		public EntityRenderer<? super ColdEyeEntity> createRenderFor(EntityRendererManager manager) 
-		{
+	public static class RenderFactory implements IRenderFactory<ColdEyeEntity> {
+		public EntityRenderer<? super ColdEyeEntity> createRenderFor(EntityRendererManager manager) {
 			return new ColdEyeRenderer(manager);
 		}
 	}

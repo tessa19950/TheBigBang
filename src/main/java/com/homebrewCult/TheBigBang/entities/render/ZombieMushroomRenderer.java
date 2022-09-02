@@ -9,24 +9,19 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-public class ZombieMushroomRenderer extends MobRenderer<ZombieMushroomEntity, AbstractMushroomModel<ZombieMushroomEntity>>
-{
+public class ZombieMushroomRenderer extends MobRenderer<ZombieMushroomEntity, AbstractMushroomModel<ZombieMushroomEntity>> {
 	
-	public ZombieMushroomRenderer(EntityRendererManager manager) 
-	{
+	public ZombieMushroomRenderer(EntityRendererManager manager) {
 		super(manager, new AbstractMushroomModel<>(), 0.5f);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(ZombieMushroomEntity entity) 
-	{
+	protected ResourceLocation getEntityTexture(ZombieMushroomEntity entity) {
 		return new ResourceLocation(TheBigBang.MODID, "textures/entity/zombie_mushroom_entity.png");
 	}
 	
-	public static class RenderFactory implements IRenderFactory<ZombieMushroomEntity>
-	{
-		public EntityRenderer<? super ZombieMushroomEntity> createRenderFor(EntityRendererManager manager) 
-		{
+	public static class RenderFactory implements IRenderFactory<ZombieMushroomEntity> {
+		public EntityRenderer<? super ZombieMushroomEntity> createRenderFor(EntityRendererManager manager) {
 			return new ZombieMushroomRenderer(manager);
 		}
 	}

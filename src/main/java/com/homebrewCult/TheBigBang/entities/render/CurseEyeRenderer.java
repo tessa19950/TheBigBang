@@ -9,24 +9,19 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-public class CurseEyeRenderer extends MobRenderer<CurseEyeEntity, AbstractEyeModel<CurseEyeEntity>>
-{
+public class CurseEyeRenderer extends MobRenderer<CurseEyeEntity, AbstractEyeModel<CurseEyeEntity>> {
 	
-	public CurseEyeRenderer(EntityRendererManager manager) 
-	{
+	public CurseEyeRenderer(EntityRendererManager manager) {
 		super(manager, new AbstractEyeModel<>(), 0.5f);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(CurseEyeEntity entity) 
-	{
+	protected ResourceLocation getEntityTexture(CurseEyeEntity entity) {
 		return new ResourceLocation(TheBigBang.MODID, "textures/entity/curse_eye_entity.png");
 	}
 	
-	public static class RenderFactory implements IRenderFactory<CurseEyeEntity>
-	{
-		public EntityRenderer<? super CurseEyeEntity> createRenderFor(EntityRendererManager manager) 
-		{
+	public static class RenderFactory implements IRenderFactory<CurseEyeEntity> {
+		public EntityRenderer<? super CurseEyeEntity> createRenderFor(EntityRendererManager manager) {
 			return new CurseEyeRenderer(manager);
 		}
 	}

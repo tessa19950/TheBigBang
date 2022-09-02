@@ -10,24 +10,19 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-public class OctopusRenderer extends MobRenderer<OctopusEntity, OctopusModel<OctopusEntity>>
-{
+public class OctopusRenderer extends MobRenderer<OctopusEntity, OctopusModel<OctopusEntity>> {
 	
-	public OctopusRenderer(EntityRendererManager manager) 
-	{
+	public OctopusRenderer(EntityRendererManager manager) {
 		super(manager, new OctopusModel<>(), 0.5f);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(OctopusEntity entity) 
-	{
+	protected ResourceLocation getEntityTexture(OctopusEntity entity) {
 		return new ResourceLocation(TheBigBang.MODID, "textures/entity/octopus_entity.png");
 	}
 	
-	public static class RenderFactory implements IRenderFactory<OctopusEntity>
-	{
-		public EntityRenderer<? super OctopusEntity> createRenderFor(EntityRendererManager manager) 
-		{
+	public static class RenderFactory implements IRenderFactory<OctopusEntity> {
+		public EntityRenderer<? super OctopusEntity> createRenderFor(EntityRendererManager manager) {
 			return new OctopusRenderer(manager);
 		}
 	}

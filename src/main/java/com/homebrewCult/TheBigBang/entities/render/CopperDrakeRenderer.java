@@ -11,21 +11,17 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class CopperDrakeRenderer extends MobRenderer<CopperDrakeEntity, AbstractDrakeModel<CopperDrakeEntity>> {
 	
-	public CopperDrakeRenderer(EntityRendererManager manager) 
-	{
+	public CopperDrakeRenderer(EntityRendererManager manager) {
 		super(manager, new AbstractDrakeModel<>(), 0.5f);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(CopperDrakeEntity entity) 
-	{
+	protected ResourceLocation getEntityTexture(CopperDrakeEntity entity) {
 		return new ResourceLocation(TheBigBang.MODID, "textures/entity/copper_drake_entity.png");
 	}
 	
-	public static class RenderFactory implements IRenderFactory<CopperDrakeEntity>
-	{
-		public EntityRenderer<? super CopperDrakeEntity> createRenderFor(EntityRendererManager manager) 
-		{
+	public static class RenderFactory implements IRenderFactory<CopperDrakeEntity> {
+		public EntityRenderer<? super CopperDrakeEntity> createRenderFor(EntityRendererManager manager) {
 			return new CopperDrakeRenderer(manager);
 		}
 	}

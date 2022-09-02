@@ -17,7 +17,7 @@ public class DesertSignStructure extends AbstractDangerSignStructure{
 
     public static final String[] TEMPLATE_PATHS = new String[]{ "desert_sign_1", "desert_sign_2", "desert_sign_3", "desert_sign_4" };
 
-    public DesertSignStructure(Function<Dynamic<?>, ? extends PillagerOutpostConfig> config) {
+    public DesertSignStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> config) {
         super(config);
     }
 

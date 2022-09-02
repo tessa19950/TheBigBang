@@ -11,21 +11,17 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class DrakeRenderer extends MobRenderer<DrakeEntity, AbstractDrakeModel<DrakeEntity>> {
 	
-	public DrakeRenderer(EntityRendererManager manager) 
-	{
+	public DrakeRenderer(EntityRendererManager manager) {
 		super(manager, new AbstractDrakeModel<>(), 0.5f);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(DrakeEntity entity) 
-	{
+	protected ResourceLocation getEntityTexture(DrakeEntity entity) {
 		return new ResourceLocation(TheBigBang.MODID, "textures/entity/drake_entity.png");
 	}
 	
-	public static class RenderFactory implements IRenderFactory<DrakeEntity>
-	{
-		public EntityRenderer<? super DrakeEntity> createRenderFor(EntityRendererManager manager) 
-		{
+	public static class RenderFactory implements IRenderFactory<DrakeEntity> {
+		public EntityRenderer<? super DrakeEntity> createRenderFor(EntityRendererManager manager) {
 			return new DrakeRenderer(manager);
 		}
 	}

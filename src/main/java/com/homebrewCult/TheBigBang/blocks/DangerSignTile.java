@@ -42,8 +42,8 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 	private boolean blockStateChecked = false;
 	
 	private int spawnDelayTimer = 0;
-	private int entitiesKilled;
-	private int[] completedQuests;
+	private int entitiesKilled = 0;
+	private int[] completedQuests = new int[]{};
 	public Questline questline = Questline.None;
 	private ArrayList<Entity> entityList;
 	private Random rand = new Random();
@@ -62,38 +62,32 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 
 	@Override
 	public void tick() {
+		if(world == null)
+			return;
 		if(blockStateChecked && isBasePart) {
-			masterTick();
+			spawnerTick();
 		} else if (!blockStateChecked) {
 			BlockState state = world.getBlockState(pos);
 			if(state.get(DangerSignBlock.PART) == DangerSignPart.BASE && state.get(DangerSignBlock.QUESTLINE) != Questline.None) {
-				initializeMaster();
+				isBasePart = true;
+				if(!world.isRemote) {
+					questline = this.getBlockState().get(DangerSignBlock.QUESTLINE);
+					completedQuests = new int[0];
+					world.notifyBlockUpdate(pos, this.getBlockState(), this.getBlockState(), 2);
+				}
+				markDirty();
 			}
 			blockStateChecked = true;
 			markDirty();
 		}
 	}
-	
-	public void initializeMaster() {
-		isBasePart = true;
-		if(!world.isRemote) {
-			questline = this.getBlockState().get(DangerSignBlock.QUESTLINE);
-			completedQuests = new int[0];
-			world.notifyBlockUpdate(pos, this.getBlockState(), this.getBlockState(), 2);
-		}
-		markDirty();
-	}
-	
-	public void masterTick() {
-		//Check if we're on the server and a player is in range.
-		if(!world.isRemote) {
-			PlayerEntity p = world.getClosestPlayer(this.pos.getX(), this.pos.getY(), this.pos.getZ(), ACTIVATION_RADIUS, false);		
-			if(p != null)
-				spawnerTick();
-		}
-	}
 
 	public void spawnerTick() {
+		//Check if we're on the server and a player is in range.
+		PlayerEntity p = world.getClosestPlayer(this.pos.getX(), this.pos.getY(), this.pos.getZ(), ACTIVATION_RADIUS, false);
+		if(world.isRemote || p == null)
+			return;
+
 		//Check if we have a list of enemies, if not, search the area for entities matching my questline.
 		if(entityList == null) {
 			entityList = new ArrayList<>();
@@ -143,7 +137,7 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 			}
 		}
 		
-		if(validSpawn) {
+		if(validSpawn && world.isAreaLoaded(spawnPos, 1)) {
 			IQuestEntity questEntity = (IQuestEntity) questline.getRandomEntityType().spawn(world, null, null, spawnPos, SpawnReason.SPAWNER, true, true);
 			Quest[] availableQuests = this.getAvailableQuests(); 
 			for(int i = 0; i < 3 && i < this.getAvailableQuestCount(); i++) {
@@ -240,7 +234,7 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 	}
 	
 	public String getID() {
-		return (TheBigBang.MODID + this.pos.toString());
+		return "";
 	}
 	
 	@Override

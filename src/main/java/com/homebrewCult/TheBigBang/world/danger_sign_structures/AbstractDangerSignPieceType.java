@@ -1,5 +1,6 @@
 package com.homebrewCult.TheBigBang.world.danger_sign_structures;
 
+import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.blocks.DangerSignBlock;
 import com.homebrewCult.TheBigBang.gui.quests.Questline;
 import com.homebrewCult.TheBigBang.init.ModBlocks;
@@ -67,6 +68,9 @@ public abstract class AbstractDangerSignPieceType extends TemplateStructurePiece
         Vec3i center = this.templatePosition.subtract(getTemplateOffset(index));
         int y = worldIn.getHeight(Heightmap.Type.WORLD_SURFACE_WG, center.getX(), center.getZ());
         this.templatePosition = this.templatePosition.add(0, y + getTemplateOffset(index).getY(), 0);
+        TheBigBang.print("Placing " + piece + " at " + this.templatePosition);
+        if(!worldIn.isAreaLoaded(this.templatePosition, 4))
+            return false;
         return super.addComponentParts(worldIn, randomIn, mutableBoundingBoxIn, chunkPosIn);
     }
 

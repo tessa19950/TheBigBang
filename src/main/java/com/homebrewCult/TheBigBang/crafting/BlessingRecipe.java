@@ -24,8 +24,8 @@ public class BlessingRecipe extends AbstractCookingRecipe implements IRecipe<IIn
 	public final int cookTime;
 
 	public BlessingRecipe(ResourceLocation idIn, String groupIn, Ingredient ingredientIn, ItemStack resultIn, float experienceIn, int cookTimeIn) {
-		super(ModRecipeTypes.BLESSING_RECIPE, idIn, groupIn, ingredientIn, resultIn, experienceIn, cookTimeIn);
-		this.type = ModRecipeTypes.BLESSING_RECIPE;
+		super(ModRecipeTypes.BLESSING, idIn, groupIn, ingredientIn, resultIn, experienceIn, cookTimeIn);
+		this.type = ModRecipeTypes.BLESSING;
 		this.id = idIn;
 		this.group = groupIn;
 		this.ingredient = ingredientIn;

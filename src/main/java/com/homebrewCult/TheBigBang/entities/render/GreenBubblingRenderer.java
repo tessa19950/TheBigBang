@@ -8,8 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-public class GreenBubblingRenderer extends MobRenderer<AbstractBubblingEntity, AbstractBubblingModel<AbstractBubblingEntity>>
-{
+public class GreenBubblingRenderer extends MobRenderer<AbstractBubblingEntity, AbstractBubblingModel<AbstractBubblingEntity>> {
 	public GreenBubblingRenderer(EntityRendererManager manager) {
 		super(manager, new AbstractBubblingModel<>(), 0.5f);
 	}

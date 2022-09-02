@@ -11,8 +11,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class BlueMushroomRenderer extends MobRenderer<BlueMushroomEntity, AbstractMushroomModel<BlueMushroomEntity>> {
 	
-	public BlueMushroomRenderer(EntityRendererManager manager) 
-	{
+	public BlueMushroomRenderer(EntityRendererManager manager) {
 		super(manager, new AbstractMushroomModel<>(), 1f);
 	}
 

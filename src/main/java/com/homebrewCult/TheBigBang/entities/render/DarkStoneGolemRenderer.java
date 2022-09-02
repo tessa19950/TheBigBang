@@ -11,21 +11,17 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class DarkStoneGolemRenderer extends MobRenderer<DarkStoneGolemEntity, AbstractGolemModel<DarkStoneGolemEntity>> {
 	
-	public DarkStoneGolemRenderer(EntityRendererManager manager) 
-	{
+	public DarkStoneGolemRenderer(EntityRendererManager manager) {
 		super(manager, new AbstractGolemModel<>(), 0.5f);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(DarkStoneGolemEntity entity) 
-	{
+	protected ResourceLocation getEntityTexture(DarkStoneGolemEntity entity) {
 		return new ResourceLocation(TheBigBang.MODID, "textures/entity/dark_stone_golem_entity.png");
 	}
 	
-	public static class RenderFactory implements IRenderFactory<DarkStoneGolemEntity>
-	{
-		public EntityRenderer<? super DarkStoneGolemEntity> createRenderFor(EntityRendererManager manager) 
-		{
+	public static class RenderFactory implements IRenderFactory<DarkStoneGolemEntity> {
+		public EntityRenderer<? super DarkStoneGolemEntity> createRenderFor(EntityRendererManager manager) {
 			return new DarkStoneGolemRenderer(manager);
 		}
 	}

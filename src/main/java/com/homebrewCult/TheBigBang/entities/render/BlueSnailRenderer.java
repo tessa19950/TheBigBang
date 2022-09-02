@@ -9,24 +9,19 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-public class BlueSnailRenderer extends MobRenderer<BlueSnailEntity, AbstractSnailModel<BlueSnailEntity>>
-{
+public class BlueSnailRenderer extends MobRenderer<BlueSnailEntity, AbstractSnailModel<BlueSnailEntity>> {
 	
-	public BlueSnailRenderer(EntityRendererManager manager) 
-	{
+	public BlueSnailRenderer(EntityRendererManager manager) {
 		super(manager, new AbstractSnailModel<>(), 0.5f);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(BlueSnailEntity entity) 
-	{
+	protected ResourceLocation getEntityTexture(BlueSnailEntity entity) {
 		return new ResourceLocation(TheBigBang.MODID, "textures/entity/blue_snail_entity.png");
 	}
 	
-	public static class RenderFactory implements IRenderFactory<BlueSnailEntity>
-	{
-		public EntityRenderer<? super BlueSnailEntity> createRenderFor(EntityRendererManager manager) 
-		{
+	public static class RenderFactory implements IRenderFactory<BlueSnailEntity> {
+		public EntityRenderer<? super BlueSnailEntity> createRenderFor(EntityRendererManager manager) {
 			return new BlueSnailRenderer(manager);
 		}
 	}

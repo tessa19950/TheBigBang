@@ -30,11 +30,11 @@ import net.minecraftforge.fml.loading.FMLPaths;
 public final class TheBigBang {
 	
 	public static final String MODID = "thebigbang";
-	public static final Logger LOGGER = LogManager.getLogger(MODID);
+	private static final Logger LOGGER = LogManager.getLogger(MODID);
 	public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 	
 	public TheBigBang() {
-		LOGGER.debug("Constructing the Big Bang.");
+		print("Constructing the Big Bang.");
 		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, BigBangConfigSetup.SERVER_CONFIG);
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, BigBangConfigSetup.CLIENT_CONFIG);
 		BigBangConfigSetup.LoadConfig(BigBangConfigSetup.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("thebigbang-client.toml").toString());
@@ -42,17 +42,12 @@ public final class TheBigBang {
 		
 		final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		eventBus.addListener(this::onCommonSetup);
-		ModRecipeTypes.RECIPES.register(eventBus);
 		ModEffects.EFFECTS.register(eventBus);
 		ModParticleTypes.PARTICLE_TYPES.register(eventBus);
-
+		ModRecipeTypes.RECIPES.register(eventBus);
+		ModFeatures.FEATURES.register(eventBus);
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(new BigBangListener());
-		MinecraftForge.EVENT_BUS.register(new WarriorEffect());
-		MinecraftForge.EVENT_BUS.register(new MagicianEffect());
-		MinecraftForge.EVENT_BUS.register(new BowmanEffect());
-		MinecraftForge.EVENT_BUS.register(new ThiefEffect());
-
 	}
 
 	public void onCommonSetup(final FMLCommonSetupEvent event) {
@@ -62,6 +57,6 @@ public final class TheBigBang {
 	}
 	
 	public static void print (String message) {
-		LOGGER.debug("[The Big Bang Info] " + message);
+		LOGGER.info("[The Big Bang Info] " + message);
 	}
 }

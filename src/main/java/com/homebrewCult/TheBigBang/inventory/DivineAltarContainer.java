@@ -14,11 +14,11 @@ import net.minecraft.world.World;
 public class DivineAltarContainer extends AbstractFurnaceContainer {
 
 	public DivineAltarContainer(int id, PlayerInventory playerInventory, World world, BlockPos pos) {
-		super(ModBlocks.DIVINE_ALTAR_CONTAINER, ModRecipeTypes.BLESSING_RECIPE, id, playerInventory);
+		super(ModBlocks.DIVINE_ALTAR_CONTAINER, ModRecipeTypes.BLESSING, id, playerInventory);
 	}
 	
 	public DivineAltarContainer(int id, PlayerInventory playerInventoryIn, IInventory furnaceInventoryIn, IIntArray furnaceData) {
-		super(ModBlocks.DIVINE_ALTAR_CONTAINER, ModRecipeTypes.BLESSING_RECIPE, id, playerInventoryIn, furnaceInventoryIn, furnaceData);
+		super(ModBlocks.DIVINE_ALTAR_CONTAINER, ModRecipeTypes.BLESSING, id, playerInventoryIn, furnaceInventoryIn, furnaceData);
 	}
 	
 	@Override
