@@ -43,7 +43,7 @@ public abstract class AbstractDangerSignStructure extends ScatteredStructure<NoF
             TheBigBang.print("Generating " + getStructureName() + " at " + blockpos);
             int index = Math.abs(chunkX * chunkZ) % getTemplatePaths().length;
             this.components.add(getStructurePiece(manager, new ResourceLocation(TheBigBang.MODID, getTemplatePaths()[index]), blockpos, Rotation.NONE, getPieceType()));
-            //this.recalculateStructureSize();
+            this.recalculateStructureSize();
         }
     }
 

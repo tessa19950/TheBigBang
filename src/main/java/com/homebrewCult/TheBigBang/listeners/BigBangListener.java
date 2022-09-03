@@ -1,6 +1,7 @@
 package com.homebrewCult.TheBigBang.listeners;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
+import com.homebrewCult.TheBigBang.config.BigBangConfig;
 import com.homebrewCult.TheBigBang.init.ModEffects;
 import com.homebrewCult.TheBigBang.init.ModParticleTypes;
 import com.homebrewCult.TheBigBang.items.armor.BigBangArmorItem;
@@ -27,6 +28,8 @@ public class BigBangListener {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onLivingDamage(LivingDamageEvent event) {
+        if(!BigBangConfig.USE_DAMAGE_NUMBERS_CONFIG.get())
+            return;
         if(event.getSource().getTrueSource() instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) event.getSource().getTrueSource();
 

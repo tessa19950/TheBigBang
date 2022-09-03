@@ -147,7 +147,7 @@ public class AbstractGolemModel <T extends AbstractGolemEntity> extends Quadrupe
         float rightLegSwing = MathHelper.cos(limbSwing * 0.6f + (float)Math.PI);
 
 		int t = golem.getShockwaveTick();
-		if(golem.getIsTempted() && limbSwingAmount < 0.01f) {
+		if(golem.isTempted() && limbSwingAmount < 0.01f) {
         	//Move Hip Offset into Squat Position
 	        this.Hip_Bone.offsetY = 0.3f;
 	        this.Hip_Bone.offsetZ = 0.3f;

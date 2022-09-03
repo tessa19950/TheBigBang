@@ -47,8 +47,6 @@ public abstract class AbstractDangerSignFeature extends Feature<NoFeatureConfig>
 		PlacementSettings placeSettings = (new PlacementSettings()).setRandom(rand).addProcessor(processor);
 		templateDirection = getTemplateDirection(randIndex); 
 		pos = pos.add(getTemplateOffset(randIndex));
-		if(!worldIn.isAreaLoaded(pos, 1))
-			return false;
 
 		TheBigBang.print("Generating " + getTemplateName() + " at " + pos);
 		if (template.addBlocksToWorld(worldIn, pos, placeSettings, 2)) {

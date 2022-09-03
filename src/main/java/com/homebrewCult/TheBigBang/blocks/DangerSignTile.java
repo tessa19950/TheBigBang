@@ -137,7 +137,7 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 			}
 		}
 		
-		if(validSpawn && world.isAreaLoaded(spawnPos, 1)) {
+		if(validSpawn) {
 			IQuestEntity questEntity = (IQuestEntity) questline.getRandomEntityType().spawn(world, null, null, spawnPos, SpawnReason.SPAWNER, true, true);
 			Quest[] availableQuests = this.getAvailableQuests(); 
 			for(int i = 0; i < 3 && i < this.getAvailableQuestCount(); i++) {

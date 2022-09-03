@@ -11,25 +11,12 @@ import com.homebrewCult.TheBigBang.items.armor.NightshiftArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.PietteArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.PilferArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.StarlightArmorItem;
-import com.homebrewCult.TheBigBang.items.model.AppleArmorModel;
-import com.homebrewCult.TheBigBang.items.model.GoldwindArmorModel;
-import com.homebrewCult.TheBigBang.items.model.HwarangArmorModel;
-import com.homebrewCult.TheBigBang.items.model.JangoonArmorModel;
-import com.homebrewCult.TheBigBang.items.model.LegolierArmorModel;
-import com.homebrewCult.TheBigBang.items.model.NightshiftArmorModel;
-import com.homebrewCult.TheBigBang.items.model.PietteArmorModel;
-import com.homebrewCult.TheBigBang.items.model.PilferArmorModel;
-import com.homebrewCult.TheBigBang.items.model.StarlightArmorModel;
 import com.homebrewCult.TheBigBang.items.render.BigBangISTER;
-import com.homebrewCult.TheBigBang.init.ModItems;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemTier;
 import net.minecraft.item.Rarity;
 import net.minecraft.item.Item.Properties;
 import net.minecraftforge.fml.common.Mod;
@@ -77,6 +64,8 @@ public class ModItems {
 	public static final Item BLUE_MUSHROOM_STAIRS = null;
 
 	public static final QuestItem LETTER = (QuestItem) new QuestItem(new Item.Properties().maxStackSize(1)).setRegistryName(TheBigBang.MODID, "letter");
+	public static final QuestFinderItem QUEST_FINDER = (QuestFinderItem) new QuestFinderItem(new Properties()
+			.maxStackSize(1).group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, "quest_finder");
 	public static final Item OCTOPUS_LEG = 	registerMiscItem("octopus_leg");
 	public static final Item EVIL_EYE_TAIL = registerMiscItem("evil_eye_tail");
 	public static final Item CURSE_EYE_TAIL = registerMiscItem("curse_eye_tail");
@@ -247,6 +236,7 @@ public class ModItems {
 				ModItems.BLESSED_GOLD_INGOT,
 
 				ModItems.LETTER,
+				ModItems.QUEST_FINDER,
 				ModItems.OCTOPUS_LEG,
 				ModItems.EVIL_EYE_TAIL,
 				ModItems.CURSE_EYE_TAIL,

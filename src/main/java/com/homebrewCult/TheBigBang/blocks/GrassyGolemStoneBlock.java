@@ -56,9 +56,8 @@ public class GrassyGolemStoneBlock extends Block {
 	@Override
 	public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
 		if(!worldIn.isRemote) {
-			if(!worldIn.isAreaLoaded(pos, 2)) {
-				return; 
-			}
+			if(!worldIn.isAreaLoaded(pos, 1))
+				return;
 			if(!isValidGrassPos(state, worldIn, pos)) {
 				worldIn.setBlockState(pos, ModBlocks.GOLEM_STONE.getDefaultState().with(FACING, worldIn.getBlockState(pos).get(FACING)));
 			}

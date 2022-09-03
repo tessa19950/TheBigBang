@@ -2,8 +2,6 @@ package com.homebrewCult.TheBigBang.entities.mob;
 
 import javax.annotation.Nullable;
 import com.homebrewCult.TheBigBang.init.ModSounds;
-import com.homebrewCult.TheBigBang.network.BigBangPacketHandler;
-import com.homebrewCult.TheBigBang.network.Packet_SetChildAttacker;
 import com.homebrewCult.TheBigBang.util.IQuestEntity;
 import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
 import net.minecraft.entity.*;
@@ -23,21 +21,23 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.PacketDistributor;
 
 public class AbstractMushroomEntity extends AnimalEntity implements IQuestEntity {
-	
-	public boolean isAngry = false;
-	public boolean hasChild = false;
-	public boolean isChildHurt = false;
-	
-	public AbstractMushroomEntity mom = null;
+
+	protected static final DataParameter<Boolean> IS_ANGRY = EntityDataManager.createKey(AbstractMushroomEntity.class, DataSerializers.BOOLEAN);
+	protected static final DataParameter<Boolean> HAS_CHILD = EntityDataManager.createKey(AbstractMushroomEntity.class, DataSerializers.BOOLEAN);
+	protected static final DataParameter<Boolean> IS_CHILD_HURT = EntityDataManager.createKey(AbstractMushroomEntity.class, DataSerializers.BOOLEAN);
+	protected static final DataParameter<Integer> MOM_ID = EntityDataManager.createKey(AbstractMushroomEntity.class, DataSerializers.VARINT);
+
 	public String mushroomType = null;
 	private QuestEntityHandler questEntityHandler = new QuestEntityHandler();
 	
@@ -71,6 +71,14 @@ public class AbstractMushroomEntity extends AnimalEntity implements IQuestEntity
 		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
 		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
 	}
+	@Override
+	protected void registerData() {
+		super.registerData();
+		this.dataManager.register(IS_ANGRY, false);
+		this.dataManager.register(HAS_CHILD, false);
+		this.dataManager.register(IS_CHILD_HURT, false);
+		this.dataManager.register(MOM_ID, -1);
+	}
 
 	@Nullable
 	@Override
@@ -85,11 +93,9 @@ public class AbstractMushroomEntity extends AnimalEntity implements IQuestEntity
 		if (source.getTrueSource() instanceof LivingEntity) {
 			LivingEntity trueTarget = (LivingEntity)source.getTrueSource();
 			setAttackTarget(trueTarget);
-			this.isAngry = true;
-        	if(this.isChild() && this.hasMom()) {
+			getDataManager().set(IS_ANGRY, true);
+        	if(this.isChild() && this.hasMom())
         		this.getMom().setChildAttacker(trueTarget);
-        		BigBangPacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(), new Packet_SetChildAttacker(this.getMom().getEntityId(), trueTarget.getEntityId()));
-        	}
         }
 		return super.attackEntityFrom(source, amount);
 	}
@@ -117,7 +123,7 @@ public class AbstractMushroomEntity extends AnimalEntity implements IQuestEntity
 	}
 	
 	public boolean isBreedingItem(ItemStack stack) {
-		if(!this.isAngry) {
+		if(!getDataManager().get(IS_ANGRY)) {
 			return TEMPTATION_ITEMS.test(stack);
 		} else {
 			return false;
@@ -125,7 +131,7 @@ public class AbstractMushroomEntity extends AnimalEntity implements IQuestEntity
 	}
 	
 	public Ingredient getTemptationItems() {
-		if(!this.isAngry) {
+		if(!getDataManager().get(IS_ANGRY)) {
 			return TEMPTATION_ITEMS;
 		} else {
 			return null;
@@ -134,30 +140,38 @@ public class AbstractMushroomEntity extends AnimalEntity implements IQuestEntity
 
 	@Override
 	public AxisAlignedBB getBoundingBox() {
-		return super.getBoundingBox().grow((this.hasChild && this.isChildHurt) ? 0 : 1);
+		if(getDataManager().get(HAS_CHILD) && getDataManager().get(IS_CHILD_HURT))
+			return super.getBoundingBox().grow(1);
+		return super.getBoundingBox();
 	}
 
 	//Extra Family Information
-	public boolean hasMom() {
-		return(this.mom != null);
-	}
+	public boolean hasMom() { return getMom() != null; }
+
+	public boolean hasChild() { return getDataManager().get(HAS_CHILD); }
+
+	public boolean isChildHurt() { return getDataManager().get(IS_CHILD_HURT); }
+
+	public boolean isAngry() { return getDataManager().get(IS_ANGRY); }
 	
 	public AbstractMushroomEntity getMom() {
-		return this.mom;
+		int id = getDataManager().get(MOM_ID);
+		if(id >= 0) {
+			Entity mom = world.getEntityByID(id);
+			if(mom instanceof AbstractMushroomEntity)
+				return (AbstractMushroomEntity) mom;
+		}
+		return null;
 	}
-	
-	public void setMom (AbstractMushroomEntity newMom) {
-		this.mom = newMom; 
-	}
-	
-	public void setHasChild() {
-		this.hasChild = true;
+
+	public void setMom(AbstractMushroomEntity mom) {
+		getDataManager().set(MOM_ID, mom.getEntityId());
 	}
 	
 	public void setChildAttacker(LivingEntity target) {
 		this.setAttackTarget(target);
-		this.isAngry = true;
-		this.isChildHurt = true;
+		getDataManager().set(IS_ANGRY, true);
+		getDataManager().set(IS_CHILD_HURT, true);
 	}
 	
 	//Mushroom Tempt Goal
@@ -168,7 +182,7 @@ public class AbstractMushroomEntity extends AnimalEntity implements IQuestEntity
 		
 		public boolean shouldExecute( ) {
 			AbstractMushroomEntity mushroom = (AbstractMushroomEntity) creature;
-			if(mushroom.isAngry) {
+			if(mushroom.getDataManager().get(IS_ANGRY)) {
 				return false;
 			} else {
 				return super.shouldExecute();
@@ -185,7 +199,7 @@ public class AbstractMushroomEntity extends AnimalEntity implements IQuestEntity
 
 		public boolean shouldExecute() {
 			AbstractMushroomEntity mushroomAttacker = (AbstractMushroomEntity)attacker;
-			if(mushroomAttacker.isAngry && !mushroomAttacker.isChild()) {
+			if(mushroomAttacker.getDataManager().get(IS_ANGRY) && !mushroomAttacker.isChild()) {
 				return super.shouldExecute();
 			} else {
 				return false;

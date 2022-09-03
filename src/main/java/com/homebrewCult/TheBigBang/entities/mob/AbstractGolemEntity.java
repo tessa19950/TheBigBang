@@ -1,19 +1,12 @@
 package com.homebrewCult.TheBigBang.entities.mob;
 
-import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.entities.SnipingArrowEntity;
 import com.homebrewCult.TheBigBang.entities.goals.GolemSmashGoal;
 import com.homebrewCult.TheBigBang.init.ModSounds;
-import com.homebrewCult.TheBigBang.network.BigBangPacketHandler;
-import com.homebrewCult.TheBigBang.network.Packet_SetIsTempted;
 import com.homebrewCult.TheBigBang.util.IQuestEntity;
 import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.item.FallingBlockEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -26,26 +19,23 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 import java.util.*;
 
 public class AbstractGolemEntity extends AnimalEntity implements IQuestEntity {
 
-	private boolean isAngry;
-	private boolean isTempted;
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromItems(Items.DANDELION, Items.POPPY, Items.BLUE_ORCHID, Items.ALLIUM, 
 	Items.AZURE_BLUET, Items.ORANGE_TULIP, Items.PINK_TULIP, Items.RED_TULIP, Items.WHITE_TULIP, 
 	Items.OXEYE_DAISY, Items.CORNFLOWER, Items.LILAC, Items.LILY_OF_THE_VALLEY, Items.PEONY, Items.ROSE_BUSH);
 	private final QuestEntityHandler questEntityHandler = new QuestEntityHandler();
 
+	private static final DataParameter<Boolean> IS_ANGRY = EntityDataManager.createKey(AbstractGolemEntity.class, DataSerializers.BOOLEAN);
+	private static final DataParameter<Boolean> IS_TEMPTED = EntityDataManager.createKey(AbstractGolemEntity.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Integer> SHOCKWAVE_START_TICK = EntityDataManager.createKey(AbstractGolemEntity.class, DataSerializers.VARINT);
 	public static final int SHOCKWAVE_DURATION = 3 * 20;
 	private List<LivingEntity> nearbyEntities = new ArrayList<>();
@@ -79,6 +69,8 @@ public class AbstractGolemEntity extends AnimalEntity implements IQuestEntity {
 	@Override
 	protected void registerData() {
 		super.registerData();
+		this.dataManager.register(IS_ANGRY, false);
+		this.dataManager.register(IS_TEMPTED, false);
 		this.dataManager.register(SHOCKWAVE_START_TICK, -1);
 	}
 
@@ -95,13 +87,13 @@ public class AbstractGolemEntity extends AnimalEntity implements IQuestEntity {
 		if (source.getTrueSource() instanceof LivingEntity) {
 			LivingEntity trueTarget = (LivingEntity)source.getTrueSource();
 			setAttackTarget(trueTarget);
-        	this.isAngry = true;    	
+			getDataManager().set(IS_ANGRY, true);
         }
 		return super.attackEntityFrom(source, amount);
 	}
 	
 	public boolean isBreedingItem(ItemStack stack) {
-		if(!this.isAngry) {
+		if(!getDataManager().get(IS_ANGRY)) {
 			return TEMPTATION_ITEMS.test(stack);
 		} else {
 			return false;
@@ -109,7 +101,7 @@ public class AbstractGolemEntity extends AnimalEntity implements IQuestEntity {
 	}
 	
 	public Ingredient getTemptationItems() {
-		if(!this.isAngry) {
+		if(!getDataManager().get(IS_ANGRY)) {
 			return TEMPTATION_ITEMS;
 		} else {
 			return null;
@@ -155,10 +147,6 @@ public class AbstractGolemEntity extends AnimalEntity implements IQuestEntity {
 		}
 	}
 
-	public boolean isAngry() {
-		return isAngry;
-	}
-
 	public int getShockwaveTick() {
 		return this.dataManager.get(SHOCKWAVE_START_TICK);
 	}
@@ -167,13 +155,9 @@ public class AbstractGolemEntity extends AnimalEntity implements IQuestEntity {
 		this.dataManager.set(SHOCKWAVE_START_TICK, tick);
 	}
 
-	public void setIsTempted(boolean InTempted) {
-		isTempted = InTempted;
-	}
+	public boolean isTempted() { return getDataManager().get(IS_TEMPTED); }
 
-	public boolean getIsTempted() {
-		return isTempted;
-	}
+	public boolean isAngry() { return getDataManager().get(IS_ANGRY); }
 
 	@Override
 	protected SoundEvent getAmbientSound() {
@@ -211,13 +195,11 @@ public class AbstractGolemEntity extends AnimalEntity implements IQuestEntity {
 		}
 		
 		public boolean shouldExecute( ) {
-			if(golem.isAngry)
+			if(golem.getDataManager().get(IS_ANGRY))
 				return false;
 			boolean shouldExecute = super.shouldExecute();
-			if(golem.isTempted != shouldExecute) {
-				golem.setIsTempted(shouldExecute);
-				BigBangPacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(), new Packet_SetIsTempted(golem.getEntityId(), shouldExecute));
-			}
+			if(golem.getDataManager().get(IS_TEMPTED) != shouldExecute)
+				golem.getDataManager().set(IS_TEMPTED, shouldExecute);
 			return shouldExecute;
 		}
 	}
@@ -229,7 +211,7 @@ public class AbstractGolemEntity extends AnimalEntity implements IQuestEntity {
 
 		@Override
 		public boolean shouldExecute() {
-			return ((AbstractGolemEntity) attacker).isAngry && super.shouldExecute();
+			return attacker.getDataManager().get(IS_ANGRY) && super.shouldExecute();
 		}
 	}
 }

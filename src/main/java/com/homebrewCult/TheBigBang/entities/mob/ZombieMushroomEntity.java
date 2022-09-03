@@ -6,6 +6,6 @@ import net.minecraft.world.World;
 
 public class ZombieMushroomEntity extends AbstractMushroomEntity {	
 	public ZombieMushroomEntity(EntityType<? extends AbstractMushroomEntity> type, World worldIn) {
-		super((EntityType<? extends AbstractMushroomEntity>) ModEntities.ZOMBIE_MUSHROOM_ENTITY, worldIn);
+		super(ModEntities.ZOMBIE_MUSHROOM_ENTITY, worldIn);
 	}
 }

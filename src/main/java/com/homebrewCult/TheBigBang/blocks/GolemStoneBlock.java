@@ -38,9 +38,8 @@ public class GolemStoneBlock extends Block {
 	@Override
 	public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {		
 	    if (!worldIn.isRemote) {
-	        if (!worldIn.isAreaLoaded(pos, 3)) {
+	        if (!worldIn.isAreaLoaded(pos, 1))
 	        	return;
-	        }
 	        if (worldIn.getLight(pos.up()) >= 9) {
 	        	for(int i = 0; i < 4; i++) {
 	        		BlockPos otherBlockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);

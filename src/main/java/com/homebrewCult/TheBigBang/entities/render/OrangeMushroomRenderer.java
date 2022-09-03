@@ -20,7 +20,7 @@ public class OrangeMushroomRenderer extends MobRenderer<OrangeMushroomEntity, Ab
 
 	@Override
 	protected ResourceLocation getEntityTexture(OrangeMushroomEntity entity) {
-		String type = (entity.hasChild && entity.isChildHurt) ? "mushmom" : "mushroom";
+		String type = (entity.hasChild() && entity.isChildHurt()) ? "mushmom" : "mushroom";
 		return new ResourceLocation(TheBigBang.MODID, "textures/entity/orange_" + type + "_entity.png");
 	}
 	

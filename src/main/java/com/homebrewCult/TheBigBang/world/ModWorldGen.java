@@ -29,7 +29,7 @@ public class ModWorldGen {
 	ImmutableList.of(Biomes.GRAVELLY_MOUNTAINS, Biomes.MODIFIED_GRAVELLY_MOUNTAINS, Biomes.MOUNTAIN_EDGE, Biomes.MOUNTAINS, Biomes.SNOWY_MOUNTAINS,
 	Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.TAIGA_MOUNTAINS, Biomes.WOODED_MOUNTAINS);
 	
-	public static final ImmutableList<Biome> SANDY_DANGER_SIGN_BIOMES =
+	public static final ImmutableList<Biome> DESERT_DANGER_SIGN_BIOMES =
 	ImmutableList.of(Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.DESERT_LAKES);
 	
 	public static final ImmutableList<Biome> ICY_DANGER_SIGN_BIOMES =
@@ -48,31 +48,32 @@ public class ModWorldGen {
 			TheBigBang.print("Your world has been blessed with Adamantium, Mithril and Orihalcon!");
 			for(Biome biome : ForgeRegistries.BIOMES) {
 				biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ModBlocks.ADAMANTIUM_ORE.getDefaultState(), 5),
-						Placement.COUNT_RANGE, new CountRangeConfig(BigBangConfig.adamantiumOreChance.get(), 62, 0, 256)));
+						Placement.COUNT_RANGE, new CountRangeConfig(BigBangConfig.ADAMANTIUM_ORE_CHANCE_CONFIG.get(), 62, 0, 256)));
 				biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ModBlocks.MITHRIL_ORE.getDefaultState(), 5),
-						Placement.COUNT_RANGE, new CountRangeConfig(BigBangConfig.mithrilOreChance.get(), 62, 0, 256)));
+						Placement.COUNT_RANGE, new CountRangeConfig(BigBangConfig.MITHRIL_ORE_CHANCE_CONFIG.get(), 62, 0, 256)));
 				biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ModBlocks.ORIHALCON_ORE.getDefaultState(), 5),
-						Placement.COUNT_RANGE, new CountRangeConfig(BigBangConfig.orihalconOreChance.get(), 62, 0, 256)));
+						Placement.COUNT_RANGE, new CountRangeConfig(BigBangConfig.ORIHALCON_ORE_CHANCE_CONFIG.get(), 62, 0, 256)));
 			}
 			TheBigBang.print("Generating surface danger sign structures.");
-			addSurfaceStructures(GRASSY_DANGER_SIGN_BIOMES, ModFeatures.DANGER_SIGN_PLATEAU_STRUCTURE.get(), 100);
-			addSurfaceStructures(STONE_DANGER_SIGN_BIOMES, ModFeatures.DANGER_SIGN_STONE_STRUCTURE.get(), 1000);
-			addSurfaceStructures(SANDY_DANGER_SIGN_BIOMES, ModFeatures.DANGER_SIGN_DESERT_STRUCTURE.get(), 100);
-			addSurfaceStructures(ICY_DANGER_SIGN_BIOMES, ModFeatures.DANGER_SIGN_ICE_STRUCTURE.get(), 100);
+			addSurfaceStructures(GRASSY_DANGER_SIGN_BIOMES, ModFeatures.DANGER_SIGN_PLATEAU_STRUCTURE.get() );
+			addSurfaceStructures(STONE_DANGER_SIGN_BIOMES, ModFeatures.DANGER_SIGN_STONE_STRUCTURE.get());
+			addSurfaceStructures(DESERT_DANGER_SIGN_BIOMES, ModFeatures.DANGER_SIGN_DESERT_STRUCTURE.get());
+			addSurfaceStructures(ICY_DANGER_SIGN_BIOMES, ModFeatures.DANGER_SIGN_ICE_STRUCTURE.get());
 
 			TheBigBang.print("Generating cave danger sign features.");
 			for(Biome biome : CAVE_DANGER_SIGN_BIOMES) {
 				biome.addFeature(Decoration.UNDERGROUND_DECORATION, Biome.createDecoratedFeature(ModFeatures.DANGER_SIGN_CAVE.get(),
-						IFeatureConfig.NO_FEATURE_CONFIG, Placement.CHANCE_HEIGHTMAP, new ChanceConfig(1)));
+					IFeatureConfig.NO_FEATURE_CONFIG, Placement.CHANCE_HEIGHTMAP, new ChanceConfig(BigBangConfig.SURFACE_DANGER_SIGN_FREQUENCY_CONFIG.get())));
 			}
 		});
 	}
 
-	private static void addSurfaceStructures(ImmutableList<Biome> biomes, Structure<NoFeatureConfig> structure, int count) {
+	private static void addSurfaceStructures(ImmutableList<Biome> biomes, Structure<NoFeatureConfig> structure) {
 		for(Biome biome : biomes) {
 			biome.addStructure(structure, IFeatureConfig.NO_FEATURE_CONFIG);
-			biome.addFeature(Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(structure,
-					IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
+			biome.addFeature(Decoration.SURFACE_STRUCTURES,
+				Biome.createDecoratedFeature(structure, IFeatureConfig.NO_FEATURE_CONFIG,
+						Placement.CHANCE_HEIGHTMAP, new ChanceConfig(BigBangConfig.SURFACE_DANGER_SIGN_FREQUENCY_CONFIG.get())));
 		}
 	}
 }

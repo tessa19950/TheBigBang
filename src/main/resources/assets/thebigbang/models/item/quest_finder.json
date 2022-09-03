@@ -1,0 +1,41 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "thebigbang:item/quest_finder_16"
+    },
+    "overrides": [
+        { "predicate": { "angle": 0.000000 }, "model": "thebigbang:item/quest_finder" },
+        { "predicate": { "angle": 0.015625 }, "model": "thebigbang:item/quest_finder_17" },
+        { "predicate": { "angle": 0.046875 }, "model": "thebigbang:item/quest_finder_18" },
+        { "predicate": { "angle": 0.078125 }, "model": "thebigbang:item/quest_finder_19" },
+        { "predicate": { "angle": 0.109375 }, "model": "thebigbang:item/quest_finder_20" },
+        { "predicate": { "angle": 0.140625 }, "model": "thebigbang:item/quest_finder_21" },
+        { "predicate": { "angle": 0.171875 }, "model": "thebigbang:item/quest_finder_22" },
+        { "predicate": { "angle": 0.203125 }, "model": "thebigbang:item/quest_finder_23" },
+        { "predicate": { "angle": 0.234375 }, "model": "thebigbang:item/quest_finder_24" },
+        { "predicate": { "angle": 0.265625 }, "model": "thebigbang:item/quest_finder_25" },
+        { "predicate": { "angle": 0.296875 }, "model": "thebigbang:item/quest_finder_26" },
+        { "predicate": { "angle": 0.328125 }, "model": "thebigbang:item/quest_finder_27" },
+        { "predicate": { "angle": 0.359375 }, "model": "thebigbang:item/quest_finder_28" },
+        { "predicate": { "angle": 0.390625 }, "model": "thebigbang:item/quest_finder_29" },
+        { "predicate": { "angle": 0.421875 }, "model": "thebigbang:item/quest_finder_30" },
+        { "predicate": { "angle": 0.453125 }, "model": "thebigbang:item/quest_finder_31" },
+        { "predicate": { "angle": 0.484375 }, "model": "thebigbang:item/quest_finder_00" },
+        { "predicate": { "angle": 0.515625 }, "model": "thebigbang:item/quest_finder_01" },
+        { "predicate": { "angle": 0.546875 }, "model": "thebigbang:item/quest_finder_02" },
+        { "predicate": { "angle": 0.578125 }, "model": "thebigbang:item/quest_finder_03" },
+        { "predicate": { "angle": 0.609375 }, "model": "thebigbang:item/quest_finder_04" },
+        { "predicate": { "angle": 0.640625 }, "model": "thebigbang:item/quest_finder_05" },
+        { "predicate": { "angle": 0.671875 }, "model": "thebigbang:item/quest_finder_06" },
+        { "predicate": { "angle": 0.703125 }, "model": "thebigbang:item/quest_finder_07" },
+        { "predicate": { "angle": 0.734375 }, "model": "thebigbang:item/quest_finder_08" },
+        { "predicate": { "angle": 0.765625 }, "model": "thebigbang:item/quest_finder_09" },
+        { "predicate": { "angle": 0.796875 }, "model": "thebigbang:item/quest_finder_10" },
+        { "predicate": { "angle": 0.828125 }, "model": "thebigbang:item/quest_finder_11" },
+        { "predicate": { "angle": 0.859375 }, "model": "thebigbang:item/quest_finder_12" },
+        { "predicate": { "angle": 0.890625 }, "model": "thebigbang:item/quest_finder_13" },
+        { "predicate": { "angle": 0.921875 }, "model": "thebigbang:item/quest_finder_14" },
+        { "predicate": { "angle": 0.953125 }, "model": "thebigbang:item/quest_finder_15" },
+        { "predicate": { "angle": 0.984375 }, "model": "thebigbang:item/quest_finder" }
+    ]
+}
