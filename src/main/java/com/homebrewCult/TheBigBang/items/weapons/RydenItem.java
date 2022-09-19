@@ -1,11 +1,14 @@
 package com.homebrewCult.TheBigBang.items.weapons;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
+import com.homebrewCult.TheBigBang.init.ModItems;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.item.ArrowItem;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,6 +22,13 @@ public class RydenItem extends BigBangBowItem {
 	
 	public RydenItem(IItemTier tierIn, Item.Properties builder) {
 		super(tierIn, builder);
+	}
+
+	@Override
+	public AbstractArrowEntity customizedArrow(AbstractArrowEntity arrow, ItemStack item) {
+		if(item.getItem().equals(ModItems.BLESSED_MAGIC_ROCK))
+			arrow.setDamage(arrow.getDamage() * 2);
+		return arrow;
 	}
 
 	@Override

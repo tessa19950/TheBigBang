@@ -58,46 +58,46 @@ public class DivineAltarTile extends AbstractFurnaceTileEntity {
 	// with 3 Mana Rocks present, burn times are multiplied by 4. So it takes 200 ticks.
 	public static Map<Item, Integer> getBurnTimes() {		
 		Map<Item, Integer> map = Maps.newLinkedHashMap();
-		addItemBurnTime(map, Items.NETHER_STAR, 25600); // Blesses 64 - 256
-		addItemBurnTime(map, Items.DRAGON_HEAD, 25600);
-		addItemBurnTime(map, ModItems.DRAKES_BLOOD, 6400); // Blesses 16-64 items
-		addItemBurnTime(map, ModItems.SAP_OF_ANCIENT_TREE, 6400);
-		addItemBurnTime(map, ModItems.DARK_GOLEM_STONE, 1600); // Blesses 4-16 items
-		addItemBurnTime(map, ModItems.GOLEM_STONE, 1600);
-		addItemBurnTime(map, ModItems.DRAGON_SKIN, 800); // Blesses 2-8 items
-		addItemBurnTime(map, ModItems.DARK_YETI_HORN, 800);
-		addItemBurnTime(map, ModItems.YETI_HORN, 800);
-		addItemBurnTime(map, Items.WITHER_SKELETON_SKULL, 800);
-		addItemBurnTime(map, Items.SKELETON_SKULL, 800);
-		addItemBurnTime(map, Items.ZOMBIE_HEAD, 800);
-		addItemBurnTime(map, Items.CREEPER_HEAD, 800);
-		addItemBurnTime(map, Items.SHULKER_SHELL, 800);
-		addItemBurnTime(map, Items.GHAST_TEAR, 800);
-		addItemBurnTime(map, ModItems.DRAKES_SKULL, 400); // Blesses 1-4 items
-		addItemBurnTime(map, ModItems.DARK_STONE_GOLEM_RUBBLE, 400);
-		addItemBurnTime(map, ModItems.STONE_GOLEM_RUBBLE, 400);
-		addItemBurnTime(map, Items.ENDER_PEARL, 400);
-		addItemBurnTime(map, Items.BLAZE_ROD, 400);
-		addItemBurnTime(map, ModItems.COLD_EYE_TAIL, 200); // Blesses 0.5-2 items
-		addItemBurnTime(map, ModItems.CURSE_EYE_TAIL, 200);
-		addItemBurnTime(map, ModItems.EVIL_EYE_TAIL, 200);
-		addItemBurnTime(map, ModItems.UNDEAD_CHARM, 200);
-		addItemBurnTime(map, Items.SLIME_BALL, 200);
-		addItemBurnTime(map, Items.MAGMA_CREAM, 200);
-		addItemBurnTime(map, Items.PHANTOM_MEMBRANE, 200);
-		addItemBurnTime(map, ModItems.OCTOPUS_LEG, 100); // Blesses 0.25-1 items
-		addItemBurnTime(map, ModItems.PIGS_RIBBON, 100);
-		addItemBurnTime(map, ModItems.DARK_JRYETI_SKIN, 100);
-		addItemBurnTime(map, ModItems.JRYETI_SKIN, 100);
-		addItemBurnTime(map, ModItems.ORANGE_MUSHROOM_CAP, 100);
-		addItemBurnTime(map, ModItems.BLUE_MUSHROOM_CAP, 100);
-		addItemBurnTime(map, Items.SPIDER_EYE, 200);
-		addItemBurnTime(map, Items.GUNPOWDER, 200);
-		addItemBurnTime(map, ModItems.RED_SNAIL_SHELL, 50); // Blesses 0.125-0.5 items
-		addItemBurnTime(map, ModItems.BLUE_SNAIL_SHELL, 50);
-		addItemBurnTime(map, ModItems.GREEN_SNAIL_SHELL, 50);
-		addItemBurnTime(map, Items.ROTTEN_FLESH, 50);
-		addItemBurnTime(map, Items.BONE, 50);
+		addItemBurnTime(map, Items.NETHER_STAR, 12800); // Blesses 64 - 256
+		addItemBurnTime(map, Items.DRAGON_HEAD, 12800);
+		addItemBurnTime(map, ModItems.DRAKES_BLOOD, 3200); // Blesses 16-64 items
+		addItemBurnTime(map, ModItems.SAP_OF_ANCIENT_TREE, 3200);
+		addItemBurnTime(map, ModItems.DARK_GOLEM_STONE, 800); // Blesses 4-16 items
+		addItemBurnTime(map, ModItems.GOLEM_STONE, 800);
+		addItemBurnTime(map, ModItems.DRAGON_SKIN, 800);
+		addItemBurnTime(map, ModItems.DARK_YETI_HORN, 400); // Blesses 2-8 items
+		addItemBurnTime(map, ModItems.YETI_HORN, 400);
+		addItemBurnTime(map, Items.WITHER_SKELETON_SKULL, 400);
+		addItemBurnTime(map, Items.SKELETON_SKULL, 400);
+		addItemBurnTime(map, Items.ZOMBIE_HEAD, 400);
+		addItemBurnTime(map, Items.CREEPER_HEAD, 400);
+		addItemBurnTime(map, Items.SHULKER_SHELL, 400);
+		addItemBurnTime(map, Items.GHAST_TEAR, 400);
+		addItemBurnTime(map, ModItems.DRAKES_SKULL, 200); // Blesses 1-4 items
+		addItemBurnTime(map, ModItems.DARK_STONE_GOLEM_RUBBLE, 200);
+		addItemBurnTime(map, ModItems.STONE_GOLEM_RUBBLE, 200);
+		addItemBurnTime(map, Items.ENDER_PEARL, 200);
+		addItemBurnTime(map, Items.BLAZE_ROD, 200);
+		addItemBurnTime(map, ModItems.COLD_EYE_TAIL, 100); // Blesses 0.5-2 items
+		addItemBurnTime(map, ModItems.CURSE_EYE_TAIL, 100);
+		addItemBurnTime(map, ModItems.EVIL_EYE_TAIL, 100);
+		addItemBurnTime(map, ModItems.UNDEAD_CHARM, 100);
+		addItemBurnTime(map, Items.SLIME_BALL, 100);
+		addItemBurnTime(map, Items.MAGMA_CREAM, 100);
+		addItemBurnTime(map, Items.PHANTOM_MEMBRANE, 100);
+		addItemBurnTime(map, ModItems.OCTOPUS_LEG, 50); // Blesses 0.25-1 items
+		addItemBurnTime(map, ModItems.PIGS_RIBBON, 50);
+		addItemBurnTime(map, ModItems.DARK_JRYETI_SKIN, 50);
+		addItemBurnTime(map, ModItems.JRYETI_SKIN, 50);
+		addItemBurnTime(map, ModItems.ORANGE_MUSHROOM_CAP, 50);
+		addItemBurnTime(map, ModItems.BLUE_MUSHROOM_CAP, 50);
+		addItemBurnTime(map, Items.SPIDER_EYE, 50);
+		addItemBurnTime(map, Items.GUNPOWDER, 50);
+		addItemBurnTime(map, ModItems.RED_SNAIL_SHELL, 25); // Blesses 0.125-0.5 items
+		addItemBurnTime(map, ModItems.BLUE_SNAIL_SHELL, 25);
+		addItemBurnTime(map, ModItems.GREEN_SNAIL_SHELL, 25);
+		addItemBurnTime(map, Items.ROTTEN_FLESH, 25);
+		addItemBurnTime(map, Items.BONE, 25);
 		return map;
 	}
 

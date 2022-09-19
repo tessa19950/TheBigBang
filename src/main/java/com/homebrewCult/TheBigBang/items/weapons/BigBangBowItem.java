@@ -1,5 +1,6 @@
 package com.homebrewCult.TheBigBang.items.weapons;
 
+import com.homebrewCult.TheBigBang.init.ModItems;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -37,7 +38,7 @@ public abstract class BigBangBowItem extends BowItem implements IBigBangWeapon {
             if (!worldIn.isRemote) {
                 ArrowItem arrowItem = (ArrowItem)(ammo.getItem() instanceof ArrowItem ? ammo.getItem() : Items.ARROW);
                 AbstractArrowEntity arrow = arrowItem.createArrow(worldIn, ammo, player);
-                arrow = customeArrow(arrow);
+                arrow = customizedArrow(arrow, consumeArrow ? ammo : new ItemStack(ModItems.BLESSED_MAGIC_ROCK));
                 arrow.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, velocity * 3.0F, 1.0F);
                 if (velocity == 1.0F)
                     arrow.setIsCritical(true);
@@ -56,6 +57,10 @@ public abstract class BigBangBowItem extends BowItem implements IBigBangWeapon {
             }
             player.addStat(Stats.ITEM_USED.get(this));
         }
+    }
+
+    protected AbstractArrowEntity customizedArrow(AbstractArrowEntity arrow, ItemStack item) {
+        return arrow;
     }
 
     static void applyEnchantments(ItemStack bowStack, AbstractArrowEntity arrow) {

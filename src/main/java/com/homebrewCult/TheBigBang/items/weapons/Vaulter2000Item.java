@@ -22,7 +22,14 @@ public class Vaulter2000Item extends BigBangBowItem {
 	public Vaulter2000Item(IItemTier tierIn, Item.Properties builder) {
 		super(tierIn, builder);
 	}
-	
+
+	@Override
+	public AbstractArrowEntity customizedArrow(AbstractArrowEntity arrow, ItemStack item) {
+		if(arrow.getShooter() instanceof LivingEntity)
+			new HurricaneArrowEntity(arrow.world, (LivingEntity) arrow.getShooter());
+		return arrow;
+	}
+
 	@Override
 	public void onUsingTick(ItemStack stack, LivingEntity entityLiving, int count) {
 		int useTime = this.getUseDuration(stack) - count;
@@ -59,12 +66,5 @@ public class Vaulter2000Item extends BigBangBowItem {
 	@Override
 	protected SoundEvent getShootSound() {
 		return ModSounds.HURRICANE_USE;
-	}
-
-	@Override
-	public AbstractArrowEntity customeArrow(AbstractArrowEntity arrow) {
-		if(arrow.getShooter() instanceof LivingEntity)
-			new HurricaneArrowEntity(arrow.world, (LivingEntity) arrow.getShooter());
-		return arrow;
 	}
 }
