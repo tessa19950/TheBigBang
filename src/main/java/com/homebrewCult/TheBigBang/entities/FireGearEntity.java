@@ -10,10 +10,10 @@ public class FireGearEntity extends BigBangAreaEffectCloudEntity {
 
     public FireGearEntity(EntityType<?> type, World worldIn) { this(worldIn); }
 
-    public FireGearEntity(World worldIn) { super(ModEntities.FIRE_GEAR, worldIn); }
+    public FireGearEntity(World worldIn) { super(ModEntities.FIRE_GEAR, worldIn, 4.0F); }
 
-    public FireGearEntity(World worldIn, double x, double y, double z) {
-        super(ModEntities.FIRE_GEAR, worldIn);
+    public FireGearEntity(World worldIn, double x, double y, double z, float radius) {
+        super(ModEntities.FIRE_GEAR, worldIn, radius);
         this.setPosition(x, y, z);
     }
 

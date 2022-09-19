@@ -1,5 +1,6 @@
 package com.homebrewCult.TheBigBang.particles;
 
+import com.homebrewCult.TheBigBang.TheBigBang;
 import net.minecraft.client.particle.IAnimatedSprite;
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.IParticleRenderType;
@@ -20,19 +21,18 @@ public class MagicClawParticle extends SpriteTexturedParticle {
 	
 	protected MagicClawParticle(World worldIn, double x, double y, double z, IAnimatedSprite spritesIn) {
 		super(worldIn, x, y, z);
+		TheBigBang.print("im here");
 		this.maxAge = 7;
 		this.particleScale = 1;
 		this.sprites = spritesIn;
-		this.selectSpriteWithAge(sprites);
 	}
 
 	@Override
 	public void renderParticle(BufferBuilder buffer, ActiveRenderInfo entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ) {
-		if(!this.doOnce) {
+		if(this.age == 1) {
 			Vec3d camPos = entityIn.getRenderViewEntity().getEyePosition(partialTicks);	
 			Vec3d camDir = camPos.subtract(new Vec3d(this.posX, this.posY, this.posZ)).normalize();
 			this.setPosition(this.posX + camDir.x, this.posY + camDir.y, this.posZ + camDir.z);
-			doOnce = true;
 		}
 		super.renderParticle(buffer, entityIn, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
 	}
@@ -47,6 +47,7 @@ public class MagicClawParticle extends SpriteTexturedParticle {
 	}
 	
 	public void tick() {
+		TheBigBang.print("magic claw particle tick " + this.age);
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;

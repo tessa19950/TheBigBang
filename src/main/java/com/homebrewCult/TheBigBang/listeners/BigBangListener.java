@@ -1,20 +1,18 @@
 package com.homebrewCult.TheBigBang.listeners;
 
-import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.config.BigBangConfig;
-import com.homebrewCult.TheBigBang.init.ModEffects;
 import com.homebrewCult.TheBigBang.init.ModParticleTypes;
 import com.homebrewCult.TheBigBang.items.armor.BigBangArmorItem;
-import com.homebrewCult.TheBigBang.util.MathUtility;
+import com.homebrewCult.TheBigBang.util.IQuestEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.particles.BasicParticleType;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -34,15 +32,13 @@ public class BigBangListener {
             PlayerEntity player = (PlayerEntity) event.getSource().getTrueSource();
 
             boolean isCrit = false;
-            if(event.getSource().getImmediateSource() instanceof ArrowEntity)
-                isCrit = ((ArrowEntity)event.getSource().getImmediateSource()).getIsCritical();
+            if(event.getSource().getImmediateSource() instanceof AbstractArrowEntity)
+                isCrit = ((AbstractArrowEntity)event.getSource().getImmediateSource()).getIsCritical();
             else if(event.getSource().getImmediateSource() instanceof PlayerEntity)
                 isCrit = player.fallDistance > 0.0F;
             BasicParticleType particle = isCrit ? ModParticleTypes.CRITICAL_NUMBER.get() : ModParticleTypes.DAMAGE_NUMBER.get();
 
             Vec3d headPos = event.getEntity().getEyePosition(0);
-
-
             if(event.getAmount() < 10) {
                 ((ServerWorld) player.world).spawnParticle(particle,
                         headPos.getX(), headPos.getY() + 1.0D, headPos.getZ(),
@@ -80,5 +76,11 @@ public class BigBangListener {
             if(fromItem instanceof BigBangArmorItem)
                 ((BigBangArmorItem) fromItem).onArmorUnequip((PlayerEntity) event.getEntity());
         }
+    }
+
+    @SubscribeEvent
+    public void onLivingDeath(LivingDeathEvent event) {
+        if(event.getEntityLiving() instanceof IQuestEntity)
+            ((IQuestEntity)event.getEntityLiving()).onQuestEntityDeath(event.getEntityLiving(), event.getSource());
     }
 }

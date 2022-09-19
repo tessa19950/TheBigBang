@@ -5,5 +5,6 @@
     "item": "thebigbang:dormant_orihalcon_ingot"
   },
   "result": "thebigbang:blessed_orihalcon_ingot",
-  "experience": 2.0
+  "cookingtime": 1600,
+  "experience": 10.0
 }

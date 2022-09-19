@@ -1,6 +1,6 @@
 package com.homebrewCult.TheBigBang.blocks;
 
-import com.homebrewCult.TheBigBang.gui.quests.Questline;
+import com.homebrewCult.TheBigBang.gui.quests.Questlines;
 import com.homebrewCult.TheBigBang.util.DangerSignPart;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -33,11 +33,11 @@ public class DangerSignBlock extends ContainerBlock {
 	protected static final VoxelShape SHAPE_HORIZONTAL = Block.makeCuboidShape(5.0D, 0.0D, 0.0D, 11.0D, 16.0D, 16.0D);
 	public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 	public static final EnumProperty<DangerSignPart> PART = EnumProperty.create("part", DangerSignPart.class);
-	public static final EnumProperty<Questline> QUESTLINE = EnumProperty.create("questline", Questline.class);
+	public static final EnumProperty<Questlines> QUESTLINE = EnumProperty.create("questline", Questlines.class);
 	
 	public DangerSignBlock(Properties properties) {
 		super(properties);
-		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(PART, DangerSignPart.BASE).with(QUESTLINE, Questline.None));
+		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(PART, DangerSignPart.BASE).with(QUESTLINE, Questlines.None));
 	}
 	
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {

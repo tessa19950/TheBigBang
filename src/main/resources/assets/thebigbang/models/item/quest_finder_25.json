@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "thebigbang:item/quest_finder_25"
+        "layer0": "thebigbang:item/quest_finder/quest_finder_25"
     }
 }

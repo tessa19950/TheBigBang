@@ -19,9 +19,7 @@ public class SteelyEntity extends ThrowingStarEntity {
 		super(ModEntities.STEELY, worldIn, x, y, z);
 	}
 
-	public SteelyEntity(World worldIn, LivingEntity shooter) {
-		super(ModEntities.STEELY, worldIn, shooter);
-	}
+	public SteelyEntity(World worldIn, LivingEntity shooter) { super(ModEntities.STEELY, worldIn, shooter); }
 	
 	public SteelyEntity(World worldIn) {
 		super(ModEntities.STEELY, worldIn);

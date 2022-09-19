@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.function.Function;
 import com.google.common.collect.ImmutableList;
 import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.gui.quests.Questline;
+import com.homebrewCult.TheBigBang.gui.quests.Questlines;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Direction;
@@ -56,12 +56,12 @@ public class DangerSignCaveFeature extends AbstractDangerSignFeature {
 	}
 	
 	@Override
-	public Questline getTemplateQuestline(Biome biome) {
+	public Questlines getTemplateQuestline(Biome biome) {
 		int r = (int)(Math.random() * 3);
 		switch(r) {
-		case 0: return Questline.ZombieMushrooms;
-		case 1: return Questline.Eyes;
-		case 2: default: return Questline.Drakes;
+		case 0: return Questlines.ZombieMushrooms;
+		case 1: return Questlines.Eyes;
+		case 2: default: return Questlines.Drakes;
 		}
 	}
 }

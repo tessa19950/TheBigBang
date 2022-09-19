@@ -1,6 +1,6 @@
 package com.homebrewCult.TheBigBang.items;
 
-import com.homebrewCult.TheBigBang.gui.quests.EnumQuestItem;
+import com.homebrewCult.TheBigBang.gui.quests.QuestItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
@@ -15,7 +15,7 @@ public class QuestItem extends Item {
 	@Override
 	public ITextComponent getDisplayName(ItemStack stack) {
 		if(validQuestItem(stack)) {
-			EnumQuestItem q = EnumQuestItem.getQuestItemByIndex(stack.getTag().getInt("quest_item"));
+			QuestItems q = QuestItems.getQuestItemByIndex(stack.getTag().getInt("quest_item"));
 			return new StringTextComponent(q.getQuestItemName());
 		} else {
 			return new StringTextComponent("NULL");

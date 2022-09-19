@@ -13,7 +13,7 @@ public class TobiItem extends ThrowingStarItem {
 	}
 
 	@Override
-	ThrowingStarEntity createThrowingStar(World worldIn, ItemStack stack, LivingEntity shooter) {
+	public ThrowingStarEntity createThrowingStar(World worldIn, ItemStack stack, LivingEntity shooter) {
 		return new TobiEntity(worldIn, shooter);
 	}
 

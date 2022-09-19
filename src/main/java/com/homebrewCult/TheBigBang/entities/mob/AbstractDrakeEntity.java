@@ -97,12 +97,6 @@ public class AbstractDrakeEntity extends MonsterEntity implements IQuestEntity {
 	protected SoundEvent getDeathSound() {
 		return DEATH_SOUNDS[rand.nextInt(DEATH_SOUNDS.length)];
 	}
-	
-	@Override
-	public void onDeath(DamageSource cause) {
-		this.questEntityHandler.onQuestEntityDeath(this, cause);
-		super.onDeath(cause);
-	}
 
 	@Override
 	public QuestEntityHandler getQuestEntityHandler() {

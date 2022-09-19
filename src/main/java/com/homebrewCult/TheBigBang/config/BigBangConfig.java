@@ -16,7 +16,7 @@ public class BigBangConfig {
 		client.comment("The Big Bang - Client Configuration Settings");
 		USE_DAMAGE_NUMBERS_CONFIG = client
 				.comment("Spawn damage numbers over mobs heads whenever a player deals damage to them.")
-				.define("Particles.Damage Numbers", false);
+				.define("Particles.Damage Numbers", true);
 
 		server.comment("The Big Bang - Server Configuration Settings");
 		UNDERGROUND_DANGER_SIGN_FREQUENCY_CONFIG = server

@@ -1,7 +1,7 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "thebigbang:item/quest_finder_16"
+        "layer0": "thebigbang:item/quest_finder/quest_finder_16"
     },
     "overrides": [
         { "predicate": { "angle": 0.000000 }, "model": "thebigbang:item/quest_finder" },

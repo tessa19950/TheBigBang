@@ -15,33 +15,36 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class BlessingSerializer<T extends BlessingRecipe> extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<BlessingRecipe>{
 
-	private final int cookingTimeFallback;
+	private final int cookTimeFallback;
 	private final BlessingSerializer.IFactory<T> factory;
 	
-	public BlessingSerializer(BlessingSerializer.IFactory<T> factoryIn, int cookingTimeIn) {
+	public BlessingSerializer(BlessingSerializer.IFactory<T> factoryIn, int cookTimeFallback) {
 		this.factory = factoryIn;
-		this.cookingTimeFallback = cookingTimeIn;
+		this.cookTimeFallback = cookTimeFallback;
 	}
 	
 	@Override
 	public BlessingRecipe read(ResourceLocation recipeId, JsonObject json) {
 		String group = JSONUtils.getString(json, "group", "");
-		JsonElement jsonelement = (JsonElement)(JSONUtils.isJsonArray(json, "ingredient") ? JSONUtils.getJsonArray(json, "ingredient") : JSONUtils.getJsonObject(json, "ingredient"));
+		JsonElement jsonelement = JSONUtils.isJsonArray(json, "ingredient") ?
+				JSONUtils.getJsonArray(json, "ingredient") :
+				JSONUtils.getJsonObject(json, "ingredient");
 		Ingredient ingredient = Ingredient.deserialize(jsonelement);
 		
 		//Forge: Check if primitive string to keep vanilla or a object which can contain a count field.
-		if (!json.has("result")) throw new JsonSyntaxException("Missing result, expected to find a string or object");
+		if (!json.has("result"))
+			throw new JsonSyntaxException("Missing result, expected to find a string or object");
 		ItemStack itemstack;
-		if (json.get("result").isJsonObject()) itemstack = ShapedRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result"));
+		if (json.get("result").isJsonObject())
+			itemstack = ShapedRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result"));
 		else {
 			String result = JSONUtils.getString(json, "result");
 			ResourceLocation resourcelocation = new ResourceLocation(result);
-			itemstack = new ItemStack(Registry.ITEM.getValue(resourcelocation).orElseThrow(() -> {
-				return new IllegalStateException("Item: " + result + " does not exist");
-			}));
+			itemstack = new ItemStack(Registry.ITEM.getValue(resourcelocation).orElseThrow(()
+					-> new IllegalStateException("Item: " + result + " does not exist")));
 		}
 		float exp = JSONUtils.getFloat(json, "experience", 0.0F);
-		int cookingTime = JSONUtils.getInt(json, "cookingtime", this.cookingTimeFallback);
+		int cookingTime = JSONUtils.getInt(json, "cookingtime", this.cookTimeFallback);
 		return this.factory.create(recipeId, group, ingredient, itemstack, exp, cookingTime);
 	}
 

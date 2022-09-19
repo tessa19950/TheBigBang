@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "thebigbang:item/quest_finder/icy_quest_finder_22"
+    }
+}

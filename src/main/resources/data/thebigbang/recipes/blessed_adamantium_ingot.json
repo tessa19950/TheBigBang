@@ -4,5 +4,7 @@
   {
     "item": "thebigbang:dormant_adamantium_ingot"
   },
-  "result": "thebigbang:blessed_adamantium_ingot"
+  "result": "thebigbang:blessed_adamantium_ingot",
+  "cookingtime": 1600,
+  "experience": 10.0
 }

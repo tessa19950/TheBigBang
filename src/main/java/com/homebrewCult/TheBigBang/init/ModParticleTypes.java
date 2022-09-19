@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleType;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
@@ -35,11 +34,11 @@ public class ModParticleTypes {
 	public static final RegistryObject<BasicParticleType> FIRE_GEAR = PARTICLE_TYPES.register("fire_gear", () -> new BasicParticleType(true));
 	public static final RegistryObject<BasicParticleType> DAMAGE_NUMBER = PARTICLE_TYPES.register("dmg_number", () -> new BasicParticleType(true));
 	public static final RegistryObject<BasicParticleType> CRITICAL_NUMBER = PARTICLE_TYPES.register("crit_number", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> SUMMONING_ROCK = PARTICLE_TYPES.register("summoning_rock", () -> new BasicParticleType(true));
+	public static final RegistryObject<BasicParticleType> MAGIC_ROCK = PARTICLE_TYPES.register("magic_rock", () -> new BasicParticleType(true));
 
 	@SubscribeEvent
 	public static void registerParticleFactories(final ParticleFactoryRegisterEvent event) {
-
-
 		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.ITEM_BLUE_SLIME.get(), BlueSlimeParticle.BlueSlimeFactory::new);
 		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.MAGIC_CLAW_LEFT.get(), MagicClawParticle.MagicClawFactory::new);
 		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.MAGIC_CLAW_RIGHT.get(), MagicClawParticle.MagicClawFactory::new);
@@ -57,5 +56,7 @@ public class ModParticleTypes {
 		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.FIRE_GEAR.get(), FireGearParticle.ParticleFactory::new);
 		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.DAMAGE_NUMBER.get(), DmgNumberParticle.ParticleFactory::new);
 		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.CRITICAL_NUMBER.get(), CritNumberParticle.ParticleFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.SUMMONING_ROCK.get(), MissingRockParticle.ParticleFactory::new);
+		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.MAGIC_ROCK.get(), MissingRockParticle.ParticleFactory::new);
 	}
 }

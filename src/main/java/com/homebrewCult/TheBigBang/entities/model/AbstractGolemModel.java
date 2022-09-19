@@ -141,25 +141,25 @@ public class AbstractGolemModel <T extends AbstractGolemEntity> extends Quadrupe
 	@Override
 	public void setRotationAngles(T golem, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
 		super.setRotationAngles(golem, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
-		
+
 		//Legwork
 		float leftLegSwing = MathHelper.cos(limbSwing * 0.6f);
-        float rightLegSwing = MathHelper.cos(limbSwing * 0.6f + (float)Math.PI);
+		float rightLegSwing = MathHelper.cos(limbSwing * 0.6f + (float)Math.PI);
 
 		int t = golem.getShockwaveTick();
-		if(golem.isTempted() && limbSwingAmount < 0.01f) {
+		if(golem.isTempted() && limbSwingAmount < 0.01f) { //Golem is tempted and will crouch down
         	//Move Hip Offset into Squat Position
 	        this.Hip_Bone.offsetY = 0.3f;
 	        this.Hip_Bone.offsetZ = 0.3f;
 	        //Move Leg Rotations into Squat Positions
 	        this.LeftUpperLeg_Bone.rotateAngleX = -1f;
-	        this.RightUpperLeg_Bone.rotateAngleX = -1f;
+	        this.RightUpperLeg_Bone.rotateAngleX = 1f;
 	        //Move Leg Offsets into Squat Positions
 	        this.LeftUpperLeg_Bone.offsetY = 0.3f;
 	        this.RightUpperLeg_Bone.offsetY = 0.3f;
 	        this.LeftUpperLeg_Bone.offsetZ = 0.2f;
 	        this.RightUpperLeg_Bone.offsetZ = 0.2f;
-		} else if(t != -1 && ageInTicks - t <= AbstractGolemEntity.SHOCKWAVE_DURATION) {
+		} else if(t != -1 && ageInTicks - t <= AbstractGolemEntity.SHOCKWAVE_DURATION) { //Golem doing smash attack
 			float attackTime = ageInTicks - golem.getShockwaveTick();
 			float swingPct = MathHelper.clamp(attackTime / 40F, 0, 1);
 			if(swingPct < 0.85F) {
@@ -175,14 +175,14 @@ public class AbstractGolemModel <T extends AbstractGolemEntity> extends Quadrupe
 				this.RightLowerArm_Bone.rotateAngleX = MathHelper.lerp(downSwing, 1, -0.1F);
 				this.Hip_Bone.rotateAngleX = 0.4F + MathHelper.lerp(downSwing, -1, 0.5F);
 			}
-		} else {
+		} else { //Golem is moving normally
 			//Move Hip Offset into Original Position
 			this.Hip_Bone.rotateAngleX = 0;
 	        this.Hip_Bone.offsetY = -0.1f;
 	        this.Hip_Bone.offsetZ = 0;
 	        //Animate Leg Rotations for Walking
-	        this.LeftUpperLeg_Bone.rotateAngleX = MathHelper.clamp(-0.5f + leftLegSwing * 6F * limbSwingAmount, -1.4f, 1.4f);
-	        this.RightUpperLeg_Bone.rotateAngleX = MathHelper.clamp(-0.5f + rightLegSwing * 6F * limbSwingAmount,  -1.4f, 1.4f);;
+	        this.LeftUpperLeg_Bone.rotateAngleX = MathHelper.clamp(-0.5f + leftLegSwing * 3F * limbSwingAmount, -1.4f, 1.4f);
+	        this.RightUpperLeg_Bone.rotateAngleX = MathHelper.clamp(-0.5f + rightLegSwing * 3F * limbSwingAmount,  -1.4f, 1.4f);
 	        //Move Leg Offsets into Original Positions
 	        this.LeftUpperLeg_Bone.offsetY = 0f;
 	        this.RightUpperLeg_Bone.offsetY = 0f;
@@ -193,10 +193,10 @@ public class AbstractGolemModel <T extends AbstractGolemEntity> extends Quadrupe
         //Footwork
         float leftFootRaise = MathHelper.cos((limbSwing * 0.6f) + (float)Math.PI - 1.8f);
         float rightFootRaise = MathHelper.cos((limbSwing * 0.6f) - 1.8f);
-        this.LeftLowerLeg_Bone.offsetZ = MathHelper.clamp(0 + leftLegSwing * 5f * limbSwingAmount, -0.6f, 0.6f);
-        this.LeftLowerLeg_Bone.offsetY = MathHelper.clamp(Math.min(leftFootRaise, 0) * 3f * limbSwingAmount, -0.6f, 0.6f);
-        this.RightLowerLeg_Bone.offsetZ = MathHelper.clamp(0 + rightLegSwing * 5f * limbSwingAmount, -0.6f, 0.6f);
-        this.RightLowerLeg_Bone.offsetY = MathHelper.clamp(Math.min(rightFootRaise, 0) * 3f * limbSwingAmount, -0.6f, 0.6f);
+        this.LeftLowerLeg_Bone.offsetZ = MathHelper.clamp(0 + leftLegSwing * 2f * limbSwingAmount, -0.6f, 0.6f);
+		this.RightLowerLeg_Bone.offsetZ = MathHelper.clamp(0 + rightLegSwing * 2f * limbSwingAmount, -0.6f, 0.6f);
+        this.LeftLowerLeg_Bone.offsetY = MathHelper.clamp(Math.min(leftFootRaise, 0) * 0.6f * limbSwingAmount, -0.6f, 0.6f);
+        this.RightLowerLeg_Bone.offsetY = MathHelper.clamp(Math.min(rightFootRaise, 0) * 0.6f * limbSwingAmount, -0.6f, 0.6f);
         
         //Looking at Player
 		this.Torso_Bone.rotateAngleX = headPitch * (float)Math.PI / 180F * 0.6f;

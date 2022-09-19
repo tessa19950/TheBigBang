@@ -206,12 +206,6 @@ public class AbstractMushroomEntity extends AnimalEntity implements IQuestEntity
 			}
 		}
 	}
-	
-	@Override
-	public void onDeath(DamageSource cause) {
-		this.questEntityHandler.onQuestEntityDeath(this, cause);
-		super.onDeath(cause);
-	}
 
 	@Override
 	public QuestEntityHandler getQuestEntityHandler() {

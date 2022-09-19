@@ -1,7 +1,7 @@
 package com.homebrewCult.TheBigBang.items;
 
 import com.homebrewCult.TheBigBang.blocks.DangerSignBlock;
-import com.homebrewCult.TheBigBang.gui.quests.Questline;
+import com.homebrewCult.TheBigBang.gui.quests.Questlines;
 import com.homebrewCult.TheBigBang.init.ModBlocks;
 import com.homebrewCult.TheBigBang.util.DangerSignPart;
 import net.minecraft.block.Block;
@@ -29,7 +29,7 @@ public class DangerSignItem extends BlockItem {
 	@Override
 	protected boolean placeBlock(BlockItemUseContext context, BlockState state) {	
 		placeDangerSignParts(context);
-		Questline questline = Questline.getQuestlineByBiome(context.getWorld().getBiome(context.getPos()));
+		Questlines questline = Questlines.getQuestlineByBiome(context.getWorld().getBiome(context.getPos()));
 		return super.placeBlock(context, state.with(DangerSignBlock.QUESTLINE, questline));
 	}
 	

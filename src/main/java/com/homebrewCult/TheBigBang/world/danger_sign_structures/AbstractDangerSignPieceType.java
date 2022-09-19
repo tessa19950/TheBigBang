@@ -1,10 +1,9 @@
 package com.homebrewCult.TheBigBang.world.danger_sign_structures;
 
-import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.blocks.DangerSignBlock;
-import com.homebrewCult.TheBigBang.gui.quests.Questline;
+import com.homebrewCult.TheBigBang.gui.quests.Questlines;
 import com.homebrewCult.TheBigBang.init.ModBlocks;
-import com.homebrewCult.TheBigBang.util.DangerSignPart;
+import com.homebrewCult.TheBigBang.world.danger_sign_features.AbstractDangerSignFeature;
 import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
@@ -85,15 +84,12 @@ public abstract class AbstractDangerSignPieceType extends TemplateStructurePiece
     protected void handleDataMarker(String function, BlockPos pos, IWorld worldIn, Random rand, MutableBoundingBox sbb) {
         if (function.startsWith("DangerSign")) {
             BlockState state = ModBlocks.DANGER_SIGN.getDefaultState().with(DangerSignBlock.FACING, templateDirection);
-            worldIn.setBlockState(pos, state.with(DangerSignBlock.QUESTLINE, getTemplateQuestline(worldIn.getBiome(pos))), 1);
-            worldIn.setBlockState(pos.up(), state.with(DangerSignBlock.PART, DangerSignPart.TOPLEFT), 1);
-            worldIn.setBlockState(pos.offset(templateDirection.rotateYCCW()), state.with(DangerSignBlock.PART, DangerSignPart.BOTTOMRIGHT), 1);
-            worldIn.setBlockState(pos.offset(templateDirection.rotateYCCW()).up(), state.with(DangerSignBlock.PART, DangerSignPart.TOPRIGHT), 1);
+            AbstractDangerSignFeature.buildDangerSign(worldIn, pos, state, templateDirection, getTemplateQuestline(worldIn.getBiome(pos)));
         }
     }
 
-    public Questline getTemplateQuestline(Biome biome) {
-        return Questline.getQuestlineByBiome(biome);
+    public Questlines getTemplateQuestline(Biome biome) {
+        return Questlines.getQuestlineByBiome(biome);
     }
 
     abstract Vec3i getTemplateOffset(int index);

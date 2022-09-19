@@ -26,9 +26,9 @@ public abstract class BigBangAreaEffectCloudEntity extends AreaEffectCloudEntity
     protected LivingEntity owner;
     protected UUID ownerUniqueId;
 
-    public BigBangAreaEffectCloudEntity(EntityType<? extends AreaEffectCloudEntity> entityType, World worldIn) {
+    public BigBangAreaEffectCloudEntity(EntityType<? extends AreaEffectCloudEntity> entityType, World worldIn, float radius) {
         super(entityType, worldIn);
-        setRadius(4.0F);
+        setRadius(radius);
         radiusPerTick = -(getRadius() / duration);
     }
 

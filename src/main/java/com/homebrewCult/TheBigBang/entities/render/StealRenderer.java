@@ -1,17 +1,14 @@
 package com.homebrewCult.TheBigBang.entities.render;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.entities.GenesisBeamEntity;
 import com.homebrewCult.TheBigBang.entities.StealEntity;
 import com.homebrewCult.TheBigBang.entities.model.StealModel;
-import com.homebrewCult.TheBigBang.items.GephardItem;
 import com.mojang.blaze3d.platform.GLX;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class StealRenderer extends EntityRenderer<StealEntity> {

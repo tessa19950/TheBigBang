@@ -18,9 +18,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.gui.quests.Quest;
-import com.homebrewCult.TheBigBang.gui.quests.Questline;
+import com.homebrewCult.TheBigBang.gui.quests.Quests;
+import com.homebrewCult.TheBigBang.gui.quests.Questlines;
 import com.homebrewCult.TheBigBang.init.ModBlocks;
 import com.homebrewCult.TheBigBang.inventory.DangerSignContainer;
 import com.homebrewCult.TheBigBang.util.DangerSignPart;
@@ -44,7 +43,7 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 	private int spawnDelayTimer = 0;
 	private int entitiesKilled = 0;
 	private int[] completedQuests = new int[]{};
-	public Questline questline = Questline.None;
+	public Questlines questline = Questlines.None;
 	private ArrayList<Entity> entityList;
 	private Random rand = new Random();
 	
@@ -68,7 +67,7 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 			spawnerTick();
 		} else if (!blockStateChecked) {
 			BlockState state = world.getBlockState(pos);
-			if(state.get(DangerSignBlock.PART) == DangerSignPart.BASE && state.get(DangerSignBlock.QUESTLINE) != Questline.None) {
+			if(state.get(DangerSignBlock.PART) == DangerSignPart.BASE && state.get(DangerSignBlock.QUESTLINE) != Questlines.None) {
 				isBasePart = true;
 				if(!world.isRemote) {
 					questline = this.getBlockState().get(DangerSignBlock.QUESTLINE);
@@ -139,7 +138,7 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 		
 		if(validSpawn) {
 			IQuestEntity questEntity = (IQuestEntity) questline.getRandomEntityType().spawn(world, null, null, spawnPos, SpawnReason.SPAWNER, true, true);
-			Quest[] availableQuests = this.getAvailableQuests(); 
+			Quests[] availableQuests = this.getAvailableQuests();
 			for(int i = 0; i < 3 && i < this.getAvailableQuestCount(); i++) {
 				if(availableQuests[i].hasQuestItem())
 					questEntity.getQuestEntityHandler().addQuestItem(availableQuests[i].getRequiredQuestItem());
@@ -184,8 +183,8 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 		entitiesKilled = count;
 	}
 	
-	public Quest[] getAvailableQuests() {
-		Quest[] available = new Quest[getAvailableQuestCount()];
+	public Quests[] getAvailableQuests() {
+		Quests[] available = new Quests[getAvailableQuestCount()];
 		int checking = 0;
 		for(int slot = 0; slot < available.length; slot++) {
 			for(int i = checking; i < questline.getQuests().length; i++) {
@@ -275,7 +274,7 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 	@Override
 	public void handleUpdateTag(CompoundNBT tag) {
 		super.handleUpdateTag(tag);
-		questline = Questline.getQuestlineByIndex(tag.getInt(getID() + "questline_index"));
+		questline = Questlines.getQuestlineByIndex(tag.getInt(getID() + "questline_index"));
 		entitiesKilled = tag.getInt(getID() + "entities_killed");
 		completedQuests = tag.getIntArray(getID() + "completed_quests");
 	}
@@ -289,9 +288,9 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 		} 
 		if(this.isBasePart) {
 			if(compound.contains(getID() + "questline_index")) {
-				questline = Questline.getQuestlineByIndex(compound.getInt(getID() + "questline_index"));
+				questline = Questlines.getQuestlineByIndex(compound.getInt(getID() + "questline_index"));
 			} else {
-				questline = Questline.getQuestlineByIndex(0);
+				questline = Questlines.getQuestlineByIndex(0);
 			}
 			if(compound.contains(getID() + "entities_killed")) {
 				entitiesKilled = compound.getInt(getID() + "entities_killed");

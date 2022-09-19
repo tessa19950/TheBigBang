@@ -23,15 +23,15 @@ public class BlessingRecipe extends AbstractCookingRecipe implements IRecipe<IIn
 	public final float experience;
 	public final int cookTime;
 
-	public BlessingRecipe(ResourceLocation idIn, String groupIn, Ingredient ingredientIn, ItemStack resultIn, float experienceIn, int cookTimeIn) {
-		super(ModRecipeTypes.BLESSING, idIn, groupIn, ingredientIn, resultIn, experienceIn, cookTimeIn);
+	public BlessingRecipe(ResourceLocation idIn, String groupIn, Ingredient ingredientIn, ItemStack resultIn, float experienceIn, int cookTimeFallback) {
+		super(ModRecipeTypes.BLESSING, idIn, groupIn, ingredientIn, resultIn, experienceIn, cookTimeFallback);
 		this.type = ModRecipeTypes.BLESSING;
 		this.id = idIn;
 		this.group = groupIn;
 		this.ingredient = ingredientIn;
 		this.result = resultIn;
 		this.experience = experienceIn;
-		this.cookTime = cookTimeIn;
+		this.cookTime = cookTimeFallback;
 	}
 
 	public ItemStack getIcon() {

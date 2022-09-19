@@ -12,10 +12,10 @@ public class PoisonMistEntity extends BigBangAreaEffectCloudEntity {
 
     public PoisonMistEntity(EntityType<?> type, World worldIn) { this(worldIn); }
 
-    public PoisonMistEntity(World worldIn) { super(ModEntities.POISON_MIST, worldIn); }
+    public PoisonMistEntity(World worldIn) { super(ModEntities.POISON_MIST, worldIn, 4.0F); }
 
-    public PoisonMistEntity(World worldIn, double x, double y, double z) {
-        super(ModEntities.POISON_MIST, worldIn);
+    public PoisonMistEntity(World worldIn, double x, double y, double z, float radius) {
+        super(ModEntities.POISON_MIST, worldIn, radius);
         this.setPosition(x, y, z);
     }
 

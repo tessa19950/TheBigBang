@@ -2,8 +2,8 @@ package com.homebrewCult.TheBigBang.inventory;
 
 import java.util.Map;
 import com.homebrewCult.TheBigBang.blocks.DangerSignTile;
-import com.homebrewCult.TheBigBang.gui.quests.EnumQuestItem;
-import com.homebrewCult.TheBigBang.gui.quests.Quest;
+import com.homebrewCult.TheBigBang.gui.quests.QuestItems;
+import com.homebrewCult.TheBigBang.gui.quests.Quests;
 import com.homebrewCult.TheBigBang.init.ModBlocks;
 import com.homebrewCult.TheBigBang.items.QuestItem;
 import com.homebrewCult.TheBigBang.network.BigBangPacketHandler;
@@ -55,15 +55,15 @@ public class DangerSignContainer extends Container {
 		}
 	}
 	
-	public boolean canHandInQuest(Quest quest)
+	public boolean canHandInQuest(Quests quest)
 	{	
 		boolean flag = true;
 		if(tileEntity.getKillCount() >= quest.getRequiredKills()) {
 			int i = 0;
 			for(Map.Entry<Item, Integer> entry : quest.getRequiredItems().entrySet()) {
 				if(entry.getKey() instanceof QuestItem && questInventory.getStackInSlot(i).getItem() instanceof QuestItem) {
-					EnumQuestItem required = quest.getRequiredQuestItem();
-					EnumQuestItem input = EnumQuestItem.getQuestItemByIndex(questInventory.getStackInSlot(i).getTag().getInt("quest_item"));
+					QuestItems required = quest.getRequiredQuestItem();
+					QuestItems input = QuestItems.getQuestItemByIndex(questInventory.getStackInSlot(i).getTag().getInt("quest_item"));
 					if(entry.getKey() != questInventory.getStackInSlot(i).getItem() || required != input) {
 						flag = false;
 					} 

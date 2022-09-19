@@ -26,11 +26,11 @@ public abstract class ThrowingStarItem extends Item  {
 	
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
 		ItemStack itemstack = playerIn.getHeldItem(handIn);
-		if (!playerIn.abilities.isCreativeMode) {
+		if (!playerIn.abilities.isCreativeMode)
 			itemstack.shrink(1);
-		}
 
-		worldIn.playSound((PlayerEntity)null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+		worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ,
+				SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
 		if (!worldIn.isRemote) {
 			ThrowingStarEntity throwingStar = null;
 			Item type = itemstack.getItem();
@@ -51,5 +51,5 @@ public abstract class ThrowingStarItem extends Item  {
 		return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
 	}
 	
-	abstract ThrowingStarEntity createThrowingStar(World worldIn, ItemStack stack, LivingEntity shooter);
+	public abstract ThrowingStarEntity createThrowingStar(World worldIn, ItemStack stack, LivingEntity shooter);
 }

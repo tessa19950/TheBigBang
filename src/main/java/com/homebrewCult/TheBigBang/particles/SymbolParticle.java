@@ -12,6 +12,7 @@ public class SymbolParticle extends SpriteTexturedParticle {
 
     protected SymbolParticle(World worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, IAnimatedSprite spritesIn) {
         super(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
+        this.canCollide = false;
         this.maxAge = 60;
         this.particleScale = 0.1F;
         this.sprites = spritesIn;

@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.function.Function;
 import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.blocks.DangerSignBlock;
-import com.homebrewCult.TheBigBang.gui.quests.Questline;
+import com.homebrewCult.TheBigBang.gui.quests.Questlines;
 import com.homebrewCult.TheBigBang.init.ModBlocks;
 import com.homebrewCult.TheBigBang.util.DangerSignPart;
 import com.mojang.datafixers.Dynamic;
@@ -48,7 +48,6 @@ public abstract class AbstractDangerSignFeature extends Feature<NoFeatureConfig>
 		templateDirection = getTemplateDirection(randIndex); 
 		pos = pos.add(getTemplateOffset(randIndex));
 
-		TheBigBang.print("Generating " + getTemplateName() + " at " + pos);
 		if (template.addBlocksToWorld(worldIn, pos, placeSettings, 2)) {
 			//Replace the Structure Block with a Danger Sign
 			for(Template.BlockInfo template$blockinfo : template.func_215381_a(pos, placeSettings, Blocks.STRUCTURE_BLOCK)) {
@@ -66,22 +65,26 @@ public abstract class AbstractDangerSignFeature extends Feature<NoFeatureConfig>
     protected void handleDataMarker(String function, BlockPos pos, IWorld worldIn, Random rand) {
     	if (function.startsWith("DangerSign")) {  		   		
     		BlockState state = ModBlocks.DANGER_SIGN.getDefaultState().with(DangerSignBlock.FACING, templateDirection);
-    		worldIn.setBlockState(pos, state.with(DangerSignBlock.QUESTLINE, getTemplateQuestline(worldIn.getBiome(pos))), 1);
-    		worldIn.setBlockState(pos.up(), state.with(DangerSignBlock.PART, DangerSignPart.TOPLEFT), 1);
-    		worldIn.setBlockState(pos.offset(templateDirection.rotateYCCW()), state.with(DangerSignBlock.PART, DangerSignPart.BOTTOMRIGHT), 1);
-    		worldIn.setBlockState(pos.offset(templateDirection.rotateYCCW()).up(), state.with(DangerSignBlock.PART, DangerSignPart.TOPRIGHT), 1);
+			buildDangerSign(worldIn, pos, state, templateDirection, getTemplateQuestline(worldIn.getBiome(pos)));
     	}
     }
+
+	public static void buildDangerSign(IWorld worldIn, BlockPos pos, BlockState state, Direction direction, Questlines questline) {
+		worldIn.setBlockState(pos, state.with(DangerSignBlock.QUESTLINE, questline), 1);
+		worldIn.setBlockState(pos.up(), state.with(DangerSignBlock.PART, DangerSignPart.TOPLEFT), 1);
+		worldIn.setBlockState(pos.offset(direction.rotateYCCW()), state.with(DangerSignBlock.PART, DangerSignPart.BOTTOMRIGHT), 1);
+		worldIn.setBlockState(pos.offset(direction.rotateYCCW()).up(), state.with(DangerSignBlock.PART, DangerSignPart.TOPRIGHT), 1);
+	}
 	
 	public Template getTemplate(TemplateManager manager, int index) {
 		int i = index + 1;
 		return manager.getTemplate(new ResourceLocation(TheBigBang.MODID,this.getTemplateName().replace("thebigbang:", "") + "_" + i));
-	}	
-	
-	public Questline getTemplateQuestline(Biome biome) {
-		return Questline.getQuestlineByBiome(biome);
 	}
 	
+	public Questlines getTemplateQuestline(Biome biome) {
+		return Questlines.getQuestlineByBiome(biome);
+	}
+
 	public abstract String getTemplateName();
 	
 	public abstract Vec3i getTemplateOffset(int index);

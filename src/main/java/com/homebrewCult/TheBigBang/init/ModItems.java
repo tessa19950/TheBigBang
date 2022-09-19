@@ -12,6 +12,7 @@ import com.homebrewCult.TheBigBang.items.armor.PietteArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.PilferArmorItem;
 import com.homebrewCult.TheBigBang.items.armor.StarlightArmorItem;
 import com.homebrewCult.TheBigBang.items.render.BigBangISTER;
+import com.homebrewCult.TheBigBang.items.weapons.*;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Food;
@@ -66,6 +67,8 @@ public class ModItems {
 	public static final QuestItem LETTER = (QuestItem) new QuestItem(new Item.Properties().maxStackSize(1)).setRegistryName(TheBigBang.MODID, "letter");
 	public static final QuestFinderItem QUEST_FINDER = (QuestFinderItem) new QuestFinderItem(new Properties()
 			.maxStackSize(1).group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, "quest_finder");
+	public static final IcyQuestFinderItem ICY_QUEST_FINDER = (IcyQuestFinderItem) new IcyQuestFinderItem(new Properties()
+			.maxStackSize(1).group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, "icy_quest_finder");
 	public static final Item OCTOPUS_LEG = 	registerMiscItem("octopus_leg");
 	public static final Item EVIL_EYE_TAIL = registerMiscItem("evil_eye_tail");
 	public static final Item CURSE_EYE_TAIL = registerMiscItem("curse_eye_tail");
@@ -221,6 +224,10 @@ public class ModItems {
 	@SubscribeEvent
 	public static void registerItems(final RegistryEvent.Register<Item> event) {
 		event.getRegistry().registerAll(
+				/*
+						METALS, QUEST, MONSTER AND FOOD ITEMS
+				 */
+
 				ModItems.ADAMANTIUM,
 				ModItems.DORMANT_ADAMANTIUM_INGOT,
 				ModItems.BLESSED_ADAMANTIUM_INGOT,
@@ -237,6 +244,7 @@ public class ModItems {
 
 				ModItems.LETTER,
 				ModItems.QUEST_FINDER,
+				ModItems.ICY_QUEST_FINDER,
 				ModItems.OCTOPUS_LEG,
 				ModItems.EVIL_EYE_TAIL,
 				ModItems.CURSE_EYE_TAIL,
@@ -283,6 +291,27 @@ public class ModItems {
 				ModItems.DRAKES_BLOOD,
 				ModItems.SAP_OF_ANCIENT_TREE,
 
+				new BigBangDiskItem(ModSounds.RECORD_AMORIA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_amoria"),
+				new BigBangDiskItem(ModSounds.RECORD_AQUA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_aqua"),
+				new BigBangDiskItem(ModSounds.RECORD_ARIANT, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_ariant"),
+				new BigBangDiskItem(ModSounds.RECORD_DILLEKE, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_dilleke"),
+				new BigBangDiskItem(ModSounds.RECORD_ELLINIA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_ellinia"),
+				new BigBangDiskItem(ModSounds.RECORD_HARBOR, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_harbor"),
+				new BigBangDiskItem(ModSounds.RECORD_HENESYS, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_henesys"),
+				new BigBangDiskItem(ModSounds.RECORD_KERNING, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_kerning"),
+				new BigBangDiskItem(ModSounds.RECORD_LUDIBRIUM, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_ludibrium"),
+				new BigBangDiskItem(ModSounds.RECORD_OMEGA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_omega"),
+				new BigBangDiskItem(ModSounds.RECORD_ORBIS, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_orbis"),
+				new BigBangDiskItem(ModSounds.RECORD_PERION, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_perion"),
+				new BigBangDiskItem(ModSounds.RECORD_RAINDROP, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_raindrop"),
+				new BigBangDiskItem(ModSounds.RECORD_SQUARE, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_square"),
+
+				/*
+						BLOCK ITEMS
+				 */
+
+				new DangerSignItem(ModBlocks.DANGER_SIGN, new Item.Properties().maxStackSize(1).group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.DANGER_SIGN.getRegistryName()),
+				new BlockItem(ModBlocks.DIVINE_ALTAR, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.DIVINE_ALTAR.getRegistryName()),
 				new BlockItem(ModBlocks.ADAMANTIUM_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ADAMANTIUM_ORE.getRegistryName()),
 				new BlockItem(ModBlocks.MITHRIL_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.MITHRIL_ORE.getRegistryName()),
 				new BlockItem(ModBlocks.ORIHALCON_ORE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ORIHALCON_ORE.getRegistryName()),
@@ -302,10 +331,14 @@ public class ModItems {
 				new BlockItem(ModBlocks.BLUE_MUSHROOM_BLOCK, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.BLUE_MUSHROOM_BLOCK.getRegistryName()),
 				new BlockItem(ModBlocks.BLUE_MUSHROOM_SLAB, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.BLUE_MUSHROOM_SLAB.getRegistryName()),
 				new BlockItem(ModBlocks.BLUE_MUSHROOM_STAIRS, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.BLUE_MUSHROOM_STAIRS.getRegistryName()),
-				
+
+				/*
+						WEAPONS, AMMO AND ARMOR ITEMS
+				 */
+
 				new ZardItem(ModItemTier.BLESSED_ADAMANTIUM, 4, -2.4F, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "zard"),
-				new HeliosItem(ModItemTier.BLESSED_ADAMANTIUM, 6, -3.6F, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "helios"),
-				new OmegaSpearItem(ModItemTier.BLESSED_ADAMANTIUM, 6, -3.6F, new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "omega_spear"),
+				new HeliosItem(ModItemTier.BLESSED_ADAMANTIUM, 6, -3.0F, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "helios"),
+				new OmegaSpearItem(ModItemTier.BLESSED_ADAMANTIUM, 6, -3.0F, new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "omega_spear"),
 				new ScorpioItem(ModItemTier.BLESSED_ADAMANTIUM, 4, -2.4F, new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "scorpio"),
 				new MithrilWandItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "mithril_wand"),
 				new MagicodarItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "magicodar"),
@@ -320,11 +353,6 @@ public class ModItems {
 				new SaiItem(ModItemTier.BLESSED_ORIHALCON, 3, -0.4F, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "sai"),
 				new GephardItem(ModItemTier.BLESSED_ORIHALCON, 3, -0.4F, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "gephard"),
 
-				new SubiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "subi"),
-				new TobiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "tobi"),
-				new SteelyItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "steely"),
-				new IlbiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "ilbi"),
-
 				registerMiscItem("omega_spear_head", false),
 				registerMiscItem("scorpio_head", false),
 				registerMiscItem("lama_staff_head", false),
@@ -333,24 +361,11 @@ public class ModItems {
 				registerMiscItem("steely_projectile", false),
 				registerMiscItem("ilbi_projectile", false),
 
-				new DangerSignItem(ModBlocks.DANGER_SIGN, new Item.Properties().maxStackSize(1).group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.DANGER_SIGN.getRegistryName()),
-				new BlockItem(ModBlocks.DIVINE_ALTAR, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.DIVINE_ALTAR.getRegistryName()),
+				new SubiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "subi"),
+				new TobiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "tobi"),
+				new SteelyItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "steely"),
+				new IlbiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "ilbi"),
 
-				new BigBangDiskItem(ModSounds.RECORD_AMORIA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_amoria"),
-				new BigBangDiskItem(ModSounds.RECORD_AQUA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_aqua"),
-				new BigBangDiskItem(ModSounds.RECORD_ARIANT, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_ariant"),
-				new BigBangDiskItem(ModSounds.RECORD_DILLEKE, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_dilleke"),
-				new BigBangDiskItem(ModSounds.RECORD_ELLINIA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_ellinia"),
-				new BigBangDiskItem(ModSounds.RECORD_HARBOR, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_harbor"),
-				new BigBangDiskItem(ModSounds.RECORD_HENESYS, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_henesys"),
-				new BigBangDiskItem(ModSounds.RECORD_KERNING, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_kerning"),
-				new BigBangDiskItem(ModSounds.RECORD_LUDIBRIUM, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_ludibrium"),
-				new BigBangDiskItem(ModSounds.RECORD_OMEGA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_omega"),
-				new BigBangDiskItem(ModSounds.RECORD_ORBIS, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_orbis"),
-				new BigBangDiskItem(ModSounds.RECORD_PERION, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_perion"),
-				new BigBangDiskItem(ModSounds.RECORD_RAINDROP, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_raindrop"),
-				new BigBangDiskItem(ModSounds.RECORD_SQUARE, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_square"),
-				
 				new AppleArmorItem(ModArmorMaterial.APPLE, EquipmentSlotType.HEAD,
 						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "apple_helmet"),
 				new AppleArmorItem(ModArmorMaterial.APPLE, EquipmentSlotType.CHEST,

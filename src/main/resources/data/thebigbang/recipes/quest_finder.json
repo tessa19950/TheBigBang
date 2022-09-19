@@ -1,0 +1,17 @@
+{
+ 	"type": "minecraft:crafting_shaped",
+  	"pattern": 
+  	[
+    	"###",
+    	"#0#",
+    	"###"
+  	],
+  
+  	"key": 
+  	{
+		"#": { "item": "minecraft:cobblestone" },
+    	"0": { "item": "minecraft:compass" }
+  	},
+  
+  	"result": { "item": "thebigbang:quest_finder" }
+}

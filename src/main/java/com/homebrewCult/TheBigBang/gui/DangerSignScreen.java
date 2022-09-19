@@ -1,7 +1,7 @@
 package com.homebrewCult.TheBigBang.gui;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.gui.quests.Quest;
+import com.homebrewCult.TheBigBang.gui.quests.Quests;
 import com.homebrewCult.TheBigBang.inventory.DangerSignContainer;
 import com.homebrewCult.TheBigBang.network.BigBangPacketHandler;
 import com.homebrewCult.TheBigBang.network.Packet_ClearQuestSlots;
@@ -28,7 +28,7 @@ public class DangerSignScreen extends ContainerScreen<DangerSignContainer> {
 	private int prevDetailsPos;
 	private int nextDetailsPos;
 	
-	private Quest[] availableQuests;
+	private Quests[] availableQuests;
 	private int questSelected = -1;
 	private String detailsText = "";
 	private int inputSlotCount = 0;
@@ -228,7 +228,7 @@ public class DangerSignScreen extends ContainerScreen<DangerSignContainer> {
 		updateDescriptionText();
 	}
 	
-	public void acceptButtonClicked(Quest quest) {
+	public void acceptButtonClicked(Quests quest) {
 		if(container.canHandInQuest(quest)) {
 			container.handInQuest(container.tileEntity.questline.getIndexByQuest(quest));
 			updateAvailableQuests();
@@ -242,7 +242,7 @@ public class DangerSignScreen extends ContainerScreen<DangerSignContainer> {
 	
 	public void updateDescriptionText() {
 		if(questSelected != -1) {
-			Quest quest = availableQuests[questSelected];
+			Quests quest = availableQuests[questSelected];
 			detailsText = quest.getDescription();
 			if(quest.getRequiredKills() > 0) {
 				String name = container.tileEntity.questline.getName();
