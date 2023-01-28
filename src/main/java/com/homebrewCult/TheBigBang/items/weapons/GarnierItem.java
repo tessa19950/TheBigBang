@@ -1,10 +1,14 @@
 package com.homebrewCult.TheBigBang.items.weapons;
 
+import java.util.List;
 import java.util.function.Predicate;
+
+import com.google.common.collect.ImmutableList;
 import com.homebrewCult.TheBigBang.entities.ThrowingStarEntity;
 import com.homebrewCult.TheBigBang.init.ModItems;
 import com.homebrewCult.TheBigBang.init.ModSounds;
 import com.homebrewCult.TheBigBang.items.ThrowingStarItem;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -49,9 +53,12 @@ public class GarnierItem extends ShootableItem {
 					star.setDamage(star.getDamage() + (double)enchantment * 0.5D);
 					if (charge == 1f)
 						star.setIsCritical(true);
-					int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
-					if (k > 0)
-						star.setKnockbackStrength(k);
+					int knockback = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
+					if (knockback > 0)
+						star.setKnockbackStrength(knockback);
+					int piercing = EnchantmentHelper.getEnchantmentLevel(Enchantments.PIERCING, stack);
+					if (piercing > 0)
+						star.func_213872_b((byte)piercing);
 					if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0)
 						star.setFire(100);
 					stack.damageItem(1, player, (p) -> p.sendBreakAnimation(player.getActiveHand()));
@@ -126,5 +133,16 @@ public class GarnierItem extends ShootableItem {
 	@Override
 	public int getItemEnchantability() {
 		return this.tier.getEnchantability();
+	}
+
+	private static final List<Enchantment> VALID_ENCHANTMENTS = ImmutableList.of(
+				Enchantments.POWER, Enchantments.FLAME, Enchantments.PUNCH, Enchantments.PIERCING
+			);
+
+	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+		if(VALID_ENCHANTMENTS.contains(enchantment))
+			return true;
+		return super.canApplyAtEnchantingTable(stack, enchantment);
 	}
 }

@@ -16,12 +16,12 @@ import java.util.Random;
 public interface IQuestEntity {
 	QuestEntityHandler getQuestEntityHandler();
 
-	default void spawnPoofParticles(Entity entity, World world, Random rand) {
+	default void spawnPoofParticles(Entity entity, Random rand) {
 		for(int i = 0; i < 16; i++) {
 			double x = entity.posX + rand.nextGaussian();
 			double y = entity.posY + 1 + rand.nextGaussian();
 			double z = entity.posZ + rand.nextGaussian();
-			world.addParticle(ParticleTypes.POOF, x, y, z, 0, 0, 0);
+			entity.world.addParticle(ParticleTypes.POOF, x, y, z, 0, 0, 0);
 		}
 	}
 

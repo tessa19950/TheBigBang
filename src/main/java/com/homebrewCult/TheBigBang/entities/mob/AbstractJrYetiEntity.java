@@ -52,7 +52,7 @@ public class AbstractJrYetiEntity extends TameableEntity implements IQuestEntity
 	@Override
 	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		if(reason.equals(SpawnReason.SPAWNER) && world.isRemote)
-			spawnPoofParticles(this, world, rand);
+			spawnPoofParticles(this, rand);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 

@@ -19,7 +19,7 @@ import net.minecraft.util.text.ITextComponent;
 
 public class DangerSignScreen extends ContainerScreen<DangerSignContainer> {
 
-	private ResourceLocation DANGER_SIGN_GUI = new ResourceLocation(TheBigBang.MODID, "textures/gui/danger_sign_gui.png"); 
+	private ResourceLocation DANGER_SIGN_GUI = new ResourceLocation(TheBigBang.MOD_ID, "textures/gui/danger_sign_gui.png");
 	
 	private int BUTTON_XPOS = 8, BUTTON_WIDTH = 160, BUTTON_HEIGHT = 19; 
 	private int ACCEPT_XPOS = 133, ACCEPT_YPOS = 149, ACCEPT_WIDTH = 35, ACCEPT_HEIGHT = 11, ACCEPT_UVX = 256, ACCEPT_UVY = 184;
@@ -41,10 +41,14 @@ public class DangerSignScreen extends ContainerScreen<DangerSignContainer> {
 	@Override
 	public void tick() {	
 		super.tick();
+	}
+	
+	@Override
+	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseScreenPosX, int mouseScreenPosY) {
 		if(questSelected == -1) { //No quest selected
 			if (nextDetailsPos > 0) {
 				prevDetailsPos = nextDetailsPos;
-				nextDetailsPos -= 16;
+				nextDetailsPos -= 12 + partialTicks;
 			} else {
 				prevDetailsPos = 0;
 				nextDetailsPos = 0;
@@ -52,16 +56,14 @@ public class DangerSignScreen extends ContainerScreen<DangerSignContainer> {
 		} else { //Quest selected
 			if(nextDetailsPos < 132) {
 				prevDetailsPos = nextDetailsPos;
-				nextDetailsPos += 16;
+				nextDetailsPos += 12 + partialTicks;
 			} else {
 				prevDetailsPos = 132;
 				nextDetailsPos = 132;
 			}
 		}
-	}
-	
-	@Override
-	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseScreenPosX, int mouseScreenPosY) {  
+
+
 	      minecraft.getTextureManager().bindTexture(DANGER_SIGN_GUI);
 	      GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
 	      

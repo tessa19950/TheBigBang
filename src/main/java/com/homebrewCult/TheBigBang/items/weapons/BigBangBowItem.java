@@ -25,7 +25,7 @@ public abstract class BigBangBowItem extends BowItem implements IBigBangWeapon {
         this.tier = tierIn;
     }
 
-    public void shootArrow(ItemStack bowStack, World worldIn, LivingEntity entityLiving, int charge, boolean consumeArrow) {
+    public void shootArrow(ItemStack bowStack, World worldIn, LivingEntity entityLiving, int charge, boolean freeArrow) {
         PlayerEntity player = (PlayerEntity)entityLiving;
         ItemStack ammo = player.findAmmo(bowStack);
         if (ammo.isEmpty())
@@ -34,11 +34,11 @@ public abstract class BigBangBowItem extends BowItem implements IBigBangWeapon {
         float velocity = getArrowVelocity(charge);
         if (!((double)velocity < 0.1D)) {
             boolean flag1 = player.abilities.isCreativeMode || (ammo.getItem() instanceof ArrowItem &&
-                    ((ArrowItem)ammo.getItem()).isInfinite(ammo, bowStack, player) || !consumeArrow);
+                    ((ArrowItem)ammo.getItem()).isInfinite(ammo, bowStack, player) || freeArrow);
             if (!worldIn.isRemote) {
                 ArrowItem arrowItem = (ArrowItem)(ammo.getItem() instanceof ArrowItem ? ammo.getItem() : Items.ARROW);
                 AbstractArrowEntity arrow = arrowItem.createArrow(worldIn, ammo, player);
-                arrow = customizedArrow(arrow, consumeArrow ? ammo : new ItemStack(ModItems.BLESSED_MAGIC_ROCK));
+                arrow = customizedArrow(arrow, freeArrow ? new ItemStack(ModItems.BLESSED_MAGIC_ROCK) : ammo);
                 arrow.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, velocity * 3.0F, 1.0F);
                 if (velocity == 1.0F)
                     arrow.setIsCritical(true);
@@ -50,7 +50,7 @@ public abstract class BigBangBowItem extends BowItem implements IBigBangWeapon {
             }
 
             worldIn.playSound(null, player.posX, player.posY, player.posZ, getShootSound(), SoundCategory.PLAYERS, 1.0F, getShootPitch(velocity));
-            if (!flag1 && !player.abilities.isCreativeMode && consumeArrow) {
+            if (!flag1 && !player.abilities.isCreativeMode && !freeArrow) {
                 ammo.shrink(1);
                 if (ammo.isEmpty())
                     player.inventory.deleteStack(ammo);
@@ -89,7 +89,12 @@ public abstract class BigBangBowItem extends BowItem implements IBigBangWeapon {
 
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-        return this.tier.getRepairMaterial().test(repair) || super.getIsRepairable(toRepair, repair);
+        return true;
+    }
+
+    @Override
+    public boolean isEnchantable(ItemStack stack) {
+        return super.isEnchantable(stack);
     }
 
     @Override
@@ -106,7 +111,7 @@ public abstract class BigBangBowItem extends BowItem implements IBigBangWeapon {
     public void onSpellAttack(ItemStack stack, World worldIn, PlayerEntity player) { }
 
     @Override
-    public int getChargeDuration() { return 0; }
+    public int getChargeDuration(PlayerEntity player) { return 0; }
 
     @Override
     public IParticleData getChargingParticle() { return null; }

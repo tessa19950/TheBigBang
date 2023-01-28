@@ -13,9 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class AbstractSnailModel<T extends Entity> extends QuadrupedModel<T> {
-	
-	private float oscillationTimer = 0f;
-	
+
 	private final RendererModel Body_Bone;
 	private final RendererModel EyeStem2_Bone;
 	private final RendererModel EyeStem1_Bone;
@@ -79,7 +77,7 @@ public class AbstractSnailModel<T extends Entity> extends QuadrupedModel<T> {
 		}
 		
 		if(!valueInRange(entityIn.getMotion().x, -0.0001D, 0.0001D) || !valueInRange(entityIn.getMotion().z, -0.0001D, 0.0001D)) {
-			this.oscillationTimer = (entityIn.ticksExisted + partialTick) * 0.3f;
+			float oscillationTimer = (entityIn.ticksExisted + partialTick) * 0.3f;
 			this.Body_Bone.offsetZ = -0.1f + (float)(0.15f * Math.cos(oscillationTimer));
 		}
 	}
@@ -88,7 +86,6 @@ public class AbstractSnailModel<T extends Entity> extends QuadrupedModel<T> {
 	public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
 		this.Eye1_Bone.rotateAngleX = headPitch * ((float)Math.PI / 180F);
 		this.Eye1_Bone.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
-		      
 		this.Eye2_Bone.rotateAngleX = headPitch * ((float)Math.PI / 180F);
 		this.Eye2_Bone.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
 	}

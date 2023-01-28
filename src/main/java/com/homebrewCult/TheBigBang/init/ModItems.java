@@ -14,19 +14,15 @@ import com.homebrewCult.TheBigBang.items.armor.StarlightArmorItem;
 import com.homebrewCult.TheBigBang.items.render.BigBangISTER;
 import com.homebrewCult.TheBigBang.items.weapons.*;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Food;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Rarity;
+import net.minecraft.item.*;
 import net.minecraft.item.Item.Properties;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ObjectHolder;
 
-@Mod.EventBusSubscriber(modid = TheBigBang.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-@ObjectHolder(TheBigBang.MODID)
+@Mod.EventBusSubscriber(modid = TheBigBang.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@ObjectHolder(TheBigBang.MOD_ID)
 public class ModItems {	
 	public static final Item ADAMANTIUM = registerMiscItem("adamantium");
 	public static final Item ADAMANTIUM_NUGGET = registerMiscItem("adamantium_nugget");
@@ -64,11 +60,11 @@ public class ModItems {
 	public static final Item BLUE_MUSHROOM_SLAB = null;
 	public static final Item BLUE_MUSHROOM_STAIRS = null;
 
-	public static final QuestItem LETTER = (QuestItem) new QuestItem(new Item.Properties().maxStackSize(1)).setRegistryName(TheBigBang.MODID, "letter");
+	public static final QuestItem LETTER = (QuestItem) new QuestItem(new Item.Properties().maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "letter");
 	public static final QuestFinderItem QUEST_FINDER = (QuestFinderItem) new QuestFinderItem(new Properties()
-			.maxStackSize(1).group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, "quest_finder");
+			.maxStackSize(1).group(ItemGroup.MISC)).setRegistryName(TheBigBang.MOD_ID, "quest_finder");
 	public static final IcyQuestFinderItem ICY_QUEST_FINDER = (IcyQuestFinderItem) new IcyQuestFinderItem(new Properties()
-			.maxStackSize(1).group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, "icy_quest_finder");
+			.maxStackSize(1).group(ItemGroup.MISC)).setRegistryName(TheBigBang.MOD_ID, "icy_quest_finder");
 	public static final Item OCTOPUS_LEG = 	registerMiscItem("octopus_leg");
 	public static final Item EVIL_EYE_TAIL = registerMiscItem("evil_eye_tail");
 	public static final Item CURSE_EYE_TAIL = registerMiscItem("curse_eye_tail");
@@ -76,9 +72,9 @@ public class ModItems {
 	public static final Item ORANGE_MUSHROOM_CAP = registerMiscItem("orange_mushroom_cap");
 	public static final Item BLUE_MUSHROOM_CAP = registerMiscItem("blue_mushroom_cap");
 	public static final Item UNDEAD_CHARM = registerMiscItem("undead_charm");
-	public static final SnailShellItem RED_SNAIL_SHELL = (SnailShellItem) new SnailShellItem(new Properties().group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, "red_snail_shell");
-	public static final SnailShellItem BLUE_SNAIL_SHELL = (SnailShellItem) new SnailShellItem(new Properties().group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, "blue_snail_shell");
-	public static final SnailShellItem GREEN_SNAIL_SHELL = (SnailShellItem) new SnailShellItem(new Properties().group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, "green_snail_shell");
+	public static final SnailShellItem RED_SNAIL_SHELL = (SnailShellItem) new SnailShellItem(new Properties().group(ItemGroup.MISC)).setRegistryName(TheBigBang.MOD_ID, "red_snail_shell");
+	public static final SnailShellItem BLUE_SNAIL_SHELL = (SnailShellItem) new SnailShellItem(new Properties().group(ItemGroup.MISC)).setRegistryName(TheBigBang.MOD_ID, "blue_snail_shell");
+	public static final SnailShellItem GREEN_SNAIL_SHELL = (SnailShellItem) new SnailShellItem(new Properties().group(ItemGroup.MISC)).setRegistryName(TheBigBang.MOD_ID, "green_snail_shell");
 	public static final Item JRYETI_SKIN = registerMiscItem("jryeti_skin");
 	public static final Item DARK_JRYETI_SKIN = registerMiscItem("dark_jryeti_skin");
 	public static final Item YETI_HORN = registerMiscItem("yeti_horn");
@@ -291,20 +287,20 @@ public class ModItems {
 				ModItems.DRAKES_BLOOD,
 				ModItems.SAP_OF_ANCIENT_TREE,
 
-				new BigBangDiskItem(ModSounds.RECORD_AMORIA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_amoria"),
-				new BigBangDiskItem(ModSounds.RECORD_AQUA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_aqua"),
-				new BigBangDiskItem(ModSounds.RECORD_ARIANT, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_ariant"),
-				new BigBangDiskItem(ModSounds.RECORD_DILLEKE, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_dilleke"),
-				new BigBangDiskItem(ModSounds.RECORD_ELLINIA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_ellinia"),
-				new BigBangDiskItem(ModSounds.RECORD_HARBOR, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_harbor"),
-				new BigBangDiskItem(ModSounds.RECORD_HENESYS, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_henesys"),
-				new BigBangDiskItem(ModSounds.RECORD_KERNING, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_kerning"),
-				new BigBangDiskItem(ModSounds.RECORD_LUDIBRIUM, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_ludibrium"),
-				new BigBangDiskItem(ModSounds.RECORD_OMEGA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_omega"),
-				new BigBangDiskItem(ModSounds.RECORD_ORBIS, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_orbis"),
-				new BigBangDiskItem(ModSounds.RECORD_PERION, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_perion"),
-				new BigBangDiskItem(ModSounds.RECORD_RAINDROP, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_raindrop"),
-				new BigBangDiskItem(ModSounds.RECORD_SQUARE, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, "music_disc_square"),
+				new BigBangDiskItem(ModSounds.RECORD_AMORIA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MOD_ID, "music_disc_amoria"),
+				new BigBangDiskItem(ModSounds.RECORD_AQUA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MOD_ID, "music_disc_aqua"),
+				new BigBangDiskItem(ModSounds.RECORD_ARIANT, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MOD_ID, "music_disc_ariant"),
+				new BigBangDiskItem(ModSounds.RECORD_DILLEKE, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MOD_ID, "music_disc_dilleke"),
+				new BigBangDiskItem(ModSounds.RECORD_ELLINIA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MOD_ID, "music_disc_ellinia"),
+				new BigBangDiskItem(ModSounds.RECORD_HARBOR, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MOD_ID, "music_disc_harbor"),
+				new BigBangDiskItem(ModSounds.RECORD_HENESYS, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MOD_ID, "music_disc_henesys"),
+				new BigBangDiskItem(ModSounds.RECORD_KERNING, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MOD_ID, "music_disc_kerning"),
+				new BigBangDiskItem(ModSounds.RECORD_LUDIBRIUM, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MOD_ID, "music_disc_ludibrium"),
+				new BigBangDiskItem(ModSounds.RECORD_OMEGA, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MOD_ID, "music_disc_omega"),
+				new BigBangDiskItem(ModSounds.RECORD_ORBIS, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MOD_ID, "music_disc_orbis"),
+				new BigBangDiskItem(ModSounds.RECORD_PERION, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MOD_ID, "music_disc_perion"),
+				new BigBangDiskItem(ModSounds.RECORD_RAINDROP, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MOD_ID, "music_disc_raindrop"),
+				new BigBangDiskItem(ModSounds.RECORD_SQUARE, new Item.Properties().maxStackSize(1).group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MOD_ID, "music_disc_square"),
 
 				/*
 						BLOCK ITEMS
@@ -336,22 +332,38 @@ public class ModItems {
 						WEAPONS, AMMO AND ARMOR ITEMS
 				 */
 
-				new ZardItem(ModItemTier.BLESSED_ADAMANTIUM, 4, -2.4F, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "zard"),
-				new HeliosItem(ModItemTier.BLESSED_ADAMANTIUM, 6, -3.0F, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "helios"),
-				new OmegaSpearItem(ModItemTier.BLESSED_ADAMANTIUM, 6, -3.0F, new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "omega_spear"),
-				new ScorpioItem(ModItemTier.BLESSED_ADAMANTIUM, 4, -2.4F, new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "scorpio"),
-				new MithrilWandItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "mithril_wand"),
-				new MagicodarItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "magicodar"),
-				new OldWoodenStaffItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "old_wooden_staff"),
-				new LamaStaffItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties().setTEISR(() -> BigBangISTER::new).maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "lama_staff"),
-				new RydenItem(ModItemTier.BLESSED_GOLD, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "ryden"),
-				new Vaulter2000Item(ModItemTier.BLESSED_GOLD, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "vaulter_2000"),
-				new JaegerItem(ModItemTier.BLESSED_GOLD, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "jaeger"),
-				new NishadaItem(ModItemTier.BLESSED_GOLD, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "nishada"),
-				new GarnierItem(ModItemTier.BLESSED_ORIHALCON, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "garnier"),
-				new KandayoItem(ModItemTier.BLESSED_ORIHALCON, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "kandayo"),
-				new SaiItem(ModItemTier.BLESSED_ORIHALCON, 3, -0.4F, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "sai"),
-				new GephardItem(ModItemTier.BLESSED_ORIHALCON, 3, -0.4F, new Item.Properties().maxStackSize(1).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "gephard"),
+				new ZardItem(ModItemTier.BLESSED_ADAMANTIUM, 4, -2.4F, new Item.Properties()
+						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "zard"),
+				new HeliosItem(ModItemTier.BLESSED_ADAMANTIUM, 6, -3.0F, new Item.Properties()
+						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "helios"),
+				new OmegaSpearItem(ModItemTier.BLESSED_ADAMANTIUM, 7, -3.0F, new Item.Properties().setTEISR(() -> BigBangISTER::new)
+						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "omega_spear"),
+				new ScorpioItem(ModItemTier.BLESSED_ADAMANTIUM, 5, -2.4F, new Item.Properties().setTEISR(() -> BigBangISTER::new)
+						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "scorpio"),
+				new MithrilWandItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties()
+						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "mithril_wand"),
+				new MagicodarItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties()
+						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "magicodar"),
+				new OldWoodenStaffItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties().setTEISR(() -> BigBangISTER::new)
+						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "old_wooden_staff"),
+				new LamaStaffItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties().setTEISR(() -> BigBangISTER::new)
+						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "lama_staff"),
+				new RydenItem(ModItemTier.BLESSED_GOLD, new Item.Properties()
+						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "ryden"),
+				new Vaulter2000Item(ModItemTier.BLESSED_GOLD, new Item.Properties()
+						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "vaulter_2000"),
+				new JaegerItem(ModItemTier.BLESSED_GOLD, new Item.Properties()
+						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "jaeger"),
+				new NishadaItem(ModItemTier.BLESSED_GOLD, new Item.Properties()
+						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "nishada"),
+				new GarnierItem(ModItemTier.BLESSED_ORIHALCON, new Item.Properties()
+						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "garnier"),
+				new KandayoItem(ModItemTier.BLESSED_ORIHALCON, new Item.Properties()
+						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "kandayo"),
+				new SaiItem(ModItemTier.BLESSED_ORIHALCON, 3, -0.4F, new Item.Properties()
+						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "sai"),
+				new GephardItem(ModItemTier.BLESSED_ORIHALCON, 3, -0.4F, new Item.Properties()
+						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "gephard"),
 
 				registerMiscItem("omega_spear_head", false),
 				registerMiscItem("scorpio_head", false),
@@ -361,81 +373,81 @@ public class ModItems {
 				registerMiscItem("steely_projectile", false),
 				registerMiscItem("ilbi_projectile", false),
 
-				new SubiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "subi"),
-				new TobiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "tobi"),
-				new SteelyItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "steely"),
-				new IlbiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MODID, "ilbi"),
+				new SubiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "subi"),
+				new TobiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "tobi"),
+				new SteelyItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "steely"),
+				new IlbiItem(new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "ilbi"),
 
 				new AppleArmorItem(ModArmorMaterial.APPLE, EquipmentSlotType.HEAD,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "apple_helmet"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "apple_helmet"),
 				new AppleArmorItem(ModArmorMaterial.APPLE, EquipmentSlotType.CHEST,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "apple_chestplate"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "apple_chestplate"),
 				new AppleArmorItem(ModArmorMaterial.APPLE, EquipmentSlotType.LEGS,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "apple_leggings"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "apple_leggings"),
 				new HwarangArmorItem(ModArmorMaterial.HWARANG, EquipmentSlotType.HEAD, 11546150,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "hwarang_helmet"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "hwarang_helmet"),
 				new HwarangArmorItem(ModArmorMaterial.HWARANG, EquipmentSlotType.CHEST, 11546150,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "hwarang_chestplate"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "hwarang_chestplate"),
 				new HwarangArmorItem(ModArmorMaterial.HWARANG, EquipmentSlotType.LEGS, 11546150,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "hwarang_leggings"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "hwarang_leggings"),
 				new HwarangArmorItem(ModArmorMaterial.HWARANG, EquipmentSlotType.FEET, 16383998,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "hwarang_boots"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "hwarang_boots"),
 				new LegolierArmorItem(ModArmorMaterial.LEGOLIER, EquipmentSlotType.HEAD, 3949738,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "legolier_helmet"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "legolier_helmet"),
 				new LegolierArmorItem(ModArmorMaterial.LEGOLIER, EquipmentSlotType.CHEST, 3949738,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "legolier_chestplate"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "legolier_chestplate"),
 				new LegolierArmorItem(ModArmorMaterial.LEGOLIER, EquipmentSlotType.LEGS, 3949738,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "legolier_leggings"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "legolier_leggings"),
 				new LegolierArmorItem(ModArmorMaterial.LEGOLIER, EquipmentSlotType.FEET, 3949738,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "legolier_boots"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "legolier_boots"),
 				new NightshiftArmorItem(ModArmorMaterial.NIGHTSHIFT, EquipmentSlotType.HEAD, 6192150,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "nightshift_helmet"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "nightshift_helmet"),
 				new NightshiftArmorItem(ModArmorMaterial.NIGHTSHIFT, EquipmentSlotType.CHEST, 6192150,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "nightshift_chestplate"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "nightshift_chestplate"),
 				new NightshiftArmorItem(ModArmorMaterial.NIGHTSHIFT, EquipmentSlotType.LEGS, 4673362,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "nightshift_leggings"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "nightshift_leggings"),
 				new NightshiftArmorItem(ModArmorMaterial.NIGHTSHIFT, EquipmentSlotType.FEET, 6192150,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "nightshift_boots"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "nightshift_boots"),
 				new StarlightArmorItem(ModArmorMaterial.STARLIGHT, EquipmentSlotType.HEAD, 4673362,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "starlight_helmet"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "starlight_helmet"),
 				new StarlightArmorItem(ModArmorMaterial.STARLIGHT, EquipmentSlotType.CHEST, 4673362,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "starlight_chestplate"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "starlight_chestplate"),
 				new StarlightArmorItem(ModArmorMaterial.STARLIGHT, EquipmentSlotType.LEGS, 4673362,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "starlight_leggings"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "starlight_leggings"),
 				new StarlightArmorItem(ModArmorMaterial.STARLIGHT, EquipmentSlotType.FEET, 4673362,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "starlight_boots"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "starlight_boots"),
 				new JangoonArmorItem(ModArmorMaterial.JANGOON, EquipmentSlotType.HEAD, 11546150,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "jangoon_helmet"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "jangoon_helmet"),
 				new JangoonArmorItem(ModArmorMaterial.JANGOON, EquipmentSlotType.CHEST, 11546150,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "jangoon_chestplate"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "jangoon_chestplate"),
 				new JangoonArmorItem(ModArmorMaterial.JANGOON, EquipmentSlotType.LEGS, 4673362,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "jangoon_leggings"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "jangoon_leggings"),
 				new JangoonArmorItem(ModArmorMaterial.JANGOON, EquipmentSlotType.FEET, 11546150,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "jangoon_boots"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "jangoon_boots"),
 				new PietteArmorItem(ModArmorMaterial.PIETTE, EquipmentSlotType.HEAD, 16351261,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "piette_helmet"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "piette_helmet"),
 				new PietteArmorItem(ModArmorMaterial.PIETTE, EquipmentSlotType.CHEST, 16351261,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "piette_chestplate"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "piette_chestplate"),
 				new PietteArmorItem(ModArmorMaterial.PIETTE, EquipmentSlotType.LEGS, 8606770,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "piette_leggings"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "piette_leggings"),
 				new PietteArmorItem(ModArmorMaterial.PIETTE, EquipmentSlotType.FEET, 16383998,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "piette_boots"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "piette_boots"),
 				new PilferArmorItem(ModArmorMaterial.PILFER, EquipmentSlotType.HEAD, 4673362,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "pilfer_helmet"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "pilfer_helmet"),
 				new PilferArmorItem(ModArmorMaterial.PILFER, EquipmentSlotType.CHEST, 8606770,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "pilfer_chestplate"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "pilfer_chestplate"),
 				new PilferArmorItem(ModArmorMaterial.PILFER, EquipmentSlotType.LEGS, 4673362,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "pilfer_leggings"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "pilfer_leggings"),
 				new PilferArmorItem(ModArmorMaterial.PILFER, EquipmentSlotType.FEET, 4673362,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "pilfer_boots"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "pilfer_boots"),
 				new GoldwindArmorItem(ModArmorMaterial.GOLDWIND, EquipmentSlotType.HEAD, 8991416,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "goldwind_helmet"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "goldwind_helmet"),
 				new GoldwindArmorItem(ModArmorMaterial.GOLDWIND, EquipmentSlotType.CHEST, 16383998,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "goldwind_chestplate"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "goldwind_chestplate"),
 				new GoldwindArmorItem(ModArmorMaterial.GOLDWIND, EquipmentSlotType.LEGS, 16383998,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "goldwind_leggings"),
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "goldwind_leggings"),
 				new GoldwindArmorItem(ModArmorMaterial.GOLDWIND, EquipmentSlotType.FEET, 8991416,
-						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MODID, "goldwind_boots")
+						new Item.Properties().group(ItemGroup.COMBAT).maxStackSize(1)).setRegistryName(TheBigBang.MOD_ID, "goldwind_boots")
 		);
 	}
 
@@ -445,29 +457,29 @@ public class ModItems {
 	
 	public static Item registerMiscItem(String name, boolean addToCreativeMenu) {
 		if(addToCreativeMenu) {
-			return new Item(new Item.Properties().group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, name);
+			return new Item(new Item.Properties().group(ItemGroup.MISC)).setRegistryName(TheBigBang.MOD_ID, name);
 		} else {
-			return new Item(new Item.Properties()).setRegistryName(TheBigBang.MODID, name);
+			return new Item(new Item.Properties()).setRegistryName(TheBigBang.MOD_ID, name);
 		}
 	}
 
 	public static Item registerDivineItem(String name, boolean isBlessed) {
 		if(isBlessed) {
-			return new BlessedItem(new Item.Properties().group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MODID, name);
+			return new BlessedItem(new Item.Properties().group(ItemGroup.MISC).rarity(Rarity.RARE)).setRegistryName(TheBigBang.MOD_ID, name);
 		} else {
-			return new DormantItem(new Item.Properties().group(ItemGroup.MISC)).setRegistryName(TheBigBang.MODID, name);
+			return new DormantItem(new Item.Properties().group(ItemGroup.MISC)).setRegistryName(TheBigBang.MOD_ID, name);
 		}
 	}
 	
 	public static Item registerFoodItem(String name, Food food) {
-		return new Item(new Item.Properties().group(ItemGroup.FOOD).food(food)).setRegistryName(TheBigBang.MODID, name);
+		return new Item(new Item.Properties().group(ItemGroup.FOOD).food(food)).setRegistryName(TheBigBang.MOD_ID, name);
 	}
 	
 	public static Item registerFoodItem(String name, Food food, boolean isLiquid) {
 		if(isLiquid) {
-			return new LiquidFoodItem(new Item.Properties().group(ItemGroup.FOOD).food(food)).setRegistryName(TheBigBang.MODID, name);
+			return new LiquidFoodItem(new Item.Properties().group(ItemGroup.FOOD).food(food)).setRegistryName(TheBigBang.MOD_ID, name);
 		} else {
-			return new Item(new Item.Properties().group(ItemGroup.FOOD).food(food)).setRegistryName(TheBigBang.MODID, name);
+			return new Item(new Item.Properties().group(ItemGroup.FOOD).food(food)).setRegistryName(TheBigBang.MOD_ID, name);
 		}
 	}
 }

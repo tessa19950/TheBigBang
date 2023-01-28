@@ -72,9 +72,10 @@ public class AbstractMushroomModel<T extends Entity> extends QuadrupedModel<T> {
 		super.setLivingAnimations(entityIn, limbSwing, limbSwingAmount, partialTick);		
 		
 		AbstractMushroomEntity mushroomIn = (AbstractMushroomEntity) entityIn;
-		if(mushroomIn.hasChild() && mushroomIn.isChildHurt()) {
-	        GlStateManager.translatef(0.0F, -1.6F, 0.0F);
-			GlStateManager.scalef(2F, 2F, 2F);
+		if(mushroomIn.isMushmom()) {
+			double growth = 1D;
+	        GlStateManager.translatef(0.0F, (float) growth * -1.6F, 0.0F);
+			GlStateManager.scalef((float) (1 + growth), (float) (1 + growth), (float) (1 + growth));
 		}
 		if(this.isChild) {
 	        GlStateManager.translatef(0.0F, 0.6F, 0.0F);

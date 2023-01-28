@@ -17,7 +17,7 @@ public class RedDrakeRenderer extends MobRenderer<RedDrakeEntity, AbstractDrakeM
 
 	@Override
 	protected ResourceLocation getEntityTexture(RedDrakeEntity entity) {
-		return new ResourceLocation(TheBigBang.MODID, "textures/entity/red_drake_entity.png");
+		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/red_drake_entity.png");
 	}
 	
 	public static class RenderFactory implements IRenderFactory<RedDrakeEntity> {

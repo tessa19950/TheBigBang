@@ -35,7 +35,6 @@ public class StarlightArmorItem extends BigBangArmorItem {
 
 	@Override
 	protected void removeArmorSetEffect(PlayerEntity player) {
-		TheBigBang.print("removing effect");
 		player.removePotionEffect(ModEffects.MAGICIAN_EFFECT.get());
 	}
 

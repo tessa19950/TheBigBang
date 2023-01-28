@@ -1,5 +1,6 @@
 package com.homebrewCult.TheBigBang.listeners;
 
+import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.effects.ArmorBonusEffect;
 import com.homebrewCult.TheBigBang.entities.ThrowingStarEntity;
 import com.homebrewCult.TheBigBang.init.ModEffects;
@@ -20,15 +21,17 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.function.Consumer;
 
-public class BigBangEffectsListener {
+public class EffectsListener {
 
     @SubscribeEvent
     public void onLivingDamage(LivingDamageEvent event) {
         if(!(event.getSource().getTrueSource() instanceof PlayerEntity))
             return;
         if(event.getSource().isMagicDamage()) {
-            tryApplyEffectBonus(event.getSource().getTrueSource(), ModEffects.MAGICIAN_EFFECT.get(), effect
-                    -> event.setAmount(event.getAmount() + 3.0F * (effect.getAmplifier() + 1)));
+            tryApplyEffectBonus(event.getSource().getTrueSource(), ModEffects.MAGICIAN_EFFECT.get(), effect -> {
+                float multiplier = 1.0f + (0.25f * (1 + effect.getAmplifier()));
+                event.setAmount(event.getAmount() * multiplier);
+            });
         }
     }
 
@@ -60,14 +63,15 @@ public class BigBangEffectsListener {
     private void tryApplyEffectBonus(Entity entity, Effect type, Consumer<EffectInstance> runnable) {
         if(entity instanceof PlayerEntity) {
             EffectInstance effect = ((LivingEntity)entity).getActivePotionEffect(type);
-            if (effect != null)
+            if (effect != null) {
+                TheBigBang.print("Applying " + type.getName() + " bonus.");
                 runnable.accept(effect);
+            }
         }
     }
 
     @SubscribeEvent
     public void onPotionExpire(PotionEvent.PotionExpiryEvent event) {
-
         if(event.getPotionEffect() != null && event.getPotionEffect().getPotion() instanceof ArmorBonusEffect)
             event.setCanceled(true);
     }

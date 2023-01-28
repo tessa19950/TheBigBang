@@ -2,6 +2,7 @@ package com.homebrewCult.TheBigBang.items.weapons;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
 
+import com.homebrewCult.TheBigBang.init.ModEffects;
 import com.homebrewCult.TheBigBang.init.ModParticleTypes;
 import com.homebrewCult.TheBigBang.init.ModSounds;
 import net.minecraft.entity.Entity;
@@ -19,7 +20,7 @@ import java.util.function.Predicate;
 
 public class ZardItem extends SwordItem implements IBigBangWeapon {
 
-	public static final String MONSTER_MAGNET_TIME_KEY = TheBigBang.MODID + "monster_magnet_time";
+	public static final String MONSTER_MAGNET_TIME_KEY = TheBigBang.getNamespacedKey("monster_magnet_time");
 	public int clientMonsterMagnetTime;
 
 	public ZardItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Item.Properties builder) {
@@ -28,13 +29,14 @@ public class ZardItem extends SwordItem implements IBigBangWeapon {
 
 	@Override
 	public void onUsingTick(ItemStack stack, LivingEntity entity, int timeLeft) {
-		if(entity instanceof PlayerEntity)
+		if(entity instanceof PlayerEntity && !entity.isSneaking())
 			onSpellCharging(stack, entity.world, (PlayerEntity) entity, timeLeft);
 		super.onUsingTick(stack, entity, timeLeft);
 	}
 
-	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
-		trySpellAttack(stack, worldIn, entityLiving, timeLeft);
+	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity user, int timeLeft) {
+		if(user instanceof PlayerEntity)
+			trySpellAttack(stack, worldIn, (PlayerEntity) user, timeLeft);
 	}
 
 	@Override
@@ -81,7 +83,7 @@ public class ZardItem extends SwordItem implements IBigBangWeapon {
 	public Predicate<ItemStack> getMagicAmmoPredicate() { return IBigBangWeapon.MAGIC_ROCKS; }
 
 	@Override
-	public int getChargeDuration() { return 20; }
+	public int getChargeDuration(PlayerEntity player) { return 20 - (5 * getEffectMultiplier(player, ModEffects.WARRIOR_EFFECT.get())); }
 
 	@Override
 	public IParticleData getChargingParticle() { return ModParticleTypes.SYMBOL_BLUE.get(); }

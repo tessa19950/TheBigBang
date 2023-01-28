@@ -17,7 +17,7 @@ public class IceGolemRenderer extends MobRenderer<IceGolemEntity, AbstractGolemM
 
 	@Override
 	protected ResourceLocation getEntityTexture(IceGolemEntity entity) {
-		return new ResourceLocation(TheBigBang.MODID, "textures/entity/ice_golem_entity.png");
+		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/ice_golem_entity.png");
 	}
 	
 	public static class RenderFactory implements IRenderFactory<IceGolemEntity> {

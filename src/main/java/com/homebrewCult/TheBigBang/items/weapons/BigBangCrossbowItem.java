@@ -1,16 +1,11 @@
 package com.homebrewCult.TheBigBang.items.weapons;
 
 import com.google.common.collect.Lists;
-import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.entities.BombArrowEntity;
-import com.homebrewCult.TheBigBang.entities.SnipingArrowEntity;
-import com.homebrewCult.TheBigBang.init.ModSounds;
 import net.minecraft.client.renderer.Quaternion;
 import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.ICrossbowUser;
-import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -46,6 +41,11 @@ abstract class BigBangCrossbowItem extends CrossbowItem implements IBigBangWeapo
     }
 
     @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return slotChanged;
+    }
+
+    @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
         if (isCharged(itemstack)) {
@@ -66,7 +66,6 @@ abstract class BigBangCrossbowItem extends CrossbowItem implements IBigBangWeapo
         List<ItemStack> list = getChargedProjectiles(stack);
         float[] afloat = getRandomPitches(shooter.getRNG());
         ItemStack magicAmmo = findMagicAmmo(shooter, this);
-        TheBigBang.print("Magic Ammo = " + magicAmmo);
         boolean hasMagicAmmo = (magicAmmo != null && !magicAmmo.isEmpty());
         for(int i = 0; i < list.size(); ++i) {
             ItemStack itemstack = list.get(i);
@@ -121,7 +120,6 @@ abstract class BigBangCrossbowItem extends CrossbowItem implements IBigBangWeapo
     }
 
     private AbstractArrowEntity createArrow(World worldIn, LivingEntity shooter, ItemStack crossbow, ItemStack ammo, boolean hasMagicAmmo) {
-        TheBigBang.print("HasMagicAmmo is " + hasMagicAmmo);
         AbstractArrowEntity arrow = hasMagicAmmo ? getUniqueArrow(worldIn, shooter) : ((ArrowItem)ammo.getItem()).createArrow(worldIn, crossbow, shooter);
         if (shooter instanceof PlayerEntity)
             arrow.setIsCritical(true);
@@ -165,7 +163,7 @@ abstract class BigBangCrossbowItem extends CrossbowItem implements IBigBangWeapo
 
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-        return this.tier.getRepairMaterial().test(repair) || super.getIsRepairable(toRepair, repair);
+        return true;
     }
 
     @Override
@@ -182,7 +180,7 @@ abstract class BigBangCrossbowItem extends CrossbowItem implements IBigBangWeapo
     public void onSpellAttack(ItemStack stack, World worldIn, PlayerEntity player) { }
 
     @Override
-    public int getChargeDuration() { return 0; }
+    public int getChargeDuration(PlayerEntity player) { return 0; }
 
     @Override
     public IParticleData getChargingParticle() { return null; }

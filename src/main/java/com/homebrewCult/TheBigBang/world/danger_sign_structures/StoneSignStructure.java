@@ -38,6 +38,6 @@ public class StoneSignStructure extends AbstractDangerSignStructure{
 
     @Override
     public String getStructureName() {
-        return TheBigBang.MODID + ":danger_sign_stone";
+        return TheBigBang.getNamespacedKey("danger_sign_stone");
     }
 }

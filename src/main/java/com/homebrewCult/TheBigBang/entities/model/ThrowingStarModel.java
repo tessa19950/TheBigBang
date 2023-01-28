@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class ThrowingStarModel extends Model {
 	
-	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/item/steely_projectile.png");
+	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/item/steely_projectile.png");
 	private final RendererModel modelRenderer;
 
 	public ThrowingStarModel() {

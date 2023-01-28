@@ -1,16 +1,13 @@
 package com.homebrewCult.TheBigBang.entities.mob;
 
 import com.homebrewCult.TheBigBang.init.ModEntities;
-import com.homebrewCult.TheBigBang.init.ModItems;
 import com.homebrewCult.TheBigBang.init.ModSounds;
 import com.homebrewCult.TheBigBang.util.IQuestEntity;
 import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.AbstractSkeletonEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Food;
 import net.minecraft.item.ItemStack;
@@ -20,7 +17,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
@@ -80,10 +76,8 @@ public class AbstractYetiEntity extends TameableEntity implements IQuestEntity {
 			worldIn.addEntity(pepe);
 			pepe.startRiding(this);
 		}
-
 		if(reason.equals(SpawnReason.SPAWNER) && world.isRemote)
-			spawnPoofParticles(this, world, rand);
-
+			spawnPoofParticles(this, rand);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
@@ -151,36 +145,30 @@ public class AbstractYetiEntity extends TameableEntity implements IQuestEntity {
 	}
 
 	public void setSaddled(boolean saddled) {
-		if (saddled) {
-			this.dataManager.set(SADDLED, true);
-		} else {
-			this.dataManager.set(SADDLED, false);
-		}
+		this.dataManager.set(SADDLED, saddled);
 	}
 
 	public void travel(Vec3d direction) {
 		if (this.isAlive()) {
 			if (this.isBeingRidden() && this.canBeSteered() && this.getSaddled()) {
-				LivingEntity livingentity = (LivingEntity)this.getControllingPassenger();
+				LivingEntity entity = (LivingEntity)this.getControllingPassenger();
 				this.stepHeight = 1.0F;
-				this.rotationYaw = livingentity.rotationYaw;
+				this.rotationYaw = entity.rotationYaw;
 				this.prevRotationYaw = this.rotationYaw;
-				this.rotationPitch = livingentity.rotationPitch * 0.5F;
+				this.rotationPitch = entity.rotationPitch * 0.5F;
 				this.setRotation(this.rotationYaw, this.rotationPitch);
 				this.renderYawOffset = this.rotationYaw;
 				this.rotationYawHead = this.renderYawOffset;
-				float f = livingentity.moveStrafing * 0.5F;
-				float f1 = livingentity.moveForward;
-				if (f1 <= 0.0F) {
+				float f = entity.moveStrafing * 0.5F;
+				float f1 = entity.moveForward;
+				if (f1 <= 0.0F)
 					f1 *= 0.25F;
-				}
 
 				if (this.canPassengerSteer()) {
 					this.setAIMoveSpeed((float)this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getValue());
-					super.travel(new Vec3d((double)f, direction.y, (double)f1));
-				} else if (livingentity instanceof PlayerEntity) {
+					super.travel(new Vec3d(f, direction.y, f1));
+				} else if (entity instanceof PlayerEntity)
 					this.setMotion(Vec3d.ZERO);
-				}
 
 				this.prevLimbSwingAmount = this.limbSwingAmount;
 				double d2 = this.posX - this.prevPosX;
@@ -241,18 +229,27 @@ public class AbstractYetiEntity extends TameableEntity implements IQuestEntity {
 		return super.attackEntityFrom(source, amount);
 	}
 	
-	public boolean isBreedingItem(ItemStack stack) 
-	{
-		if(!this.isAngry) {
-			return TEMPTATION_ITEMS.test(stack);
-		} else {
+	public boolean isBreedingItem(ItemStack stack) {
+		if(!this.isAngry) return TEMPTATION_ITEMS.test(stack);
+		else return false;
+	}
+
+	@Override
+	public boolean canMateWith(AnimalEntity otherAnimal) {
+		if (otherAnimal == this) {
 			return false;
+		} else if (!(otherAnimal instanceof AbstractYetiEntity)) {
+			return false;
+		} else {
+			return this.isInLove() && otherAnimal.isInLove();
 		}
 	}
 
 	@Override
-	public AgeableEntity createChild(AgeableEntity ageable) {
-		return null;
+	public AbstractJrYetiEntity createChild(AgeableEntity ageable) {
+		EntityType<? extends AbstractJrYetiEntity> type = rand.nextBoolean() ?
+				ModEntities.DARK_JRYETI_ENTITY : ModEntities.JRYETI_ENTITY;
+		return type.create(this.world);
 	}
 	
 	@Override

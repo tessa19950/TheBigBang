@@ -1,17 +1,23 @@
 package com.homebrewCult.TheBigBang.items.weapons;
 
+import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.init.ModItems;
 import com.homebrewCult.TheBigBang.init.ModParticleTypes;
 import net.minecraft.client.Minecraft;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.IParticleData;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -26,18 +32,17 @@ public interface IBigBangWeapon {
 
     Predicate<ItemStack> SUMMONING_ROCKS = (stack) -> stack.getItem().equals(ModItems.BLESSED_SUMMONING_ROCK);
 
-    default ActionResult<ItemStack> trySpellAttack(ItemStack weaponStack, World worldIn, LivingEntity player, int timeLeft) {
-        PlayerEntity playerEntity = player instanceof PlayerEntity ? (PlayerEntity) player : null;
-        boolean isCharged = weaponStack.getUseDuration() - timeLeft > getChargeDuration();
-        if(playerEntity != null && isCharged) {
-            ItemStack ammoStack = findMagicAmmo(playerEntity, this);
-            ActionResultType result = playerEntity.isCreative() || !ammoStack.isEmpty() ? ActionResultType.SUCCESS : ActionResultType.FAIL;
+    default ActionResult<ItemStack> trySpellAttack(ItemStack weaponStack, World worldIn, PlayerEntity player, int timeLeft) {
+        boolean isCharged = weaponStack.getUseDuration() - timeLeft > getChargeDuration(player);
+        if(player != null && isCharged) {
+            ItemStack ammoStack = findMagicAmmo(player, this);
+            ActionResultType result = player.isCreative() || !ammoStack.isEmpty() ? ActionResultType.SUCCESS : ActionResultType.FAIL;
             if(result.equals(ActionResultType.SUCCESS)) {
-                onSpellAttack(weaponStack, worldIn, playerEntity);
-                weaponStack.damageItem(1, playerEntity, (p_220009_1_) -> {
-                    p_220009_1_.sendBreakAnimation(playerEntity.getActiveHand());
+                onSpellAttack(weaponStack, worldIn, player);
+                weaponStack.damageItem(1, player, (p_220009_1_) -> {
+                    p_220009_1_.sendBreakAnimation(player.getActiveHand());
                 });
-                consumeMagicAmmo(playerEntity, ammoStack);
+                consumeMagicAmmo(player, ammoStack);
             }
             return  ActionResult.newResult(result, weaponStack);
         } else {
@@ -47,24 +52,29 @@ public interface IBigBangWeapon {
 
     default void onSpellCharging(ItemStack weaponStack, World worldIn, PlayerEntity player, int timeLeft) {
         int chargeTime = weaponStack.getUseDuration() - timeLeft;
+        int chargeDuration = getChargeDuration(player);
         boolean hasAmmo = hasMagicAmmo(player, this);
-        if(chargeTime == getChargeDuration()) {
-            float pitch = 1.1F + worldIn.rand.nextFloat() * 0.2F;
-            SoundEvent sound = hasAmmo ? getChargedSound() : SoundEvents.BLOCK_BEACON_DEACTIVATE;
-            worldIn.playSound(player, player.getPosition(), sound, SoundCategory.PLAYERS, 0.5F, pitch);
+        if(chargeTime == chargeDuration) {
             if(!hasAmmo)
-                spawnMissingMagicAmmoParticle(player, worldIn);
-            else if(getChargedParticle() != null)
-                spawnChargedParticle(player, worldIn);
+                playMissingAmmoEffect(player, worldIn);
+            else {
+                float pitch = 1.1F + worldIn.rand.nextFloat() * 0.2F;
+                worldIn.playSound(player, player.getPosition(), getChargedSound(), SoundCategory.PLAYERS, 0.5F, pitch);
+                if(getChargedParticle() != null && chargeDuration > 10)
+                    spawnChargedParticle(player, worldIn);
+            }
             return;
         }
-        if(chargeTime > getChargeDuration() && !hasAmmo)
+        if(chargeTime > chargeDuration && !hasAmmo)
             return;
         if (this.getChargingParticle() != null)
             spawnChargingParticle(chargeTime, player, worldIn);
     }
 
-    default void spawnMissingMagicAmmoParticle(LivingEntity player, World worldIn) {
+    default void playMissingAmmoEffect(PlayerEntity player, World worldIn) {
+        float pitch = 1.1F + worldIn.rand.nextFloat() * 0.2F;
+        worldIn.playSound(player, player.getPosition(), SoundEvents.BLOCK_BEACON_DEACTIVATE, SoundCategory.PLAYERS, 0.5F, pitch);
+
         IParticleData particle = getMagicAmmoPredicate().equals(MAGIC_ROCKS) ? ModParticleTypes.MAGIC_ROCK.get() : ModParticleTypes.SUMMONING_ROCK.get();
         Vec3d motion = player.getMotion().mul(1.5D,1.5D,1.5D);
         if(Minecraft.getInstance().gameSettings.thirdPersonView == 0) {
@@ -168,11 +178,11 @@ public interface IBigBangWeapon {
 
     Predicate<ItemStack> getMagicAmmoPredicate();
 
-    int getChargeDuration();
+    int getChargeDuration(PlayerEntity player);
 
-    IParticleData getChargingParticle();
+    @Nullable IParticleData getChargingParticle();
 
-    IParticleData getChargedParticle();
+    @Nullable IParticleData getChargedParticle();
 
     SoundEvent getChargedSound();
 
@@ -211,9 +221,8 @@ public interface IBigBangWeapon {
         List<Entity> validTargets = new ArrayList<>();
         int validatedCount = 0;
         for (Entity t : targets) {
-            if (validatedCount > maxTargetCount) {
+            if (validatedCount > maxTargetCount)
                 break;
-            }
             double tDis = player.getPositionVec().distanceTo(t.getPositionVec());
             Vec3d tDir = t.getPositionVec().subtract(player.getPositionVec()).normalize();
             double tAngle = Math.acos(player.getLookVec().dotProduct(tDir)) / Math.PI * 180;
@@ -224,5 +233,45 @@ public interface IBigBangWeapon {
             }
         }
         return validTargets;
+    }
+
+    default int getEffectMultiplier(LivingEntity entity, Effect effectType) {
+        EffectInstance effect = entity.getActivePotionEffect(effectType);
+        return effect == null ? 0 : (1 + effect.getAmplifier());
+    }
+
+    default boolean magicAttackEntityAsMob(LivingEntity attacker, LivingEntity target, int damageIn) {
+        if(attacker == null || target == null)
+            return false;
+        float damage = (float)damageIn;
+        float knockback = 0;
+        damage += EnchantmentHelper.getModifierForCreature(attacker.getHeldItemMainhand(), attacker.getCreatureAttribute());
+        knockback += (float)EnchantmentHelper.getKnockbackModifier(attacker);
+        int i = EnchantmentHelper.getFireAspectModifier(attacker);
+        if (i > 0)
+            target.setFire(i * 4);
+        if(!target.attackEntityFrom(DamageSource.causeMobDamage(attacker).setMagicDamage(), damage))
+            return false;
+        if (knockback > 0.0F) {
+            target.knockBack(attacker, knockback * 0.5F,
+                    MathHelper.sin(attacker.rotationYaw * ((float)Math.PI / 180F)),
+                    -MathHelper.cos(attacker.rotationYaw * ((float)Math.PI / 180F)));
+            attacker.setMotion(attacker.getMotion().mul(0.6D, 1.0D, 0.6D));
+        }
+        if (target instanceof PlayerEntity) {
+            PlayerEntity playerentity = (PlayerEntity)target;
+            ItemStack itemstack = attacker.getHeldItemMainhand();
+            ItemStack itemstack1 = playerentity.isHandActive() ? playerentity.getActiveItemStack() : ItemStack.EMPTY;
+            if (!itemstack.isEmpty() && !itemstack1.isEmpty() && itemstack.canDisableShield(itemstack1, playerentity, attacker) && itemstack1.isShield(playerentity)) {
+                float f2 = 0.25F + (float)EnchantmentHelper.getEfficiencyModifier(attacker) * 0.05F;
+                if (target.world.rand.nextFloat() < f2) {
+                    playerentity.getCooldownTracker().setCooldown(itemstack.getItem(), 100);
+                    attacker.world.setEntityState(playerentity, (byte)30);
+                }
+            }
+        }
+        EnchantmentHelper.applyThornEnchantments(target, attacker);
+        EnchantmentHelper.applyArthropodEnchantments(attacker, target);
+        return true;
     }
 }

@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
 public class ManaRockRenderer extends EntityRenderer<ManaRockEntity> {
 
     public static final ManaRockModel MODEL = new ManaRockModel();
-    public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/entity/mana_rock.png");
+    public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/mana_rock.png");
 
     public ManaRockRenderer(EntityRendererManager manager) {
         super(manager);

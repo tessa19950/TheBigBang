@@ -13,7 +13,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
 public class YetiSaddleLayer<T extends Entity, M extends EntityModel<T>> extends LayerRenderer {
-    public static final ResourceLocation YETI_SADDLE_TEXTURE = new ResourceLocation(TheBigBang.MODID, "textures/entity/yeti_saddle.png");
+    public static final ResourceLocation YETI_SADDLE_TEXTURE = new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/yeti_saddle.png");
     private final AbstractYetiModel<AbstractYetiEntity> yetiModel = new AbstractYetiModel<>();
 
     public YetiSaddleLayer(IEntityRenderer<?, ?> entityRendererIn) {

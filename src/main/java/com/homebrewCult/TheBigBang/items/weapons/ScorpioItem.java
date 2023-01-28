@@ -1,15 +1,16 @@
 package com.homebrewCult.TheBigBang.items.weapons;
 
+import com.google.common.collect.ImmutableList;
 import com.homebrewCult.TheBigBang.TheBigBang;
 
 import com.homebrewCult.TheBigBang.entities.DragonCrusherStabEntity;
+import com.homebrewCult.TheBigBang.init.ModEffects;
 import com.homebrewCult.TheBigBang.init.ModParticleTypes;
 import com.homebrewCult.TheBigBang.init.ModSounds;
 import net.minecraft.client.renderer.Vector3f;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityPredicate;
-import net.minecraft.entity.IProjectile;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
@@ -17,12 +18,15 @@ import net.minecraft.particles.IParticleData;
 import net.minecraft.util.*;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.event.entity.player.CriticalHitEvent;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 public class ScorpioItem extends AxeItem implements IBigBangWeapon {
 
-	public static final String DRAGON_CRUSHER_TIME_KEY = TheBigBang.MODID + "dragon_crusher_time";
+	public static final String DRAGON_CRUSHER_TIME_KEY = TheBigBang.getNamespacedKey("dragon_crusher_time");
 	public int clientDragonCrusherTime;
 
 	public ScorpioItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Item.Properties builder) {
@@ -31,13 +35,14 @@ public class ScorpioItem extends AxeItem implements IBigBangWeapon {
 
 	@Override
 	public void onUsingTick(ItemStack stack, LivingEntity entity, int timeLeft) {
-		if(entity instanceof PlayerEntity)
+		if(entity instanceof PlayerEntity && !entity.isSneaking())
 			onSpellCharging(stack, entity.world, (PlayerEntity) entity, timeLeft);
 		super.onUsingTick(stack, entity, timeLeft);
 	}
 
-	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
-		trySpellAttack(stack, worldIn, entityLiving, timeLeft);
+	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity user, int timeLeft) {
+		if(user instanceof PlayerEntity)
+			trySpellAttack(stack, worldIn, (PlayerEntity) user, timeLeft);
 	}
 
 	@Override
@@ -84,9 +89,11 @@ public class ScorpioItem extends AxeItem implements IBigBangWeapon {
 		CompoundNBT nbt = stack.getOrCreateTag();
 		if(nbt.contains(DRAGON_CRUSHER_TIME_KEY)) {
 			int timer = user.ticksExisted -	nbt.getInt(DRAGON_CRUSHER_TIME_KEY);
-			if(timer <= 41 && timer % 10 == 1 && user instanceof PlayerEntity) {
-				startStabAttack(worldIn, (PlayerEntity) user, timer >= 41);
-			}
+			if(!(user instanceof PlayerEntity))
+				return;
+			int delay = 14 - (2 * getEffectMultiplier((PlayerEntity) user, ModEffects.WARRIOR_EFFECT.get()));
+			if(timer <= 41 && (timer % delay) == 1)
+				startStabAttack(worldIn, (PlayerEntity)user, timer == 41);
 		}
 	}
 
@@ -95,19 +102,36 @@ public class ScorpioItem extends AxeItem implements IBigBangWeapon {
 		if(!worldIn.isRemote) {
 			Vec3d pos = player.getPositionVec();
 			LivingEntity target = worldIn.getClosestEntityWithinAABB(LivingEntity.class, EntityPredicate.DEFAULT, player, pos.x, pos.y, pos.z, player.getBoundingBox().grow(4));
-			IProjectile stab = new DragonCrusherStabEntity(worldIn, player);
+			DragonCrusherStabEntity stab = new DragonCrusherStabEntity(worldIn, player);
 			Vec3d lookVec3d = player.getLook(1.0F);
 			if (target != null) {
 				lookVec3d = target.getPositionVec().subtract(player.getPositionVec()).normalize();
-				player.attackTargetEntityWithCurrentItem(target);
+				this.stabEntity(player, target);
 			} else if (!lastStab) {
 				float x = worldIn.rand.nextFloat() - 0.5F;
 				float y = worldIn.rand.nextFloat() - 0.5F;
 				lookVec3d = lookVec3d.rotatePitch(x * 0.3F).rotateYaw(y * 0.3F);
 			}
 			Vector3f lookVec3f = new Vector3f(lookVec3d);
-			stab.shoot((double) lookVec3f.getX(), (double) lookVec3f.getY(), (double) lookVec3f.getZ(), 0.1F, 0F);
-			worldIn.addEntity((DragonCrusherStabEntity) stab);
+			stab.shoot(lookVec3f.getX(), lookVec3f.getY(), lookVec3f.getZ(), 0.1F, 0F);
+			worldIn.addEntity(stab);
+		}
+	}
+
+	public void stabEntity(PlayerEntity player, LivingEntity target) {
+		float dmg = (float)player.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue() + random.nextInt(3);
+		boolean crit = player.fallDistance > 0.0F && !player.onGround && !player.isOnLadder() && !player.isInWater() && !player.isPassenger();
+		CriticalHitEvent hitResult = ForgeHooks.getCriticalHit(player, target, crit, crit ? 1.5F : 1.0F);
+		dmg *= hitResult != null ? hitResult.getDamageModifier() : 1;
+
+		boolean success = target.attackEntityFrom(DamageSource.causePlayerDamage(player), dmg);
+		if (success) {
+			if (crit) {
+				player.world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_CRIT,
+						player.getSoundCategory(), 1.0F, 1.0F);
+				player.onCriticalHit(target);
+			}
+			player.setLastAttackedEntity(target);
 		}
 	}
 
@@ -121,7 +145,7 @@ public class ScorpioItem extends AxeItem implements IBigBangWeapon {
 	public Predicate<ItemStack> getMagicAmmoPredicate() { return IBigBangWeapon.SUMMONING_ROCKS; }
 
 	@Override
-	public int getChargeDuration() { return 60; }
+	public int getChargeDuration(PlayerEntity player) { return 60 - (15 * getEffectMultiplier(player, ModEffects.WARRIOR_EFFECT.get())); }
 
 	@Override
 	public IParticleData getChargingParticle() { return ModParticleTypes.SYMBOL_BLUE.get(); }
@@ -131,4 +155,16 @@ public class ScorpioItem extends AxeItem implements IBigBangWeapon {
 
 	@Override
 	public SoundEvent getChargedSound() { return SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL; }
+
+	private static final List<Enchantment> VALID_ENCHANTMENTS = ImmutableList.of(
+			Enchantments.FIRE_ASPECT, Enchantments.LOOTING, Enchantments.SHARPNESS,
+			Enchantments.SMITE, Enchantments.BANE_OF_ARTHROPODS, Enchantments.KNOCKBACK
+	);
+
+	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+		if(VALID_ENCHANTMENTS.contains(enchantment))
+			return true;
+		return super.canApplyAtEnchantingTable(stack, enchantment);
+	}
 }

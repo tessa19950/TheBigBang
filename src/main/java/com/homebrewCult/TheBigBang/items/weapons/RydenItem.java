@@ -8,7 +8,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.ArrowItem;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,8 +16,8 @@ import net.minecraft.world.World;
 
 public class RydenItem extends BigBangBowItem {
 
-	private static final String RYDEN_TIMER_KEY = TheBigBang.MODID + "ryden_timer";
-	private static final String RYDEN_VELOCITY_KEY = TheBigBang.MODID + "ryden_velocity";
+	private static final String RYDEN_TIMER_KEY = TheBigBang.getNamespacedKey("ryden_timer");
+	private static final String RYDEN_VELOCITY_KEY = TheBigBang.getNamespacedKey("ryden_velocity");
 	
 	public RydenItem(IItemTier tierIn, Item.Properties builder) {
 		super(tierIn, builder);
@@ -43,7 +42,7 @@ public class RydenItem extends BigBangBowItem {
 			if (i < 0) return;
 			
 			if (!itemstack.isEmpty() || flag) {
-				shootArrow(bowStack, worldIn, entityLiving, i, true);
+				shootArrow(bowStack, worldIn, entityLiving, i, false);
 				if(tryConsumeMagicAmmo(player)) {
 					CompoundNBT nbt = bowStack.getOrCreateTag();
 					nbt.putInt(RYDEN_TIMER_KEY, 10);
@@ -61,7 +60,7 @@ public class RydenItem extends BigBangBowItem {
 			int timer = nbt.getInt(RYDEN_TIMER_KEY);
 			if(timer > 0) {
 				if(timer == 1)
-					shootArrow(stack, worldIn, (PlayerEntity)entityIn, nbt.getInt(RYDEN_VELOCITY_KEY), false);
+					shootArrow(stack, worldIn, (PlayerEntity)entityIn, nbt.getInt(RYDEN_VELOCITY_KEY), true);
 				nbt.putInt(RYDEN_TIMER_KEY, timer - 1);
 				stack.setTag(nbt);
 			}

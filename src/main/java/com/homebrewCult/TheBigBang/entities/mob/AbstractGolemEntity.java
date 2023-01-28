@@ -58,12 +58,14 @@ public class AbstractGolemEntity extends AnimalEntity implements IQuestEntity {
 	
 	@Override
 	protected void registerAttributes() {
-	      super.registerAttributes();
-	      this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50D);
-	      this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
-	      this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2F);
-	      this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-	      this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8.0D);
+		super.registerAttributes();
+		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50D);
+		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
+		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2F);
+		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
+		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8.0D);
+		this.getAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.5D);
+		this.getAttribute(SharedMonsterAttributes.ATTACK_KNOCKBACK).setBaseValue(1.5D);
 	}
 
 	@Override
@@ -78,7 +80,7 @@ public class AbstractGolemEntity extends AnimalEntity implements IQuestEntity {
 	@Override
 	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		if(reason.equals(SpawnReason.SPAWNER) && world.isRemote)
-			spawnPoofParticles(this, world, rand);
+			spawnPoofParticles(this, rand);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	

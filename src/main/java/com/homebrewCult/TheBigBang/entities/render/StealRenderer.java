@@ -14,7 +14,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 public class StealRenderer extends EntityRenderer<StealEntity> {
 
     public static final StealModel MODEL = new StealModel();
-    public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/entity/steal_entity.png");
+    public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/steal_entity.png");
 
     public StealRenderer(EntityRendererManager manager) {
         super(manager);

@@ -1,10 +1,6 @@
 package com.homebrewCult.TheBigBang.blocks;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -29,12 +25,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class DangerSignTile extends TileEntity implements ITickableTileEntity, INamedContainerProvider
-{
-	private static final Double ACTIVATION_RADIUS = 24.0D;
-	private static final int MAX_SPAWN_COUNT = 8;
-	private static final int MAX_SPAWN_RANGE = 8;
-	private static final int SPAWN_DELAY = 40;
+public class DangerSignTile extends TileEntity implements ITickableTileEntity, INamedContainerProvider {
+
+	// AS YOU COMPLETE QUESTS, THE "SPAWN DIFFICULTY" GOES FROM 0 TO 1 TO 2.
+	// THIS IS WHY ALL THESE VALUES HAVE 3 "STAGES"
+	private static final double[] ACTIVATION_RADIUS = { 16.0D, 20.0D, 24.0D };
+	private static final int[] SPAWN_CAP = { 3, 6, 12 };
+	private static final int[] MAX_SPAWN_RANGE = { 6, 8, 12 };
+	private static final int[] SPAWN_DELAY = { 160, 80, 40 };
 	
 	public DangerSignContainer container;
 	private boolean isBasePart = false;
@@ -83,7 +81,8 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 
 	public void spawnerTick() {
 		//Check if we're on the server and a player is in range.
-		PlayerEntity p = world.getClosestPlayer(this.pos.getX(), this.pos.getY(), this.pos.getZ(), ACTIVATION_RADIUS, false);
+		PlayerEntity p = world.getClosestPlayer(this.pos.getX(), this.pos.getY(), this.pos.getZ(),
+				ACTIVATION_RADIUS[getSpawnDifficulty()], false);
 		if(world.isRemote || p == null)
 			return;
 
@@ -95,76 +94,64 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 		}
 		
 		//If I haven't spawned the max amount of entities yet, add new ones.
-		if(entityList.size() < MAX_SPAWN_COUNT) {
+		if(entityList.size() < SPAWN_CAP[getSpawnDifficulty()]) {
 			this.spawnDelayTimer--;
 			if(spawnDelayTimer <= 0) {
-				spawnQuestEntity();
-				this.spawnDelayTimer = SPAWN_DELAY;
+				trySpawnQuestEntity();
+				this.spawnDelayTimer = SPAWN_DELAY[getSpawnDifficulty()];
 			}
 		}
 		this.removeKilledEntities();
 	}
-	
-	public void spawnQuestEntity() {
-		boolean validSpawn = false;
-		BlockPos spawnPos = new BlockPos(0,0,0);
-		
-		//Try 8 times to find a valid spawn position.
-		for(int i = 0; i < 8; i++) {
-			int spawnX = pos.getX() + MathUtility.intInRange(rand, -MAX_SPAWN_RANGE, MAX_SPAWN_RANGE);
-			int spawnY = pos.getY() + MathUtility.intInRange(rand, 0, 4);
-			int spawnZ = pos.getZ() + MathUtility.intInRange(rand, -MAX_SPAWN_RANGE, MAX_SPAWN_RANGE);
-			spawnPos = new BlockPos(spawnX, spawnY, spawnZ);
-			
-			//Try 8 times to find an air block, followed by a non air block.
-			boolean foundAir = false;
-			for(int j = 0; j < 8; j++) {
-				if(world.getBlockState(spawnPos.down(j)).getBlock() == Blocks.AIR) {
-					foundAir = true;
-				} else if(foundAir) {
-					validSpawn = true;
-					spawnPos = spawnPos.down(j - 1);
-					break;
-				} else {
-					break;
-				}
-			}
-			
-			//Break if we've found a valid location
-			if(validSpawn) {
-				break;
-			}
-		}
-		
-		if(validSpawn) {
-			IQuestEntity questEntity = (IQuestEntity) questline.getRandomEntityType().spawn(world, null, null, spawnPos, SpawnReason.SPAWNER, true, true);
+
+	public void trySpawnQuestEntity() {
+		int range = MAX_SPAWN_RANGE[getSpawnDifficulty()];
+		double x = pos.getX() + MathUtility.intInRange(rand, -range, range) + 0.5D;
+		double y = pos.getY() + MathUtility.intInRange(rand, 0, 4);
+		double z = pos.getZ() + MathUtility.intInRange(rand, -range, range) + 0.5D;
+
+		EntityType<?> type = questline.getRandomEntityType();
+		boolean flag = EntitySpawnPlacementRegistry.func_223515_a(type,
+				world.getWorld(), SpawnReason.SPAWNER, new BlockPos(x, y, z), world.getRandom());
+		if (world.areCollisionShapesEmpty(type.func_220328_a(x, y, z)) && flag) {
+			Entity entity = type.spawn(world, null, null,
+					new BlockPos(x, y, z), SpawnReason.SPAWNER, true, true);
+			if(!(entity instanceof IQuestEntity))
+				return;
+			entity.setLocationAndAngles(x, y, z, rand.nextFloat() * 360, 0);
+			if (entity instanceof MobEntity)
+				((MobEntity)entity).spawnExplosionParticle();
 			Quests[] availableQuests = this.getAvailableQuests();
 			for(int i = 0; i < 3 && i < this.getAvailableQuestCount(); i++) {
 				if(availableQuests[i].hasQuestItem())
-					questEntity.getQuestEntityHandler().addQuestItem(availableQuests[i].getRequiredQuestItem());
+					((IQuestEntity)entity).getQuestEntityHandler().addQuestItem(availableQuests[i].getRequiredQuestItem());
 			}
-			Entity newEntity = (Entity) questEntity;
-			entityList.add(newEntity);
+			entityList.add(entity);
 		}
 	}
 	
 	private List<Entity> getQuestEntitiesInRange() {
 		List<Entity> entities = new ArrayList<Entity>();
-		for(EntityType<?> e : questline.getEntityTypes()) {
-			BlockPos AABBStart = this.pos.up(MAX_SPAWN_RANGE*2).north(MAX_SPAWN_RANGE*2).east(MAX_SPAWN_RANGE*2);
-			BlockPos AABBEnd = this.pos.down(MAX_SPAWN_RANGE*2).south(MAX_SPAWN_RANGE*2).west(MAX_SPAWN_RANGE*2);
-			entities.addAll(
-			this.world.getEntitiesWithinAABB(MobEntity.class, new AxisAlignedBB(AABBStart, AABBEnd), (entity) -> {return entity.getType() == e;})
-			);
+		for(EntityType<?> type : questline.getEntityTypes()) {
+			int range = MAX_SPAWN_RANGE[getSpawnDifficulty()] * 2;
+			BlockPos AABBStart = this.pos.up(range).north(range).east(range);
+			BlockPos AABBEnd = this.pos.down(range).south(range).west(range);
+			entities.addAll(this.world.getEntitiesWithinAABB(MobEntity.class,
+					new AxisAlignedBB(AABBStart, AABBEnd), e -> e.getType() == type));
 		}
 		return entities;
+	}
+
+	private int getSpawnDifficulty() {
+		if(completedQuests.length > 2) return 2;
+		if(completedQuests.length > 0) return 1;
+		return 0;
 	}
 	
 	public void removeKilledEntities() {
 		for(int i = 0; i < entityList.size(); i++) {
-			if(!entityList.get(i).isAlive()) {
+			if(!entityList.get(i).isAlive())
 				onEntityKilled(i);
-			}
 		}
 	}
 	
@@ -210,19 +197,16 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 	
 	public void setQuestCompleted(int questIndex) {
 		int[] newCompletedQuests = new int[completedQuests.length + 1];
-		for(int i = 0; i < completedQuests.length; i++) {
+		for(int i = 0; i < completedQuests.length; i++)
 			newCompletedQuests[i] = completedQuests[i];
-		}
 		newCompletedQuests[completedQuests.length] = questIndex;
 		completedQuests = newCompletedQuests;
-		
 	}
 	
 	private boolean isQuestCompleted(int questIndex) {
 		for (int q : completedQuests) {
-			if(q == questIndex) {
+			if(q == questIndex)
 				return true;
-			}
 		}
 		return false;
 	}

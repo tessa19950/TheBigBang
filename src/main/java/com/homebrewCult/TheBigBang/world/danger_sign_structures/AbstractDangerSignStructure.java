@@ -41,7 +41,7 @@ public abstract class AbstractDangerSignStructure extends ScatteredStructure<NoF
         public void init(ChunkGenerator<?> generator, TemplateManager manager, int chunkX, int chunkZ, Biome biomeIn) {
             BlockPos blockpos = new BlockPos(chunkX * 16, 0, chunkZ * 16);
             int index = Math.abs(chunkX * chunkZ) % getTemplatePaths().length;
-            this.components.add(getStructurePiece(manager, new ResourceLocation(TheBigBang.MODID, getTemplatePaths()[index]), blockpos, Rotation.NONE, getPieceType()));
+            this.components.add(getStructurePiece(manager, new ResourceLocation(TheBigBang.MOD_ID, getTemplatePaths()[index]), blockpos, Rotation.NONE, getPieceType()));
             this.recalculateStructureSize();
         }
     }

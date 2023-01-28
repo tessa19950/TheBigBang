@@ -20,7 +20,7 @@ public class DarkYetiRenderer extends MobRenderer<DarkYetiEntity, AbstractYetiMo
 
 	@Override
 	protected ResourceLocation getEntityTexture(DarkYetiEntity entity) {
-		return new ResourceLocation(TheBigBang.MODID, "textures/entity/dark_yeti_entity.png");
+		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/dark_yeti_entity.png");
 	}
 	
 	public static class RenderFactory implements IRenderFactory<DarkYetiEntity> {

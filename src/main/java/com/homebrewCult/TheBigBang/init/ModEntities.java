@@ -25,8 +25,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ObjectHolder;
 
 @SuppressWarnings("unchecked")
-@Mod.EventBusSubscriber(modid = TheBigBang.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-@ObjectHolder(TheBigBang.MODID)
+@Mod.EventBusSubscriber(modid = TheBigBang.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@ObjectHolder(TheBigBang.MOD_ID)
 public class ModEntities {
 	public static final EntityType<StumpEntity> STUMP_ENTITY = (EntityType<StumpEntity>)buildEntityType(StumpEntity::new, EntityClassification.CREATURE, 1f, 1.5f, "stump_entity");
 	public static final EntityType<DarkStumpEntity> DARK_STUMP_ENTITY = (EntityType<DarkStumpEntity>)buildEntityType(DarkStumpEntity::new, EntityClassification.CREATURE, 1f, 1.5f, "dark_stump_entity");
@@ -40,7 +40,7 @@ public class ModEntities {
 	public static final EntityType<ColdEyeEntity> COLD_EYE_ENTITY = (EntityType<ColdEyeEntity>)buildEntityType(ColdEyeEntity::new, EntityClassification.MONSTER, 1.2f, 1f, "cold_eye_entity");
 	public static final EntityType<OrangeMushroomEntity> ORANGE_MUSHROOM_ENTITY = (EntityType<OrangeMushroomEntity>)buildEntityType(OrangeMushroomEntity::new, EntityClassification.CREATURE, 1f, 1.4f, "orange_mushroom_entity");
 	public static final EntityType<BlueMushroomEntity> BLUE_MUSHROOM_ENTITY = (EntityType<BlueMushroomEntity>)buildEntityType(BlueMushroomEntity::new, EntityClassification.CREATURE, 1f, 1.4f, "blue_mushroom_entity");
-	public static final EntityType<ZombieMushroomEntity> ZOMBIE_MUSHROOM_ENTITY = (EntityType<ZombieMushroomEntity>)buildEntityType(ZombieMushroomEntity::new, EntityClassification.CREATURE, 1f, 1.4f, "zombie_mushroom_entity");
+	public static final EntityType<ZombieMushroomEntity> ZOMBIE_MUSHROOM_ENTITY = (EntityType<ZombieMushroomEntity>)buildEntityType(ZombieMushroomEntity::new, EntityClassification.MONSTER, 1f, 1.4f, "zombie_mushroom_entity");
 	public static final EntityType<JrYetiEntity> JRYETI_ENTITY = (EntityType<JrYetiEntity>)buildEntityType(JrYetiEntity::new, EntityClassification.CREATURE, 0.8f, 0.8f, "jryeti_entity");
 	public static final EntityType<DarkJrYetiEntity> DARK_JRYETI_ENTITY = (EntityType<DarkJrYetiEntity>)buildEntityType(DarkJrYetiEntity::new, EntityClassification.CREATURE, 0.8f, 0.8f, "dark_jryeti_entity");
 	public static final EntityType<GreenSnailEntity> GREEN_SNAIL_ENTITY = (EntityType<GreenSnailEntity>)buildEntityType(GreenSnailEntity::new, EntityClassification.CREATURE, 0.6f, 0.5f, "green_snail_entity");
@@ -63,34 +63,34 @@ public class ModEntities {
 	public static final EntityType<DarkPepeEntity> DARK_PEPE_ENTITY = (EntityType<DarkPepeEntity>)buildEntityType(DarkPepeEntity::new, EntityClassification.CREATURE, 0.75f, 1f, "dark_pepe_entity");
 
 	public static final EntityType<SnailShellEntity> SNAIL_SHELL = (EntityType<SnailShellEntity>) EntityType.Builder.create(SnailShellEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
-		new SnailShellEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "snail_shell").setRegistryName(TheBigBang.MODID, "snail_shell");
+		new SnailShellEntity(world)).size(0.25f, 0.25f).build(TheBigBang.getNamespacedKey("snail_shell")).setRegistryName(TheBigBang.MOD_ID, "snail_shell");
 	public static final EntityType<SubiEntity> SUBI = (EntityType<SubiEntity>) EntityType.Builder.create(SubiEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> 
-		new SubiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "subi").setRegistryName(TheBigBang.MODID, "subi");
+		new SubiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.getNamespacedKey("subi")).setRegistryName(TheBigBang.MOD_ID, "subi");
 	public static final EntityType<TobiEntity> TOBI = (EntityType<TobiEntity>) EntityType.Builder.create(TobiEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> 
-		new TobiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "tobi").setRegistryName(TheBigBang.MODID, "tobi");
+		new TobiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.getNamespacedKey("tobi")).setRegistryName(TheBigBang.MOD_ID, "tobi");
 	public static final EntityType<SteelyEntity> STEELY = (EntityType<SteelyEntity>) EntityType.Builder.create(SteelyEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> 
-		new SteelyEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "steely").setRegistryName(TheBigBang.MODID, "steely");
+		new SteelyEntity(world)).size(0.25f, 0.25f).build(TheBigBang.getNamespacedKey("steely")).setRegistryName(TheBigBang.MOD_ID, "steely");
 	public static final EntityType<IlbiEntity> ILBI = (EntityType<IlbiEntity>) EntityType.Builder.create(IlbiEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) -> 
-		new IlbiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "ilbi").setRegistryName(TheBigBang.MODID, "ilbi");
+		new IlbiEntity(world)).size(0.25f, 0.25f).build(TheBigBang.getNamespacedKey("ilbi")).setRegistryName(TheBigBang.MOD_ID, "ilbi");
 	public static final EntityType<FireGearEntity> FIRE_GEAR = (EntityType<FireGearEntity>) EntityType.Builder.create(FireGearEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
-		new FireGearEntity(world)).size(2.0f, 2f).build(TheBigBang.MODID + "fire_gear").setRegistryName(TheBigBang.MODID, "fire_gear");
+		new FireGearEntity(world)).size(2.0f, 2f).build(TheBigBang.getNamespacedKey("fire_gear")).setRegistryName(TheBigBang.MOD_ID, "fire_gear");
 	public static final EntityType<PoisonMistEntity> POISON_MIST = (EntityType<PoisonMistEntity>) EntityType.Builder.create(PoisonMistEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
-		new PoisonMistEntity(world)).size(2.0f, 2f).build(TheBigBang.MODID + "poison_mist").setRegistryName(TheBigBang.MODID, "poison_mist");
+		new PoisonMistEntity(world)).size(2.0f, 2f).build(TheBigBang.getNamespacedKey("poison_mist")).setRegistryName(TheBigBang.MOD_ID, "poison_mist");
 	public static final EntityType<GenesisBeamEntity> GENESIS_BEAM = (EntityType<GenesisBeamEntity>) EntityType.Builder.create(GenesisBeamEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
-		new GenesisBeamEntity(world)).size(0.25f, 3f).build(TheBigBang.MODID + "genesis_beam").setRegistryName(TheBigBang.MODID, "genesis_beam");
+		new GenesisBeamEntity(world)).size(0.25f, 3f).build(TheBigBang.getNamespacedKey("genesis_beam")).setRegistryName(TheBigBang.MOD_ID, "genesis_beam");
 	public static final EntityType<BombArrowEntity> BOMB_ARROW = (EntityType<BombArrowEntity>) EntityType.Builder.create(BombArrowEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
-		new BombArrowEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "bomb_arrow").setRegistryName(TheBigBang.MODID, "bomb_arrow");
+		new BombArrowEntity(world)).size(0.25f, 0.25f).build(TheBigBang.getNamespacedKey("bomb_arrow")).setRegistryName(TheBigBang.MOD_ID, "bomb_arrow");
 	public static final EntityType<SnipingArrowEntity> SNIPING_ARROW = (EntityType<SnipingArrowEntity>) EntityType.Builder.create(SnipingArrowEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
-		new SnipingArrowEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "sniping_arrow").setRegistryName(TheBigBang.MODID, "sniping_arrow");
+		new SnipingArrowEntity(world)).size(0.25f, 0.25f).build(TheBigBang.getNamespacedKey("sniping_arrow")).setRegistryName(TheBigBang.MOD_ID, "sniping_arrow");
 	public static final EntityType<HurricaneArrowEntity> HURRICANE_ARROW = (EntityType<HurricaneArrowEntity>) EntityType.Builder.create(HurricaneArrowEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
-		new HurricaneArrowEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "hurricane_arrow").setRegistryName(TheBigBang.MODID, "hurricane_arrow");
+		new HurricaneArrowEntity(world)).size(0.25f, 0.25f).build(TheBigBang.getNamespacedKey("hurricane_arrow")).setRegistryName(TheBigBang.MOD_ID, "hurricane_arrow");
 	public static final EntityType<DragonCrusherStabEntity> DRAGON_CRUSHER_STAB = (EntityType<DragonCrusherStabEntity>) EntityType.Builder.create(DragonCrusherStabEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
-		new DragonCrusherStabEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "dragon_crusher_stab").setRegistryName(TheBigBang.MODID, "dragon_crusher_stab");
+		new DragonCrusherStabEntity(world)).size(0.25f, 0.25f).build(TheBigBang.getNamespacedKey("dragon_crusher_stab")).setRegistryName(TheBigBang.MOD_ID, "dragon_crusher_stab");
 	public static final EntityType<StealEntity> STEAL = (EntityType<StealEntity>) EntityType.Builder.create(StealEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
-		new StealEntity(world)).size(0.25f, 0.25f).build(TheBigBang.MODID + "steal").setRegistryName(TheBigBang.MODID, "steal");
+		new StealEntity(world)).size(0.25f, 0.25f).build(TheBigBang.getNamespacedKey("steal")).setRegistryName(TheBigBang.MOD_ID, "steal");
 
 	public static final EntityType<ManaRockEntity> MANA_ROCK = (EntityType<ManaRockEntity>) EntityType.Builder.create(ManaRockEntity::new, EntityClassification.MISC).setCustomClientFactory((spawnEntity, world) ->
-	new ManaRockEntity(world)).size(0.6f, 1.6f).build(TheBigBang.MODID + "mana_rock").setRegistryName(TheBigBang.MODID, "mana_rock");
+	new ManaRockEntity(world)).size(0.6f, 1.6f).build(TheBigBang.getNamespacedKey("mana_rock")).setRegistryName(TheBigBang.MOD_ID, "mana_rock");
 	
 	@SubscribeEvent
 	public static void registerEntities(final RegistryEvent.Register<EntityType<?>> event) {	
@@ -104,35 +104,55 @@ public class ModEntities {
 	}
 	
     public static <T extends Entity> EntityType<?> buildEntityType(EntityType.IFactory<T> factoryIn, EntityClassification classification, float width, float height, String name) {
-		return EntityType.Builder.create(factoryIn, classification).size(width, height).build(TheBigBang.MODID + name).setRegistryName(TheBigBang.MODID, name);
+		return EntityType.Builder.create(factoryIn, classification).size(width, height).build(TheBigBang.getNamespacedKey(name)).setRegistryName(TheBigBang.MOD_ID, name);
 	}
 
 	@OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerSpawns (FMLCommonSetupEvent event) {
 		TheBigBang.print("Setting up entity world spawns.");
-		registerEntityWorldSpawn(STUMP_ENTITY, 2, 4, Biomes.FOREST);
+		Biome[] sandyBiomes = new Biome[]{
+				Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.BADLANDS, Biomes.BADLANDS_PLATEAU, Biomes.ERODED_BADLANDS,
+				Biomes.MODIFIED_BADLANDS_PLATEAU, Biomes.MODIFIED_WOODED_BADLANDS_PLATEAU, Biomes.WOODED_BADLANDS_PLATEAU
+		};
+		Biome[] icyBiomes = new Biome[]{
+				Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA_HILLS,
+				Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TUNDRA, Biomes.ICE_SPIKES, Biomes.FROZEN_OCEAN, Biomes.FROZEN_RIVER
+		};
+
+		registerEntityWorldSpawn(STUMP_ENTITY, 2, 4, sandyBiomes);
 		registerEntityWorldSpawn(OCTOPUS_ENTITY, 2, 8, Biomes.GRAVELLY_MOUNTAINS, Biomes.STONE_SHORE);
-		registerEntityWorldSpawn(EVIL_EYE_ENTITY, 1, 2, Biomes.DESERT, Biomes.DESERT_HILLS, Biomes.BADLANDS, Biomes.BADLANDS_PLATEAU, Biomes.ERODED_BADLANDS, Biomes.MODIFIED_BADLANDS_PLATEAU, Biomes.MODIFIED_WOODED_BADLANDS_PLATEAU, Biomes.WOODED_BADLANDS_PLATEAU);
+		registerEntityWorldSpawn(EVIL_EYE_ENTITY, 1, 2, sandyBiomes);
 		registerEntityWorldSpawn(CURSE_EYE_ENTITY, 1, 2, Biomes.SWAMP, Biomes.SWAMP_HILLS);
-		registerEntityWorldSpawn(COLD_EYE_ENTITY, 1, 2, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA_HILLS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TUNDRA);
+		registerEntityWorldSpawn(COLD_EYE_ENTITY, 1, 2, icyBiomes);
+
 		registerEntityWorldSpawn(ORANGE_MUSHROOM_ENTITY, 2, 6, Biomes.FOREST);
 		registerEntityWorldSpawn(BLUE_MUSHROOM_ENTITY, 2, 6, Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS);
 		registerEntityWorldSpawn(ZOMBIE_MUSHROOM_ENTITY, 2, 6, Biomes.DARK_FOREST, Biomes.DARK_FOREST_HILLS);
-		registerEntityWorldSpawn(JRYETI_ENTITY, 2, 4, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA_HILLS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TUNDRA);
-		registerEntityWorldSpawn(DARK_JRYETI_ENTITY, 2, 4, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA_HILLS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TUNDRA);
-		registerEntityWorldSpawn(GREEN_SNAIL_ENTITY, 4, 10, Biomes.FLOWER_FOREST, Biomes.SUNFLOWER_PLAINS);
-		registerEntityWorldSpawn(BLUE_SNAIL_ENTITY, 2, 8, Biomes.FLOWER_FOREST, Biomes.SUNFLOWER_PLAINS);
-		registerEntityWorldSpawn(RED_SNAIL_ENTITY, 2, 8, Biomes.FLOWER_FOREST, Biomes.SUNFLOWER_PLAINS);
+
+		registerEntityWorldSpawn(JRYETI_ENTITY, 2, 4, icyBiomes);
+		registerEntityWorldSpawn(DARK_JRYETI_ENTITY, 2, 4, icyBiomes);
+		registerEntityWorldSpawn(PEPE_ENTITY, 4, 10, icyBiomes);
+
+		Biome[] snailBiomes = new Biome[]{ Biomes.FLOWER_FOREST, Biomes.SUNFLOWER_PLAINS };
+		registerEntityWorldSpawn(GREEN_SNAIL_ENTITY, 4, 10, snailBiomes);
+		registerEntityWorldSpawn(BLUE_SNAIL_ENTITY, 2, 8, snailBiomes);
+		registerEntityWorldSpawn(RED_SNAIL_ENTITY, 2, 8, snailBiomes);
 		registerEntityWorldSpawn(RIBBON_PIG_ENTITY, 2, 8, Biomes.BEACH);
-		registerEntityWorldSpawn(PEPE_ENTITY, 4, 10, Biomes.ICE_SPIKES, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_MOUNTAINS, Biomes.SNOWY_TAIGA, Biomes.SNOWY_TAIGA_HILLS, Biomes.SNOWY_TAIGA_MOUNTAINS, Biomes.SNOWY_TUNDRA);
-    }
+		registerEntityWorldSpawn(PEPE_ENTITY, 4, 10, icyBiomes);
+
+		Biome[] greenBubblingBiomes = new Biome[] {
+			Biomes.PLAINS, Biomes.SUNFLOWER_PLAINS, Biomes.FOREST, Biomes.FLOWER_FOREST, Biomes.BIRCH_FOREST,
+			Biomes.BIRCH_FOREST_HILLS, Biomes.TALL_BIRCH_FOREST, Biomes.TALL_BIRCH_HILLS,
+		};
+		registerEntityWorldSpawn(GREEN_BUBBLING_ENTITY, 1, 2, greenBubblingBiomes);
+		registerEntityWorldSpawn(BUBBLING_ENTITY, 1, 2, icyBiomes);
+	}
     
 	public static void registerEntityWorldSpawn(EntityType<?> entity, int minGroupCount, int maxGroupCount, Biome... biomes) {
 		for(Biome biome : biomes) {
-			if(biome != null) {
+			if(biome != null)
 				biome.getSpawns(entity.getClassification()).add(new SpawnListEntry(entity, 10, minGroupCount, maxGroupCount));
-			}
 		}
 	}
 	
@@ -178,7 +198,7 @@ public class ModEntities {
 	
 	public static Item registerEntitySpawnEgg(EntityType<?> type, int color1, int color2, String name) {
 		SpawnEggItem item = new SpawnEggItem(type, color1, color2, new Item.Properties().group(ItemGroup.MISC));
-		item.setRegistryName(TheBigBang.MODID, name);
+		item.setRegistryName(TheBigBang.MOD_ID, name);
 		return item;
 	}
 }

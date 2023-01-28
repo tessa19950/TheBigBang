@@ -49,6 +49,6 @@ public class AppleArmorItem extends ArmorItem {
 	
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String type) {
-		return TheBigBang.MODID + ":textures/models/armor/" + name + ".png";
+		return TheBigBang.MOD_ID + ":textures/models/armor/" + name + ".png";
 	}
 }

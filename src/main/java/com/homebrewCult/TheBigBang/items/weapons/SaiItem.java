@@ -53,7 +53,8 @@ public class SaiItem extends SwordItem implements IBigBangWeapon {
 
 	@Override
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity user, int timeLeft) {
-		trySpellAttack(stack, worldIn, user, timeLeft);
+		if(user instanceof PlayerEntity)
+			trySpellAttack(stack, worldIn, (PlayerEntity) user, timeLeft);
 		super.onPlayerStoppedUsing(stack, worldIn, user, timeLeft);
 	}
 
@@ -81,9 +82,7 @@ public class SaiItem extends SwordItem implements IBigBangWeapon {
 	}
 
 	@Override
-	public int getChargeDuration() {
-		return 5;
-	}
+	public int getChargeDuration(PlayerEntity player) { return 8 - (2 * getEffectMultiplier(player, ModEffects.THIEF_EFFECT.get())); }
 
 	@Override
 	public IParticleData getChargingParticle() {

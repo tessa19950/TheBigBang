@@ -78,7 +78,7 @@ public abstract class AbstractDangerSignFeature extends Feature<NoFeatureConfig>
 	
 	public Template getTemplate(TemplateManager manager, int index) {
 		int i = index + 1;
-		return manager.getTemplate(new ResourceLocation(TheBigBang.MODID,this.getTemplateName().replace("thebigbang:", "") + "_" + i));
+		return manager.getTemplate(new ResourceLocation(TheBigBang.MOD_ID,this.getTemplateName().replace("thebigbang:", "") + "_" + i));
 	}
 	
 	public Questlines getTemplateQuestline(Biome biome) {

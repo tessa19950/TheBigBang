@@ -20,7 +20,7 @@ public class YetiRenderer extends MobRenderer<YetiEntity, AbstractYetiModel<Yeti
 
 	@Override
 	protected ResourceLocation getEntityTexture(YetiEntity entity) {
-		return new ResourceLocation(TheBigBang.MODID, "textures/entity/yeti_entity.png");
+		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/yeti_entity.png");
 	}
 	
 	public static class RenderFactory implements IRenderFactory<YetiEntity> {

@@ -15,7 +15,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 public class SnipingArrowRenderer extends EntityRenderer<SnipingArrowEntity> {
 
 	public static final BigBangArrowModel MODEL = new BigBangArrowModel();
-	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/entity/sniping_arrow.png");
+	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/sniping_arrow.png");
 	
 	public SnipingArrowRenderer(EntityRendererManager manager) {
 		super(manager);

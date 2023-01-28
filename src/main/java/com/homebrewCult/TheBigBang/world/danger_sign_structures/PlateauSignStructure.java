@@ -38,6 +38,6 @@ public class PlateauSignStructure extends AbstractDangerSignStructure {
 
     @Override
     public String getStructureName() {
-        return TheBigBang.MODID + ":danger_sign_plateau";
+        return TheBigBang.getNamespacedKey("danger_sign_plateau");
     }
 }

@@ -4,6 +4,7 @@ import java.util.function.Predicate;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.entities.StealEntity;
+import com.homebrewCult.TheBigBang.init.ModEffects;
 import com.homebrewCult.TheBigBang.init.ModParticleTypes;
 import com.homebrewCult.TheBigBang.init.ModSounds;
 import net.minecraft.entity.Entity;
@@ -17,8 +18,8 @@ import net.minecraft.world.World;
 
 public class GephardItem extends SwordItem implements IBigBangWeapon {
 
-	public static final String SPELL_TIME_KEY = TheBigBang.MODID + "spell_timer";
-	private static final String SPELL_TARGET_ID_KEY = TheBigBang.MODID + "spell_target_id";
+	public static final String SPELL_TIME_KEY = TheBigBang.getNamespacedKey("spell_timer");
+	private static final String SPELL_TARGET_ID_KEY = TheBigBang.getNamespacedKey("spell_target_id");
 	private static final int SPELL_RANGE = 16;
 	private static final double SPELL_ANGLE_THRESHOLD = 60;
 	public int clientSpellTime;
@@ -46,7 +47,8 @@ public class GephardItem extends SwordItem implements IBigBangWeapon {
 
 	@Override
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity user, int timeLeft) {
-		trySpellAttack(stack, worldIn, user, timeLeft);
+		if(user instanceof PlayerEntity)
+			trySpellAttack(stack, worldIn, (PlayerEntity) user, timeLeft);
 		super.onPlayerStoppedUsing(stack, worldIn, user, timeLeft);
 	}
 
@@ -94,9 +96,7 @@ public class GephardItem extends SwordItem implements IBigBangWeapon {
 	}
 
 	@Override
-	public int getChargeDuration() {
-		return 20;
-	}
+	public int getChargeDuration(PlayerEntity player) { return 20 - (5 * getEffectMultiplier(player, ModEffects.THIEF_EFFECT.get())); }
 
 	@Override
 	public IParticleData getChargingParticle() {

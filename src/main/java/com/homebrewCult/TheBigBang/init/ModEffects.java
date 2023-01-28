@@ -13,7 +13,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModEffects {
 
-    public static final DeferredRegister<Effect> EFFECTS = new DeferredRegister<>(ForgeRegistries.POTIONS, TheBigBang.MODID);
+    public static final DeferredRegister<Effect> EFFECTS = new DeferredRegister<>(ForgeRegistries.POTIONS, TheBigBang.MOD_ID);
     public static final RegistryObject<Effect> WARRIOR_EFFECT = EFFECTS.register("warrior_effect", WarriorEffect::new);
     public static final RegistryObject<Effect> MAGICIAN_EFFECT = EFFECTS.register("magician_effect", MagicianEffect::new);
     public static final RegistryObject<Effect> BOWMAN_EFFECT = EFFECTS.register("bowman_effect", BowmanEffect::new);

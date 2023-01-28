@@ -46,7 +46,7 @@ public enum Questlines implements IStringSerializable {
 	Snails("Snails", new EntityType<?>[] {ModEntities.GREEN_SNAIL_ENTITY, ModEntities.BLUE_SNAIL_ENTITY, ModEntities.RED_SNAIL_ENTITY}, 
 	new Quests[] {Quests.Polluted, Quests.BasicTraining, Quests.MaisTrainingSnail, Quests.HelpHuntTheSnails, Quests.MariasLetter, Quests.HelpOutYoona,
 			Quests.Polluted2, Quests.MaisSecondTraining, Quests.MayasFirstCollection, Quests.TheOldSnail, Quests.ARainbowShell, Quests.BobTheSnail},
-	new Biome[] {Biomes.FLOWER_FOREST, Biomes.SUNFLOWER_PLAINS}),
+	new Biome[] {Biomes.FLOWER_FOREST, Biomes.SUNFLOWER_PLAINS, Biomes.RIVER}),
 	
 	JrYetis("Jr. Yetis", new EntityType<?>[] {ModEntities.JRYETI_ENTITY, ModEntities.DARK_JRYETI_ENTITY}, 
 	new Quests[] {Quests.Polluted, Quests.GordonTheCraftsman, Quests.BeastTamer, Quests.OneMoreWish, Quests.GordonsTuition,

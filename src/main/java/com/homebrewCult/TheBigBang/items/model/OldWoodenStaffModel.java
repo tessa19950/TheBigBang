@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class OldWoodenStaffModel extends Model {
 	
-	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/entity/old_wooden_staff.png");
+	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/old_wooden_staff.png");
 	private final RendererModel pole;
 	private final RendererModel top_pivot;
 	private final RendererModel top_corner_pivot;

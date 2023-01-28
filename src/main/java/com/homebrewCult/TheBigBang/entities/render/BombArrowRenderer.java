@@ -14,7 +14,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 public class BombArrowRenderer extends EntityRenderer<BombArrowEntity> {
 
 	public static final BigBangArrowModel MODEL = new BigBangArrowModel();
-	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/entity/bomb_arrow.png");
+	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/bomb_arrow.png");
 	
 	public BombArrowRenderer(EntityRendererManager manager) {
 		super(manager);

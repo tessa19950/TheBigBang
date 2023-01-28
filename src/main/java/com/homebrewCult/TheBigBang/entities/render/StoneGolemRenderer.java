@@ -17,7 +17,7 @@ public class StoneGolemRenderer extends MobRenderer<StoneGolemEntity, AbstractGo
 
 	@Override
 	protected ResourceLocation getEntityTexture(StoneGolemEntity entity) {
-		return new ResourceLocation(TheBigBang.MODID, "textures/entity/stone_golem_entity.png");
+		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/stone_golem_entity.png");
 	}
 	
 	public static class RenderFactory implements IRenderFactory<StoneGolemEntity> {

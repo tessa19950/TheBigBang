@@ -17,7 +17,7 @@ public class BlueSnailRenderer extends MobRenderer<BlueSnailEntity, AbstractSnai
 
 	@Override
 	protected ResourceLocation getEntityTexture(BlueSnailEntity entity) {
-		return new ResourceLocation(TheBigBang.MODID, "textures/entity/blue_snail_entity.png");
+		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/blue_snail_entity.png");
 	}
 	
 	public static class RenderFactory implements IRenderFactory<BlueSnailEntity> {

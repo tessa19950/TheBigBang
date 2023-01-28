@@ -4,10 +4,7 @@ import com.homebrewCult.TheBigBang.init.ModSounds;
 import com.homebrewCult.TheBigBang.util.IQuestEntity;
 import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
 import com.homebrewCult.TheBigBang.init.ModEntities;
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -33,7 +30,7 @@ public class OctopusEntity extends AnimalEntity implements IQuestEntity {
 	private QuestEntityHandler questEntityHandler = new QuestEntityHandler();
 
 	public OctopusEntity(EntityType<? extends AnimalEntity> type, World worldIn) {
-		super((EntityType<? extends AnimalEntity>) ModEntities.OCTOPUS_ENTITY, worldIn);
+		super(ModEntities.OCTOPUS_ENTITY, worldIn);
 	}
 	
 	@Override
@@ -47,12 +44,25 @@ public class OctopusEntity extends AnimalEntity implements IQuestEntity {
 	      this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
 	}
 
+	@Override
+	protected void registerAttributes() {
+		super.registerAttributes();
+		this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
+		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
+	}
+
 	@Nullable
 	@Override
 	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		if(reason.equals(SpawnReason.SPAWNER) && world.isRemote)
-			spawnPoofParticles(this, world, rand);
+			spawnPoofParticles(this, rand);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+	}
+
+	@Override
+	protected void collideWithEntity(Entity entityIn) {
+		attackEntityAsMob(entityIn);
+		super.collideWithEntity(entityIn);
 	}
 
 	@Override

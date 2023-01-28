@@ -4,14 +4,7 @@ import com.homebrewCult.TheBigBang.init.ModSounds;
 import com.homebrewCult.TheBigBang.util.IQuestEntity;
 import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.BreedGoal;
-import net.minecraft.entity.ai.goal.FollowParentGoal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.PanicGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.TemptGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -36,19 +29,19 @@ public class AbstractSnailEntity extends AnimalEntity implements IQuestEntity {
 
 	@Override
 	protected void registerGoals() {
-	      this.goalSelector.addGoal(0, new SwimGoal(this));
-	      this.goalSelector.addGoal(1, new PanicGoal(this, 1D));
-	      this.goalSelector.addGoal(2, new BreedGoal(this, 1D));
-	      this.goalSelector.addGoal(3, new FollowParentGoal(this, 1D));
-	      this.goalSelector.addGoal(4, new TemptGoal(this, 1D, false, TEMPTATION_ITEMS));
-	      this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1D));
-	      this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 1F));
-	      this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+		this.goalSelector.addGoal(0, new SwimGoal(this));
+		this.goalSelector.addGoal(1, new PanicGoal(this, 1D));
+		this.goalSelector.addGoal(2, new BreedGoal(this, 1D));
+		this.goalSelector.addGoal(5, new FollowParentGoal(this, 1D));
+		this.goalSelector.addGoal(6, new TemptGoal(this, 1D, false, TEMPTATION_ITEMS));
+		this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1D));
+		this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 1F));
+		this.goalSelector.addGoal(9, new LookRandomlyGoal(this));
 	}
 	
 	@Override
 	protected void registerAttributes() {
-    super.registerAttributes();
+    	super.registerAttributes();
 		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(4D);
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2f);
 		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
@@ -58,7 +51,7 @@ public class AbstractSnailEntity extends AnimalEntity implements IQuestEntity {
 	@Override
 	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		if(reason.equals(SpawnReason.SPAWNER) && world.isRemote)
-			spawnPoofParticles(this, world, rand);
+			spawnPoofParticles(this, rand);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 

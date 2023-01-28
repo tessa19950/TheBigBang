@@ -3,15 +3,19 @@ import com.homebrewCult.TheBigBang.init.ModEntities;
 
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
 
 public class YetiEntity extends AbstractYetiEntity {	
 	public YetiEntity(EntityType<? extends AbstractYetiEntity> type, World worldIn) {
-		super((EntityType<? extends AbstractYetiEntity>) ModEntities.YETI_ENTITY, worldIn);
+		super(ModEntities.YETI_ENTITY, worldIn);
 	}
 
 	@Override
-	public JrYetiEntity createChild(AgeableEntity ageable) {
-		return (JrYetiEntity)ModEntities.JRYETI_ENTITY.create(this.world);
+	protected void registerAttributes() {
+		super.registerAttributes();
+		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30D);
+		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2F);
+		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
 	}
 }

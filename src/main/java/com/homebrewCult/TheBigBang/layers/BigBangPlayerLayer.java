@@ -19,27 +19,27 @@ import net.minecraft.util.math.MathHelper;
 
 public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T, PlayerModel<T>> {
 
-	public static final ResourceLocation HURRICANE_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/hurricane.png");
-	public static final ResourceLocation GENESIS_ANGEL_0_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/genesis_angel_0.png");
-	public static final ResourceLocation GENESIS_ANGEL_1_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/genesis_angel_1.png");
-	public static final ResourceLocation HYPER_BODY_0_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/hyper_body_0.png");
-	public static final ResourceLocation HYPER_BODY_1_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/hyper_body_1.png");
-	public static final ResourceLocation HYPER_BODY_2_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/hyper_body_2.png");
-	public static final ResourceLocation HYPER_BODY_3_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/hyper_body_3.png");
-	public static final ResourceLocation HYPER_BODY_4_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/hyper_body_4.png");
-	public static final ResourceLocation DRAGON_CRUSHER_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/dragon_crusher.png");
-	public static final ResourceLocation THREATEN_0_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/threaten_0.png");
-	public static final ResourceLocation THREATEN_1_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/threaten_1.png");
-	public static final ResourceLocation THREATEN_2_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/threaten_2.png");
-	public static final ResourceLocation THREATEN_3_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/threaten_3.png");
-	public static final ResourceLocation MONSTER_MAGNET_0_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/monster_magnet_0.png");
-	public static final ResourceLocation MONSTER_MAGNET_1_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/monster_magnet_1.png");
-	public static final ResourceLocation MONSTER_MAGNET_2_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/monster_magnet_2.png");
-	public static final ResourceLocation MONSTER_MAGNET_3_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/monster_magnet_3.png");
-	public static final ResourceLocation MONSTER_MAGNET_4_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/monster_magnet_4.png");
-	public static final ResourceLocation MONSTER_MAGNET_5_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/monster_magnet_5.png");
-	public static final ResourceLocation MONSTER_MAGNET_6_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/monster_magnet_6.png");
-	public static final ResourceLocation TELEPORT_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/particle/teleport.png");
+	public static final ResourceLocation HURRICANE_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/hurricane.png");
+	public static final ResourceLocation GENESIS_ANGEL_0_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/genesis_angel_0.png");
+	public static final ResourceLocation GENESIS_ANGEL_1_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/genesis_angel_1.png");
+	public static final ResourceLocation HYPER_BODY_0_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/hyper_body_0.png");
+	public static final ResourceLocation HYPER_BODY_1_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/hyper_body_1.png");
+	public static final ResourceLocation HYPER_BODY_2_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/hyper_body_2.png");
+	public static final ResourceLocation HYPER_BODY_3_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/hyper_body_3.png");
+	public static final ResourceLocation HYPER_BODY_4_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/hyper_body_4.png");
+	public static final ResourceLocation DRAGON_CRUSHER_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/dragon_crusher.png");
+	public static final ResourceLocation THREATEN_0_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/threaten_0.png");
+	public static final ResourceLocation THREATEN_1_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/threaten_1.png");
+	public static final ResourceLocation THREATEN_2_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/threaten_2.png");
+	public static final ResourceLocation THREATEN_3_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/threaten_3.png");
+	public static final ResourceLocation MONSTER_MAGNET_0_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/monster_magnet_0.png");
+	public static final ResourceLocation MONSTER_MAGNET_1_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/monster_magnet_1.png");
+	public static final ResourceLocation MONSTER_MAGNET_2_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/monster_magnet_2.png");
+	public static final ResourceLocation MONSTER_MAGNET_3_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/monster_magnet_3.png");
+	public static final ResourceLocation MONSTER_MAGNET_4_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/monster_magnet_4.png");
+	public static final ResourceLocation MONSTER_MAGNET_5_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/monster_magnet_5.png");
+	public static final ResourceLocation MONSTER_MAGNET_6_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/monster_magnet_6.png");
+	public static final ResourceLocation TELEPORT_TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/particle/teleport.png");
 	
 	private static final HyperBodyLayerModel HYPER_BODY_MODEL = new HyperBodyLayerModel();
 	private static final GenesisLayerModel GENESIS_MODEL = new GenesisLayerModel();

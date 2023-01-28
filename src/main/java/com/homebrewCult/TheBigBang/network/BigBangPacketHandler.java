@@ -9,7 +9,7 @@ import net.minecraftforge.fml.network.simple.SimpleChannel;
 public class BigBangPacketHandler {
 
 	private static final String PROTOCOL_VERSION = "1";
-	public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(new ResourceLocation(TheBigBang.MODID, "main"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
+	public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(new ResourceLocation(TheBigBang.MOD_ID, "main"), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
 	private static int HandInQuest_ID = 960300;
 	private static int ClearQuestSlots_ID = 960301;
 	private static int ShowInputSlots_ID = 960302;

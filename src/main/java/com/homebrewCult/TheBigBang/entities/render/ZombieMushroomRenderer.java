@@ -17,7 +17,7 @@ public class ZombieMushroomRenderer extends MobRenderer<ZombieMushroomEntity, Ab
 
 	@Override
 	protected ResourceLocation getEntityTexture(ZombieMushroomEntity entity) {
-		return new ResourceLocation(TheBigBang.MODID, "textures/entity/zombie_mushroom_entity.png");
+		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/zombie_mushroom_entity.png");
 	}
 	
 	public static class RenderFactory implements IRenderFactory<ZombieMushroomEntity> {

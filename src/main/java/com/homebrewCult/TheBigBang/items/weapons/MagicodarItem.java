@@ -13,7 +13,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.IParticleData;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -22,7 +21,7 @@ import net.minecraft.world.World;
 
 public class MagicodarItem extends TieredItem implements IBigBangWeapon {
 
-	private static final String SPELL_TIME_KEY = TheBigBang.MODID + "spell_timer";
+	private static final String SPELL_TIME_KEY = TheBigBang.getNamespacedKey("spell_timer");
 
 	private int clientTeleportTime = 0;
 	private static final Vec3i[] TELEPORT_TEST_OFFSETS = new Vec3i[]{ new Vec3i(0,0,0), new Vec3i(0,1,0), new Vec3i(0,-1,0),
@@ -36,13 +35,14 @@ public class MagicodarItem extends TieredItem implements IBigBangWeapon {
 
 	@Override
 	public void onUsingTick(ItemStack stack, LivingEntity entity, int timeLeft) {
-		if(entity instanceof PlayerEntity)
+		if(entity instanceof PlayerEntity) {
 			onSpellCharging(stack, entity.world, (PlayerEntity) entity, timeLeft);
-		super.onUsingTick(stack, entity, timeLeft);
-		int chargeTime = stack.getUseDuration() - timeLeft;
-		if(chargeTime > getChargeDuration() && chargeTime % 3 == 1) {
-			BlockPos pos = getAimPosition(entity);
-			spawnTeleportParticles(entity, new Vec3d(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D), 1, 0.5);
+			super.onUsingTick(stack, entity, timeLeft);
+			int chargeTime = stack.getUseDuration() - timeLeft;
+			if (chargeTime > getChargeDuration((PlayerEntity) entity) && chargeTime % 3 == 1) {
+				BlockPos pos = getAimPosition(entity);
+				spawnTeleportParticles(entity, new Vec3d(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D), 1, 0.5);
+			}
 		}
 		super.onUsingTick(stack, entity, timeLeft);
 	}
@@ -59,7 +59,8 @@ public class MagicodarItem extends TieredItem implements IBigBangWeapon {
 
 	@Override
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity user, int timeLeft) {
-		trySpellAttack(stack, worldIn, user, timeLeft);
+		if(user instanceof PlayerEntity)
+			trySpellAttack(stack, worldIn, (PlayerEntity) user, timeLeft);
 		super.onPlayerStoppedUsing(stack, worldIn, user, timeLeft);
 	}
 
@@ -101,11 +102,7 @@ public class MagicodarItem extends TieredItem implements IBigBangWeapon {
 	}
 
 	private BlockPos getAimPosition(LivingEntity player) {
-		EffectInstance effect = player.getActivePotionEffect(ModEffects.MAGICIAN_EFFECT.get());
-		double distance = 8.0D;
-		if(effect != null)
-			distance += (4.0 * (effect.getAmplifier() + 1));
-
+		double distance = 8.0D + (4.0 * getEffectMultiplier(player, ModEffects.MAGICIAN_EFFECT.get()));
 		float yaw = player.rotationYaw * ((float)Math.PI / 180F);
 		float pitch = player.rotationPitch * ((float)Math.PI / 180F);
 		double x = player.posX - Math.sin(yaw) * distance * Math.cos(-pitch);
@@ -135,9 +132,7 @@ public class MagicodarItem extends TieredItem implements IBigBangWeapon {
 	}
 
 	@Override
-	public int getChargeDuration() {
-		return 5;
-	}
+	public int getChargeDuration(PlayerEntity player) { return 8 - (2 * getEffectMultiplier(player, ModEffects.MAGICIAN_EFFECT.get())); }
 
 	@Override
 	public IParticleData getChargingParticle() { return null; }

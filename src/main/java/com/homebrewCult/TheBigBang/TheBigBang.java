@@ -1,11 +1,7 @@
 package com.homebrewCult.TheBigBang;
 
-import com.homebrewCult.TheBigBang.effects.BowmanEffect;
-import com.homebrewCult.TheBigBang.effects.MagicianEffect;
-import com.homebrewCult.TheBigBang.effects.ThiefEffect;
-import com.homebrewCult.TheBigBang.effects.WarriorEffect;
 import com.homebrewCult.TheBigBang.init.*;
-import com.homebrewCult.TheBigBang.listeners.BigBangEffectsListener;
+import com.homebrewCult.TheBigBang.listeners.EffectsListener;
 import com.homebrewCult.TheBigBang.listeners.BigBangListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,11 +23,11 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 
-@Mod(TheBigBang.MODID)
+@Mod(TheBigBang.MOD_ID)
 public final class TheBigBang {
 	
-	public static final String MODID = "thebigbang";
-	private static final Logger LOGGER = LogManager.getLogger(MODID);
+	public static final String MOD_ID = "thebigbang";
+	private static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 	public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 	
 	public TheBigBang() {
@@ -47,9 +43,10 @@ public final class TheBigBang {
 		ModParticleTypes.PARTICLE_TYPES.register(eventBus);
 		ModRecipeTypes.RECIPES.register(eventBus);
 		ModFeatures.FEATURES.register(eventBus);
+		ModFeatures.DECORATORS.register(eventBus);
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(new BigBangListener());
-		MinecraftForge.EVENT_BUS.register(new BigBangEffectsListener());
+		MinecraftForge.EVENT_BUS.register(new EffectsListener());
 	}
 
 	public void onCommonSetup(final FMLCommonSetupEvent event) {
@@ -61,5 +58,9 @@ public final class TheBigBang {
 	public static void print (String message) {
 		LOGGER.info("[The Big Bang Info] " + message);
 		LOGGER.debug("[The Big Bang Info] " + message);
+	}
+
+	public static String getNamespacedKey(String key) {
+		return MOD_ID + ":" + key;
 	}
 }

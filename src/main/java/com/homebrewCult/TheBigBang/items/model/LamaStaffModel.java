@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class LamaStaffModel extends Model {
 	
-	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/entity/lama_staff.png");
+	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/lama_staff.png");
 	private final RendererModel pole;
 	private final RendererModel orb_pivot;
 	private final RendererModel wrap2_pivot;

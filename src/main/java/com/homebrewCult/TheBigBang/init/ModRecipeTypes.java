@@ -17,7 +17,7 @@ public class ModRecipeTypes {
 			new ResourceLocation("blessing"),
 			new BlessingRecipeType()
 	);
-	public static final DeferredRegister<IRecipeSerializer<?>> RECIPES = new DeferredRegister<>(ForgeRegistries.RECIPE_SERIALIZERS, TheBigBang.MODID);
+	public static final DeferredRegister<IRecipeSerializer<?>> RECIPES = new DeferredRegister<>(ForgeRegistries.RECIPE_SERIALIZERS, TheBigBang.MOD_ID);
 	public static final RegistryObject<BlessingSerializer<BlessingRecipe>> BLESSING_SERIALIZER = RECIPES.register(
 			"blessing", () -> new BlessingSerializer<>(BlessingRecipe::new, 200)
 	);

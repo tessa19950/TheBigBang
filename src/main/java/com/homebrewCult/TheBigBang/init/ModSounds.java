@@ -10,8 +10,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
-@Mod.EventBusSubscriber(modid = TheBigBang.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-@ObjectHolder(TheBigBang.MODID)
+@Mod.EventBusSubscriber(modid = TheBigBang.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@ObjectHolder(TheBigBang.MOD_ID)
 public class ModSounds {
 	
 	public static final SoundEvent STUMP_DAMAGE = null;
@@ -133,7 +133,7 @@ public class ModSounds {
 	
 	public static SoundEvent registerSound(String name)
 	{
-		SoundEvent event = new SoundEvent(new ResourceLocation(TheBigBang.MODID, name)).setRegistryName(TheBigBang.MODID, name);
+		SoundEvent event = new SoundEvent(new ResourceLocation(TheBigBang.MOD_ID, name)).setRegistryName(TheBigBang.MOD_ID, name);
 		//ForgeRegistries.SOUND_EVENTS.register(event);
 		return event;
 	}

@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class OmegaSpearModel extends Model {
 	
-	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/entity/omega_spear.png");
+	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/omega_spear.png");
 	private final RendererModel pole;
 
 	public OmegaSpearModel() {

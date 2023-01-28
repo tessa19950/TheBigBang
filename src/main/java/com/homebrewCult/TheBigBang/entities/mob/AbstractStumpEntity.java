@@ -1,5 +1,6 @@
 package com.homebrewCult.TheBigBang.entities.mob;
 
+import com.homebrewCult.TheBigBang.init.ModEntities;
 import com.homebrewCult.TheBigBang.init.ModSounds;
 import com.homebrewCult.TheBigBang.util.IQuestEntity;
 import com.homebrewCult.TheBigBang.util.QuestEntityHandler;
@@ -50,7 +51,7 @@ public class AbstractStumpEntity extends AnimalEntity implements IQuestEntity {
 	@Override
 	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		if(reason.equals(SpawnReason.SPAWNER) && world.isRemote)
-			spawnPoofParticles(this, world, rand);
+			spawnPoofParticles(this, rand);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
@@ -75,9 +76,26 @@ public class AbstractStumpEntity extends AnimalEntity implements IQuestEntity {
 
 	@Override
 	public AgeableEntity createChild(AgeableEntity ageable) {
-		return null;
+		EntityType<? extends AgeableEntity> type;
+		boolean b = ageable.world.rand.nextBoolean();
+		if(getType().equals(ModEntities.DARK_STUMP_ENTITY) || getType().equals(ModEntities.DARK_AXE_STUMP_ENTITY))
+			type = b ? ModEntities.DARK_STUMP_ENTITY : ModEntities.DARK_AXE_STUMP_ENTITY;
+		else
+			type = b ? ModEntities.STUMP_ENTITY : ModEntities.AXE_STUMP_ENTITY;
+		return type.create(this.world);
 	}
-	
+
+	@Override
+	public boolean canMateWith(AnimalEntity otherAnimal) {
+		if (otherAnimal == this) {
+			return false;
+		} else if (!(otherAnimal instanceof AbstractStumpEntity)) {
+			return false;
+		} else {
+			return this.isInLove() && otherAnimal.isInLove();
+		}
+	}
+
 	@Override
 	public QuestEntityHandler getQuestEntityHandler() {
 		return this.questEntityHandler;

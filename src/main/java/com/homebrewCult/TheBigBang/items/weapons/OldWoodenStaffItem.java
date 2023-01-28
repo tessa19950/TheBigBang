@@ -9,7 +9,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.particles.IParticleData;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
@@ -40,17 +39,14 @@ public class OldWoodenStaffItem extends TieredItem implements IBigBangWeapon {
 
 	@Override
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity user, int timeLeft) {
-		trySpellAttack(stack, worldIn, user, timeLeft);
+		if(user instanceof PlayerEntity)
+			trySpellAttack(stack, worldIn, (PlayerEntity) user, timeLeft);
 		super.onPlayerStoppedUsing(stack, worldIn, user, timeLeft);
 	}
 
 	@Override
 	public void onSpellAttack(ItemStack stack, World worldIn, PlayerEntity player) {
-		EffectInstance effect = player.getActivePotionEffect(ModEffects.MAGICIAN_EFFECT.get());
-		float radius = 4.0F;
-		if(effect != null)
-			radius += (1.0 * (effect.getAmplifier() + 1));
-
+		float radius = 4.0F + (1.0F * getEffectMultiplier(player, ModEffects.MAGICIAN_EFFECT.get()));
 		BigBangAreaEffectCloudEntity aoeEntity = new FireGearEntity(worldIn, player.posX, player.posY, player.posZ, radius);
 		if(player.getHeldItem(Hand.OFF_HAND).getItem().equals(Items.POISONOUS_POTATO))
 			aoeEntity = new PoisonMistEntity(worldIn, player.posX, player.posY, player.posZ, radius);
@@ -86,13 +82,11 @@ public class OldWoodenStaffItem extends TieredItem implements IBigBangWeapon {
 
 	@Override
 	public Predicate<ItemStack> getMagicAmmoPredicate() {
-		return MAGIC_ROCKS;
+		return SUMMONING_ROCKS;
 	}
 
 	@Override
-	public int getChargeDuration() {
-		return 5;
-	}
+	public int getChargeDuration(PlayerEntity player) { return 8 - (2 * getEffectMultiplier(player, ModEffects.MAGICIAN_EFFECT.get())); }
 
 	@Override
 	public IParticleData getChargingParticle() { return null; }

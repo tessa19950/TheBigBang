@@ -27,12 +27,11 @@ public class DangerSignCaveFeature extends AbstractDangerSignFeature {
 
 	@Override
 	public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-		BlockPos placePos = new BlockPos(pos.getX(), Math.max(rand.nextInt(pos.getY() - 8), 16), pos.getZ());
-		return super.place(worldIn, generator, rand, placePos, config, DangerSignCaveFeature.BEDROCK_AND_STUCTURE_BLOCK);
+		return super.place(worldIn, generator, rand, pos, config, DangerSignCaveFeature.BEDROCK_AND_STUCTURE_BLOCK);
 	}
 	
 	@Override
-	public String getTemplateName() { return TheBigBang.MODID + ":cave_sign"; }
+	public String getTemplateName() { return TheBigBang.getNamespacedKey("cave_sign"); }
 	
 	@Override
 	public Vec3i getTemplateOffset(int index) {

@@ -32,29 +32,29 @@ public class AbstractEyeEntity extends MonsterEntity implements IQuestEntity {
 	
 	@Override
 	protected void registerGoals() {
-	      this.goalSelector.addGoal(0, new SwimGoal(this));
-	      this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-	      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<LivingEntity>(this, LivingEntity.class, true));
-	      this.goalSelector.addGoal(2, new AbstractEyeAttackGoal(this, 1.0D, false));
-	      this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-	      this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 1f));
-	      this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
+		this.goalSelector.addGoal(0, new SwimGoal(this));
+		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, true));
+		this.goalSelector.addGoal(2, new AbstractEyeAttackGoal(this, 1.0D, false));
+		this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+		this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 1f));
+		this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
 	}
 	
 	@Override
 	protected void registerAttributes() {
-	      super.registerAttributes();
-	      this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20D);
-	      this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
-	      this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double)0.4F);
-	      this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+		super.registerAttributes();
+		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20D);
+		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
+		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4F);
+		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
 	}
 
 	@Nullable
 	@Override
 	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		if(reason.equals(SpawnReason.SPAWNER) && world.isRemote)
-			spawnPoofParticles(this, world, rand);
+			spawnPoofParticles(this, rand);
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	

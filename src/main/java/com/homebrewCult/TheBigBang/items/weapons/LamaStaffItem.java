@@ -3,13 +3,18 @@ package com.homebrewCult.TheBigBang.items.weapons;
 import java.util.List;
 import java.util.function.Predicate;
 
+import com.google.common.collect.ImmutableList;
 import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.entities.GenesisBeamEntity;
+import com.homebrewCult.TheBigBang.init.ModEffects;
 import com.homebrewCult.TheBigBang.init.ModParticleTypes;
 import com.homebrewCult.TheBigBang.init.ModSounds;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
@@ -20,10 +25,10 @@ import net.minecraft.world.World;
 
 public class LamaStaffItem extends TieredItem implements IBigBangWeapon {
 
-	public static final String SPELL_TIME_KEY = TheBigBang.MODID + "spell_timer";
-	private static final String SPELL_TARGET_ID_KEY = TheBigBang.MODID + "spell_target_id"; 
+	public static final String SPELL_TIME_KEY = TheBigBang.getNamespacedKey("spell_timer");
+	private static final String SPELL_TARGET_ID_KEY = TheBigBang.getNamespacedKey("spell_target_id");
 	private static final int SPELL_RANGE = 24;
-	private static final double SPELL_ANGLE_THRESHOLD = 30;
+	private static final double SPELL_ANGLE_THRESHOLD = 60;
 	public int clientSpellTime;
 	
 	public LamaStaffItem(IItemTier tierIn, Item.Properties builder) {
@@ -43,7 +48,7 @@ public class LamaStaffItem extends TieredItem implements IBigBangWeapon {
 		int spellTime = 100;
 		if(nbt.contains(SPELL_TIME_KEY)) {
 			spellTime = playerIn.ticksExisted - nbt.getInt(SPELL_TIME_KEY);
-			if(spellTime < 10) {
+			if(spellTime < 0) {
 				nbt.remove(SPELL_TIME_KEY);
 				itemstack.setTag(nbt);
 			}
@@ -57,13 +62,15 @@ public class LamaStaffItem extends TieredItem implements IBigBangWeapon {
 	
 	@Override
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity user, int timeLeft) {
-		trySpellAttack(stack, worldIn, user, timeLeft);
+		if(user instanceof PlayerEntity)
+			trySpellAttack(stack, worldIn, (PlayerEntity) user, timeLeft);
 		super.onPlayerStoppedUsing(stack, worldIn, user, timeLeft);
 	}
 
 	@Override
 	public void onSpellAttack(ItemStack stack, World worldIn, PlayerEntity player) {
-		List<Entity> targets = getTargetsInCone(stack, worldIn, player, 32, 60, 20);
+		int maxTargets = 10 + (5 * getEffectMultiplier(player, ModEffects.MAGICIAN_EFFECT.get()));
+		List<Entity> targets = getTargetsInCone(stack, worldIn, player, SPELL_RANGE, SPELL_ANGLE_THRESHOLD, maxTargets);
 		//If entities are selected, save their ID's in NBT for the Spelltick to use
 		if(targets.size() > 0) {
 			int[] ids = new int[targets.size()];
@@ -93,19 +100,27 @@ public class LamaStaffItem extends TieredItem implements IBigBangWeapon {
 	
 	public void spellTick(ItemStack stack, World worldIn, Entity user) {
 		CompoundNBT nbt = stack.getOrCreateTag();
-		if(nbt.contains(SPELL_TIME_KEY) && nbt.contains(SPELL_TARGET_ID_KEY)) {			
-			int timer = user.ticksExisted -	nbt.getInt(SPELL_TIME_KEY) - 40;
+		if(!(user instanceof PlayerEntity))
+			return;
+		PlayerEntity player = (PlayerEntity) user;
+		if(nbt.contains(SPELL_TIME_KEY) && nbt.contains(SPELL_TARGET_ID_KEY)) {
+			int timer = player.ticksExisted -	nbt.getInt(SPELL_TIME_KEY) - 40;
 			if(timer <= 60) {
 				int[] idArray = nbt.getIntArray(SPELL_TARGET_ID_KEY);
 				for(int i = 0; i < idArray.length; ++i) {
+					ItemStack magicAmmo = findMagicAmmo(player, this);
 					Entity entity = worldIn.getEntityByID(idArray[i]);
-					if(entity != null) {
+					if(!(entity instanceof LivingEntity))
+						return;
+					LivingEntity target = (LivingEntity) entity;
+					if(magicAmmo != null && !magicAmmo.isEmpty()) {
 						if (timer == i * 3) {
-							spawnGenesisBeam(stack, worldIn, entity.getPositionVec());
-							TheBigBang.print("Killing enemy " + (i + 1) + " out of " + idArray.length + " at timer tick " + timer + ". ");
+							consumeMagicAmmo(player, magicAmmo);
+							spawnGenesisBeam(worldIn, target.getPositionVec());
 							break;
 						} else if (timer == i * 3 + 5) {
-							entity.attackEntityFrom(new EntityDamageSource("magic", user).setMagicDamage(), 100);
+							int amount = 60 + random.nextInt(11);
+							magicAttackEntityAsMob(player, target, amount);
 							break;
 						}
 					}
@@ -114,7 +129,7 @@ public class LamaStaffItem extends TieredItem implements IBigBangWeapon {
 		}
 	}
 	
-	public void spawnGenesisBeam(ItemStack stack, World worldIn, Vec3d pos) {
+	public void spawnGenesisBeam(World worldIn, Vec3d pos) {
 		GenesisBeamEntity beamEntity = new GenesisBeamEntity(worldIn); 
 		beamEntity.setPosition(pos.x, pos.y, pos.z);
 		worldIn.addEntity(beamEntity);
@@ -141,9 +156,7 @@ public class LamaStaffItem extends TieredItem implements IBigBangWeapon {
 	}
 
 	@Override
-	public int getChargeDuration() {
-		return 60;
-	}
+	public int getChargeDuration(PlayerEntity player) { return 60 - (15 * getEffectMultiplier(player, ModEffects.MAGICIAN_EFFECT.get())); }
 
 	@Override
 	public IParticleData getChargingParticle() {
@@ -157,4 +170,15 @@ public class LamaStaffItem extends TieredItem implements IBigBangWeapon {
 
 	@Override
 	public SoundEvent getChargedSound() { return SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL; }
+
+	private static final List<Enchantment> VALID_ENCHANTMENTS = ImmutableList.of(
+			Enchantments.FIRE_ASPECT, Enchantments.SMITE, Enchantments.BANE_OF_ARTHROPODS
+	);
+
+	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+		if(VALID_ENCHANTMENTS.contains(enchantment))
+			return true;
+		return super.canApplyAtEnchantingTable(stack, enchantment);
+	}
 }

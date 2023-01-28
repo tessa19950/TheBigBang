@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 public class DragonCrusherStabRenderer extends EntityRenderer<DragonCrusherStabEntity> {
 
     public static final DragonCrusherStabModel MODEL = new DragonCrusherStabModel();
-    public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/entity/dragon_crusher_stab_entity.png");
+    public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/dragon_crusher_stab_entity.png");
 
     protected DragonCrusherStabRenderer(EntityRendererManager renderManager) { super(renderManager); }
 

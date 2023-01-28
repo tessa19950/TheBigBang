@@ -19,18 +19,18 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ObjectHolder;
 
-@Mod.EventBusSubscriber(modid = TheBigBang.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-@ObjectHolder(TheBigBang.MODID)
+@Mod.EventBusSubscriber(modid = TheBigBang.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@ObjectHolder(TheBigBang.MOD_ID)
 public class ModBlocks {
 	
 	public static Block MITHRIL_ORE = null;
 	public static Block ADAMANTIUM_ORE = null;
 	public static Block ORIHALCON_ORE = null;
 	
-	public static Block RED_MAPLE_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT)).setRegistryName(TheBigBang.MODID, "red_maple_leaves");
-	public static Block RED_MAPLE_SAPLING = new MapleSaplingBlock(new RedMapleTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName(TheBigBang.MODID, "red_maple_sapling");
-	public static Block YELLOW_MAPLE_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT)).setRegistryName(TheBigBang.MODID, "yellow_maple_leaves");
-	public static Block YELLOW_MAPLE_SAPLING = new MapleSaplingBlock(new YellowMapleTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName(TheBigBang.MODID, "yellow_maple_sapling");
+	public static Block RED_MAPLE_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT)).setRegistryName(TheBigBang.MOD_ID, "red_maple_leaves");
+	public static Block RED_MAPLE_SAPLING = new MapleSaplingBlock(new RedMapleTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName(TheBigBang.MOD_ID, "red_maple_sapling");
+	public static Block YELLOW_MAPLE_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT)).setRegistryName(TheBigBang.MOD_ID, "yellow_maple_leaves");
+	public static Block YELLOW_MAPLE_SAPLING = new MapleSaplingBlock(new YellowMapleTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName(TheBigBang.MOD_ID, "yellow_maple_sapling");
 	
 	public static Block DANGER_SIGN = null;
 	public static Block DIVINE_ALTAR = null;
@@ -61,48 +61,48 @@ public class ModBlocks {
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		event.getRegistry().registerAll(
-			MITHRIL_ORE = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE))
-					.setRegistryName(TheBigBang.MODID, "mithril_ore"),
-			ADAMANTIUM_ORE = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE))
-					.setRegistryName(TheBigBang.MODID, "adamantium_ore"),
-			ORIHALCON_ORE = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE))
-					.setRegistryName(TheBigBang.MODID, "orihalcon_ore"),
+			MITHRIL_ORE = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(5).sound(SoundType.STONE))
+					.setRegistryName(TheBigBang.MOD_ID, "mithril_ore"),
+			ADAMANTIUM_ORE = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(5).sound(SoundType.STONE))
+					.setRegistryName(TheBigBang.MOD_ID, "adamantium_ore"),
+			ORIHALCON_ORE = new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(5).sound(SoundType.STONE))
+					.setRegistryName(TheBigBang.MOD_ID, "orihalcon_ore"),
 			DANGER_SIGN = new DangerSignBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.WOOD))
-					.setRegistryName(TheBigBang.MODID, "danger_sign"),
+					.setRegistryName(TheBigBang.MOD_ID, "danger_sign"),
 			DIVINE_ALTAR = new DivineAltarBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE))
-					.setRegistryName(TheBigBang.MODID, "divine_altar"),
+					.setRegistryName(TheBigBang.MOD_ID, "divine_altar"),
 			GOLEM_STONE = new GolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE))
-					.setRegistryName(TheBigBang.MODID, "golem_stone"),
+					.setRegistryName(TheBigBang.MOD_ID, "golem_stone"),
 			DARK_GOLEM_STONE = new DarkGolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(2.0f).lightValue(0).sound(SoundType.STONE))
-					.setRegistryName(TheBigBang.MODID, "dark_golem_stone"),
+					.setRegistryName(TheBigBang.MOD_ID, "dark_golem_stone"),
 			GRASSY_GOLEM_STONE = new GrassyGolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f).lightValue(0).sound(SoundType.STONE))
-					.setRegistryName(TheBigBang.MODID, "grassy_golem_stone"),
+					.setRegistryName(TheBigBang.MOD_ID, "grassy_golem_stone"),
 			GRASSY_DARK_GOLEM_STONE = new GrassyDarkGolemStoneBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f).lightValue(0).sound(SoundType.STONE))
-					.setRegistryName(TheBigBang.MODID, "grassy_dark_golem_stone"),
+					.setRegistryName(TheBigBang.MOD_ID, "grassy_dark_golem_stone"),
 			ROPE_FENCE = new RopeFenceBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(1.0f, 1.0f).sound(SoundType.WOOD))
-					.setRegistryName(TheBigBang.MODID, "rope_fence"),
+					.setRegistryName(TheBigBang.MOD_ID, "rope_fence"),
 			ROPE_LADDER = new RopeLadderBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(1.0F, 1.0F).sound(SoundType.WOOD))
-					.setRegistryName(TheBigBang.MODID, "rope_ladder"),
+					.setRegistryName(TheBigBang.MOD_ID, "rope_ladder"),
 			ORANGE_MUSHROOM_BLOCK = new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD))
-					.setRegistryName(TheBigBang.MODID, "orange_mushroom_block"),
+					.setRegistryName(TheBigBang.MOD_ID, "orange_mushroom_block"),
 			ORANGE_MUSHROOM_SLAB = new SlabBlock(Block.Properties.from(ORANGE_MUSHROOM_BLOCK))
-					.setRegistryName(TheBigBang.MODID, "orange_mushroom_slab"),
+					.setRegistryName(TheBigBang.MOD_ID, "orange_mushroom_slab"),
 			ORANGE_MUSHROOM_STAIRS = new StairsBlock(ORANGE_MUSHROOM_BLOCK::getDefaultState, Block.Properties.from(ORANGE_MUSHROOM_BLOCK))
-					.setRegistryName(TheBigBang.MODID, "orange_mushroom_stairs"),
+					.setRegistryName(TheBigBang.MOD_ID, "orange_mushroom_stairs"),
 			BLUE_MUSHROOM_BLOCK = new Block(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD))
-					.setRegistryName(TheBigBang.MODID, "blue_mushroom_block"),
+					.setRegistryName(TheBigBang.MOD_ID, "blue_mushroom_block"),
 			BLUE_MUSHROOM_SLAB = new SlabBlock(Block.Properties.from(BLUE_MUSHROOM_BLOCK))
-					.setRegistryName(TheBigBang.MODID, "blue_mushroom_slab"),
+					.setRegistryName(TheBigBang.MOD_ID, "blue_mushroom_slab"),
 			BLUE_MUSHROOM_STAIRS = new StairsBlock(BLUE_MUSHROOM_BLOCK::getDefaultState, Block.Properties.from(BLUE_MUSHROOM_BLOCK))
-					.setRegistryName(TheBigBang.MODID, "blue_mushroom_stairs")
+					.setRegistryName(TheBigBang.MOD_ID, "blue_mushroom_stairs")
 		);
 	}
 	
 	@SubscribeEvent
 	public static void registerTileEntities(final RegistryEvent.Register<TileEntityType<?>> event) {
 		event.getRegistry().registerAll (			
-			TileEntityType.Builder.create(DangerSignTile::new, DANGER_SIGN).build(null).setRegistryName(TheBigBang.MODID, "danger_sign"),
-			TileEntityType.Builder.create(DivineAltarTile::new, DIVINE_ALTAR).build(null).setRegistryName(TheBigBang.MODID, "divine_altar")
+			TileEntityType.Builder.create(DangerSignTile::new, DANGER_SIGN).build(null).setRegistryName(TheBigBang.MOD_ID, "danger_sign"),
+			TileEntityType.Builder.create(DivineAltarTile::new, DIVINE_ALTAR).build(null).setRegistryName(TheBigBang.MOD_ID, "divine_altar")
 		);
 	}
 	

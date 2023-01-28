@@ -38,6 +38,6 @@ public class DesertSignStructure extends AbstractDangerSignStructure{
 
     @Override
     public String getStructureName() {
-        return TheBigBang.MODID + ":danger_sign_desert";
+        return TheBigBang.getNamespacedKey("danger_sign_desert");
     }
 }

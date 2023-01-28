@@ -54,9 +54,9 @@ public abstract class BigBangArmorItem extends DyeableArmorItem implements IDyea
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlotType slot, String layer){
 		if(layer == null) {
-			return TheBigBang.MODID + ":textures/models/armor/" + name + "_overlay.png";
+			return TheBigBang.MOD_ID + ":textures/models/armor/" + name + "_overlay.png";
 		} else {
-			return TheBigBang.MODID + ":textures/models/armor/" + name + ".png";
+			return TheBigBang.MOD_ID + ":textures/models/armor/" + name + ".png";
 		}
 	}
 

@@ -17,7 +17,7 @@ public class FireGolemRenderer extends MobRenderer<FireGolemEntity, AbstractGole
 
 	@Override
 	protected ResourceLocation getEntityTexture(FireGolemEntity entity) {
-		return new ResourceLocation(TheBigBang.MODID, "textures/entity/fire_golem_entity.png");
+		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/fire_golem_entity.png");
 	}
 	
 	public static class RenderFactory implements IRenderFactory<FireGolemEntity> {

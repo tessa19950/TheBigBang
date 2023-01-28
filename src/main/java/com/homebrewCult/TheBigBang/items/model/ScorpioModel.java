@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class ScorpioModel extends Model {
 	
-	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MODID, "textures/entity/scorpio.png");
+	public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/scorpio.png");
 	private final RendererModel pole;
 	private final RendererModel bone;
 

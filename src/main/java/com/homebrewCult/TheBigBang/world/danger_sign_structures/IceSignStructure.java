@@ -38,6 +38,6 @@ public class IceSignStructure extends AbstractDangerSignStructure{
 
     @Override
     public String getStructureName() {
-        return TheBigBang.MODID + ":danger_sign_ice";
+        return TheBigBang.getNamespacedKey("danger_sign_ice");
     }
 }

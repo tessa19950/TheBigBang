@@ -17,7 +17,7 @@ public class IceDrakeRenderer extends MobRenderer<IceDrakeEntity, AbstractDrakeM
 
 	@Override
 	protected ResourceLocation getEntityTexture(IceDrakeEntity entity) {
-		return new ResourceLocation(TheBigBang.MODID, "textures/entity/ice_drake_entity.png");
+		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/ice_drake_entity.png");
 	}
 	
 	public static class RenderFactory implements IRenderFactory<IceDrakeEntity> {

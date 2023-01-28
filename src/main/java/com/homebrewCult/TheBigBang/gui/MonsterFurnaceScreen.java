@@ -14,7 +14,7 @@ import java.util.Optional;
 
 public class MonsterFurnaceScreen extends AbstractFurnaceScreen<DivineAltarContainer> {
 
-	public static final ResourceLocation MONSTER_FURNACE = new ResourceLocation(TheBigBang.MODID, "textures/gui/monster_furnace_gui.png"); 
+	public static final ResourceLocation MONSTER_FURNACE = new ResourceLocation(TheBigBang.MOD_ID, "textures/gui/monster_furnace_gui.png"); 
 	
 	public MonsterFurnaceScreen(DivineAltarContainer container, PlayerInventory playerInventory, ITextComponent titleIn) {
 		super(container, new FurnaceRecipeGui(), playerInventory, titleIn, MONSTER_FURNACE);

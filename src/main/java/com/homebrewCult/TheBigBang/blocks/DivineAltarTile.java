@@ -93,6 +93,10 @@ public class DivineAltarTile extends AbstractFurnaceTileEntity {
 		addItemBurnTime(map, ModItems.BLUE_MUSHROOM_CAP, 50);
 		addItemBurnTime(map, Items.SPIDER_EYE, 50);
 		addItemBurnTime(map, Items.GUNPOWDER, 50);
+		addItemBurnTime(map, ModItems.BLESSED_MAGIC_ROCK, 50);
+		addItemBurnTime(map, ModItems.BLESSED_SUMMONING_ROCK, 50);
+		addItemBurnTime(map, ModItems.DORMANT_MAGIC_ROCK, 50);
+		addItemBurnTime(map, ModItems.DORMANT_SUMMONING_ROCK, 50);
 		addItemBurnTime(map, ModItems.RED_SNAIL_SHELL, 25); // Blesses 0.125-0.5 items
 		addItemBurnTime(map, ModItems.BLUE_SNAIL_SHELL, 25);
 		addItemBurnTime(map, ModItems.GREEN_SNAIL_SHELL, 25);

@@ -15,7 +15,7 @@ public class GreenBubblingRenderer extends MobRenderer<AbstractBubblingEntity, A
 
 	@Override
 	protected ResourceLocation getEntityTexture(AbstractBubblingEntity entity) {
-		return new ResourceLocation(TheBigBang.MODID, "textures/entity/green_bubbling_entity.png");
+		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/green_bubbling_entity.png");
 	}
 	
 	public static class RenderFactory implements IRenderFactory<AbstractBubblingEntity> {
@@ -24,4 +24,8 @@ public class GreenBubblingRenderer extends MobRenderer<AbstractBubblingEntity, A
 		}
 	}
 
+	@Override
+	protected void preRenderCallback(AbstractBubblingEntity bubbling, float partialTickTime) {
+		BubblingRenderer.applySquish(bubbling, partialTickTime);
+	}
 }

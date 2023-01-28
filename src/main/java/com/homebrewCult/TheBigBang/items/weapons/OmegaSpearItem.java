@@ -1,12 +1,16 @@
 package com.homebrewCult.TheBigBang.items.weapons;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
 import com.homebrewCult.TheBigBang.TheBigBang;
 
+import com.homebrewCult.TheBigBang.init.ModEffects;
 import com.homebrewCult.TheBigBang.init.ModParticleTypes;
 import com.homebrewCult.TheBigBang.init.ModSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,7 +31,7 @@ import java.util.function.Predicate;
 public class OmegaSpearItem extends ToolItem implements IBigBangWeapon{
 
 	private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.HAY_BLOCK, Blocks.ACACIA_LEAVES, Blocks.BIRCH_LEAVES, Blocks.OAK_LEAVES, Blocks.DARK_OAK_LEAVES, Blocks.JUNGLE_LEAVES, Blocks.SPRUCE_LEAVES);
-	public static final String HYPER_BODY_TIME_KEY = TheBigBang.MODID + "hyper_body_time";
+	public static final String HYPER_BODY_TIME_KEY = TheBigBang.getNamespacedKey("hyper_body_time");
 	public int clientHyperBodyTime;
 
 	public OmegaSpearItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Item.Properties builder) {
@@ -36,13 +40,14 @@ public class OmegaSpearItem extends ToolItem implements IBigBangWeapon{
 
 	@Override
 	public void onUsingTick(ItemStack stack, LivingEntity entity, int timeLeft) {
-		if(entity instanceof PlayerEntity)
+		if(entity instanceof PlayerEntity && !entity.isSneaking())
 			onSpellCharging(stack, entity.world, (PlayerEntity) entity, timeLeft);
 		super.onUsingTick(stack, entity, timeLeft);
 	}
 	
-	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity entityLiving, int timeLeft) {
-		trySpellAttack(stack, worldIn, entityLiving, timeLeft);
+	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, LivingEntity user, int timeLeft) {
+		if(user instanceof PlayerEntity)
+			trySpellAttack(stack, worldIn, (PlayerEntity) user, timeLeft);
 	}
 
 	@Override
@@ -53,14 +58,13 @@ public class OmegaSpearItem extends ToolItem implements IBigBangWeapon{
 			double range = 8;
 			AxisAlignedBB AABB = new AxisAlignedBB(player.getPosition().add(-range, -range, -range), player.getPosition().add(range, range, range));
 			List<Entity> targets = new ArrayList<Entity>();
-			targets.addAll(worldIn.getEntitiesWithinAABB(PlayerEntity.class, AABB, (entityIn) -> {
-				return true;
-			}));
+			targets.addAll(worldIn.getEntitiesWithinAABB(PlayerEntity.class, AABB, (entityIn) -> true));
 			for(Entity t : targets) {
 				if(t instanceof PlayerEntity) {
 					worldIn.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), t.posX, t.posY + 0.01D, t.posZ, 0, 0.5D, 0);
-					EffectInstance effect = new EffectInstance(Effects.RESISTANCE, 30 * 20, 1, false, true);
-					((PlayerEntity) t).addPotionEffect(effect);
+					int duration = 30 + (15 * getEffectMultiplier(player, ModEffects.WARRIOR_EFFECT.get()));
+					EffectInstance resistance = new EffectInstance(Effects.RESISTANCE, duration * 20, 1, false, true);
+					((PlayerEntity) t).addPotionEffect(resistance);
 				}
 			}
 			CompoundNBT nbt = stack.getOrCreateTag();
@@ -72,13 +76,17 @@ public class OmegaSpearItem extends ToolItem implements IBigBangWeapon{
 	}
 
 	@Override
-	public void onSpellCharging(ItemStack weaponStack, World worldIn, PlayerEntity entity, int timeLeft) {
+	public void onSpellCharging(ItemStack weaponStack, World worldIn, PlayerEntity player, int timeLeft) {
 		int chargeTime = weaponStack.getUseDuration() - timeLeft;
-		if(chargeTime == getChargeDuration()) {
-			float pitch = 0.9F + worldIn.rand.nextFloat() * 0.2F;
-			worldIn.playSound(entity, entity.getPosition(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.PLAYERS, 0.5F, pitch);
+		if(chargeTime == getChargeDuration(player)) {
+			if(!hasMagicAmmo(player, this))
+				playMissingAmmoEffect(player, worldIn);
+			else {
+				float pitch = 0.9F + worldIn.rand.nextFloat() * 0.2F;
+				worldIn.playSound(player, player.getPosition(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.PLAYERS, 0.5F, pitch);
+			}
 		}
-		if(chargeTime > getChargeDuration()) {
+		if(chargeTime > getChargeDuration(player)) {
 			for(int i = 0; i < 2; ++i) {
 				double time = i == 0 ? (timeLeft * 1.5D) : (timeLeft * 1.5D) + 64;
 				if (time % 64 > 32) {
@@ -86,17 +94,17 @@ public class OmegaSpearItem extends ToolItem implements IBigBangWeapon{
 					double xOffset = flag ? (-time % 32) / 4F : (time % 32) / 4F;
 					xOffset += flag ? 4 : -4;
 					double zOffset = flag ? 4 : -4;
-					worldIn.addParticle(this.getChargedParticle(), entity.posX + xOffset, entity.posY + 1D, entity.posZ + zOffset, 0, 0, 0);
+					worldIn.addParticle(this.getChargedParticle(), player.posX + xOffset, player.posY + 1D, player.posZ + zOffset, 0, 0, 0);
 				} else {
 					boolean flag = time % 128 > 64;
 					double zOffset = flag ? (time % 32) / 4F : (-time % 32) / 4F;
 					zOffset += flag ? -4 : 4;
 					double xOffset = flag ? 4 : -4;
-					worldIn.addParticle(this.getChargedParticle(), entity.posX + xOffset, entity.posY + 1D, entity.posZ + zOffset, 0, 0, 0);
+					worldIn.addParticle(this.getChargedParticle(), player.posX + xOffset, player.posY + 1D, player.posZ + zOffset, 0, 0, 0);
 				}
 			}
 		} else
-			spawnChargingParticle(chargeTime, entity, worldIn);
+			spawnChargingParticle(chargeTime, player, worldIn);
 	}
 
 	@Override
@@ -144,10 +152,10 @@ public class OmegaSpearItem extends ToolItem implements IBigBangWeapon{
 	}
 
 	@Override
-	public Predicate<ItemStack> getMagicAmmoPredicate() { return IBigBangWeapon.SUMMONING_ROCKS; }
+	public Predicate<ItemStack> getMagicAmmoPredicate() { return IBigBangWeapon.MAGIC_ROCKS; }
 
 	@Override
-	public int getChargeDuration() { return 40; }
+	public int getChargeDuration(PlayerEntity player) { return 40 - (10 * getEffectMultiplier(player, ModEffects.WARRIOR_EFFECT.get())); }
 
 	@Override
 	public IParticleData getChargingParticle() { return ModParticleTypes.SYMBOL_GOLD.get(); }
@@ -157,5 +165,16 @@ public class OmegaSpearItem extends ToolItem implements IBigBangWeapon{
 
 	@Override
 	public SoundEvent getChargedSound() { return SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL; }
-	
+
+	private static final List<Enchantment> VALID_ENCHANTMENTS = ImmutableList.of(
+			Enchantments.FIRE_ASPECT, Enchantments.LOOTING, Enchantments.SHARPNESS,
+			Enchantments.SMITE, Enchantments.BANE_OF_ARTHROPODS, Enchantments.KNOCKBACK
+	);
+
+	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+		if(VALID_ENCHANTMENTS.contains(enchantment))
+			return true;
+		return super.canApplyAtEnchantingTable(stack, enchantment);
+	}
 }

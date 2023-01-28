@@ -1,6 +1,5 @@
 package com.homebrewCult.TheBigBang.particles;
 
-import com.homebrewCult.TheBigBang.TheBigBang;
 import net.minecraft.client.particle.IAnimatedSprite;
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.IParticleRenderType;
@@ -17,14 +16,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class MagicClawParticle extends SpriteTexturedParticle {
 
 	private final IAnimatedSprite sprites;
-	private boolean doOnce = false;
 	
 	protected MagicClawParticle(World worldIn, double x, double y, double z, IAnimatedSprite spritesIn) {
 		super(worldIn, x, y, z);
-		TheBigBang.print("im here");
 		this.maxAge = 7;
 		this.particleScale = 1;
 		this.sprites = spritesIn;
+		this.sprite = spritesIn.get(0, this.maxAge);
 	}
 
 	@Override
@@ -47,7 +45,6 @@ public class MagicClawParticle extends SpriteTexturedParticle {
 	}
 	
 	public void tick() {
-		TheBigBang.print("magic claw particle tick " + this.age);
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
