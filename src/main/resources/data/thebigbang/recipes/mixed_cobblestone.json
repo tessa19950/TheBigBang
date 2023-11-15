@@ -1,0 +1,13 @@
+{
+ 	"type": "minecraft:crafting_shapeless",
+  	"ingredients":
+  	[
+		{ "item": "minecraft:andesite" },
+		{ "item": "minecraft:granite" },
+		{ "item": "minecraft:diorite" }
+  	],
+  	"result": {
+		"item": "thebigbang:mixed_cobblestone",
+		"count": 3
+	}
+}

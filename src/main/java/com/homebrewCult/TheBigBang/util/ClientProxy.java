@@ -31,11 +31,28 @@ public class ClientProxy implements IProxy {
 		ScreenManager.registerFactory(ModBlocks.DANGER_SIGN_CONTAINER, DangerSignScreen::new);
 		ScreenManager.registerFactory(ModBlocks.DIVINE_ALTAR_CONTAINER, MonsterFurnaceScreen::new);
 		ClientRegistry.bindTileEntitySpecialRenderer(DivineAltarTile.class, new DivineAltarTileRenderer<>());
+
+		//ModParticleTypes.registerClientParticleFactories();
+
 		registerEntityRenderers();
 
 		for(PlayerRenderer playerRender : Minecraft.getInstance().getRenderManager().getSkinMap().values())
 			playerRender.addLayer(new BigBangPlayerLayer<>(playerRender));
 
+		registerBlockItemColors();
+	}
+
+	@Override
+	public World getClientWorld() {
+		return Minecraft.getInstance().world;
+	}
+
+	@Override
+	public PlayerEntity getClientPlayer() {
+		return Minecraft.getInstance().player;
+	}
+
+	private void registerBlockItemColors() {
 		Minecraft.getInstance().getBlockColors().register(BlockColorHandler.INSTANCE,
 				ModBlocks.GRASSY_GOLEM_STONE, ModBlocks.GRASSY_DARK_GOLEM_STONE
 		);
@@ -54,16 +71,6 @@ public class ClientProxy implements IProxy {
 		);
 	}
 
-	@Override
-	public World getClientWorld() {
-		return Minecraft.getInstance().world;
-	}
-
-	@Override
-	public PlayerEntity getClientPlayer() {
-		return Minecraft.getInstance().player;
-	}
-	
 	private void registerEntityRenderers() {
 		registerRenderer(StumpEntity.class, new StumpRenderer.RenderFactory());
 		registerRenderer(DarkStumpEntity.class, new DarkStumpRenderer.RenderFactory());

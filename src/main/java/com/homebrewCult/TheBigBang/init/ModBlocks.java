@@ -8,7 +8,6 @@ import com.homebrewCult.TheBigBang.world.maple_gardens_features.RedMapleTree;
 import com.homebrewCult.TheBigBang.world.maple_gardens_features.YellowMapleTree;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.math.BlockPos;
@@ -27,10 +26,10 @@ public class ModBlocks {
 	public static Block ADAMANTIUM_ORE = null;
 	public static Block ORIHALCON_ORE = null;
 	
-	public static Block RED_MAPLE_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT)).setRegistryName(TheBigBang.MOD_ID, "red_maple_leaves");
-	public static Block RED_MAPLE_SAPLING = new MapleSaplingBlock(new RedMapleTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName(TheBigBang.MOD_ID, "red_maple_sapling");
-	public static Block YELLOW_MAPLE_LEAVES = new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT)).setRegistryName(TheBigBang.MOD_ID, "yellow_maple_leaves");
-	public static Block YELLOW_MAPLE_SAPLING = new MapleSaplingBlock(new YellowMapleTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName(TheBigBang.MOD_ID, "yellow_maple_sapling");
+	public static Block RED_MAPLE_LEAVES = null; //new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT)).setRegistryName(TheBigBang.MOD_ID, "red_maple_leaves");
+	public static Block RED_MAPLE_SAPLING = null; //new MapleSaplingBlock(new RedMapleTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName(TheBigBang.MOD_ID, "red_maple_sapling");
+	public static Block YELLOW_MAPLE_LEAVES = null; //new LeavesBlock(Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT)).setRegistryName(TheBigBang.MOD_ID, "yellow_maple_leaves");
+	public static Block YELLOW_MAPLE_SAPLING = null; //new MapleSaplingBlock(new YellowMapleTree(), Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT)).setRegistryName(TheBigBang.MOD_ID, "yellow_maple_sapling");
 	
 	public static Block DANGER_SIGN = null;
 	public static Block DIVINE_ALTAR = null;
@@ -57,6 +56,7 @@ public class ModBlocks {
 	public static Block BLUE_MUSHROOM_BLOCK = null;
 	public static Block BLUE_MUSHROOM_SLAB = null;
 	public static Block BLUE_MUSHROOM_STAIRS = null;
+	public static Block MIXED_COBBLESTONE = null;
 
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
@@ -94,7 +94,17 @@ public class ModBlocks {
 			BLUE_MUSHROOM_SLAB = new SlabBlock(Block.Properties.from(BLUE_MUSHROOM_BLOCK))
 					.setRegistryName(TheBigBang.MOD_ID, "blue_mushroom_slab"),
 			BLUE_MUSHROOM_STAIRS = new StairsBlock(BLUE_MUSHROOM_BLOCK::getDefaultState, Block.Properties.from(BLUE_MUSHROOM_BLOCK))
-					.setRegistryName(TheBigBang.MOD_ID, "blue_mushroom_stairs")
+					.setRegistryName(TheBigBang.MOD_ID, "blue_mushroom_stairs"),
+			RED_MAPLE_LEAVES = new LeavesBlock(Block.Properties.from(Blocks.OAK_LEAVES))
+					.setRegistryName(TheBigBang.MOD_ID, "red_maple_leaves"),
+			YELLOW_MAPLE_LEAVES = new LeavesBlock(Block.Properties.from(Blocks.OAK_LEAVES))
+					.setRegistryName(TheBigBang.MOD_ID, "yellow_maple_leaves"),
+			RED_MAPLE_SAPLING = new MapleSaplingBlock(new RedMapleTree(), Block.Properties.from(Blocks.OAK_SAPLING))
+					.setRegistryName(TheBigBang.MOD_ID, "red_maple_sapling"),
+			YELLOW_MAPLE_SAPLING = new MapleSaplingBlock(new YellowMapleTree(), Block.Properties.from(Blocks.OAK_SAPLING))
+					.setRegistryName(TheBigBang.MOD_ID, "yellow_maple_sapling"),
+			MIXED_COBBLESTONE = new Block(Block.Properties.from(Blocks.COBBLESTONE))
+					.setRegistryName(TheBigBang.MOD_ID, "mixed_cobblestone")
 		);
 	}
 	

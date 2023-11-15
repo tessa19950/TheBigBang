@@ -59,4 +59,8 @@ public class ModParticleTypes {
 		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.SUMMONING_ROCK.get(), MissingRockParticle.ParticleFactory::new);
 		Minecraft.getInstance().particles.registerFactory(ModParticleTypes.MAGIC_ROCK.get(), MissingRockParticle.ParticleFactory::new);
 	}
+
+	public static void registerClientParticleFactories() {
+		// Not sure if this could be useful for something in the future but eh... yeah
+	}
 }

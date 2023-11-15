@@ -2,18 +2,13 @@ package com.homebrewCult.TheBigBang.init;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.world.CaveRoomConfig;
-import com.homebrewCult.TheBigBang.world.ModWorldGen;
-import com.homebrewCult.TheBigBang.world.danger_sign_features.*;
-
+import com.homebrewCult.TheBigBang.world.danger_sign_features.DangerSignCaveFeature;
 import com.homebrewCult.TheBigBang.world.danger_sign_structures.*;
 import com.homebrewCult.TheBigBang.world.maple_gardens_features.MapleTreeFeature;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
-import net.minecraft.world.gen.feature.structure.PillagerOutpostConfig;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.placement.CountConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,7 +16,6 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ObjectHolder;
 
 @Mod.EventBusSubscriber(modid = TheBigBang.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModFeatures {
@@ -48,8 +42,8 @@ public class ModFeatures {
 	public static final RegistryObject<Placement<CaveRoomConfig>> CAVE_ROOM = DECORATORS.register("cave_room",
 			() -> new CaveRoomConfig.CaveRoom(CaveRoomConfig::deserialize));
 
-	//public static final RegistryObject<MapleTreeFeature> MAPLE_TREE = FEATURES.register("maple_tree",
-	//		() -> new MapleTreeFeature(NoFeatureConfig::deserialize, true));
+	public static final RegistryObject<MapleTreeFeature> MAPLE_TREE = FEATURES.register("maple_tree",
+			() -> new MapleTreeFeature(NoFeatureConfig::deserialize, true));
 
 	@SubscribeEvent
 	public static void registerFeatures(final RegistryEvent.Register<Feature<?>> event) {

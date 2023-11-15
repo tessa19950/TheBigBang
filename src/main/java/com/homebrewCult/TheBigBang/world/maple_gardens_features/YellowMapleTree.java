@@ -11,6 +11,6 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 public class YellowMapleTree extends Tree {
 	@Override
 	protected AbstractTreeFeature<NoFeatureConfig> getTreeFeature(Random random) {
-		return (AbstractTreeFeature<NoFeatureConfig>) new MapleTreeFeature(NoFeatureConfig::deserialize, false, 5, Blocks.OAK_LOG.getDefaultState(), ModBlocks.YELLOW_MAPLE_LEAVES.getDefaultState(), false);
+		return new MapleTreeFeature(NoFeatureConfig::deserialize, false, 5, Blocks.OAK_LOG.getDefaultState(), ModBlocks.YELLOW_MAPLE_LEAVES.getDefaultState(), false);
 	}
 }

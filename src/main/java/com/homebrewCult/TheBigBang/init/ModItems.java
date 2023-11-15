@@ -315,10 +315,10 @@ public class ModItems {
 				new BlockItem(ModBlocks.DARK_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.DARK_GOLEM_STONE.getRegistryName()),
 				new BlockItem(ModBlocks.GRASSY_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GRASSY_GOLEM_STONE.getRegistryName()),
 				new BlockItem(ModBlocks.GRASSY_DARK_GOLEM_STONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.GRASSY_DARK_GOLEM_STONE.getRegistryName()),
-				//new BlockItem(ModBlocks.RED_MAPLE_LEAVES, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.RED_MAPLE_LEAVES.getRegistryName()),
-				//new BlockItem(ModBlocks.RED_MAPLE_SAPLING, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.RED_MAPLE_SAPLING.getRegistryName()),
-				//new BlockItem(ModBlocks.YELLOW_MAPLE_LEAVES, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.YELLOW_MAPLE_LEAVES.getRegistryName()),
-				//new BlockItem(ModBlocks.YELLOW_MAPLE_SAPLING, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.YELLOW_MAPLE_SAPLING.getRegistryName()),
+				new BlockItem(ModBlocks.RED_MAPLE_LEAVES, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.RED_MAPLE_LEAVES.getRegistryName()),
+				new BlockItem(ModBlocks.RED_MAPLE_SAPLING, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.RED_MAPLE_SAPLING.getRegistryName()),
+				new BlockItem(ModBlocks.YELLOW_MAPLE_LEAVES, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.YELLOW_MAPLE_LEAVES.getRegistryName()),
+				new BlockItem(ModBlocks.YELLOW_MAPLE_SAPLING, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.YELLOW_MAPLE_SAPLING.getRegistryName()),
 				new BlockItem(ModBlocks.ROPE_FENCE, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.ROPE_FENCE.getRegistryName()),
 				new BlockItem(ModBlocks.ROPE_LADDER, new Item.Properties().group(ItemGroup.DECORATIONS)).setRegistryName(ModBlocks.ROPE_LADDER.getRegistryName()),
 				new BlockItem(ModBlocks.ORANGE_MUSHROOM_BLOCK, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.ORANGE_MUSHROOM_BLOCK.getRegistryName()),
@@ -327,6 +327,7 @@ public class ModItems {
 				new BlockItem(ModBlocks.BLUE_MUSHROOM_BLOCK, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.BLUE_MUSHROOM_BLOCK.getRegistryName()),
 				new BlockItem(ModBlocks.BLUE_MUSHROOM_SLAB, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.BLUE_MUSHROOM_SLAB.getRegistryName()),
 				new BlockItem(ModBlocks.BLUE_MUSHROOM_STAIRS, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.BLUE_MUSHROOM_STAIRS.getRegistryName()),
+				new BlockItem(ModBlocks.MIXED_COBBLESTONE, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(ModBlocks.MIXED_COBBLESTONE.getRegistryName()),
 
 				/*
 						WEAPONS, AMMO AND ARMOR ITEMS
