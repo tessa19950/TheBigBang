@@ -16,7 +16,7 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -63,17 +63,17 @@ public class DangerSignBlock extends ContainerBlock {
 	public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
 		return false;
 	}
-	
+
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		if (worldIn.isRemote) {
-			return true;
+			return ActionResultType.SUCCESS;
 		} else {
 			TileEntity tileEntity = worldIn.getTileEntity(getBasePartPosition(state, pos));
 			if (tileEntity instanceof DangerSignTile) {
 				NetworkHooks.openGui((ServerPlayerEntity) player, (INamedContainerProvider)tileEntity, tileEntity.getPos());
 			} 
-			return true;
+			return ActionResultType.SUCCESS;
       	}
 	}
 
@@ -139,9 +139,4 @@ public class DangerSignBlock extends ContainerBlock {
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}
-	
-	@Override
-    public BlockRenderLayer getRenderLayer() {
-    	return BlockRenderLayer.CUTOUT;
-    }
 }

@@ -11,13 +11,12 @@ import net.minecraft.block.SnowBlock;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
 import net.minecraft.world.lighting.LightEngine;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.IPlantable;
 
 public class GrassyDarkGolemStoneBlock extends Block {
@@ -27,16 +26,6 @@ public class GrassyDarkGolemStoneBlock extends Block {
 	public GrassyDarkGolemStoneBlock(Properties builder) {
 		super(builder);
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
-	}
-	
-	@Override
-    public BlockRenderLayer getRenderLayer() {
-    	return BlockRenderLayer.CUTOUT_MIPPED;
-    }
-	
-	@Override
-	public boolean isSolid(BlockState state) {
-		return true;
 	}
 	
 	@Override
@@ -52,9 +41,9 @@ public class GrassyDarkGolemStoneBlock extends Block {
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
 	}
-	
+
 	@Override
-	public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		if(!worldIn.isRemote) {
 			if(!worldIn.isAreaLoaded(pos, 1))
 				return;
