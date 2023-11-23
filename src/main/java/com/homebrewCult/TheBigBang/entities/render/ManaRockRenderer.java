@@ -80,17 +80,17 @@ public class ManaRockRenderer extends EntityRenderer<ManaRockEntity> {
             }
 
             double d5 = Math.cos(d1);
-            double d6 = MathHelper.lerp(partialTicks, leashHolder.prevPosX, leashHolder.posX) - d2 * 0.7D - d3 * 0.5D * d5;
-            double d7 = -entityYaw + 0.6D + MathHelper.lerp(partialTicks, leashHolder.prevPosY + (double)leashHolder.getEyeHeight() * 0.7D, leashHolder.posY + (double)leashHolder.getEyeHeight() * 0.7D) - d4 * 0.5D - 0.25D;
-            double d8 = MathHelper.lerp(partialTicks, leashHolder.prevPosZ, leashHolder.posZ) - d3 * 0.7D + d2 * 0.5D * d5;
+            double d6 = MathHelper.lerp(partialTicks, leashHolder.prevPosX, leashHolder.getPosX()) - d2 * 0.7D - d3 * 0.5D * d5;
+            double d7 = -entityYaw + 0.6D + MathHelper.lerp(partialTicks, leashHolder.prevPosY + (double)leashHolder.getEyeHeight() * 0.7D, leashHolder.getPosY() + (double)leashHolder.getEyeHeight() * 0.7D) - d4 * 0.5D - 0.25D;
+            double d8 = MathHelper.lerp(partialTicks, leashHolder.prevPosZ, leashHolder.getPosZ()) - d3 * 0.7D + d2 * 0.5D * d5;
             double d9 = (double)(MathHelper.lerp(partialTicks, entityLivingIn.renderYawOffset, entityLivingIn.prevRenderYawOffset) * ((float)Math.PI / 180F)) + (Math.PI / 2D);
 
             Vec3d offset = leashHolder.getPositionVec().subtract(entityLivingIn.getPositionVec()).normalize();
             d2 = offset.x * 0.3; //Math.cos(d9) * 0.2D;
             d3 = offset.z * 0.3; //Math.sin(d9) * 0.2D;
-            double d10 = MathHelper.lerp(partialTicks, entityLivingIn.prevPosX, entityLivingIn.posX) + d2;
-            double d11 = MathHelper.lerp(partialTicks, entityLivingIn.prevPosY, entityLivingIn.posY);
-            double d12 = MathHelper.lerp(partialTicks, entityLivingIn.prevPosZ, entityLivingIn.posZ) + d3;
+            double d10 = MathHelper.lerp(partialTicks, entityLivingIn.prevPosX, entityLivingIn.getPosX()) + d2;
+            double d11 = MathHelper.lerp(partialTicks, entityLivingIn.prevPosY, entityLivingIn.getPosY());
+            double d12 = MathHelper.lerp(partialTicks, entityLivingIn.prevPosZ, entityLivingIn.getPosZ()) + d3;
             x = x + d2;
             z = z + d3;
             double d13 = (float)(d6 - d10);

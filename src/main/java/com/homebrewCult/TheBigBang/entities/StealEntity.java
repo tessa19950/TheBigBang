@@ -69,9 +69,9 @@ public class StealEntity extends Entity {
             target = world.getEntityByID(getTarget());
         if(summoner != null && target != null) {
             Vec3d vec3d = this.getMotion();
-            this.posX += vec3d.x;
-            this.posY += vec3d.y;
-            this.posZ += vec3d.z;
+            this.getPosX() += vec3d.x;
+            this.getPosY() += vec3d.y;
+            this.getPosZ() += vec3d.z;
             if(!hasHit) {
                 this.setMotion(target.getPositionVec().subtract(getPositionVec()).normalize().scale(2));
                 this.setRotation(summoner.getYaw(0), summoner.getPitch(0));
@@ -84,7 +84,7 @@ public class StealEntity extends Entity {
             } else {
                 this.setMotion(vec3d.scale(0.65));
             }
-            this.setPosition(this.posX, this.posY, this.posZ);
+            this.setPosition(this.getPosX(), this.getPosY(), this.getPosZ());
         }
 
         if(ticksExisted > MAX_AGE)
@@ -107,7 +107,7 @@ public class StealEntity extends Entity {
         LootTable lootTable = Objects.requireNonNull(entity.world.getServer()).getLootTableManager().getLootTableFromLocation(entity.getType().getLootTable());
         List<ItemStack> items = lootTable.generate(lootContext.build(LootParameterSets.ENTITY));
         if (items.size() > 0) {
-            entity.getEntityWorld().addEntity(new ItemEntity(entity.world, entity.posX, entity.posY + entity.getHeight(), entity.posZ, items.get(0)));
+            entity.getEntityWorld().addEntity(new ItemEntity(entity.world, entity.getPosX(), entity.getPosY() + entity.getHeight(), entity.getPosZ(), items.get(0)));
         }
         entity.addTag("looted");
     }

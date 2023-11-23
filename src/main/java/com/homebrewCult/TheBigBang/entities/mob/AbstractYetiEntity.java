@@ -71,7 +71,7 @@ public class AbstractYetiEntity extends TameableEntity implements IQuestEntity {
 		if (worldIn.getRandom().nextInt(100) == 0 && !reason.equals(SpawnReason.CONVERSION)) {
 			setSaddled(true);
 			PepeEntity pepe = ModEntities.PEPE_ENTITY.create(this.world);
-			pepe.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+			pepe.setLocationAndAngles(this.getPosX(), this.getPosY(), this.getPosZ(), this.rotationYaw, 0.0F);
 			pepe.onInitialSpawn(worldIn, difficultyIn, reason, null, null);
 			worldIn.addEntity(pepe);
 			pepe.startRiding(this);
@@ -127,7 +127,7 @@ public class AbstractYetiEntity extends TameableEntity implements IQuestEntity {
 			double z = -1.5F;
 			double y = this.getMountedYOffset() + passenger.getYOffset();
 			Vec3d vec3d = (new Vec3d(z, 0.0D, 0.0D)).rotateYaw(-this.renderYawOffset * 0.017453292F - 1.5707964F);
-			passenger.setPosition(this.posX + vec3d.x, this.posY + y, this.posZ + vec3d.z);
+			passenger.setPosition(this.getPosX() + vec3d.x, this.getPosY() + y, this.getPosZ() + vec3d.z);
 		}
 	}
 
@@ -171,8 +171,8 @@ public class AbstractYetiEntity extends TameableEntity implements IQuestEntity {
 					this.setMotion(Vec3d.ZERO);
 
 				this.prevLimbSwingAmount = this.limbSwingAmount;
-				double d2 = this.posX - this.prevPosX;
-				double d3 = this.posZ - this.prevPosZ;
+				double d2 = this.getPosX() - this.prevPosX;
+				double d3 = this.getPosZ() - this.prevPosZ;
 				float f4 = MathHelper.sqrt(d2 * d2 + d3 * d3) * 4.0F;
 				if (f4 > 1.0F) {
 					f4 = 1.0F;

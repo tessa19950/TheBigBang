@@ -55,7 +55,7 @@ public class AbstractBubblingEntity extends TameableEntity implements IQuestEnti
 		this.goalSelector.addGoal(5, new FaceRandomGoal(this));
 	    this.goalSelector.addGoal(6, new HopGoal(this));
 	    this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10,
-				true, false, (target) -> Math.abs(target.posY - this.posY) <= 4.0D));
+				true, false, (target) -> Math.abs(target.getPosY() - this.getPosY()) <= 4.0D));
 		super.registerGoals();
 	}
 	
@@ -151,8 +151,8 @@ public class AbstractBubblingEntity extends TameableEntity implements IQuestEnti
 	            float f3 = MathHelper.cos(f) * (float)i * 0.5F * f1;
 	            World world = this.world;
 	            IParticleData iparticledata = this.getSquishParticle();
-	            double d0 = this.posX + (double)f2;
-	            double d1 = this.posZ + (double)f3;
+	            double d0 = this.getPosX() + (double)f2;
+	            double d1 = this.getPosZ() + (double)f3;
 	            world.addParticle(iparticledata, d0, this.getBoundingBox().minY, d1, 0.0D, 0.0D, 0.0D);
 	        }
 	        this.playSound(this.getSquishSound(), this.getSoundVolume(), ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) / 0.8F);
@@ -247,8 +247,8 @@ public class AbstractBubblingEntity extends TameableEntity implements IQuestEnti
 				return;
 			bubbling.getLookController().setLookPositionWithEntity(owner, 10.0F, (float) bubbling.getVerticalFaceSpeed());
 			if (!bubbling.isSitting() && !(bubbling.getDistanceSq(owner) < 144.0D)) {
-				int i = MathHelper.floor(owner.posX) - 2;
-				int j = MathHelper.floor(owner.posZ) - 2;
+				int i = MathHelper.floor(owner.getPosX()) - 2;
+				int j = MathHelper.floor(owner.getPosZ()) - 2;
 				int k = MathHelper.floor(owner.getBoundingBox().minY);
 				for (int l = 0; l <= 4; ++l) {
 					for (int i1 = 0; i1 <= 4; ++i1) {

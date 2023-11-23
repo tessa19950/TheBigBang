@@ -69,9 +69,9 @@ public class ManaRockEntity extends CreatureEntity {
     }
 
     public void recalculateSize() {
-        double d0 = this.posX;
-        double d1 = this.posY;
-        double d2 = this.posZ;
+        double d0 = this.getPosX();
+        double d1 = this.getPosY();
+        double d2 = this.getPosZ();
         super.recalculateSize();
         this.setPosition(d0, d1, d2);
     }
@@ -197,7 +197,7 @@ public class ManaRockEntity extends CreatureEntity {
     public void handleStatusUpdate(byte id) {
         if (id == 32) {
             if (this.world.isRemote) {
-                this.world.playSound(this.posX, this.posY, this.posZ, SoundEvents.BLOCK_STONE_HIT, this.getSoundCategory(), 0.3F, 1.0F, false);
+                this.world.playSound(this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.BLOCK_STONE_HIT, this.getSoundCategory(), 0.3F, 1.0F, false);
                 this.punchCooldown = this.world.getGameTime();
             }
         } else {
@@ -230,7 +230,7 @@ public class ManaRockEntity extends CreatureEntity {
 
     private void playParticles() {
         if (this.world instanceof ServerWorld) {
-            ((ServerWorld)this.world).spawnParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.STRIPPED_SPRUCE_WOOD.getDefaultState()), this.posX, this.posY + (double)this.getHeight() / 1.5D, this.posZ, 10, (double)(this.getWidth() / 4.0F), (double)(this.getHeight() / 4.0F), (double)(this.getWidth() / 4.0F), 0.05D);
+            ((ServerWorld)this.world).spawnParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.STRIPPED_SPRUCE_WOOD.getDefaultState()), this.getPosX(), this.getPosY() + (double)this.getHeight() / 1.5D, this.getPosZ(), 10, (double)(this.getWidth() / 4.0F), (double)(this.getHeight() / 4.0F), (double)(this.getWidth() / 4.0F), 0.05D);
         }
 
     }
@@ -258,7 +258,7 @@ public class ManaRockEntity extends CreatureEntity {
     }
 
     private void playBrokenSound() {
-        this.world.playSound((PlayerEntity)null, this.posX, this.posY, this.posZ, SoundEvents.BLOCK_STONE_BREAK, this.getSoundCategory(), 1.0F, 1.0F);
+        this.world.playSound((PlayerEntity)null, this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.BLOCK_STONE_BREAK, this.getSoundCategory(), 1.0F, 1.0F);
     }
 
     protected float updateDistance(float p_110146_1_, float p_110146_2_) {

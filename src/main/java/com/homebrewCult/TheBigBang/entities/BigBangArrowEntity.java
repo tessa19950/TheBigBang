@@ -53,13 +53,13 @@ public class BigBangArrowEntity extends AbstractArrowEntity {
             this.prevRotationPitch = this.rotationPitch;
         }
 
-        BlockPos blockpos = new BlockPos(this.posX, this.posY, this.posZ);
+        BlockPos blockpos = new BlockPos(this.getPosX(), this.getPosY(), this.getPosZ());
         BlockState blockstate = this.world.getBlockState(blockpos);
         if (!blockstate.isAir(this.world, blockpos) && !flag) {
             VoxelShape voxelshape = blockstate.getCollisionShape(this.world, blockpos);
             if (!voxelshape.isEmpty()) {
                 for(AxisAlignedBB axisalignedbb : voxelshape.toBoundingBoxList()) {
-                    if (axisalignedbb.offset(blockpos).contains(new Vec3d(this.posX, this.posY, this.posZ))) {
+                    if (axisalignedbb.offset(blockpos).contains(new Vec3d(this.getPosX(), this.getPosY(), this.getPosZ()))) {
                         this.inGround = true;
                         break;
                     }
@@ -126,16 +126,16 @@ public class BigBangArrowEntity extends AbstractArrowEntity {
             while(this.rotationYaw - this.prevRotationYaw >= 180.0F)
                 this.prevRotationYaw += 360.0F;
 
-            this.posX += d1;
-            this.posY += d2;
-            this.posZ += d0;
+            this.getPosX() += d1;
+            this.getPosY() += d2;
+            this.getPosZ() += d0;
             this.rotationPitch = MathHelper.lerp(0.2F, this.prevRotationPitch, this.rotationPitch);
             this.rotationYaw = MathHelper.lerp(0.2F, this.prevRotationYaw, this.rotationYaw);
             if (this.isInWater()) {
                 for(int j = 0; j < 4; ++j)
-                    this.world.addParticle(ParticleTypes.BUBBLE, this.posX - d1 * 0.25D, this.posY - d2 * 0.25D, this.posZ - d0 * 0.25D, d1, d2, d0);
+                    this.world.addParticle(ParticleTypes.BUBBLE, this.getPosX() - d1 * 0.25D, this.getPosY() - d2 * 0.25D, this.getPosZ() - d0 * 0.25D, d1, d2, d0);
             }
-            this.setPosition(this.posX, this.posY, this.posZ);
+            this.setPosition(this.getPosX(), this.getPosY(), this.getPosZ());
             this.doBlockCollisions();
         }
 

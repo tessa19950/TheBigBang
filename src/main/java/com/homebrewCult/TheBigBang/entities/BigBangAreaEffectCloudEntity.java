@@ -72,8 +72,8 @@ public abstract class BigBangAreaEffectCloudEntity extends AreaEffectCloudEntity
                         }
 
                         if (!this.reapplicationDelayMap.containsKey(e) && e.canBeHitWithPotion() && isAffected) {
-                            double d0 = e.posX - this.posX;
-                            double d1 = e.posZ - this.posZ;
+                            double d0 = e.getPosX() - this.getPosX();
+                            double d1 = e.getPosZ() - this.getPosZ();
                             double d2 = d0 * d0 + d1 * d1;
                             if (d2 <= (double)(f * f)) {
                                 this.reapplicationDelayMap.put(e, this.ticksExisted + this.reapplicationDelay);

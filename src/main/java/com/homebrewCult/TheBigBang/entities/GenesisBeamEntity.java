@@ -30,7 +30,7 @@ public class GenesisBeamEntity extends Entity {
 	
 	@Override
 	public void onAddedToWorld() {
-		this.world.addParticle(ModParticleTypes.HOLY_CIRCLE.get(), this.posX, this.posY + 7.1f, this.posZ, 0, -0.04f, 0);
+		this.world.addParticle(ModParticleTypes.HOLY_CIRCLE.get(), this.getPosX(), this.getPosY() + 7.1f, this.getPosZ(), 0, -0.04f, 0);
 		world.playSound(null, posX, posY, posZ, ModSounds.GENESIS_BEAM_SPAWN, SoundCategory.PLAYERS, 2, 1 + (MathUtility.floatInRange(world.rand, -0.2f, 0.2f)));
 		super.onAddedToWorld();
 	}
@@ -39,16 +39,16 @@ public class GenesisBeamEntity extends Entity {
 	public void tick() {
 		super.tick();
 		if(this.ticksExisted == 2) {
-			this.world.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), this.posX, this.posY + 6.6f, this.posZ, 0, -0.08f, 0);
+			this.world.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), this.getPosX(), this.getPosY() + 6.6f, this.getPosZ(), 0, -0.08f, 0);
 		} else if (this.ticksExisted == 4) {
-			this.world.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), this.posX, this.posY + 6.1f, this.posZ, 0, -0.12f, 0);
-			this.world.addParticle(ModParticleTypes.HOLY_CIRCLE.get(), this.posX, this.posY, this.posZ, 0, 0.04f, 0);
-			this.world.addParticle(ParticleTypes.EXPLOSION, this.posX, this.posY + 1f, this.posZ, 0, 0, 0);
+			this.world.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), this.getPosX(), this.getPosY() + 6.1f, this.getPosZ(), 0, -0.12f, 0);
+			this.world.addParticle(ModParticleTypes.HOLY_CIRCLE.get(), this.getPosX(), this.getPosY(), this.getPosZ(), 0, 0.04f, 0);
+			this.world.addParticle(ParticleTypes.EXPLOSION, this.getPosX(), this.getPosY() + 1f, this.getPosZ(), 0, 0, 0);
 			for(int i = 0; i < 16; ++i) {
 				double s0 = (this.world.rand.nextDouble() - 0.5D) * 0.5D;
 				double s1 = (this.world.rand.nextDouble() - 0.5D) * 0.5D;
 				double s2 = (this.world.rand.nextDouble() - 0.5D) * 0.5D;
-				this.world.addParticle(ParticleTypes.POOF, this.posX, this.posY, this.posZ, s0, s1, s2);
+				this.world.addParticle(ParticleTypes.POOF, this.getPosX(), this.getPosY(), this.getPosZ(), s0, s1, s2);
 			}
 		}
 		if(this.ticksExisted > MAX_AGE)

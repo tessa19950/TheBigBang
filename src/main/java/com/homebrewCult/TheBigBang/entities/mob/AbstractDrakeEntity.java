@@ -132,15 +132,15 @@ public class AbstractDrakeEntity extends MonsterEntity implements IQuestEntity {
 				return;
 			drake.lookAt(EntityAnchorArgument.Type.EYES, target.getEyePosition(0));
 			if(drake.ticksExisted - drake.getFireballTick() == FIREBALL_DURATION) {
-				double dirX = target.posX - drake.posX;
-				double dirY = target.getBoundingBox().minY + (double)(target.getHeight() / 2.0F) - (drake.posY + (double)(drake.getHeight() / 2.0F));
-				double dirZ = target.posZ - drake.posZ;
+				double dirX = target.getPosX() - drake.getPosX();
+				double dirY = target.getBoundingBox().minY + (double)(target.getHeight() / 2.0F) - (drake.getPosY() + (double)(drake.getHeight() / 2.0F));
+				double dirZ = target.getPosZ() - drake.getPosZ();
 				double x = dirX + drake.getRNG().nextGaussian() * 0.2D;
 				double y = dirY + drake.getRNG().nextGaussian() * 0.2D;
 				double z = dirZ + drake.getRNG().nextGaussian() * 0.2D;
 				SmallFireballEntity fireball = new SmallFireballEntity(drake.world, drake, x, y, z);
 				double length = MathHelper.sqrt(dirX * dirX + dirY * dirY + dirZ * dirZ) * 2.0D;
-				fireball.setPosition(drake.posX + dirX / length * 2.5D, drake.posY + 0.75D, drake.posZ + dirZ / length * 2.5D);
+				fireball.setPosition(drake.getPosX() + dirX / length * 2.5D, drake.getPosY() + 0.75D, drake.getPosZ() + dirZ / length * 2.5D);
 				drake.world.addEntity(fireball);
 			}
 		}
