@@ -1,7 +1,6 @@
 package com.homebrewCult.TheBigBang.util;
 
 import com.homebrewCult.TheBigBang.blocks.BlockColorHandler;
-import com.homebrewCult.TheBigBang.blocks.DivineAltarTile;
 import com.homebrewCult.TheBigBang.blocks.render.DivineAltarTileRenderer;
 import com.homebrewCult.TheBigBang.entities.*;
 import com.homebrewCult.TheBigBang.entities.mob.*;
@@ -16,6 +15,8 @@ import com.homebrewCult.TheBigBang.items.ItemColorHandler;
 import com.homebrewCult.TheBigBang.layers.BigBangPlayerLayer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.color.BlockColors;
+import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.client.renderer.entity.PlayerRenderer;
 import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.entity.Entity;
@@ -34,14 +35,14 @@ public class ClientProxy implements IProxy {
 		ScreenManager.registerFactory(ModBlocks.DIVINE_ALTAR_CONTAINER, MonsterFurnaceScreen::new);
 		ClientRegistry.bindTileEntityRenderer(ModBlocks.DIVINE_ALTAR_TILE, DivineAltarTileRenderer::new);
 
+		// Not sure why this is commented out, I think because it wasn't necessary
+		// but it could also be because particles are broken and i need to fix them.
 		//ModParticleTypes.registerClientParticleFactories();
 
 		registerEntityRenderers();
 
 		for(PlayerRenderer playerRender : Minecraft.getInstance().getRenderManager().getSkinMap().values())
 			playerRender.addLayer(new BigBangPlayerLayer<>(playerRender));
-
-		registerBlockItemColors();
 	}
 
 	@Override
@@ -54,14 +55,19 @@ public class ClientProxy implements IProxy {
 		return Minecraft.getInstance().player;
 	}
 
-	private void registerBlockItemColors() {
-		Minecraft.getInstance().getBlockColors().register(BlockColorHandler.INSTANCE,
+	@Override
+	public void registerBlockColors(BlockColors blockColors) {
+		blockColors.register(BlockColorHandler.INSTANCE,
 				ModBlocks.GRASSY_GOLEM_STONE, ModBlocks.GRASSY_DARK_GOLEM_STONE
 		);
-		Minecraft.getInstance().getItemColors().register(ItemColorHandler.INSTANCE,
+	}
+
+	@Override
+	public void registerItemColors(ItemColors itemColors) {
+		itemColors.register(ItemColorHandler.INSTANCE,
 				ModItems.GRASSY_GOLEM_STONE, ModItems.GRASSY_DARK_GOLEM_STONE
 		);
-		Minecraft.getInstance().getItemColors().register(BigBangArmorItemColorHandler.INSTANCE,
+		itemColors.register(BigBangArmorItemColorHandler.INSTANCE,
 				ModItems.HWARANG_HELMET, ModItems.HWARANG_CHESTPLATE, ModItems.HWARANG_LEGGINGS, ModItems.HWARANG_BOOTS,
 				ModItems.LEGOLIER_HELMET, ModItems.LEGOLIER_CHESTPLATE, ModItems.LEGOLIER_LEGGINGS, ModItems.LEGOLIER_BOOTS,
 				ModItems.NIGHTSHIFT_HELMET, ModItems.NIGHTSHIFT_CHESTPLATE, ModItems.NIGHTSHIFT_LEGGINGS, ModItems.NIGHTSHIFT_BOOTS,

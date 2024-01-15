@@ -3,6 +3,7 @@ package com.homebrewCult.TheBigBang;
 import com.homebrewCult.TheBigBang.init.*;
 import com.homebrewCult.TheBigBang.listeners.EffectsListener;
 import com.homebrewCult.TheBigBang.listeners.BigBangListener;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -38,12 +39,17 @@ public final class TheBigBang {
 		BigBangConfigSetup.LoadConfig(BigBangConfigSetup.SERVER_CONFIG, FMLPaths.CONFIGDIR.get().resolve("thebigbang-server.toml").toString());
 		
 		final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
 		eventBus.addListener(this::onCommonSetup);
+		eventBus.addListener(this::onBlockColorHandlerEvent);
+		eventBus.addListener(this::onItemColorHandlerEvent);
+
 		ModEffects.EFFECTS.register(eventBus);
 		ModParticleTypes.PARTICLE_TYPES.register(eventBus);
 		ModRecipeTypes.RECIPES.register(eventBus);
 		ModFeatures.FEATURES.register(eventBus);
 		ModFeatures.DECORATORS.register(eventBus);
+
 		MinecraftForge.EVENT_BUS.register(this);
 		MinecraftForge.EVENT_BUS.register(new BigBangListener());
 		MinecraftForge.EVENT_BUS.register(new EffectsListener());
@@ -53,6 +59,14 @@ public final class TheBigBang {
 		proxy.Init();
 		BigBangPacketHandler.packetHandlerInit();
 		ModWorldGen.worldGenInit();
+	}
+
+	public void onBlockColorHandlerEvent(final ColorHandlerEvent.Block event) {
+		proxy.registerBlockColors(event.getBlockColors());
+	}
+
+	public void onItemColorHandlerEvent(final ColorHandlerEvent.Item event) {
+		proxy.registerItemColors(event.getItemColors());
 	}
 	
 	public static void print (String message) {
