@@ -32,7 +32,7 @@ public class BlueSlimeParticle extends SpriteTexturedParticle {
 
 	public BlueSlimeParticle(World worldIn, double posX, double posY, double posZ, ItemStack itemStack) {
 	      super(worldIn, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
-	      this.setSprite(Minecraft.getInstance().getItemRenderer().getModelWithOverrides(itemStack, worldIn, (LivingEntity)null).getParticleTexture());
+	      this.setSprite(Minecraft.getInstance().getItemRenderer().getItemModelMesher().getParticleIcon(itemStack));
 	      this.particleGravity = 1.0F;
 	      this.particleScale /= 2.0F;
 	      this.uvX = this.rand.nextFloat() * 3.0F;

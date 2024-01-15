@@ -16,7 +16,7 @@ public class EvilEyeRenderer extends MobRenderer<EvilEyeEntity, AbstractEyeModel
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(EvilEyeEntity entity) {
+	public ResourceLocation getEntityTexture(EvilEyeEntity entity) {
 		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/evil_eye_entity.png");
 	}
 	

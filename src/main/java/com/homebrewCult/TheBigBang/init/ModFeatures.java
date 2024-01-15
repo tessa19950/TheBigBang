@@ -6,6 +6,7 @@ import com.homebrewCult.TheBigBang.world.danger_sign_features.DangerSignCaveFeat
 import com.homebrewCult.TheBigBang.world.danger_sign_structures.*;
 import com.homebrewCult.TheBigBang.world.maple_gardens_features.MapleTreeFeature;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
@@ -43,7 +44,7 @@ public class ModFeatures {
 			() -> new CaveRoomConfig.CaveRoom(CaveRoomConfig::deserialize));
 
 	public static final RegistryObject<MapleTreeFeature> MAPLE_TREE = FEATURES.register("maple_tree",
-			() -> new MapleTreeFeature(NoFeatureConfig::deserialize, true));
+			() -> new MapleTreeFeature(BaseTreeFeatureConfig::deserialize));
 
 	@SubscribeEvent
 	public static void registerFeatures(final RegistryEvent.Register<Feature<?>> event) {

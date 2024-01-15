@@ -44,9 +44,9 @@ public interface IBigBangWeapon {
                 });
                 consumeMagicAmmo(player, ammoStack);
             }
-            return  ActionResult.newResult(result, weaponStack);
+            return new ActionResult<>(result, weaponStack);
         } else {
-            return ActionResult.newResult(ActionResultType.FAIL, weaponStack);
+            return new ActionResult<>(ActionResultType.FAIL, weaponStack);
         }
     }
 
@@ -79,14 +79,14 @@ public interface IBigBangWeapon {
         Vec3d motion = player.getMotion().mul(1.5D,1.5D,1.5D);
         if(Minecraft.getInstance().gameSettings.thirdPersonView == 0) {
             Vec3d look = player.getLookVec();
-            double x = player.posX + look.x * 0.5D;
-            double y = player.posY + player.getEyeHeight() + look.y * 0.5D;
-            double z = player.posZ + look.z * 0.5D;
+            double x = player.getPosX() + look.x * 0.5D;
+            double y = player.getPosY() + player.getEyeHeight() + look.y * 0.5D;
+            double z = player.getPosZ() + look.z * 0.5D;
             worldIn.addParticle(particle, x, y, z, motion.x + look.x * 0.01D, look.y * 0.01D, motion.z + look.z * 0.01D);
         } else {
-            double x = player.posX;
-            double y = player.posY + player.getEyeHeight() + 0.8;
-            double z = player.posZ;
+            double x = player.getPosX();
+            double y = player.getPosY() + player.getEyeHeight() + 0.8;
+            double z = player.getPosZ();
             worldIn.addParticle(particle, x, y, z, motion.x, 0.01D, motion.z);
         }
     }
@@ -98,9 +98,9 @@ public interface IBigBangWeapon {
                 double y = Math.sin((float) Math.PI * 2F / 16F * (float) i) * 1.2F;
                 Vec3d vec = new Vec3d(x, y, 0);
                 vec = vec.rotateYaw((float)Math.PI / 8F * j);
-                double x1 = player.posX + vec.x;
-                double y1 = player.posY + 1 + vec.y;
-                double z1 = player.posZ + vec.z;
+                double x1 = player.getPosX() + vec.x;
+                double y1 = player.getPosY() + 1 + vec.y;
+                double z1 = player.getPosZ() + vec.z;
                 worldIn.addParticle(this.getChargedParticle(), x1, y1, z1, vec.x * 0.1F, vec.y * 0.03F, vec.z * 0.1F);
             }
         }
@@ -109,12 +109,12 @@ public interface IBigBangWeapon {
     default void spawnChargingParticle(int chargeTime, PlayerEntity player, World worldIn) {
         double t = chargeTime + player.ticksExisted;
         double y = Math.sin(t * 0.05D) * 0.5D;
-        double y1 = player.posY + 1.5D + y;
+        double y1 = player.getPosY() + 1.5D + y;
         double x = Math.sin(t * 0.2D) * (1D - Math.abs(y * 0.8F));
-        double x1 = player.posX + x;
+        double x1 = player.getPosX() + x;
         double x2 = (player.getMotion().x * 2F) + (x * 0.03F);
         double z = Math.cos(t * 0.2D) * (1D - Math.abs(y * 0.8F));
-        double z1 = player.posZ + z;
+        double z1 = player.getPosZ() + z;
         double z2 = (player.getMotion().z * 2F) + (z * 0.03F);
         worldIn.addParticle(this.getChargingParticle(), x1, y1, z1, x2, 0D, z2);
     }
@@ -229,7 +229,7 @@ public interface IBigBangWeapon {
             if (tAngle < angleThreshold && tDis < spellRange) {
                 validTargets.add(t);
                 ++validatedCount;
-                worldIn.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), t.posX, t.posY + 0.01D, t.posZ, 0, 0, 0);
+                worldIn.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), t.getPosX(), t.getPosY() + 0.01D, t.getPosZ(), 0, 0, 0);
             }
         }
         return validTargets;

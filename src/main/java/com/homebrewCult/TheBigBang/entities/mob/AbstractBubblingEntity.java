@@ -51,7 +51,7 @@ public class AbstractBubblingEntity extends TameableEntity implements IQuestEnti
 		this.goalSelector.addGoal(1, this.sitGoal);
 		this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1D, false));
 		this.goalSelector.addGoal(3, new BubblingTemptGoal(this, 0.2D, false, TEMPTATION_ITEMS));
-		this.goalSelector.addGoal(4, new BubblingFollowOwnerGoal(this, 0.3D, 4.0F, 2.0F));
+		this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 0.3D, 4.0F, 2.0F, false));
 		this.goalSelector.addGoal(5, new FaceRandomGoal(this));
 	    this.goalSelector.addGoal(6, new HopGoal(this));
 	    this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10,
@@ -231,11 +231,12 @@ public class AbstractBubblingEntity extends TameableEntity implements IQuestEnti
 		}
 	}
 
+	/*
 	static class BubblingFollowOwnerGoal extends FollowOwnerGoal {
 		private final AbstractBubblingEntity bubbling;
 
 		public BubblingFollowOwnerGoal(AbstractBubblingEntity bubblingIn, double speedIn, float minDistIn, float maxDistIn) {
-			super(bubblingIn, speedIn, minDistIn, maxDistIn);
+			super(bubblingIn, speedIn, minDistIn, maxDistIn, false);
 			this.bubbling = bubblingIn;
 			this.setMutexFlags(EnumSet.of(Goal.Flag.LOOK));
 		}
@@ -262,6 +263,7 @@ public class AbstractBubblingEntity extends TameableEntity implements IQuestEnti
 			}
 		}
 	}
+	 */
 
 	static class FaceRandomGoal extends Goal {
 	      private final AbstractBubblingEntity bubbling;

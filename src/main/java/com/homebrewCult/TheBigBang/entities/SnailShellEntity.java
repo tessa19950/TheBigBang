@@ -32,14 +32,19 @@ public class SnailShellEntity extends ProjectileItemEntity {
 
     public SnailShellEntity(World worldIn, LivingEntity shooter, ItemStack shellStack) {
         super(ModEntities.SNAIL_SHELL, shooter, worldIn);
-        func_213884_b(shellStack);
+        this.setItem(shellStack);
     }
 
     public SnailShellEntity(World worldIn) {
         super(ModEntities.SNAIL_SHELL, worldIn);
     }
 
-    protected Item func_213885_i() {
+    @Override
+    protected Item getDefaultItem() {
+        return getFallbackItem();
+    }
+
+    protected Item getFallbackItem() {
         ItemStack itemStack = this.func_213882_k();
         return itemStack.isEmpty() ? ModItems.GREEN_SNAIL_SHELL : itemStack.getItem();
     }
@@ -71,7 +76,7 @@ public class SnailShellEntity extends ProjectileItemEntity {
     }
 
     private int getShellDamage() {
-        Item item = func_213885_i();
+        Item item = getFallbackItem();
         if(item.equals(ModItems.RED_SNAIL_SHELL))
             return 5;
         if(item.equals(ModItems.BLUE_SNAIL_SHELL))
@@ -85,5 +90,5 @@ public class SnailShellEntity extends ProjectileItemEntity {
     }
 
     @Override
-    public ItemStack getItem() { return new ItemStack(func_213885_i()); }
+    public ItemStack getItem() { return new ItemStack(getFallbackItem()); }
 }

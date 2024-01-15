@@ -59,7 +59,7 @@ public class GephardItem extends SwordItem implements IBigBangWeapon {
 			int id = target.getEntityId();
 			if(!worldIn.isRemote) {
 				StealEntity stealEntity = new StealEntity(worldIn, player, target);
-				stealEntity.setPosition(player.posX, player.posY, player.posZ);
+				stealEntity.setPosition(player.getPosX(), player.getPosY(), player.getPosZ());
 				worldIn.addEntity(stealEntity);
 
 				CompoundNBT nbt = stack.getOrCreateTag();

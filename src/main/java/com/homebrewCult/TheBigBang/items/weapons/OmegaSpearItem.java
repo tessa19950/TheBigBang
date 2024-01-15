@@ -61,7 +61,7 @@ public class OmegaSpearItem extends ToolItem implements IBigBangWeapon{
 			targets.addAll(worldIn.getEntitiesWithinAABB(PlayerEntity.class, AABB, (entityIn) -> true));
 			for(Entity t : targets) {
 				if(t instanceof PlayerEntity) {
-					worldIn.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), t.posX, t.posY + 0.01D, t.posZ, 0, 0.5D, 0);
+					worldIn.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), t.getPosX(), t.getPosY() + 0.01D, t.getPosZ(), 0, 0.5D, 0);
 					int duration = 30 + (15 * getEffectMultiplier(player, ModEffects.WARRIOR_EFFECT.get()));
 					EffectInstance resistance = new EffectInstance(Effects.RESISTANCE, duration * 20, 1, false, true);
 					((PlayerEntity) t).addPotionEffect(resistance);
@@ -94,13 +94,13 @@ public class OmegaSpearItem extends ToolItem implements IBigBangWeapon{
 					double xOffset = flag ? (-time % 32) / 4F : (time % 32) / 4F;
 					xOffset += flag ? 4 : -4;
 					double zOffset = flag ? 4 : -4;
-					worldIn.addParticle(this.getChargedParticle(), player.posX + xOffset, player.posY + 1D, player.posZ + zOffset, 0, 0, 0);
+					worldIn.addParticle(this.getChargedParticle(), player.getPosX() + xOffset, player.getPosY() + 1D, player.getPosZ() + zOffset, 0, 0, 0);
 				} else {
 					boolean flag = time % 128 > 64;
 					double zOffset = flag ? (time % 32) / 4F : (-time % 32) / 4F;
 					zOffset += flag ? -4 : 4;
 					double xOffset = flag ? 4 : -4;
-					worldIn.addParticle(this.getChargedParticle(), player.posX + xOffset, player.posY + 1D, player.posZ + zOffset, 0, 0, 0);
+					worldIn.addParticle(this.getChargedParticle(), player.getPosX() + xOffset, player.getPosY() + 1D, player.getPosZ() + zOffset, 0, 0, 0);
 				}
 			}
 		} else

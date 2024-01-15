@@ -3,6 +3,7 @@ import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.entities.mob.AbstractBubblingEntity;
 import com.homebrewCult.TheBigBang.entities.model.AbstractBubblingModel;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -18,7 +19,7 @@ public class BubblingRenderer extends MobRenderer<AbstractBubblingEntity, Abstra
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(AbstractBubblingEntity entity) {
+	public ResourceLocation getEntityTexture(AbstractBubblingEntity entity) {
 		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/bubbling_entity.png");
 	}
 	
@@ -29,7 +30,8 @@ public class BubblingRenderer extends MobRenderer<AbstractBubblingEntity, Abstra
 	}
 
 	@Override
-	protected void preRenderCallback(AbstractBubblingEntity bubbling, float partialTickTime) {
+	protected void preRenderCallback(AbstractBubblingEntity bubbling, MatrixStack matrixStack, float partialTickTime) {
+		super.preRenderCallback(bubbling, matrixStack, partialTickTime);
 		applySquish(bubbling, partialTickTime);
 	}
 

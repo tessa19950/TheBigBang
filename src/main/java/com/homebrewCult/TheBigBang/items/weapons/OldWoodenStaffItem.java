@@ -47,10 +47,10 @@ public class OldWoodenStaffItem extends TieredItem implements IBigBangWeapon {
 	@Override
 	public void onSpellAttack(ItemStack stack, World worldIn, PlayerEntity player) {
 		float radius = 4.0F + (1.0F * getEffectMultiplier(player, ModEffects.MAGICIAN_EFFECT.get()));
-		BigBangAreaEffectCloudEntity aoeEntity = new FireGearEntity(worldIn, player.posX, player.posY, player.posZ, radius);
+		BigBangAreaEffectCloudEntity aoeEntity = new FireGearEntity(worldIn, player.getPosX(), player.getPosY(), player.getPosZ(), radius);
 		if(player.getHeldItem(Hand.OFF_HAND).getItem().equals(Items.POISONOUS_POTATO))
-			aoeEntity = new PoisonMistEntity(worldIn, player.posX, player.posY, player.posZ, radius);
-		aoeEntity.setPosition(player.posX, player.posY, player.posZ);
+			aoeEntity = new PoisonMistEntity(worldIn, player.getPosX(), player.getPosY(), player.getPosZ(), radius);
+		aoeEntity.setPosition(player.getPosX(), player.getPosY(), player.getPosZ());
 		aoeEntity.setOwner(player);
 		worldIn.addEntity(aoeEntity);
 	}

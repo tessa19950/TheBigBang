@@ -75,7 +75,7 @@ public class LamaStaffItem extends TieredItem implements IBigBangWeapon {
 		if(targets.size() > 0) {
 			int[] ids = new int[targets.size()];
 			for(int i = 0; i < targets.size(); ++i) {
-				worldIn.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), targets.get(i).posX, targets.get(i).posY + 0.01D, targets.get(i).posZ, 0, 0, 0);
+				worldIn.addParticle(ModParticleTypes.HOLY_HEXAGRAM.get(), targets.get(i).getPosX(), targets.get(i).getPosY() + 0.01D, targets.get(i).getPosZ(), 0, 0, 0);
 				ids[i] = targets.get(i).getEntityId();
 			}
 			if(!worldIn.isRemote) {

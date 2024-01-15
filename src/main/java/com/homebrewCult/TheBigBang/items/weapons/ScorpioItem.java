@@ -127,7 +127,7 @@ public class ScorpioItem extends AxeItem implements IBigBangWeapon {
 		boolean success = target.attackEntityFrom(DamageSource.causePlayerDamage(player), dmg);
 		if (success) {
 			if (crit) {
-				player.world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_ATTACK_CRIT,
+				player.world.playSound(null, player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ENTITY_PLAYER_ATTACK_CRIT,
 						player.getSoundCategory(), 1.0F, 1.0F);
 				player.onCriticalHit(target);
 			}

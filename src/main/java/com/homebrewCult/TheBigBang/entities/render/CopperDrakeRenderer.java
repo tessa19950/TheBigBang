@@ -16,7 +16,7 @@ public class CopperDrakeRenderer extends MobRenderer<CopperDrakeEntity, Abstract
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(CopperDrakeEntity entity) {
+	public ResourceLocation getEntityTexture(CopperDrakeEntity entity) {
 		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/copper_drake_entity.png");
 	}
 	

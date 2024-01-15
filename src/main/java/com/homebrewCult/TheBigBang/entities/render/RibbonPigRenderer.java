@@ -18,7 +18,7 @@ public class RibbonPigRenderer extends MobRenderer<RibbonPigEntity, RibbonPigMod
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(RibbonPigEntity entity) {
+	public ResourceLocation getEntityTexture(RibbonPigEntity entity) {
 		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/ribbon_pig_entity.png");
 	}
 	

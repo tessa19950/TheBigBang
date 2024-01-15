@@ -1,63 +1,68 @@
 package com.homebrewCult.TheBigBang.layers;
 
-import net.minecraft.client.renderer.entity.model.RendererModel;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.model.Model;
-import net.minecraft.client.renderer.model.ModelBox;
+import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 
 public class ThreatenLayerModel extends Model {
 
-	private final RendererModel tail;
-	private final RendererModel body;
-	private final RendererModel leftArm;
-	private final RendererModel leftLowerArm;
-	private final RendererModel rightArm;
-	private final RendererModel rightLowerArm;
-	private final RendererModel leftEye;
-	private final RendererModel rightEye;
+	private final ModelRenderer tail;
+	private final ModelRenderer body;
+	private final ModelRenderer leftArm;
+	private final ModelRenderer leftLowerArm;
+	private final ModelRenderer rightArm;
+	private final ModelRenderer rightLowerArm;
+	private final ModelRenderer leftEye;
+	private final ModelRenderer rightEye;
 
 	public ThreatenLayerModel() {
+		super(RenderType::getEntitySolid);
 		textureWidth = 64;
 		textureHeight = 64;
-
-		tail = new RendererModel(this);
+		tail = new ModelRenderer(this);
 		tail.setRotationPoint(0.0F, 0.0F, 7.0F);
-		tail.cubeList.add(new ModelBox(tail, 0, 38, -6.0F, -16.0F, -6.0F, 12, 16, 10, 0.0F, false));
+		tail.setTextureOffset(0, 38).addBox(-6.0F, -16.0F, -6.0F, 12.0F, 16.0F, 10.0F, 0.0F, false);
 
-		body = new RendererModel(this);
+		body = new ModelRenderer(this);
 		body.setRotationPoint(0.0F, -14.0F, 0.0F);
 		tail.addChild(body);
-		body.cubeList.add(new ModelBox(body, 0, 0, -8.0F, -24.0F, -8.0F, 16, 24, 14, 0.0F, false));
+		body.setTextureOffset(0, 0).addBox(-8.0F, -24.0F, -8.0F, 16.0F, 24.0F, 14.0F, 0.0F, false);
 
-		leftArm = new RendererModel(this);
+		leftArm = new ModelRenderer(this);
 		leftArm.setRotationPoint(3.0F, -9.0F, -1.0F);
 		body.addChild(leftArm);
+		setRotationAngle(leftArm, 0.0F, 0.0F, 0.7854F);
 
-		leftLowerArm = new RendererModel(this);
+
+		leftLowerArm = new ModelRenderer(this);
 		leftLowerArm.setRotationPoint(5.5F, 0.5F, -0.5F);
 		leftArm.addChild(leftLowerArm);
 		setRotationAngle(leftLowerArm, 0.0F, 0.0F, -1.5708F);
-		leftLowerArm.cubeList.add(new ModelBox(leftLowerArm, 44, 38, -2.5F, -2.5F, -2.5F, 5, 12, 5, 0.0F, false));
+		leftLowerArm.setTextureOffset(44, 38).addBox(-2.5F, -2.5F, -2.5F, 5.0F, 12.0F, 5.0F, 0.0F, false);
 
-		rightArm = new RendererModel(this);
+		rightArm = new ModelRenderer(this);
 		rightArm.setRotationPoint(-3.0F, -9.0F, -1.0F);
 		body.addChild(rightArm);
 
-		rightLowerArm = new RendererModel(this);
+
+		rightLowerArm = new ModelRenderer(this);
 		rightLowerArm.setRotationPoint(-5.5F, 0.5F, -0.5F);
 		rightArm.addChild(rightLowerArm);
 		setRotationAngle(rightLowerArm, 0.0F, 0.0F, 1.5708F);
-		rightLowerArm.cubeList.add(new ModelBox(rightLowerArm, 44, 38, -2.5F, -2.5F, -2.5F, 5, 12, 5, 0.0F, false));
+		rightLowerArm.setTextureOffset(44, 38).addBox(-2.5F, -2.5F, -2.5F, 5.0F, 12.0F, 5.0F, 0.0F, false);
 
-		leftEye = new RendererModel(this);
+		leftEye = new ModelRenderer(this);
 		leftEye.setRotationPoint(4.0F, -18.0F, -8.1F);
 		body.addChild(leftEye);
-		leftEye.cubeList.add(new ModelBox(leftEye, 0, 0, -3.5F, -2.0F, 0.0F, 7, 4, 0, 0.0F, false));
+		leftEye.setTextureOffset(0, 0).addBox(-3.5F, -2.0F, 0.0F, 7.0F, 4.0F, 0.0F, 0.0F, false);
 
-		rightEye = new RendererModel(this);
+		rightEye = new ModelRenderer(this);
 		rightEye.setRotationPoint(-4.0F, -18.0F, -8.1F);
 		body.addChild(rightEye);
-		rightEye.cubeList.add(new ModelBox(rightEye, 0, 4, -3.5F, -2.0F, 0.0F, 7, 4, 0, 0.0F, false));
+		rightEye.setTextureOffset(0, 4).addBox(-3.5F, -2.0F, 0.0F, 7.0F, 4.0F, 0.0F, 0.0F, false);
 	}
 	
 	public void render(float time) {
@@ -66,10 +71,15 @@ public class ThreatenLayerModel extends Model {
 		setRotationAngle(body, MathHelper.sin(MathHelper.clamp(time/15F, 0, p)) * 0.75f, 0, 0);
 		setRotationAngle(leftArm, 0, 0, 2 - MathHelper.sin(MathHelper.clamp(time/10, 0, p)) * 2.8f);
 		setRotationAngle(rightArm, 0, 0, -leftArm.rotateAngleZ);
-		tail.render(1);
+		//tail.render(1);
 	}
 
-	public void setRotationAngle(RendererModel modelRenderer, float x, float y, float z) {
+	@Override
+	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
+		tail.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+	}
+
+	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
 		modelRenderer.rotateAngleX = x;
 		modelRenderer.rotateAngleY = y;
 		modelRenderer.rotateAngleZ = z;

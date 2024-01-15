@@ -49,7 +49,7 @@ public abstract class BigBangBowItem extends BowItem implements IBigBangWeapon {
                 worldIn.addEntity(arrow);
             }
 
-            worldIn.playSound(null, player.posX, player.posY, player.posZ, getShootSound(), SoundCategory.PLAYERS, 1.0F, getShootPitch(velocity));
+            worldIn.playSound(null, player.getPosX(), player.getPosY(), player.getPosZ(), getShootSound(), SoundCategory.PLAYERS, 1.0F, getShootPitch(velocity));
             if (!flag1 && !player.abilities.isCreativeMode && !freeArrow) {
                 ammo.shrink(1);
                 if (ammo.isEmpty())

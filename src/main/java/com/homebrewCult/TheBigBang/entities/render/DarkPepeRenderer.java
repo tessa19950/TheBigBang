@@ -15,7 +15,7 @@ public class DarkPepeRenderer extends MobRenderer<DarkPepeEntity, AbstractPepeMo
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(DarkPepeEntity entity) {
+    public ResourceLocation getEntityTexture(DarkPepeEntity entity) {
         return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/dark_guard_pepe_entity.png");
     }
 

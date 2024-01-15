@@ -43,10 +43,10 @@ public class BigBangArrowEntity extends AbstractArrowEntity {
 
     @Override
     public void tick() {
-        boolean flag = this.func_203047_q();
+        boolean isNoClip = this.getNoClip();
         Vec3d motion = this.getMotion();
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
-            float f = MathHelper.sqrt(func_213296_b(motion));
+            float f = MathHelper.sqrt(horizontalMag(motion));
             this.rotationYaw = (float)(MathHelper.atan2(motion.x, motion.z) * (double)(180F / (float)Math.PI));
             this.rotationPitch = (float)(MathHelper.atan2(motion.y, f) * (double)(180F / (float)Math.PI));
             this.prevRotationYaw = this.rotationYaw;
@@ -55,7 +55,7 @@ public class BigBangArrowEntity extends AbstractArrowEntity {
 
         BlockPos blockpos = new BlockPos(this.getPosX(), this.getPosY(), this.getPosZ());
         BlockState blockstate = this.world.getBlockState(blockpos);
-        if (!blockstate.isAir(this.world, blockpos) && !flag) {
+        if (!blockstate.isAir(this.world, blockpos) && !isNoClip) {
             VoxelShape voxelshape = blockstate.getCollisionShape(this.world, blockpos);
             if (!voxelshape.isEmpty()) {
                 for(AxisAlignedBB axisalignedbb : voxelshape.toBoundingBoxList()) {
@@ -72,9 +72,9 @@ public class BigBangArrowEntity extends AbstractArrowEntity {
         if (this.isWet())
             this.extinguish();
 
-        if (this.inGround && !flag) {
+        if (this.inGround && !isNoClip) {
             ++this.timeInGround;
-            if (this.inBlockState != blockstate && world.areCollisionShapesEmpty(getBoundingBox().grow(0.06D))) {
+            if (this.inBlockState != blockstate && this.world.hasNoCollisions(this.getBoundingBox().grow(0.06D))) {
                 this.inGround = false;
                 setMotion(motion.mul(rand.nextFloat() * 0.2F, rand.nextFloat() * 0.2F, rand.nextFloat() * 0.2F));
             } else if (!world.isRemote)
@@ -82,17 +82,18 @@ public class BigBangArrowEntity extends AbstractArrowEntity {
         } else {
             this.timeInGround = 0;
             ++this.ticksInAir;
-            Vec3d vec3d1 = new Vec3d(posX, posY, posZ);
-            Vec3d vec3d2 = vec3d1.add(motion);
-            RayTraceResult trace = world.rayTraceBlocks(new RayTraceContext(vec3d1, vec3d2, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, this));
-            if (trace.getType() != RayTraceResult.Type.MISS)
-                vec3d2 = trace.getHitVec();
+            Vec3d vec3d2 = this.getPositionVec();
+            Vec3d vec3d3 = vec3d2.add(motion);
+            RayTraceResult trace = this.world.rayTraceBlocks(new RayTraceContext(vec3d2, vec3d3, RayTraceContext.BlockMode.COLLIDER, RayTraceContext.FluidMode.NONE, this));
+            if (trace.getType() != RayTraceResult.Type.MISS) {
+                vec3d3 = trace.getHitVec();
+            }
 
             Vec3d mod = getFlightModifications(motion);
             this.setMotion(mod.x, mod.y, mod.z);
 
             while(!this.removed) {
-                EntityRayTraceResult entityTrace = this.func_213866_a(vec3d1, vec3d2);
+                EntityRayTraceResult entityTrace = this.rayTraceEntities(vec3d2, vec3d3);
                 if (entityTrace != null)
                     trace = entityTrace;
                 if (trace != null && trace.getType() == RayTraceResult.Type.ENTITY) {
@@ -103,21 +104,21 @@ public class BigBangArrowEntity extends AbstractArrowEntity {
                         entityTrace = null;
                     }
                 }
-                if (trace != null && trace.getType() != RayTraceResult.Type.MISS && !flag && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, trace)) {
+                if (trace != null && trace.getType() != RayTraceResult.Type.MISS && !isNoClip && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, trace)) {
                     this.onHit(trace);
                     this.isAirBorne = true;
                 }
-                if (entityTrace == null || this.func_213874_s() <= 0)
+                if (entityTrace == null || this.getPierceLevel() <= 0)
                     break;
                 trace = null;
             }
 
             motion = this.getMotion();
-            double d1 = motion.x;
-            double d2 = motion.y;
-            double d0 = motion.z;
-            if (flag) this.rotationYaw = (float)(MathHelper.atan2(-d1, -d0) * (double)(180F / (float)Math.PI));
-            else this.rotationYaw = (float)(MathHelper.atan2(d1, d0) * (double)(180F / (float)Math.PI));
+            double mx = motion.x;
+            double my = motion.y;
+            double mz = motion.z;
+            if (isNoClip) this.rotationYaw = (float)(MathHelper.atan2(-mx, -mz) * (double)(180F / (float)Math.PI));
+            else this.rotationYaw = (float)(MathHelper.atan2(mx, mz) * (double)(180F / (float)Math.PI));
 
             while(this.rotationPitch - this.prevRotationPitch >= 180.0F)
                 this.prevRotationPitch += 360.0F;
@@ -126,22 +127,26 @@ public class BigBangArrowEntity extends AbstractArrowEntity {
             while(this.rotationYaw - this.prevRotationYaw >= 180.0F)
                 this.prevRotationYaw += 360.0F;
 
-            this.getPosX() += d1;
-            this.getPosY() += d2;
-            this.getPosZ() += d0;
+            double px = this.getPosX() + mx;
+            double py = this.getPosY() + my;
+            double pz = this.getPosZ() + mz;
             this.rotationPitch = MathHelper.lerp(0.2F, this.prevRotationPitch, this.rotationPitch);
             this.rotationYaw = MathHelper.lerp(0.2F, this.prevRotationYaw, this.rotationYaw);
             if (this.isInWater()) {
                 for(int j = 0; j < 4; ++j)
-                    this.world.addParticle(ParticleTypes.BUBBLE, this.getPosX() - d1 * 0.25D, this.getPosY() - d2 * 0.25D, this.getPosZ() - d0 * 0.25D, d1, d2, d0);
+                    this.world.addParticle(ParticleTypes.BUBBLE, this.getPosX() - py * 0.25D, this.getPosY() - pz * 0.25D, this.getPosZ() - mz * 0.25D, py, pz, mz);
             }
-            this.setPosition(this.getPosX(), this.getPosY(), this.getPosZ());
+            this.setPosition(px, py, pz);
             this.doBlockCollisions();
         }
 
         if (!this.world.isRemote)
             this.setFlag(6, this.isGlowing());
         this.baseTick();
+    }
+
+    private void tryDespawn() {
+        func_225516_i_();
     }
 
     protected Vec3d getFlightModifications(Vec3d motion) { return motion; };

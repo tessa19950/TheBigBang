@@ -16,14 +16,17 @@ import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
+import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
 import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
 import net.minecraft.world.gen.feature.template.PlacementSettings;
 import net.minecraft.world.gen.feature.template.Template;
 import net.minecraft.world.gen.feature.template.TemplateManager;
 
+import java.util.List;
 import java.util.Random;
 
 public abstract class AbstractDangerSignPieceType extends TemplateStructurePiece {
@@ -61,24 +64,15 @@ public abstract class AbstractDangerSignPieceType extends TemplateStructurePiece
     }
 
     @Override
-    public boolean addComponentParts(IWorld worldIn, Random randomIn, MutableBoundingBox mutableBoundingBoxIn, ChunkPos chunkPosIn) {
+    public boolean create(IWorld worldIn, ChunkGenerator<?> chunkGenerator, Random random, MutableBoundingBox boundingBox, ChunkPos chunkPos) {
         int index = Math.abs(templatePosition.getX()/16 * templatePosition.getZ()/16) % getTemplatePaths().length;
         this.templateDirection = getTemplateDirection(index);
         Vec3i center = this.templatePosition.subtract(getTemplateOffset(index));
         int y = worldIn.getHeight(Heightmap.Type.WORLD_SURFACE_WG, center.getX(), center.getZ());
         this.templatePosition = this.templatePosition.add(0, y + getTemplateOffset(index).getY(), 0);
-        return super.addComponentParts(worldIn, randomIn, mutableBoundingBoxIn, chunkPosIn);
-    }
 
-    /* In 1.15 it's probably gonna be more like this.
-    public boolean create(IWorld worldIn, ChunkGenerator<?> chunkGeneratorIn, Random randomIn, MutableBoundingBox mutableBoundingBoxIn, ChunkPos chunkPosIn) {
-        PlacementSettings placementsettings = (new PlacementSettings()).setRotation(this.rotation).setMirror(Mirror.NONE).addProcessor(BlockIgnoreStructureProcessor.AIR_AND_STRUCTURE_BLOCK);
-        int i = this.rotation == Rotation.NONE ? 8 : -7;
-        int j = worldIn.getHeight(Heightmap.Type.WORLD_SURFACE_WG, this.templatePosition.getX() + i, this.templatePosition.getZ() + i);
-        this.templatePosition = this.templatePosition.add(0, j - 1, 0);
-        return super.create(worldIn, chunkGeneratorIn, randomIn, mutableBoundingBoxIn, chunkPosIn);
+        return super.create(worldIn, chunkGenerator, random, boundingBox, chunkPos);
     }
-     */
 
     @Override
     protected void handleDataMarker(String function, BlockPos pos, IWorld worldIn, Random rand, MutableBoundingBox sbb) {

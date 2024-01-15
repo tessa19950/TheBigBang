@@ -6,11 +6,21 @@ import com.homebrewCult.TheBigBang.init.ModBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.TreeFeatureConfig;
+
+import javax.annotation.Nullable;
 
 public class RedMapleTree extends Tree {
+
+	public RedMapleTree() {
+
+	}
+
+	@Nullable
 	@Override
-	protected AbstractTreeFeature<NoFeatureConfig> getTreeFeature(Random random) {
-		return new MapleTreeFeature(NoFeatureConfig::deserialize, false, 5, Blocks.OAK_LOG.getDefaultState(), ModBlocks.RED_MAPLE_LEAVES.getDefaultState(), false);
+	protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean b) {
+		return null;
 	}
 }

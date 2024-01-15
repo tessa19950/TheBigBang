@@ -34,7 +34,7 @@ public class PoisonMistEntity extends BigBangAreaEffectCloudEntity {
         double z1 = Math.cos(a) * (0.5 + world.rand.nextDouble()) * Math.max(radius - 1F, 0.5);
         double x2 = x1 * 0.005;
         double z2 = z1 * 0.005;
-        world.addParticle(ModParticleTypes.POISON_CLOUD.get(), posX + x1, posY + 0.75F, posZ + z1, x2, -0.001D, z2);
+        world.addParticle(ModParticleTypes.POISON_CLOUD.get(), getPosX() + x1, getPosY() + 0.75F, getPosZ() + z1, x2, -0.001D, z2);
     }
 
     private boolean shouldSpawnParticle() {

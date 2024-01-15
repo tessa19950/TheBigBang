@@ -113,7 +113,7 @@ public class DangerSignTile extends TileEntity implements ITickableTileEntity, I
 		EntityType<?> type = questline.getRandomEntityType();
 		boolean flag = EntitySpawnPlacementRegistry.func_223515_a(type,
 				world.getWorld(), SpawnReason.SPAWNER, new BlockPos(x, y, z), world.getRandom());
-		if (world.areCollisionShapesEmpty(type.func_220328_a(x, y, z)) && flag) {
+		if (world.hasNoCollisions(type.func_220328_a(x, y, z)) && flag) {
 			Entity entity = type.spawn(world, null, null,
 					new BlockPos(x, y, z), SpawnReason.SPAWNER, true, true);
 			if(!(entity instanceof IQuestEntity))

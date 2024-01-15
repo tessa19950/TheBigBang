@@ -105,9 +105,9 @@ public class MagicodarItem extends TieredItem implements IBigBangWeapon {
 		double distance = 8.0D + (4.0 * getEffectMultiplier(player, ModEffects.MAGICIAN_EFFECT.get()));
 		float yaw = player.rotationYaw * ((float)Math.PI / 180F);
 		float pitch = player.rotationPitch * ((float)Math.PI / 180F);
-		double x = player.posX - Math.sin(yaw) * distance * Math.cos(-pitch);
-		double z = player.posZ + Math.cos(yaw) * distance * Math.cos(-pitch);
-		double y = player.posY + Math.sin(-pitch) * distance;
+		double x = player.getPosX() - Math.sin(yaw) * distance * Math.cos(-pitch);
+		double z = player.getPosZ() + Math.cos(yaw) * distance * Math.cos(-pitch);
+		double y = player.getPosY() + Math.sin(-pitch) * distance;
 		return new BlockPos((int)Math.floor(x),(int)Math.round(y) + 1,(int)Math.floor(z));
 	}
 

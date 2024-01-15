@@ -14,7 +14,7 @@ public class DarkStumpRenderer extends MobRenderer<AbstractStumpEntity, Abstract
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(AbstractStumpEntity entity) {
+	public ResourceLocation getEntityTexture(AbstractStumpEntity entity) {
 		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/dark_stump_entity.png");
 	}
 	

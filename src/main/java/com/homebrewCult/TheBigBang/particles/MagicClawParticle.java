@@ -1,5 +1,6 @@
 package com.homebrewCult.TheBigBang.particles;
 
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.particle.IAnimatedSprite;
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.IParticleRenderType;
@@ -26,13 +27,13 @@ public class MagicClawParticle extends SpriteTexturedParticle {
 	}
 
 	@Override
-	public void renderParticle(BufferBuilder buffer, ActiveRenderInfo entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ) {
+	public void renderParticle(IVertexBuilder vertexBuilder, ActiveRenderInfo renderInfo, float partialTicks) {
 		if(this.age == 1) {
-			Vec3d camPos = entityIn.getRenderViewEntity().getEyePosition(partialTicks);	
+			Vec3d camPos = renderInfo.getRenderViewEntity().getEyePosition(partialTicks);
 			Vec3d camDir = camPos.subtract(new Vec3d(this.posX, this.posY, this.posZ)).normalize();
 			this.setPosition(this.posX + camDir.x, this.posY + camDir.y, this.posZ + camDir.z);
 		}
-		super.renderParticle(buffer, entityIn, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
+		super.renderParticle(vertexBuilder, renderInfo, partialTicks);
 	}
 	
 	@Override

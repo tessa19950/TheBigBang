@@ -2,11 +2,13 @@ package com.homebrewCult.TheBigBang.entities.render;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.entities.DragonCrusherStabEntity;
-import com.homebrewCult.TheBigBang.entities.GenesisBeamEntity;
 import com.homebrewCult.TheBigBang.entities.model.DragonCrusherStabModel;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
@@ -25,11 +27,11 @@ public class DragonCrusherStabRenderer extends EntityRenderer<DragonCrusherStabE
     }
 
     @Override
-    public void doRender(DragonCrusherStabEntity entity, double x, double y, double z, float entityYaw, float partialTicks) {
+    public void render(DragonCrusherStabEntity entity, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
         float ticksExisted = entity.ticksExisted + partialTicks;
         float pi = (float)Math.PI;
         GlStateManager.pushMatrix();
-        GlStateManager.translatef((float)x, (float)y, (float)z);
+        GlStateManager.translatef((float)entity.getPosX(), (float)entity.getPosY(), (float)entity.getPosZ());
         GlStateManager.rotatef(MathHelper.lerp(partialTicks, entity.prevRotationYaw, entity.rotationYaw) - 90.0F, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotatef(MathHelper.lerp(partialTicks, entity.prevRotationPitch, entity.rotationPitch), 0.0F, 0.0F, 1.0F);
         GlStateManager.rotatef(-90.0F, 0.0F, 1.0F, 0.0F);
@@ -45,10 +47,11 @@ public class DragonCrusherStabRenderer extends EntityRenderer<DragonCrusherStabE
         float j = (1 - MathHelper.sin(i)) * 0.5F;
         GlStateManager.color4f(1.0F, 1.0F, 1.0F, j);
         this.bindEntityTexture(entity);
-        MODEL.render(ticksExisted);
+        //MODEL.render(ticksExisted);
         GlStateManager.disableBlend();
         GlStateManager.popMatrix();
-        super.doRender(entity, x, y, z, entityYaw, partialTicks);
+
+        super.render(entity, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }
 
     public static class RenderFactory implements IRenderFactory<DragonCrusherStabEntity> {
@@ -59,5 +62,9 @@ public class DragonCrusherStabRenderer extends EntityRenderer<DragonCrusherStabE
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(DragonCrusherStabEntity entity) { return TEXTURE_LOCATION; }
+    public ResourceLocation getEntityTexture(DragonCrusherStabEntity entity) { return TEXTURE_LOCATION; }
+
+    private void bindEntityTexture(Entity entity) {
+
+    }
 }

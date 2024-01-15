@@ -16,7 +16,7 @@ public class DarkStoneGolemRenderer extends MobRenderer<DarkStoneGolemEntity, Ab
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(DarkStoneGolemEntity entity) {
+	public ResourceLocation getEntityTexture(DarkStoneGolemEntity entity) {
 		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/dark_stone_golem_entity.png");
 	}
 	

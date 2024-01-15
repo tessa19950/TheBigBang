@@ -16,7 +16,7 @@ public class CurseEyeRenderer extends MobRenderer<CurseEyeEntity, AbstractEyeMod
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(CurseEyeEntity entity) {
+	public ResourceLocation getEntityTexture(CurseEyeEntity entity) {
 		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/curse_eye_entity.png");
 	}
 	

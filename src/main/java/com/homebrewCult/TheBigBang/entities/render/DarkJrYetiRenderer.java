@@ -16,7 +16,7 @@ public class DarkJrYetiRenderer extends MobRenderer<DarkJrYetiEntity, AbstractJr
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(DarkJrYetiEntity entity) {
+	public ResourceLocation getEntityTexture(DarkJrYetiEntity entity) {
 		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/dark_jryeti_entity.png");
 	}
 	

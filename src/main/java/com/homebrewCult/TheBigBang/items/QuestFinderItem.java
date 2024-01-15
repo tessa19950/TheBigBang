@@ -17,6 +17,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -48,7 +51,7 @@ public class QuestFinderItem extends Item {
                 if(world.dimension.isSurfaceWorld() && nbt.contains(QUEST_COORD_X_KEY) && nbt.contains(QUEST_COORD_Z_KEY)) {
                     double x = nbt.getInt(QUEST_COORD_X_KEY);
                     double z = nbt.getInt(QUEST_COORD_Z_KEY);
-                    double d2 = Math.atan2(z - entity.posZ, x - entity.posX) / (double)((float)Math.PI * 2F);
+                    double d2 = Math.atan2(z - entity.getPosZ(), x - entity.getPosX()) / (double)((float)Math.PI * 2F);
                     double d1 = MathHelper.positiveModulo(entity.rotationYaw / 360.0D, 1.0D);
                     d0 = 0.5D - (d1 - 0.25D - d2);
                 } else {
@@ -95,20 +98,27 @@ public class QuestFinderItem extends Item {
     }
 
     protected BlockPos getNearestStructurePos(World worldIn, BlockPos pos) {
+        if(worldIn.isRemote)
+            return null;
+
         PlateauSignStructure plateauStructure = ModFeatures.DANGER_SIGN_PLATEAU_STRUCTURE.get();
         StoneSignStructure stoneStructure = ModFeatures.DANGER_SIGN_STONE_STRUCTURE.get();
         DesertSignStructure desertStructure = ModFeatures.DANGER_SIGN_DESERT_STRUCTURE.get();
         if(plateauStructure == null || stoneStructure == null || desertStructure == null)
-            return pos;
+            return null;
 
-        BlockPos nearest = plateauStructure.findNearest(worldIn, worldIn.getChunkProvider().getChunkGenerator(), pos, 100, false);
-        BlockPos nearestStone = stoneStructure.findNearest(worldIn, worldIn.getChunkProvider().getChunkGenerator(), pos, 100, false);
-        BlockPos nearestDesert = desertStructure.findNearest(worldIn, worldIn.getChunkProvider().getChunkGenerator(), pos, 100, false);
+        BlockPos nearest = findNearestStructure(plateauStructure, (ServerWorld) worldIn, pos);
+        BlockPos nearestStone = findNearestStructure(stoneStructure, (ServerWorld) worldIn, pos);
+        BlockPos nearestDesert = findNearestStructure(desertStructure, (ServerWorld) worldIn, pos);
         if(isXCloser(pos, nearestStone, nearest))
             nearest = nearestStone;
         if(isXCloser(pos, nearestDesert, nearest))
             nearest = nearestDesert;
         return nearest;
+    }
+
+    protected BlockPos findNearestStructure(Structure<?> structure, ServerWorld world, BlockPos pos) {
+        return world.findNearestStructure(structure.getStructureName(), pos, 100, false);
     }
 
     private boolean isXCloser(BlockPos a, BlockPos x, BlockPos y) {

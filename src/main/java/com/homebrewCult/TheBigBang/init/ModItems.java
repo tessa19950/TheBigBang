@@ -337,17 +337,17 @@ public class ModItems {
 						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "zard"),
 				new HeliosItem(ModItemTier.BLESSED_ADAMANTIUM, 6, -3.0F, new Item.Properties()
 						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "helios"),
-				new OmegaSpearItem(ModItemTier.BLESSED_ADAMANTIUM, 7, -3.0F, new Item.Properties().setTEISR(() -> BigBangISTER::new)
+				new OmegaSpearItem(ModItemTier.BLESSED_ADAMANTIUM, 7, -3.0F, new Item.Properties().setISTER(() -> BigBangISTER::new)
 						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "omega_spear"),
-				new ScorpioItem(ModItemTier.BLESSED_ADAMANTIUM, 5, -2.4F, new Item.Properties().setTEISR(() -> BigBangISTER::new)
+				new ScorpioItem(ModItemTier.BLESSED_ADAMANTIUM, 5, -2.4F, new Item.Properties().setISTER(() -> BigBangISTER::new)
 						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "scorpio"),
 				new MithrilWandItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties()
 						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "mithril_wand"),
 				new MagicodarItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties()
 						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "magicodar"),
-				new OldWoodenStaffItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties().setTEISR(() -> BigBangISTER::new)
+				new OldWoodenStaffItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties().setISTER(() -> BigBangISTER::new)
 						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "old_wooden_staff"),
-				new LamaStaffItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties().setTEISR(() -> BigBangISTER::new)
+				new LamaStaffItem(ModItemTier.BLESSED_MITHRIL, new Item.Properties().setISTER(() -> BigBangISTER::new)
 						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "lama_staff"),
 				new RydenItem(ModItemTier.BLESSED_GOLD, new Item.Properties()
 						.maxStackSize(1).maxDamage(256).group(ItemGroup.COMBAT)).setRegistryName(TheBigBang.MOD_ID, "ryden"),

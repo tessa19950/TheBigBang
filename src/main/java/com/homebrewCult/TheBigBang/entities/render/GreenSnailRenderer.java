@@ -16,7 +16,7 @@ public class GreenSnailRenderer extends MobRenderer<GreenSnailEntity, SmallSnail
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(GreenSnailEntity entity) {
+	public ResourceLocation getEntityTexture(GreenSnailEntity entity) {
 		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/green_snail_entity.png");
 	}
 	

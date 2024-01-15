@@ -18,9 +18,9 @@ public interface IQuestEntity {
 
 	default void spawnPoofParticles(Entity entity, Random rand) {
 		for(int i = 0; i < 16; i++) {
-			double x = entity.posX + rand.nextGaussian();
-			double y = entity.posY + 1 + rand.nextGaussian();
-			double z = entity.posZ + rand.nextGaussian();
+			double x = entity.getPosX() + rand.nextGaussian();
+			double y = entity.getPosY() + 1 + rand.nextGaussian();
+			double z = entity.getPosZ() + rand.nextGaussian();
 			entity.world.addParticle(ParticleTypes.POOF, x, y, z, 0, 0, 0);
 		}
 	}
@@ -34,7 +34,7 @@ public interface IQuestEntity {
 					CompoundNBT tag = stack.getOrCreateTag();
 					tag.putInt("quest_item", item.ordinal());
 					stack.setTag(tag);
-					entity.getEntityWorld().addEntity(new ItemEntity(entity.world, entity.posX, entity.posY, entity.posZ, stack));
+					entity.getEntityWorld().addEntity(new ItemEntity(entity.world, entity.getPosX(), entity.getPosY(), entity.getPosZ(), stack));
 				}
 			}
 		}

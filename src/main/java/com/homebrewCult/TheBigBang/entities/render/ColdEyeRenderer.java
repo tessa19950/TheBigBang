@@ -16,7 +16,7 @@ public class ColdEyeRenderer extends MobRenderer<ColdEyeEntity, AbstractEyeModel
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(ColdEyeEntity entity) {
+	public ResourceLocation getEntityTexture(ColdEyeEntity entity) {
 		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/cold_eye_entity.png");
 	}
 	

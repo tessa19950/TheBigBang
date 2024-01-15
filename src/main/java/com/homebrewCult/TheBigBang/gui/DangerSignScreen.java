@@ -75,7 +75,7 @@ public class DangerSignScreen extends ContainerScreen<DangerSignContainer> {
 	      detailsY = (height - ySize) / 2;
 	      
 	      //Drawing of the details panel
-	      blit(detailsX, detailsY, blitOffset, 256F, 0.0F, xSize, ySize, 256, 512);
+	      blit(detailsX, detailsY, getBlitOffset(), 256F, 0.0F, xSize, ySize, 256, 512);
 	      
           //Drawing the description text
     	  int color = 0x555555;
@@ -105,14 +105,14 @@ public class DangerSignScreen extends ContainerScreen<DangerSignContainer> {
 	      blit(detailsX + ACCEPT_XPOS, detailsY + ACCEPT_YPOS, ACCEPT_UVX, uvY, ACCEPT_WIDTH, ACCEPT_HEIGHT, 512, 256);
 	      
 	      //Drawing of the quest log panel
-	      blit(questlogX, questlogY, blitOffset, 0.0F, 0.0F, xSize, ySize, 256, 512);
+	      blit(questlogX, questlogY, getBlitOffset(), 0.0F, 0.0F, xSize, ySize, 256, 512);
 	      
 	      //Drawing of the quest log buttons
 	      for(int buttonIndex = 0; buttonIndex < availableQuests.length && buttonIndex < 3; ++buttonIndex)
 	      {
 		      minecraft.getTextureManager().bindTexture(DANGER_SIGN_GUI);
 	    	  GlStateManager.color4f(1.0f, 1.0f, 1.0f, 1.0f);
-	    	  blitOffset = 0;
+	    	  setBlitOffset(0);
 	    	  int buttonX = questlogX + BUTTON_XPOS;
 	    	  int buttonY = questlogY + 14;
 	    	  color = 0x555555;
@@ -164,7 +164,7 @@ public class DangerSignScreen extends ContainerScreen<DangerSignContainer> {
 	}
 	
 	public void renderGhostItem(ItemStack stack, int x, int y) {
-	      RenderHelper.enableGUIStandardItemLighting();
+	      RenderHelper.enableStandardItemLighting();
 	      GlStateManager.disableLighting();
 	      
 	      itemRenderer.renderItemAndEffectIntoGUI(stack, x, y);

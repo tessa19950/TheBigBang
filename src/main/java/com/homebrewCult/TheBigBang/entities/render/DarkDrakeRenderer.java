@@ -16,7 +16,7 @@ public class DarkDrakeRenderer extends MobRenderer<DarkDrakeEntity, AbstractDrak
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(DarkDrakeEntity entity) {
+	public ResourceLocation getEntityTexture(DarkDrakeEntity entity) {
 		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/dark_drake_entity.png");
 	}
 	

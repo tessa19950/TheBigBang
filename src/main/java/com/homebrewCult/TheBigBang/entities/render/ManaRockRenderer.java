@@ -1,12 +1,12 @@
 package com.homebrewCult.TheBigBang.entities.render;
 
 import com.homebrewCult.TheBigBang.TheBigBang;
-import com.homebrewCult.TheBigBang.entities.GenesisBeamEntity;
 import com.homebrewCult.TheBigBang.entities.ManaRockEntity;
-import com.homebrewCult.TheBigBang.entities.model.GenesisBeamModel;
 import com.homebrewCult.TheBigBang.entities.model.ManaRockModel;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -34,25 +34,23 @@ public class ManaRockRenderer extends EntityRenderer<ManaRockEntity> {
     }
 
     @Override
-    public void doRender(ManaRockEntity entity, double x, double y, double z, float entityYaw, float partialTicks) {
+    public void render(ManaRockEntity entity, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
         GlStateManager.pushMatrix();
         float heightOffset = ((float)Math.sin((entity.ticksExisted + entity.getEntityId() + partialTicks) * 0.1F) * 0.1F) + 0.5F;
-        GlStateManager.translatef((float)x, (float)y + heightOffset, (float)z);
+        GlStateManager.translatef((float)entity.getPosX(), (float)entity.getPosY() + heightOffset, (float)entity.getPosZ());
         float rotation = (entity.ticksExisted + partialTicks) * 1f;
         GlStateManager.rotatef(rotation, 0.0F, 1.0F, 0.0F);
         this.bindEntityTexture(entity);
-        MODEL.render(entity,0.06F);
+        //MODEL.render(entity,0.06F);
         GlStateManager.popMatrix();
+        this.renderLeash(entity, entity.getPosX(), entity.getPosY(), entity.getPosZ(), heightOffset, partialTicks);
 
-        if (!this.renderOutlines) {
-            this.renderLeash(entity, x, y, z, heightOffset, partialTicks);
-        }
-        super.doRender(entity, x, y, z, entityYaw, partialTicks);
+        super.render(entity, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
     }
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(ManaRockEntity entity) {
+    public ResourceLocation getEntityTexture(ManaRockEntity entity) {
         return TEXTURE_LOCATION;
     }
 
@@ -137,5 +135,9 @@ public class ManaRockRenderer extends EntityRenderer<ManaRockEntity> {
             GlStateManager.enableTexture();
             GlStateManager.enableCull();
         }
+    }
+
+    private void bindEntityTexture(Entity entity) {
+
     }
 }

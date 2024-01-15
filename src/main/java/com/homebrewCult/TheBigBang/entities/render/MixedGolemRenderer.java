@@ -16,7 +16,7 @@ public class MixedGolemRenderer extends MobRenderer<MixedGolemEntity, AbstractGo
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(MixedGolemEntity entity) {
+	public ResourceLocation getEntityTexture(MixedGolemEntity entity) {
 		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/mixed_golem_entity.png");
 	}
 	

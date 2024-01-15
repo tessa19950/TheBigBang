@@ -29,7 +29,7 @@ public class FireGearEntity extends BigBangAreaEffectCloudEntity {
         double a = world.rand.nextFloat() * Math.PI * 2;
         double x1 = Math.sin(a) * (0.5 + world.rand.nextDouble()) * Math.max(radius - 1F, 0.5);
         double z1 = Math.cos(a) * (0.5 + world.rand.nextDouble()) * Math.max(radius - 1F, 0.5);
-        world.addParticle(ModParticleTypes.FIRE_GEAR.get(), posX + x1, posY + 1, posZ + z1, 0, 0.01D, 0);
+        world.addParticle(ModParticleTypes.FIRE_GEAR.get(), getPosX() + x1, getPosY() + 1, getPosZ() + z1, 0, 0.01D, 0);
     }
 
     private boolean shouldSpawnParticle() {

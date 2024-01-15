@@ -42,7 +42,7 @@ public class AbstractJrYetiEntity extends TameableEntity implements IQuestEntity
 		  this.goalSelector.addGoal(1, this.sitGoal);
 	      this.goalSelector.addGoal(2, new PanicGoal(this, 0.3D));
 		  this.goalSelector.addGoal(3, new TemptGoal(this, 0.3D, false, TEMPTATION_ITEMS));
-		  this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 0.3D, 10.0F, 2.0F));
+		  this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 0.3D, 10.0F, 2.0F, false));
 	      this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.3D));
 	      this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 0.3F));
 	      this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
@@ -105,7 +105,7 @@ public class AbstractJrYetiEntity extends TameableEntity implements IQuestEntity
 		AbstractYetiEntity yeti = isDark ? new DarkYetiEntity(ModEntities.DARK_YETI_ENTITY, world) : new YetiEntity(ModEntities.YETI_ENTITY, world);
 		yeti.onInitialSpawn(world, world.getDifficultyForLocation(getPosition()), SpawnReason.CONVERSION, null, getPersistentData());
 		yeti.setTamedBy(owner);
-		yeti.setLocationAndAngles(posX, posY, posZ, rotationYaw, rotationPitch);
+		yeti.setLocationAndAngles(getPosX(), getPosY(), getPosZ(), rotationYaw, rotationPitch);
 		yeti.setCustomName(getCustomName());
 		world.addEntity(yeti);
 		remove();

@@ -3,8 +3,10 @@ package com.homebrewCult.TheBigBang.entities.render;
 import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.entities.StealEntity;
 import com.homebrewCult.TheBigBang.entities.model.StealModel;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GLX;
 import com.mojang.blaze3d.platform.GlStateManager;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
@@ -25,8 +27,11 @@ public class StealRenderer extends EntityRenderer<StealEntity> {
     }
 
     @Override
-    public void doRender(StealEntity entity, double x, double y, double z, float entityYaw, float partialTicks) {
+    public void render(StealEntity entity, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
         float stealTime = entity.ticksExisted + partialTicks;
+        double x = entity.getPosX();
+        double y = entity.getPosY();
+        double z = entity.getPosZ();
         if(stealTime >= 0 && stealTime <= 40) {
             GlStateManager.pushMatrix();
             GlStateManager.translatef((float)x, (float)y + 1.5f, (float)z);
@@ -35,18 +40,23 @@ public class StealRenderer extends EntityRenderer<StealEntity> {
             GlStateManager.rotatef(180, 0, 0, 1);
             GlStateManager.rotatef(entityYaw + 180, 0, 1, 0);
 
-            this.bindEntityTexture(entity);
+            //this.bindEntityTexture(entity);
+
             int j = 15728880 % 65536;
             int k = 15728880 / 65536;
-            GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float) j, (float) k);
+
+            //GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float) j, (float) k);
+
             GlStateManager.enableBlend();
+
             float fade = MathHelper.sin((stealTime / 40F) * (float)Math.PI/2);
             GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F - fade);
 
-            MODEL.renderAttack(entity, stealTime);
+            //MODEL.renderAttack(entity, stealTime);
+
             GlStateManager.disableBlend();
             GlStateManager.popMatrix();
-            super.doRender(entity, x, y, z, entityYaw, partialTicks);
+            super.render(entity, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
         }
     }
 
@@ -57,7 +67,7 @@ public class StealRenderer extends EntityRenderer<StealEntity> {
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(StealEntity entity) {
+    public ResourceLocation getEntityTexture(StealEntity entity) {
         return TEXTURE_LOCATION;
     }
 }

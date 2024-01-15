@@ -4,7 +4,9 @@ import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.entities.BombArrowEntity;
 import com.homebrewCult.TheBigBang.entities.GenesisBeamEntity;
 import com.homebrewCult.TheBigBang.entities.model.BigBangArrowModel;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
@@ -23,24 +25,24 @@ public class BombArrowRenderer extends EntityRenderer<BombArrowEntity> {
 	public BombArrowRenderer(EntityRendererManager manager, float scaleIn) {
 		super(manager);
 	}
-	
+
 	@Override
-	public void doRender(BombArrowEntity entity, double x, double y, double z, float entityYaw, float partialTicks) {
+	public void render(BombArrowEntity entity, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
 		GlStateManager.pushMatrix();
 		float scale = 0.15f;
-		GlStateManager.translatef((float)x, (float)y, (float)z);
+		GlStateManager.translatef((float)entity.getPosX(), (float)entity.getPosY(), (float)entity.getPosZ());
 		GlStateManager.rotatef(MathHelper.lerp(partialTicks, entity.prevRotationYaw, entity.rotationYaw) - 90.0F, 0.0F, 1.0F, 0.0F);
-		GlStateManager.rotatef(MathHelper.lerp(partialTicks, entity.prevRotationPitch, entity.rotationPitch), 0.0F, 0.0F, 1.0F);  
+		GlStateManager.rotatef(MathHelper.lerp(partialTicks, entity.prevRotationPitch, entity.rotationPitch), 0.0F, 0.0F, 1.0F);
 		GlStateManager.rotatef(-90.0F, 0.0F, 1.0F, 0.0F);
-	    GlStateManager.translatef(0, -1.2F, 0.4F);		
+		GlStateManager.translatef(0, -1.2F, 0.4F);
 		GlStateManager.scalef(0.05625F, 0.05625F, 0.05625F);
-		
-	    GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-	    this.bindEntityTexture(entity);
-	    MODEL.render();
-	    
-	    GlStateManager.popMatrix();
-		super.doRender(entity, x, y, z, entityYaw, partialTicks);
+
+		GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+		this.bindEntityTexture(entity);
+		//MODEL.render();
+
+		GlStateManager.popMatrix();
+		super.render(entity, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 	}
 	
 	public static class RenderFactory implements IRenderFactory<BombArrowEntity> {
@@ -50,7 +52,11 @@ public class BombArrowRenderer extends EntityRenderer<BombArrowEntity> {
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(BombArrowEntity entity) {
+	public ResourceLocation getEntityTexture(BombArrowEntity entity) {
 		return TEXTURE_LOCATION;
+	}
+
+	private void bindEntityTexture(BombArrowEntity entity) {
+
 	}
 }

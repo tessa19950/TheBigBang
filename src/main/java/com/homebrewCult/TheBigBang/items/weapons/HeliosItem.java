@@ -57,7 +57,7 @@ public class HeliosItem extends AxeItem implements IBigBangWeapon {
 				((MobEntity) t).addPotionEffect(slowness);
 				((MobEntity) t).addPotionEffect(weakness);
 				if(worldIn.isRemote)
-					worldIn.addParticle(ModParticleTypes.HOLY_CIRCLE.get(), t.posX, t.posY + 0.01D, t.posZ, 0, 0.08D, 0);
+					worldIn.addParticle(ModParticleTypes.HOLY_CIRCLE.get(), t.getPosX(), t.getPosY() + 0.01D, t.getPosZ(), 0, 0.08D, 0);
 			}
 		}
 		if(!worldIn.isRemote) {

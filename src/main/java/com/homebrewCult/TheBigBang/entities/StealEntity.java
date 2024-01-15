@@ -69,9 +69,11 @@ public class StealEntity extends Entity {
             target = world.getEntityByID(getTarget());
         if(summoner != null && target != null) {
             Vec3d vec3d = this.getMotion();
-            this.getPosX() += vec3d.x;
-            this.getPosY() += vec3d.y;
-            this.getPosZ() += vec3d.z;
+            double px = getPosX() + vec3d.x;
+            double py = getPosY() + vec3d.y;
+            double pz = getPosZ() + vec3d.z;
+            setPosition(px, py, pz);
+
             if(!hasHit) {
                 this.setMotion(target.getPositionVec().subtract(getPositionVec()).normalize().scale(2));
                 this.setRotation(summoner.getYaw(0), summoner.getPitch(0));

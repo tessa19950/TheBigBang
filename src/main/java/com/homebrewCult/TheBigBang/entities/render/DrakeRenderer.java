@@ -16,7 +16,7 @@ public class DrakeRenderer extends MobRenderer<DrakeEntity, AbstractDrakeModel<D
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(DrakeEntity entity) {
+	public ResourceLocation getEntityTexture(DrakeEntity entity) {
 		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/drake_entity.png");
 	}
 	

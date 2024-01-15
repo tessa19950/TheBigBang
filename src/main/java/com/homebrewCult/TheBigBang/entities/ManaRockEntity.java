@@ -156,10 +156,10 @@ public class ManaRockEntity extends CreatureEntity {
                     this.func_213817_e(source, 4.0F);
                     return false;
                 } else {
-                    boolean flag = source.getImmediateSource() instanceof AbstractArrowEntity;
-                    boolean flag1 = flag && ((AbstractArrowEntity)source.getImmediateSource()).func_213874_s() > 0;
-                    boolean flag2 = "player".equals(source.getDamageType());
-                    if (!flag2 && !flag) {
+                    boolean isArrow = source.getImmediateSource() instanceof AbstractArrowEntity;
+                    boolean nonZeroDmg = isArrow && ((AbstractArrowEntity)source.getImmediateSource()).getDamage() > 0;
+                    boolean isPlayer = "player".equals(source.getDamageType());
+                    if (!isPlayer && !isArrow) {
                         return false;
                     } else if (source.getTrueSource() instanceof PlayerEntity && !((PlayerEntity)source.getTrueSource()).abilities.allowEdit) {
                         return false;
@@ -167,10 +167,10 @@ public class ManaRockEntity extends CreatureEntity {
                         this.playBrokenSound();
                         this.playParticles();
                         this.remove();
-                        return flag1;
+                        return nonZeroDmg;
                     } else {
                         long i = this.world.getGameTime();
-                        if (i - this.punchCooldown > 5L && !flag) {
+                        if (i - this.punchCooldown > 5L && !isArrow) {
                             this.world.setEntityState(this, (byte)32);
                             this.punchCooldown = i;
                         } else {

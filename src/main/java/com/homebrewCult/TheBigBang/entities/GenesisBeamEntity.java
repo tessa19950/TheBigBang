@@ -31,7 +31,7 @@ public class GenesisBeamEntity extends Entity {
 	@Override
 	public void onAddedToWorld() {
 		this.world.addParticle(ModParticleTypes.HOLY_CIRCLE.get(), this.getPosX(), this.getPosY() + 7.1f, this.getPosZ(), 0, -0.04f, 0);
-		world.playSound(null, posX, posY, posZ, ModSounds.GENESIS_BEAM_SPAWN, SoundCategory.PLAYERS, 2, 1 + (MathUtility.floatInRange(world.rand, -0.2f, 0.2f)));
+		world.playSound(null, getPosX(), getPosY(), getPosZ(), ModSounds.GENESIS_BEAM_SPAWN, SoundCategory.PLAYERS, 2, 1 + (MathUtility.floatInRange(world.rand, -0.2f, 0.2f)));
 		super.onAddedToWorld();
 	}
 

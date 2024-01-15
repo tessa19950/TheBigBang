@@ -11,9 +11,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
+import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
-public class MapleTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
+public class MapleTreeFeature extends AbstractTreeFeature<BaseTreeFeatureConfig> {
 	
 	private static final BlockState DEFAULT_TRUNK = Blocks.OAK_LOG.getDefaultState();
 	private static final BlockState DEFAULT_LEAF = Blocks.AIR.getDefaultState();
@@ -21,18 +22,20 @@ public class MapleTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
 	public final BlockState trunk;
 	public BlockState leaf;
 	
-	public MapleTreeFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn, boolean doBlockNotifyOnPlace) {
-		this(configFactoryIn, doBlockNotifyOnPlace, 5, DEFAULT_TRUNK, DEFAULT_LEAF, false);
+	public MapleTreeFeature(Function<Dynamic<?>, ? extends BaseTreeFeatureConfig> configFactoryIn) {
+		this(configFactoryIn, 5, DEFAULT_TRUNK, DEFAULT_LEAF, false);
 	}
 
-	public MapleTreeFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn, boolean doBlockNotifyOnPlace, int minTreeHeightIn, BlockState trunkState, BlockState leafState, boolean vinesGrowIn) {
-		super(configFactoryIn, doBlockNotifyOnPlace);
+	public MapleTreeFeature(Function<Dynamic<?>, ? extends BaseTreeFeatureConfig> configFactoryIn, int minTreeHeightIn, BlockState trunkState, BlockState leafState, boolean vinesGrowIn) {
+		super(configFactoryIn);
 		this.minTreeHeight = minTreeHeightIn;
 		this.trunk = trunkState;
 		this.leaf = leafState;
 	}
 
-	public boolean place(Set<BlockPos> changedBlocks, IWorldGenerationReader worldIn, Random rand, BlockPos position, MutableBoundingBox p_208519_5_) {	
+	@Override
+	protected boolean place(IWorldGenerationReader generationReader, Random rand, BlockPos positionIn, Set<BlockPos> p_225557_4_, Set<BlockPos> p_225557_5_, MutableBoundingBox boundingBoxIn, BaseTreeFeatureConfig configIn) {
+		/*
 		if(this.leaf.getBlock().equals(Blocks.AIR)) {
 			this.leaf = rand.nextDouble() > 0.2d ? ModBlocks.RED_MAPLE_LEAVES.getDefaultState() : ModBlocks.YELLOW_MAPLE_LEAVES.getDefaultState();
 		}
@@ -93,6 +96,8 @@ public class MapleTreeFeature extends AbstractTreeFeature<NoFeatureConfig> {
 		} else {
 			return false;
 		}
+		 */
+		return true;
 	}
 
 	protected int getHeight(Random random) {

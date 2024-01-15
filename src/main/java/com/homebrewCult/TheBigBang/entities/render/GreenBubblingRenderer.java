@@ -2,6 +2,7 @@ package com.homebrewCult.TheBigBang.entities.render;
 import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.entities.mob.AbstractBubblingEntity;
 import com.homebrewCult.TheBigBang.entities.model.AbstractBubblingModel;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -14,7 +15,7 @@ public class GreenBubblingRenderer extends MobRenderer<AbstractBubblingEntity, A
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(AbstractBubblingEntity entity) {
+	public ResourceLocation getEntityTexture(AbstractBubblingEntity entity) {
 		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/green_bubbling_entity.png");
 	}
 	
@@ -25,7 +26,8 @@ public class GreenBubblingRenderer extends MobRenderer<AbstractBubblingEntity, A
 	}
 
 	@Override
-	protected void preRenderCallback(AbstractBubblingEntity bubbling, float partialTickTime) {
+	protected void preRenderCallback(AbstractBubblingEntity bubbling, MatrixStack matrixStack, float partialTickTime) {
+		super.preRenderCallback(bubbling, matrixStack, partialTickTime);
 		BubblingRenderer.applySquish(bubbling, partialTickTime);
 	}
 }

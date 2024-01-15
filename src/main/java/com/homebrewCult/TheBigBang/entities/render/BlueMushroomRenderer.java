@@ -16,7 +16,7 @@ public class BlueMushroomRenderer extends MobRenderer<BlueMushroomEntity, Abstra
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(BlueMushroomEntity entity) {
+	public ResourceLocation getEntityTexture(BlueMushroomEntity entity) {
 		String type = entity.isMushmom() ? "mushmom" : "mushroom";
 		return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/blue_" + type + "_entity.png");
 	}

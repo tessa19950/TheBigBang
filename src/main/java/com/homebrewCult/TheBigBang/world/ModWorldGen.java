@@ -98,26 +98,34 @@ public class ModWorldGen {
 	}
 
 	private static void addOre(Biome biome, BlockState ore, int size, int count, int maximum) {
+		OreFeatureConfig config = new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ore, size);
+		ConfiguredPlacement<CountRangeConfig> placement = Placement.COUNT_RANGE.configure(new CountRangeConfig(count, 0, 0, maximum));
 		biome.addFeature(
-			Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, ore, size),
-				Placement.COUNT_RANGE, new CountRangeConfig(count, 0, 0, maximum))
+				Decoration.UNDERGROUND_ORES,
+				Feature.ORE.withConfiguration(config).withPlacement(placement)
 		);
 	}
 
 	private static void addSurfaceStructures(List<Biome> biomes, Structure<NoFeatureConfig> structure, int chance) {
 		ChanceConfig chanceConfig = new ChanceConfig(chance);
 		for(Biome biome : biomes) {
-			biome.addStructure(structure, IFeatureConfig.NO_FEATURE_CONFIG);
-			biome.addFeature(Decoration.SURFACE_STRUCTURES,
-					Biome.createDecoratedFeature(structure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.CHANCE_HEIGHTMAP, chanceConfig));
+			biome.addStructure(structure.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+			biome.addFeature(
+					Decoration.SURFACE_STRUCTURES,
+					structure.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
+			);
 		}
+		//Biome.createDecoratedFeature(structure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.CHANCE_HEIGHTMAP, chanceConfig)
 	}
 
 	private static void addUndergroundStructures(List<Biome> biomes, Feature<NoFeatureConfig> feature, int chance) {
 		CaveRoomConfig chanceConfig = new CaveRoomConfig(chance);
 		for(Biome biome : biomes) {
-			biome.addFeature(Decoration.UNDERGROUND_DECORATION,
-					Biome.createDecoratedFeature(feature, IFeatureConfig.NO_FEATURE_CONFIG, ModFeatures.CAVE_ROOM.get(), chanceConfig));
+			biome.addFeature(
+					Decoration.UNDERGROUND_DECORATION,
+					feature.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
+			);
 		}
+		//Biome.createDecoratedFeature(feature, IFeatureConfig.NO_FEATURE_CONFIG, ModFeatures.CAVE_ROOM.get(), chanceConfig)
 	}
 }

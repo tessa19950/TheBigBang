@@ -15,7 +15,7 @@ public class PepeRenderer extends MobRenderer<PepeEntity, AbstractPepeModel<Pepe
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(PepeEntity entity) {
+    public ResourceLocation getEntityTexture(PepeEntity entity) {
         return new ResourceLocation(TheBigBang.MOD_ID, "textures/entity/pepe_entity.png");
     }
 

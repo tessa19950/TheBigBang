@@ -9,10 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
@@ -33,7 +30,7 @@ public class RopeLadderBlock extends LadderBlock {
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         ItemStack stack = player.getHeldItem(handIn);
         BlockItemUseContext useContext = new BlockItemUseContext(new ItemUseContext(player, handIn, hit));
         if(stack.getItem().equals(ModItems.ROPE_LADDER)) {
@@ -48,7 +45,7 @@ public class RopeLadderBlock extends LadderBlock {
                         worldIn.setBlockState(downPos, state);
                         if (!player.isCreative())
                             stack.shrink(1);
-                        return true;
+                        return ActionResultType.SUCCESS;
                     } else {
                         break;
                     }

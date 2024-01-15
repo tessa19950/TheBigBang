@@ -73,7 +73,7 @@ public class SaiItem extends SwordItem implements IBigBangWeapon {
 	}
 
 	private void spawnFlashJumpParticle(World worldIn, PlayerEntity player, BasicParticleType particle, Vec3d motion) {
-		worldIn.addParticle(particle, player.posX, player.posY + 1D, player.posZ, motion.x, motion.y, motion.z);
+		worldIn.addParticle(particle, player.getPosX(), player.getPosY() + 1D, player.getPosZ(), motion.x, motion.y, motion.z);
 	}
 
 	@Override

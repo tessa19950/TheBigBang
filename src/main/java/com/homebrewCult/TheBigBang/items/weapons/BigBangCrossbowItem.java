@@ -106,16 +106,16 @@ abstract class BigBangCrossbowItem extends CrossbowItem implements IBigBangWeapo
                 ICrossbowUser user = (ICrossbowUser)shooter;
                 user.shoot(user.getAttackTarget(), stack, arrow, angle);
             } else {
-                Vec3d vec3d1 = shooter.func_213286_i(1.0F);
+                Vec3d vec3d1 = shooter.getLook(1.0F);
                 Quaternion quaternion = new Quaternion(new Vector3f(vec3d1), angle, true);
                 Vec3d vec3d = shooter.getLook(1.0F);
                 Vector3f vector3f = new Vector3f(vec3d);
-                vector3f.func_214905_a(quaternion);
+                vector3f.transform(quaternion);
                 arrow.shoot(vector3f.getX(), vector3f.getY(), vector3f.getZ(), velocity, inaccuracy);
             }
             stack.damageItem(1, shooter, (entity) -> entity.sendBreakAnimation(hand));
             worldIn.addEntity(arrow);
-            worldIn.playSound(null, shooter.posX, shooter.posY, shooter.posZ, SoundEvents.ITEM_CROSSBOW_SHOOT, SoundCategory.PLAYERS, 1.0F, soundPitch);
+            worldIn.playSound(null, shooter.getPosX(), shooter.getPosY(), shooter.getPosZ(), SoundEvents.ITEM_CROSSBOW_SHOOT, SoundCategory.PLAYERS, 1.0F, soundPitch);
         }
     }
 
@@ -124,10 +124,10 @@ abstract class BigBangCrossbowItem extends CrossbowItem implements IBigBangWeapo
         if (shooter instanceof PlayerEntity)
             arrow.setIsCritical(true);
         arrow.setHitSound(SoundEvents.ITEM_CROSSBOW_HIT);
-        arrow.func_213865_o(true);
+        arrow.setIsCritical(true);
         int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.PIERCING, crossbow);
         if (i > 0)
-            arrow.func_213872_b((byte)i);
+            arrow.setPierceLevel((byte)i);
         BigBangBowItem.applyEnchantments(crossbow, arrow);
         return arrow;
     }

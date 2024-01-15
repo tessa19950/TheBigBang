@@ -16,6 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.lighting.LightEngine;
+import net.minecraft.world.server.ServerWorld;
 
 public class GolemStoneBlock extends Block {
 
@@ -34,24 +35,22 @@ public class GolemStoneBlock extends Block {
 	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
 	}
-	
+
 	@Override
-	public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {		
-	    if (!worldIn.isRemote) {
-	        if (!worldIn.isAreaLoaded(pos, 1))
-	        	return;
-	        if (worldIn.getLight(pos.up()) >= 9) {
-	        	for(int i = 0; i < 4; i++) {
-	        		BlockPos otherBlockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
-	        		Block otherBlock = worldIn.getBlockState(otherBlockpos).getBlock();
-	        		if(otherBlock == Blocks.GRASS_BLOCK || otherBlock == ModBlocks.GRASSY_GOLEM_STONE || otherBlock == ModBlocks.GRASSY_DARK_GOLEM_STONE) {
-	        			if(canSpreadTo(state, worldIn, pos)) {
-	        				worldIn.setBlockState(pos, ModBlocks.GRASSY_GOLEM_STONE.getDefaultState().with(FACING, worldIn.getBlockState(pos).get(FACING)));
-	        			}
-	        		}
-	        	}
-	        }
-	    }
+	public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+		if (!worldIn.isAreaLoaded(pos, 1))
+			return;
+		if (worldIn.getLight(pos.up()) >= 9) {
+			for(int i = 0; i < 4; i++) {
+				BlockPos otherBlockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
+				Block otherBlock = worldIn.getBlockState(otherBlockpos).getBlock();
+				if(otherBlock == Blocks.GRASS_BLOCK || otherBlock == ModBlocks.GRASSY_GOLEM_STONE || otherBlock == ModBlocks.GRASSY_DARK_GOLEM_STONE) {
+					if(canSpreadTo(state, worldIn, pos)) {
+						worldIn.setBlockState(pos, ModBlocks.GRASSY_GOLEM_STONE.getDefaultState().with(FACING, worldIn.getBlockState(pos).get(FACING)));
+					}
+				}
+			}
+		}
 	}
 	
     private static boolean isValidGrassPos(BlockState state, IWorldReader worldIn, BlockPos pos) {

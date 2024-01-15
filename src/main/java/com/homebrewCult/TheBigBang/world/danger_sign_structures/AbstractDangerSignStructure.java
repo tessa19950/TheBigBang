@@ -34,8 +34,8 @@ public abstract class AbstractDangerSignStructure extends ScatteredStructure<NoF
     }
 
     public class Start extends StructureStart {
-        public Start(Structure<?> structure, int chunkX, int chunkZ, Biome biomeIn, MutableBoundingBox boundingbox, int referenceIn, long seed) {
-            super(structure, chunkX, chunkZ, biomeIn, boundingbox, referenceIn, seed);
+        public Start(Structure<?> structure, int chunkX, int chunkZ, MutableBoundingBox boundingbox, int referenceIn, long seed) {
+            super(structure, chunkX, chunkZ, boundingbox, referenceIn, seed);
         }
 
         public void init(ChunkGenerator<?> generator, TemplateManager manager, int chunkX, int chunkZ, Biome biomeIn) {

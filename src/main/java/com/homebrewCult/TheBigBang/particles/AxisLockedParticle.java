@@ -1,5 +1,6 @@
 package com.homebrewCult.TheBigBang.particles;
 
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -53,6 +54,17 @@ public class AxisLockedParticle extends SpriteTexturedParticle {
     }
 
     @Override
+    public void renderParticle(IVertexBuilder iVertexBuilder, ActiveRenderInfo renderInfo, float partialTicks) {
+
+        renderInfo.setAnglesInternal(partialTicks, 90);
+
+        super.renderParticle(iVertexBuilder, renderInfo, partialTicks);
+    }
+
+
+
+    /*
+    @Override
     public void renderParticle(BufferBuilder buffer, ActiveRenderInfo entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ) {
         float f = this.getScale(partialTicks);
         float f1 = this.getMinU();
@@ -84,4 +96,5 @@ public class AxisLockedParticle extends SpriteTexturedParticle {
         buffer.pos((double)f5 + avec3d[2].x, (double)f6 + avec3d[2].y, (double)f7 + avec3d[2].z).tex((double)f1, (double)f3).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
         buffer.pos((double)f5 + avec3d[3].x, (double)f6 + avec3d[3].y, (double)f7 + avec3d[3].z).tex((double)f1, (double)f4).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
     }
+     */
 }

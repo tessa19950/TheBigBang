@@ -29,7 +29,7 @@ public abstract class ThrowingStarItem extends Item  {
 		if (!playerIn.abilities.isCreativeMode)
 			itemstack.shrink(1);
 
-		worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ,
+		worldIn.playSound(null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(),
 				SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
 		if (!worldIn.isRemote) {
 			ThrowingStarEntity throwingStar = null;

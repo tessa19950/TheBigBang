@@ -58,7 +58,7 @@ public class GarnierItem extends ShootableItem {
 						star.setKnockbackStrength(knockback);
 					int piercing = EnchantmentHelper.getEnchantmentLevel(Enchantments.PIERCING, stack);
 					if (piercing > 0)
-						star.func_213872_b((byte)piercing);
+						star.setPierceLevel((byte)piercing);
 					if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0)
 						star.setFire(100);
 					stack.damageItem(1, player, (p) -> p.sendBreakAnimation(player.getActiveHand()));
@@ -68,7 +68,7 @@ public class GarnierItem extends ShootableItem {
 					worldIn.playSound(null, entityLiving.getPosition(), getThrowSound(), SoundCategory.PLAYERS, 1, pitch);
 					worldIn.addEntity(star);
 				}
-				worldIn.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + 1 * 0.5F);
+				worldIn.playSound(null, player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.4F + 1.2F) + 1 * 0.5F);
 				if (!isInfinite) {
 					ammo.shrink(1);
 					if (ammo.isEmpty())

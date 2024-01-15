@@ -3,9 +3,11 @@ package com.homebrewCult.TheBigBang.layers;
 import com.homebrewCult.TheBigBang.TheBigBang;
 import com.homebrewCult.TheBigBang.init.ModItems;
 import com.homebrewCult.TheBigBang.items.weapons.*;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GLX;
 import com.mojang.blaze3d.platform.GlStateManager;
 
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.model.PlayerModel;
@@ -56,6 +58,10 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 	}
 
 	@Override
+	public void render(MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int i, T t, float v, float v1, float v2, float v3, float v4, float v5) {
+
+	}
+
 	public void render(T entityIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
 		PlayerEntity player = (PlayerEntity)entityIn;
 		ItemStack stack = player.getHeldItemMainhand();
@@ -107,9 +113,9 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 		GlStateManager.scalef(scale, scale, scale);
 		int j = 15728880 % 65536;
 		int k = 15728880 / 65536;
-		GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float)j, (float)k);
+		//GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float)j, (float)k);
 		GlStateManager.enableBlend();
-		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.DST_ALPHA);
+		//GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.DST_ALPHA);
 		GlStateManager.color4f(1.0F, 1.0F, 1.0F, hurricanePct); 
 		HURRICANE_MODEL.render(pull);
 		GlStateManager.disableBlend();
@@ -123,6 +129,7 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 		}
 		if(teleTime > 0 && teleTime < 8) {
 			GlStateManager.pushMatrix();
+
 			this.bindTexture(TELEPORT_TEXTURE_LOCATION);
 			GlStateManager.translatef(0f, 0f, 0f);
 			float p = teleTime / 8F;
@@ -132,7 +139,8 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 			GlStateManager.scalef(width, height, width);
 			int j = 15728880 % 65536;
 			int k = 15728880 / 65536;
-			GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float)j, (float)k);
+			//GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float)j, (float)k);
+
 			GlStateManager.enableBlend();
 			GlStateManager.color4f(1.0F, 1.0F, 1.0F, MathHelper.sin(p * (float)Math.PI));
 			TELEPORT_MODEL.render(teleTime + partialTicks);
@@ -160,7 +168,8 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 			GlStateManager.scalef(scale, scale, scale);
 			int j = 15728880 % 65536;
 			int k = 15728880 / 65536;
-			GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float)j, (float)k);
+			//GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float)j, (float)k);
+
 			GlStateManager.enableBlend();
 			GlStateManager.color4f(1.0F, 1.0F, 1.0F, MathHelper.sin((genesisTime / 45F) * (float)Math.PI)); 
 			GENESIS_MODEL.render(genesisTime + partialTicks);
@@ -194,7 +203,7 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 			GlStateManager.scalef(scale * width, scale, scale);
 			GlStateManager.enableBlend();
 			if(hyperBodyTime > 22) {
-				GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.DST_ALPHA);
+				//GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.DST_ALPHA);
 				GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F - ((hyperBodyTime - 20) * 0.1F));
 			}   
 			HYPER_BODY_MODEL.render(hyperBodyTime + partialTicks);
@@ -204,9 +213,9 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 				for(int x = 0; x < 3; ++x) {
 					for(int y = 0; y < 3; ++y) {
 						for(int z = 0; z < 3; ++z) {
-							double p0 = player.posX + (x * 0.1d);
-							double p1 = player.posY + (y * 0.8d);
-							double p2 = player.posZ + (z * 0.1d);
+							double p0 = player.getPosX() + (x * 0.1d);
+							double p1 = player.getPosY() + (y * 0.8d);
+							double p2 = player.getPosZ() + (z * 0.1d);
 							double s0 = (player.world.rand.nextDouble() - 0.5d) * 0.5d;
 							double s1 = (player.world.rand.nextDouble() - 0.5d) * 0.5d;
 							double s2 = (player.world.rand.nextDouble() - 0.5d) * 0.5d;
@@ -232,7 +241,7 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 			GlStateManager.scalef(scale, scale, scale);
 			int j = 15728880 % 65536;
 			int k = 15728880 / 65536;
-			GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float)j, (float)k);
+			//GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float)j, (float)k);
 			GlStateManager.enableBlend();
 			GlStateManager.color4f(1.0F, 1.0F, 1.0F, MathHelper.sin((dragonTime / 60F) * (float)Math.PI));
 			DRAGON_CRUSHER_MODEL.render(dragonTime + partialTicks);
@@ -263,7 +272,7 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 			GlStateManager.scalef(scale, scale * MathHelper.sin(MathHelper.clamp(threatenTime / 5F, 0, (float)Math.PI/2)), scale);
 			int j = 15728880 % 65536;
 			int k = 15728880 / 65536;
-			GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float)j, (float)k);
+			//GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float)j, (float)k);
 			GlStateManager.enableBlend();
 			//GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.DST_ALPHA);
 			GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F - MathHelper.sin(MathHelper.clamp((threatenTime - 30) / 15F, 0, (float)Math.PI/2)));
@@ -299,7 +308,7 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 
 			int j = 15728880 % 65536;
 			int k = 15728880 / 65536;
-			GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float)j, (float)k);
+			//GLX.glMultiTexCoord2f(GLX.GL_TEXTURE1, (float)j, (float)k);
 			GlStateManager.enableBlend();
 			float o = MathHelper.sin(magnetTime / 30F * (float)Math.PI);
 			GlStateManager.color4f(1.0F, 1.0F, 1.0F, o);
@@ -318,9 +327,11 @@ public class BigBangPlayerLayer<T extends LivingEntity> extends LayerRenderer<T,
 		}
 	}
 
-	@Override
-	public boolean shouldCombineTextures() {
-		return false;
+	private void bindTexture(ResourceLocation resourceLocation) {
+		// IMPLEMENT SOMETHING FOR THIS
 	}
 
+	private void GLXglMultiTexCoord2f() {
+
+	}
 }

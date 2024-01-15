@@ -95,13 +95,13 @@ public class MithrilWandItem extends TieredItem implements IBigBangWeapon {
 			if(timer > 0) {
 				if(worldIn.isRemote) {
 					if(timer == 10) {
-						worldIn.addParticle(ModParticleTypes.MAGIC_CLAW_LEFT.get(), target.posX, target.posY + 1, target.posZ, 0, 0, 0);
+						worldIn.addParticle(ModParticleTypes.MAGIC_CLAW_LEFT.get(), target.getPosX(), target.getPosY() + 1, target.getPosZ(), 0, 0, 0);
 					} else if (timer == 20) {
-						worldIn.addParticle(ModParticleTypes.MAGIC_CLAW_RIGHT.get(), target.posX, target.posY + 1, target.posZ, 0, 0, 0);
+						worldIn.addParticle(ModParticleTypes.MAGIC_CLAW_RIGHT.get(), target.getPosX(), target.getPosY() + 1, target.getPosZ(), 0, 0, 0);
 					} 
 				} else {
 					if(timer == 1) {
-						worldIn.playSound(null, target.posX, target.posY, target.posZ, ModSounds.MAGIC_CLAW_USE, SoundCategory.PLAYERS, 1, 1 + (MathUtility.floatInRange(worldIn.rand, -0.2f, 0.2f)));
+						worldIn.playSound(null, target.getPosX(), target.getPosY(), target.getPosZ(), ModSounds.MAGIC_CLAW_USE, SoundCategory.PLAYERS, 1, 1 + (MathUtility.floatInRange(worldIn.rand, -0.2f, 0.2f)));
 					} else if (timer == 10) {
 						int damage = 4 + random.nextInt(4);
 						magicAttackEntityAsMob(user, target, damage);
